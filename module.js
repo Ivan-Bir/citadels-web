@@ -7,6 +7,7 @@ function init(wsServer, path) {
         channel = "citadels",
         testMode = process.argv[2] === "debug",
         setupConfig = require("./public/setup"),
+        {calculateDistrictScore} = require("./district-scoring"),
         normalizeTimerSettings = setupConfig.normalizeTimerSettings,
         defaultTimerSettings = normalizeTimerSettings();
 
@@ -70,6 +71,8 @@ function init(wsServer, path) {
             const
                 send = (target, event, data) => userRegistry.send(target, event, data),
                 update = (payload) => {
+                    updateConspiracies();
+                    updateBuildingBans();
                     room.serverTime = Date.now();
                     room.districtDeckCount = state.districtDeck.length;
                     room.districtDiscardCount = state.districtDiscard.length;
@@ -309,6 +312,13 @@ function init(wsServer, path) {
                         state.gameRules = setup.rules;
                         state.randomDiscards = [];
                         state.previousRandomDiscards = [];
+                        room.roundNumber = 0;
+                        room.turnId = 0;
+                        state.buildingBanRound = null;
+                        state.lastAgedRound = 0;
+                        state.pendingConspiracies = [];
+                        state.nextDistrictId = 0;
+                        state.pendingBuildingBans = [];
                         room.timer = null;
                         room.timersPaused = false;
                         room.targetSlot = null;
@@ -365,16 +375,37 @@ function init(wsServer, path) {
                     return cards;
                 },
                 newRound = () => {
+                    room.roundNumber = (room.roundNumber || 0) + 1;
+                    room.buildingBan = state.buildingBanRound === room.roundNumber;
+                    room.nextRoundBuildingBan = state.buildingBanRound === room.roundNumber + 1;
                     clearTurnTimer();
                     room.phase = 1;
                     state.currentIndCharacter = 0;
                     room.currentCharacter = "0";
                     state.characterDeck = [...room.characterInGame];
+                    state.draftOrder = [];
+                    state.theaterQueue = [];
+                    state.theaterCursor = 0;
+                    room.theaterAction = null;
                     state.previousRandomDiscards = state.randomDiscards;
                     state.randomDiscards = [];
                     let discard = state.playersCount + 1 === room.characterInGame.length || state.playersCount < 4 ? 0 : room.characterInGame.length - 2 - state.playersCount;
-                    room.characterFace = randomDiscard(discard, true);
-                    state.discarded = randomDiscard(1, false);
+                    const forced = [];
+                    if (state.playersCount >= 4) {
+                        for (const entry of [...(state.pendingConspiracies || [])].reverse()) {
+                            if (!state.characterDeck.includes(entry.characterId) || forced.includes(entry.characterId)) continue;
+                            forced.push(entry.characterId);
+                            if (forced.length === discard + 1) break;
+                        }
+                    }
+                    forced.forEach(character => state.characterDeck.splice(state.characterDeck.indexOf(character), 1));
+                    const randomCount = discard + 1 - forced.length;
+                    const faceCount = Math.min(discard, randomCount);
+                    room.characterFace = randomDiscard(faceCount, true);
+                    // Only random hidden cards may return to the final chooser.
+                    state.discarded = randomDiscard(randomCount - faceCount, false);
+                    state.pendingConspiracies = [];
+                    updateConspiracies();
 
                     Object.keys(state.players).forEach(slot => {
                         state.players[slot].character = [];
@@ -405,6 +436,32 @@ function init(wsServer, path) {
                     update();
                     updateState();
                 },
+                nextTheater = () => {
+                    clearTurnTimer();
+                    const entry = state.theaterQueue[state.theaterCursor];
+                    if (!entry) {
+                        room.theaterAction = null;
+                        room.phase = 2;
+                        return nextCharacter();
+                    }
+                    room.phase = 1.5;
+                    room.currentPlayer = entry.ownerSlot;
+                    room.theaterAction = {sourceIndex: entry.sourceIndex, position: state.theaterCursor + 1, total: state.theaterQueue.length};
+                    state.players[room.currentPlayer].action = "theater-action";
+                    startMainTimer(room.currentPlayer);
+                    update();
+                    sendStateSlot(room.currentPlayer);
+                },
+                beginTheaters = () => {
+                    state.theaterQueue = [];
+                    for (const ownerSlot of state.draftOrder) {
+                        room.playerDistricts[ownerSlot].forEach((card, sourceIndex) => {
+                            if (card.type === "theater") state.theaterQueue.push({ownerSlot, sourceIndex});
+                        });
+                    }
+                    state.theaterCursor = 0;
+                    nextTheater();
+                },
                 nextChoose = () => {
                     if (state.playersCount === 3 && state.characterDeck.length === 5) {
                         randomDiscard(1, false);
@@ -430,22 +487,7 @@ function init(wsServer, path) {
                         startCharacterTimer(room.currentPlayer);
                         update();
                         sendStateSlot(room.currentPlayer);
-                    } else {
-                        let _theater = -1;
-                        Object.keys(state.players).forEach(slot => _theater = include(Number(slot), 'theater') ? Number(slot) : _theater);
-                        if (_theater === -1) {
-                            room.phase = 2;
-                            nextCharacter();
-                        } else {
-                            room.phase = 1.5;
-                            sendStateSlot(room.currentPlayer);
-                            room.currentPlayer = _theater;
-                            state.players[room.currentPlayer].action = 'theater-action';
-                            startMainTimer(room.currentPlayer);
-                            update();
-                            sendStateSlot(room.currentPlayer);
-                        }
-                    }
+                    } else beginTheaters();
                 },
                 nextChoose2 = () => {
                     switch (state.characterDeck.length) {
@@ -473,8 +515,7 @@ function init(wsServer, path) {
                             state.players[room.currentPlayer].action = null;
                             state.players[room.currentPlayer].choose = null;
                             sendStateSlot(room.currentPlayer);
-                            room.phase = 2;
-                            nextCharacter();
+                            beginTheaters();
                     }
                 },
                 nextCharacter = () => {
@@ -483,6 +524,7 @@ function init(wsServer, path) {
                     room.currentCharacter = room.characterInGame[state.currentIndCharacter - 1];
                     room.currentPlayer = state.characterRoles[room.currentCharacter];
                     if (room.currentPlayer == undefined || room.assassined === room.currentCharacter) return nextCharacter();
+                    room.turnId = (room.turnId || 0) + 1;
                     room.playerCharacter[room.currentPlayer][state.players[room.currentPlayer].character.indexOf(room.currentCharacter)] = room.currentCharacter;
 
                     room.buildDistricts = -1;
@@ -522,6 +564,7 @@ function init(wsServer, path) {
                     } else startTurn(payload);
                 },
                 startTurn = (payload) => {
+                    state.turnStartCitySize = getDistrictsCount(room.currentPlayer);
                     if (room.robbed === room.currentCharacter) {
                         let gold = room.playerGold[room.currentPlayer];
                         room.playerGold[room.currentPlayer] = 0;
@@ -644,6 +687,15 @@ function init(wsServer, path) {
                     sendStateSlot(room.currentPlayer);
                 },
                 endRound = () => {
+                    if (state.lastAgedRound !== room.roundNumber) {
+                        for (const slot of Object.keys(state.players)) {
+                            for (const card of room.playerDistricts[slot]) {
+                                if (card.type === "wine_cellar") card.wineAge = (card.wineAge || 0) + 1;
+                            }
+                            countPoints(Number(slot));
+                        }
+                        state.lastAgedRound = room.roundNumber;
+                    }
                     clearTurnTimer();
                     if (room.assassined !== "9_2" && state.characterRoles["9_2"] !== undefined) {
                         room.currentPlayer = state.characterRoles[room.witched === "9_2" ? "1_2" : "9_2"];
@@ -680,10 +732,7 @@ function init(wsServer, path) {
                     room.targetSlot = null;
                     Object.keys(state.players).forEach(slot => {
                         countPoints(Number(slot));
-                        if (includeHand(slot, "secret_vault")) {
-                            room.playerDistricts[slot].push({type: "secret_vault", cost: 0});
-                            room.playerScore[slot] += 3;
-                        }
+                        room.playerScore[slot] += 3 * state.players[slot].hand.filter(card => card.type === "secret_vault").length;
                         state.players[slot].character = [];
                         room.playerCharacter[slot] = [];
                     });
@@ -722,10 +771,22 @@ function init(wsServer, path) {
                     room.playerHand[slot] = state.players[slot].hand.length;
                     return cards.length;
                 },
+                closeDistrictPeek = (slot) => {
+                    const player = state.players[slot];
+                    player.choose = null;
+                    player.chooseSource = null;
+                    player.action = player.peekResumeAction || null;
+                    delete player.peekResumeAction;
+                    room.phase = 2;
+                },
                 finishPhase3Turn = (slot) => {
                     const player = state.players[slot];
                     if (room.phase !== 3 || !player)
                         return;
+                    if (player.action === 'district-peek') {
+                        closeDistrictPeek(slot);
+                        return;
+                    }
                     if (player.action === 'spy-cards') {
                         if (state.players[room.spyTarget])
                             state.players[room.spyTarget].hand = player.choose || [];
@@ -841,11 +902,11 @@ function init(wsServer, path) {
                             'seer-return'].includes(state.players[slot].action)) return;
                         clearTurnTimer();
                         if (room.currentCharacter != "1_2") {
-                            if (!room.playerGold[slot] && include(slot, "poor_house"))
-                                room.playerGold[slot] += 1;
-                            if (!state.players[slot].hand.length && include(slot, "park")) {
-                                drawIntoHand(slot, 2);
-                            }
+                            const poorIncome = room.playerGold[slot] === 0 ? countDistricts(slot, 'poor_house') : 0;
+                            const parkCards = state.players[slot].hand.length === 0 ? 2 * countDistricts(slot, 'park') : 0;
+                            const courtIncome = getDistrictsCount(slot) <= state.turnStartCitySize ? countDistricts(slot, 'artisans_court') : 0;
+                            room.playerGold[slot] += poorIncome + courtIncome;
+                            if (parkCards) drawIntoHand(slot, parkCards);
                             if (room.currentCharacter === "6_2")
                                 room.playerGold[slot] += state.alchemistCoins;
                         }
@@ -858,62 +919,79 @@ function init(wsServer, path) {
                     }
                 },
                 countPoints = (slot) => {
-                    room.playerScore[slot] = room.playerDistricts[slot].map(card => getDistrictCost(card)).reduce((a, b) => a + b, 0);
-                    const decorationsCount = room.playerDistricts[slot].map(card => getDecorationCount(card)).reduce((a, b) => a + b, 0);
-                    room.playerScore[slot] += Math.floor(decorationsCount / 2);
+                    room.playerScore[slot] = calculateDistrictScore(room.playerDistricts[slot], {
+                        handCount: state.players[slot].hand.length,
+                        gold: room.playerGold[slot],
+                        crowned: room.king === slot,
+                        allColorsBonus: state.gameRules.bonuses.allColors
+                    });
                     if (room.ender == slot)
                         room.playerScore[slot] += state.gameRules.bonuses.firstCity;
                     else if (getDistrictsCount(slot) >= state.maxDistricts)
                         room.playerScore[slot] += state.gameRules.bonuses.otherCities;
-
-                    room.playerScore[slot] += 3 * include(slot, "dragon_gate");
-                    room.playerScore[slot] += room.playerHand[slot] * include(slot, "map_room");
-                    room.playerScore[slot] += room.playerGold[slot] * include(slot, "imperial_treasury");
-                    room.playerScore[slot] += room.playerDistricts[slot].filter(card => getDistrictCost(card) % 2).length * include(slot, "basilica");
-                    const museum = room.playerDistricts[slot].find(card => card.type === "museum") || {};
-                    room.playerScore[slot] += museum.exposition ? museum.exposition.length : 0;
-                    if (include(slot, "memorial") && room.king === slot) room.playerScore[slot] += 5;
-
-                    let hqtypes = include(slot, "haunted_quarter") ? [4, 5, 6, 8, 9] : [9];
-                    let maxBonusPoints = 0;
-
-                    hqtypes.map(hqtype => {
-                        let acc = {4: 0, 5: 0, 6: 0, 8: 0, 9: 0};
-                        let bonusPoints = 0;
-                        room.playerDistricts[slot].map(card => card.type === "haunted_quarter" ? hqtype : utils.districts[card.type].type)
-                            .reduce((acc, current) => {
-                                acc[current]++;
-                                return acc;
-                            }, acc);
-                        if (Math.min(...Object.keys(acc).map((type) => acc[type]))) bonusPoints += state.gameRules.bonuses.allColors;
-                        if (include(slot, "ivory_tower") && acc[9] === 1) bonusPoints += 5;
-                        bonusPoints += acc[9] * include(slot, "well_of_wishes");
-                        if (Math.max(...Object.keys(acc).map((type) => acc[type])) >= 3) bonusPoints += 3 * include(slot, "capitol");
-                        maxBonusPoints = Math.max(maxBonusPoints, bonusPoints);
-                    });
-                    room.playerScore[slot] += maxBonusPoints;
                 },
-                getDistrictsCount = (slot) => {
-                    let districtsCount = room.playerDistricts[slot].length;
-                    if (include(slot, "monument"))
-                        districtsCount++;
-                    return districtsCount;
-                },
+                getDistrictsCount = (slot) => setupConfig.getCityDistrictCount(room.playerDistricts[slot]),
                 include = (slot, card) => room.playerDistricts[slot].some(building => building.type === card),
+                countDistricts = (slot, type) => setupConfig.countDistricts(room.playerDistricts[slot], type),
+                ensureCardId = (card) => {
+                    if (!card.instanceId) card.instanceId = 'district-' + (state.nextDistrictId = (state.nextDistrictId || 0) + 1);
+                    return card.instanceId;
+                },
+                districtActionAllowed = (slot) => room.phase === 2 && slot === room.currentPlayer && state.players[slot] && !waitToResponse()
+                    && !['magistrate-open', 'seer-return', 'blackmailed-response', 'blackmailed-open', 'emperor-nores-action'].includes(state.players[slot].action),
+                districtSource = (slot, type, index, unused = true) => {
+                    const city = room.playerDistricts[slot] || [];
+                    const available = card => card && card.type === type
+                        && (!unused || !card.actionsUsed || card.actionsUsed[type] !== (room.turnId || 0));
+                    const card = index === undefined ? city.find(available) : Number.isInteger(index) && city[index];
+                    return available(card) ? card : null;
+                },
+                useDistrict = (card) => {
+                    card.actionsUsed = {...card.actionsUsed, [card.type]: room.turnId || 0};
+                },
+                updateBuildingBans = () => {
+                    state.pendingBuildingBans = (state.pendingBuildingBans || []).filter(entry => entry.round >= (room.roundNumber || 0));
+                    room.buildingBanSources = state.pendingBuildingBans.map(entry => {
+                        const index = (room.playerDistricts[entry.ownerSlot] || []).findIndex(card => card.instanceId === entry.sourceId);
+                        return {ownerSlot: entry.ownerSlot, sourceIndex: index < 0 ? null : index, round: entry.round};
+                    });
+                },
+                updateConspiracies = () => {
+                    room.conspiratorEffects = [];
+                    const targets = {};
+                    Object.keys(state.players).forEach(slot => { targets[slot] = []; });
+                    for (const entry of state.pendingConspiracies || []) {
+                        const city = room.playerDistricts[entry.ownerSlot] || [];
+                        const index = city.findIndex(card => card.instanceId === entry.sourceId);
+                        const sourceIndex = index < 0 ? null : index;
+                        room.conspiratorEffects.push({ownerSlot: entry.ownerSlot, sourceIndex});
+                        if (targets[entry.ownerSlot]) targets[entry.ownerSlot].push({sourceIndex, characterId: entry.characterId});
+                    }
+                    Object.keys(state.players).forEach(slot => {
+                        const changed = JSON.stringify(state.players[slot].conspiratorTargets || []) !== JSON.stringify(targets[slot]);
+                        state.players[slot].conspiratorTargets = targets[slot];
+                        if (changed) sendStateSlot(Number(slot));
+                    });
+                },
                 getDecorationCount = (card) => card.decoration === true ? 1 : (card.decoration || 0),
                 getDistrictCost = (card) => card.cost + getDecorationCount(card),
-                getBuildCost = (slot, card) => card.cost - ((include(slot, "factory") && card.kind === 9) ? 1 : 0),
-                includeHand = (slot, card) => state.players[slot].hand.some(building => building.type === card),
-                getPlayerDistrictIndex = (slot, card) => room.playerDistricts[slot].findIndex((it) => it.type === card),
-                getPlayerDistrict = (slot, card) => room.playerDistricts[slot][getPlayerDistrictIndex(slot, card)],
-                build = (slot, cardInd, replaceCardInd, noRequireGold) => {
+                getBuildCost = (slot, card) => setupConfig.getBuildCost(room.playerDistricts[slot], card),
+                copyMirrorTarget = (slot, targetSlot, targetIndex) => {
+                    const target = (room.playerDistricts[targetSlot] || [])[targetIndex];
+                    if (!Number.isInteger(targetSlot) || targetSlot === slot || !state.players[targetSlot]
+                        || !Number.isInteger(targetIndex) || !target || target.type === 'theater') return null;
+                    return JSON.parse(JSON.stringify(target));
+                },
+                build = (slot, cardInd, replaceCardInd, noRequireGold, copiedBuilding) => {
+                    if (!Number.isInteger(cardInd)) return [false, 0];
                     const
-                        building = state.players[slot].hand[cardInd],
+                        paymentCard = state.players[slot].hand[cardInd],
+                        building = copiedBuilding || paymentCard,
                         districts = room.playerDistricts[slot];
-                    if (room.buildDistricts === -1) return [false, 0];
-                    if (!(room.buildDistricts || building.type === "stable" || building.wizard
+                    if (!building || room.buildingBan || room.buildDistricts === -1) return [false, 0];
+                    if (!(room.buildDistricts || building.type === "stable" || paymentCard.wizard
                         || (building.kind === 6 && room.currentCharacter === "6_3"))) return [false, 0];
-                    if (building.type === "monument" && districts.length + 2 >= state.maxDistricts) {
+                    if (building.type === "monument" && setupConfig.getCityDistrictCount(districts.filter((_, index) => index !== replaceCardInd)) + 2 >= state.maxDistricts) {
                         sendSlot(slot, "message", "Вы не можете построить Монумент как последнее строение");
                         return [false, 0];
                     }
@@ -921,23 +999,38 @@ function init(wsServer, path) {
                         sendSlot(slot, "message", "Вы не можете построить Тайное убежище");
                         return [false, 0];
                     }
-                    if (include(slot, building.type) && !(include(slot, "quarry") || room.currentCharacter === "3_2")) {
+                    if (!setupConfig.canAddDistrict(districts, building.type, state.gameRules, {removeIndex: replaceCardInd, ignoreLimit: include(slot, "quarry") || room.currentCharacter === "3_2"})) {
                         sendSlot(slot, "message", 'У вас уже есть такой квартал');
                         return [false, 0];
                     }
-                    const cost = getBuildCost(slot, building);
+                    const cost = getBuildCost(slot, paymentCard);
                     if (!noRequireGold && room.playerGold[slot] < cost) {
                         sendSlot(slot, "message", `У вас не хватает монет (${room.playerGold[slot]}/${cost}).`);
                         return [false, 0];
                     }
-                    if (building.type !== "stable" && !building.wizard && !(building.kind === 6 && room.currentCharacter === "6_3"))
+                    if (building.type !== "stable" && !paymentCard.wizard && !(building.kind === 6 && room.currentCharacter === "6_3"))
                         room.buildDistricts -= 1;
                     delete state.players[slot].hand[cardInd].wizard;
                     if (!noRequireGold) {
                         room.playerGold[slot] -= cost;
                         state.alchemistCoins += cost;
                     }
-                    districts.push(...state.players[slot].hand.splice(cardInd, 1));
+                    state.players[slot].hand.splice(cardInd, 1);
+                    if (!copiedBuilding) {
+                        delete building.actionsUsed;
+                        if (building.type === 'wine_cellar') building.wineAge = 0;
+                        if (building.type === 'judicial_chamber') building.judicialUsed = false;
+                    }
+                    if (copiedBuilding) {
+                        const renewIdentity = card => {
+                            delete card.instanceId;
+                            ensureCardId(card);
+                            (card.exposition || []).forEach(renewIdentity);
+                        };
+                        renewIdentity(building);
+                    }
+                    ensureCardId(building);
+                    districts.push(building);
                     room.playerHand[slot] -= 1;
                     if (replaceCardInd !== undefined)
                         destroy(slot, replaceCardInd);
@@ -949,7 +1042,7 @@ function init(wsServer, path) {
                     payload = getCityCompletePayload(slot, wasComplete, payload);
                     const building = room.playerDistricts[slot][room.playerDistricts[slot].length - 1];
                     const magistate = state.characterRoles["1_3"];
-                    if (magistate !== undefined && slot !== magistate && room.magistrated.includes(room.currentCharacter) && !include(magistate, building.type) && !state.firstBuilding) {
+                    if (magistate !== undefined && slot !== magistate && room.magistrated.includes(room.currentCharacter) && (state.gameRules.magistrateOverLimit || setupConfig.canAddDistrict(room.playerDistricts[magistate], building.type, state.gameRules)) && !state.firstBuilding) {
                         state.magistrateAction = {cost: cost, action: state.players[slot].action};
                         state.players[slot].action = null;
                         countPoints(slot);
@@ -988,10 +1081,11 @@ function init(wsServer, path) {
                     }
                 },
                 dropCardHand = (slot, cardInd) => discardCards(state.players[slot].hand.splice(cardInd, 1)),
-                dropCardDistricts = (slot, cardInd) => discardCards(room.playerDistricts[slot].splice(cardInd, 1)),
+                dropCardDistricts = (slot, cardInd) => {
+                    discardCards(room.playerDistricts[slot].splice(cardInd, 1));
+                    updateConspiracies();
+                },
                 getNextReturnSeer = () => room.seerReturnPlayers[room.seerReturnPlayers.indexOf(room.seerReturnSlot) + 1],
-                isNoMagistrateAction = () => state.players[room.currentPlayer].action !== 'magistrate-open',
-                isNoSeerAction = () => state.players[room.currentPlayer].action !== 'seer-return',
                 removePlayer = (playerId) => {
                     if (room.spectators.has(playerId)) {
                         this.emit("user-kicked", playerId);
@@ -1042,6 +1136,7 @@ function init(wsServer, path) {
                     if (room.phase === 1 && slot === room.currentPlayer && state.players[slot].action === 'choose' && ~state.characterDeck[value]) {
                         let role = state.characterDeck.splice(value, 1)[0];
                         state.players[slot].character.push(role);
+                        if (!state.draftOrder.includes(slot)) state.draftOrder.push(slot);
                         room.playerCharacter[slot].push(0);
                         state.characterRoles[role] = slot;
                         state.playersCount == 2 ? nextChoose2() : nextChoose();
@@ -1054,17 +1149,17 @@ function init(wsServer, path) {
                     }
                 },
                 "theater-action": (slot, slot_d) => {
-                    if (room.phase === 1.5 && state.players[slot_d] && state.players[slot].action === 'theater-action') {
+                    if (room.phase === 1.5 && slot === room.currentPlayer && state.players[slot_d] && state.players[slot].action === 'theater-action') {
                         if (slot !== slot_d) {
                             [state.players[slot].character, state.players[slot_d].character] = [state.players[slot_d].character, state.players[slot].character];
-                            [state.characterRoles[state.players[slot].character], state.characterRoles[state.players[slot_d].character]]
-                                = [state.characterRoles[state.players[slot_d].character], state.characterRoles[state.players[slot].character]];
+                            for (const character of state.players[slot].character) state.characterRoles[character] = slot;
+                            for (const character of state.players[slot_d].character) state.characterRoles[character] = slot_d;
                             sendStateSlot(slot_d);
                         }
-                        room.phase = 2;
                         state.players[slot].action = null;
                         sendStateSlot(slot);
-                        nextCharacter();
+                        state.theaterCursor++;
+                        nextTheater();
                     }
                 },
                 "take-resources": (slot, res) => {
@@ -1072,15 +1167,13 @@ function init(wsServer, path) {
                         && !['magistrate-open', 'seer-return'].includes(state.players[slot].action)) {
                         if (res === 'coins') {
                             room.tookResource = true;
-                            room.playerGold[slot] += 2;
-                            if (include(slot, "gold_mine"))
-                                room.playerGold[slot] += 1;
+                            room.playerGold[slot] += 2 + countDistricts(slot, "gold_mine");
                             if (waitToResponse()) {
                                 countPoints(slot);
                                 return moveToResponse();
                             }
                         } else {
-                            const cardsToTake = drawCards(2 + include(slot, "observatory"));
+                            const cardsToTake = drawCards(setupConfig.getResourceCardCount(room.playerDistricts[slot]));
                             if (!cardsToTake.length) return;
                             room.tookResource = true;
                             if (include(slot, "library")) {
@@ -1105,7 +1198,7 @@ function init(wsServer, path) {
                 "take-card": (slot, cardInd) => {
                     if (room.phase === 3 && slot === room.currentPlayer
                         && ~state.players[slot].choose[cardInd]
-                        && !['magistrate-open', 'wizard-card-action', 'scholar-response', 'spy-cards'].includes(state.players[slot].action)) {
+                        && !['magistrate-open', 'wizard-card-action', 'scholar-response', 'spy-cards', 'district-peek'].includes(state.players[slot].action)) {
                         state.players[slot].hand.push(...state.players[slot].choose.splice(cardInd, 1));
                         discardCards(state.players[slot].choose);
                         room.playerHand[slot] += 1;
@@ -1120,9 +1213,7 @@ function init(wsServer, path) {
                 "take-income": (slot) => {
                     if (room.phase === 2 && slot === room.currentPlayer && room.incomeAction && room.currentCharacter !== "5_2" && state.players[slot].action !== 'magistrate-open') {
                         room.incomeAction = false;
-                        let income = room.playerDistricts[slot].map(card => utils.districts[card.type].type)
-                                .filter(type => type === state.currentIndCharacter).length
-                            + include(slot, "school_of_magic");
+                        let income = setupConfig.getColorIncome(room.playerDistricts[slot], state.currentIndCharacter);
                         if (!["4_3", "5_3"].includes(room.currentCharacter))
                             room.playerGold[slot] += income;
                         else {
@@ -1135,9 +1226,7 @@ function init(wsServer, path) {
                 },
                 "abbat-income": (slot, cards) => {
                     if (room.phase === 2 && slot === room.currentPlayer && room.incomeAction && room.currentCharacter === "5_2") {
-                        let income = room.playerDistricts[slot].map(card => utils.districts[card.type].type)
-                                .filter(type => type === 5).length
-                            + include(slot, "school_of_magic");
+                        let income = setupConfig.getColorIncome(room.playerDistricts[slot], 5);
                         cards = Math.floor(cards);
                         if (!Number.isSafeInteger(cards) || cards > income || cards < 0) return;
                         const coins = income - cards;
@@ -1155,6 +1244,18 @@ function init(wsServer, path) {
                         const wasBuilt = build(slot, cardInd);
                         if (wasBuilt[0]) wasBuilded(slot, wasBuilt[1], null, wasComplete)
                     }
+                },
+                "build-mirror": (slot, cardInd, targetSlot, targetIndex) => {
+                    if (!districtActionAllowed(slot) || !state.players[slot].hand[cardInd]
+                        || state.players[slot].hand[cardInd].type !== 'mirror_hall') return;
+                    let copy;
+                    if (targetSlot !== undefined || targetIndex !== undefined) {
+                        copy = copyMirrorTarget(slot, targetSlot, targetIndex);
+                        if (!copy) return;
+                    }
+                    const wasComplete = getDistrictsCount(slot) >= state.maxDistricts;
+                    const result = build(slot, cardInd, undefined, false, copy);
+                    if (result[0]) wasBuilded(slot, result[1], null, wasComplete);
                 },
                 "kill-character": (slot, char) => {
                     if (room.phase === 2 && state.players[slot].action === 'assassin-action' && room.characterInGame.indexOf(char) > 0) {
@@ -1186,21 +1287,31 @@ function init(wsServer, path) {
                     }
                 },
                 "magistrate-open": (slot, ans) => {
-                    if (room.phase === 2 && state.players[slot].action === 'magistrate-open' && ~['yes', 'no'].indexOf(ans)) {
+                    if (room.phase === 2 && slot === room.currentPlayer && state.characterRoles["1_3"] === slot
+                        && state.players[slot]?.action === 'magistrate-open' && state.magistrateAction
+                        && ['yes', 'no'].includes(ans)) {
+                        const magistratedSlot = room.targetSlot;
+                        if (!Number.isInteger(magistratedSlot) || magistratedSlot === slot || !state.players[magistratedSlot])
+                            return;
+                        const building = room.playerDistricts[magistratedSlot]?.at(-1);
+                        if (ans === 'yes' && state.trueMagistrated === room.currentCharacter
+                            && (!building || !setupConfig.canAddDistrict(room.playerDistricts[slot], building.type,
+                                state.gameRules, {ignoreLimit: state.gameRules.magistrateOverLimit})))
+                            return sendSlot(slot, "message", 'Вы не можете забрать эту постройку себе');
                         state.players[slot].action = null;
                         room.phase = 2;
-                        const magistratedSlot = state.characterRoles[room.currentCharacter];
+
                         let payingSlot = magistratedSlot;
                         const wasComplete = getDistrictsCount(slot) >= state.maxDistricts;
                         if (ans === 'yes' && state.trueMagistrated === room.currentCharacter) {
                             room.playerGold[magistratedSlot] += state.magistrateAction.cost;
                             state.alchemistCoins -= state.magistrateAction.cost;
+                            if (building.type === "wine_cellar") building.wineAge = 0;
                             room.playerDistricts[slot].push(room.playerDistricts[magistratedSlot].pop());
                             room.magistrated = [];
                             room.trueMagistrated = state.trueMagistrated;
 
-                            if (room.ender === magistratedSlot && getDistrictsCount(magistratedSlot) < state.maxDistricts)
-                                room.ender = null;
+
                             if (room.ender === null && getDistrictsCount(slot) >= state.maxDistricts)
                                 room.ender = slot;
 
@@ -1481,35 +1592,32 @@ function init(wsServer, path) {
                         update({sound: "thief-abbat-imper"});
                     }
                 },
-                "cardinal-sell": (slot, slot_d, cardInd, sellCardInds) => {
-                    if (room.phase === 2 && state.players[slot].action === "cardinal-action" && state.players[slot_d] && slot !== slot_d
-                        && state.players[slot].hand[cardInd] && sellCardInds && sellCardInds.every
-                        && sellCardInds.every((card) => state.players[slot].hand[card]) && !sellCardInds.includes(cardInd)
-                        && getBuildCost(slot, state.players[slot].hand[cardInd]) - room.playerGold[slot] === sellCardInds.length
-                        && sellCardInds.length <= room.playerGold[slot_d]) {
-                        const
-                            playerHand = state.players[slot].hand,
-                            cost = getBuildCost(slot, playerHand[cardInd]),
-                            cardsToSell = sellCardInds.map((cardInd) => playerHand[cardInd]),
-                            wasComplete = getDistrictsCount(slot) >= state.maxDistricts,
-                            wasBuilt = build(slot, cardInd, undefined, true)[0];
-                        if (wasBuilt) {
-                            room.playerGold[slot] = 0;
-                            room.playerGold[slot_d] -= sellCardInds.length;
-                            cardsToSell.forEach((cardToSell) => {
-                                state.players[slot_d].hand.push(...playerHand.splice(playerHand.findIndex((card) => cardToSell === card), 1));
-                            });
-                            room.playerHand[slot] = playerHand.length;
-                            room.playerHand[slot_d] = state.players[slot_d].hand.length;
-                            state.players[slot].action = null;
-                            countPoints(slot);
-                            countPoints(slot_d);
-                            sendStateSlot(slot);
-                            sendStateSlot(slot_d);
-                            wasBuilded(slot, cost, {sound: "kardinal"}, wasComplete);
-                            update();
-                        }
+                "cardinal-sell": (slot, buyerSlot, cardInd, sellCardInds, copySlot, copyIndex) => {
+                    if (!districtActionAllowed(slot) || state.players[slot].action !== 'cardinal-action'
+                        || !Number.isInteger(buyerSlot) || buyerSlot === slot || !state.players[buyerSlot]
+                        || !Number.isInteger(cardInd) || !Array.isArray(sellCardInds)
+                        || new Set(sellCardInds).size !== sellCardInds.length) return;
+                    const hand = state.players[slot].hand, paymentCard = hand[cardInd];
+                    if (!paymentCard || !sellCardInds.every(index => Number.isInteger(index) && hand[index] && index !== cardInd)) return;
+                    const cost = getBuildCost(slot, paymentCard);
+                    if (cost - room.playerGold[slot] !== sellCardInds.length || !sellCardInds.length || sellCardInds.length > room.playerGold[buyerSlot]) return;
+                    let copy;
+                    if (copySlot !== undefined || copyIndex !== undefined) {
+                        if (paymentCard.type !== 'mirror_hall') return;
+                        copy = copyMirrorTarget(slot, copySlot, copyIndex);
+                        if (!copy) return;
                     }
+                    const cardsToSell = sellCardInds.map(index => hand[index]);
+                    const wasComplete = getDistrictsCount(slot) >= state.maxDistricts;
+                    if (!build(slot, cardInd, undefined, true, copy)[0]) return;
+                    room.playerGold[slot] = 0;
+                    room.playerGold[buyerSlot] -= sellCardInds.length;
+                    for (const card of cardsToSell) state.players[buyerSlot].hand.push(...hand.splice(hand.indexOf(card), 1));
+                    room.playerHand[slot] = hand.length;
+                    room.playerHand[buyerSlot] = state.players[buyerSlot].hand.length;
+                    state.players[slot].action = null;
+                    countPoints(buyerSlot); sendStateSlot(buyerSlot);
+                    wasBuilded(slot, cost, {sound: "kardinal"}, wasComplete);
                 },
                 "navigator-resources": (slot, res) => {
                     if (room.phase === 2 && state.players[slot].action === 'navigator-action' && ~['coins', 'card'].indexOf(res)) {
@@ -1555,7 +1663,8 @@ function init(wsServer, path) {
                     }
                 },
                 "destroy": (slot, slot_d, cardInd) => {
-                    if (room.phase === 2 && state.players[slot].action === 'warlord-action' && room.playerDistricts[slot_d][cardInd]) {
+                    if (room.phase === 2 && slot === room.currentPlayer && state.players[slot]?.action === 'warlord-action'
+                        && Number.isInteger(slot_d) && Number.isInteger(cardInd) && room.playerDistricts[slot_d]?.[cardInd]) {
                         if (state.characterRoles["5_1"] === slot_d && room.assassined !== "5_1" && room.witched !== "5_1")
                             return sendSlot(slot, "message", 'Вы не можете использовать способность на постройках Епископа');
                         if (state.characterRoles["1_2"] === slot_d && room.witched === "5_1" && room.witchedstate === 1)
@@ -1565,7 +1674,7 @@ function init(wsServer, path) {
                         const building = room.playerDistricts[slot_d][cardInd];
                         if (building.type === "keep")
                             return sendSlot(slot, "message", 'Вы не можете использовать способность на Форт');
-                        const cost = getDistrictCost(building) - 1 + include(slot_d, "great_wall") * (building.type !== "great_wall");
+                        const cost = getDistrictCost(building) - 1 + setupConfig.getGreatWallCount(room.playerDistricts[slot_d]);
                         if (room.playerGold[slot] < cost)
                             return sendSlot(slot, "message", `Недостаточно монет (${room.playerGold[slot]}/${cost}).`);
                         state.players[slot].action = null;
@@ -1578,38 +1687,49 @@ function init(wsServer, path) {
                     }
                 },
                 "exchange-districts": (slot, my_d, opp, opp_d) => {
-                    if (room.phase === 2 && state.players[slot].action === 'diplomat-action' && slot != opp &&
-                        room.playerDistricts[slot][my_d] && room.playerDistricts[opp][opp_d]) {
+                    if (room.phase === 2 && slot === room.currentPlayer && state.players[slot]?.action === 'diplomat-action'
+                        && Number.isInteger(opp) && slot !== opp && Number.isInteger(my_d) && Number.isInteger(opp_d)
+                        && room.playerDistricts[slot]?.[my_d] && room.playerDistricts[opp]?.[opp_d]) {
                         if (state.characterRoles["5_1"] === opp && room.assassined !== "5_1" && room.witched !== "5_1")
                             return sendSlot(slot, "message", 'Вы не можете использовать способность на постройках Епископа');
                         if (state.characterRoles["1_2"] === opp && room.witched === "5_1" && room.witchedstate === 1)
                             return sendSlot(slot, "message", 'Вы не можете использовать способность на постройках Ведьмы, которая заколдовала Епископа');
-                        if (getDistrictsCount(opp) >= state.maxDistricts)
+                        if (!state.gameRules.diplomatCompleteCity && getDistrictsCount(opp) >= state.maxDistricts)
                             return sendSlot(slot, "message", 'Вы не можете использовать способность на законченном городе оппонента');
                         const my_building = room.playerDistricts[slot][my_d];
                         const opp_building = room.playerDistricts[opp][opp_d];
                         if ([opp_building.type, my_building.type].includes("keep"))
                             return sendSlot(slot, "message", 'Вы не можете использовать способность на Форт');
-                        if (include(opp, my_building.type))
+                        if (!setupConfig.canAddDistrict(room.playerDistricts[opp], my_building.type, state.gameRules, {removeIndex: opp_d}))
                             return sendSlot(slot, "message", 'Вы не можете отдать эту постройку оппоненту');
-                        if (include(slot, opp_building.type))
+                        if (!setupConfig.canAddDistrict(room.playerDistricts[slot], opp_building.type, state.gameRules, {removeIndex: my_d}))
                             return sendSlot(slot, "message", 'Вы не можете забрать эту постройку себе');
-                        const cost = Math.max(0, getDistrictCost(opp_building) + include(opp, "great_wall") * (opp_building.type !== "great_wall") - getDistrictCost(my_building));
+                        const cost = Math.max(0, getDistrictCost(opp_building) + setupConfig.getGreatWallCount(room.playerDistricts[opp]) - getDistrictCost(my_building));
                         if (room.playerGold[slot] < cost)
                             return sendSlot(slot, "message", `Недостаточно монет (${room.playerGold[slot]}/${cost}).`);
+                        const wasComplete = getDistrictsCount(slot) >= state.maxDistricts;
+                        const opponentWasComplete = getDistrictsCount(opp) >= state.maxDistricts;
                         state.players[slot].action = null;
                         room.playerGold[slot] -= cost;
                         room.playerGold[opp] += cost;
+                        if (my_building.type === "wine_cellar") my_building.wineAge = 0;
+                        if (opp_building.type === "wine_cellar") opp_building.wineAge = 0;
                         room.playerDistricts[slot].splice(my_d, 1, opp_building);
                         room.playerDistricts[opp].splice(opp_d, 1, my_building);
+                        if (room.ender === null) {
+                            if (getDistrictsCount(slot) >= state.maxDistricts) room.ender = slot;
+                            else if (getDistrictsCount(opp) >= state.maxDistricts) room.ender = opp;
+                        }
                         countPoints(opp);
                         countPoints(slot);
-                        update({sound: "all8"});
+                        update(getCityCompletePayload(slot, wasComplete,
+                            getCityCompletePayload(opp, opponentWasComplete, {sound: "all8"})));
                         sendStateSlot(slot);
                     }
                 },
                 "seize-district": (slot, slot_d, cardInd) => {
-                    if (room.phase === 2 && state.players[slot].action === 'marshal-action' && room.playerDistricts[slot_d][cardInd]) {
+                    if (room.phase === 2 && slot === room.currentPlayer && state.players[slot]?.action === 'marshal-action'
+                        && Number.isInteger(slot_d) && slot !== slot_d && Number.isInteger(cardInd) && room.playerDistricts[slot_d]?.[cardInd]) {
                         if (state.characterRoles["5_1"] === slot_d && room.assassined !== "5_1" && room.witched !== "5_1")
                             return sendSlot(slot, "message", 'Вы не можете использовать способность на постройках Епископа');
                         if (state.characterRoles["1_2"] === slot_d && room.witched === "5_1" && room.witchedstate === 1)
@@ -1621,13 +1741,14 @@ function init(wsServer, path) {
                             return sendSlot(slot, "message", 'Вы не можете использовать способность на Форт');
                         if (getDistrictCost(building) > 3)
                             return sendSlot(slot, "message", 'Вы не можете захватить постройку, которая стоит более 3 монет');
-                        if (include(slot, building.type))
+                        if (!setupConfig.canAddDistrict(room.playerDistricts[slot], building.type, state.gameRules))
                             return sendSlot(slot, "message", 'Вы не можете забрать эту постройку себе');
-                        const cost = getDistrictCost(building) + include(slot_d, "great_wall") * (building.type !== "great_wall");
+                        const cost = getDistrictCost(building) + setupConfig.getGreatWallCount(room.playerDistricts[slot_d]);
                         if (room.playerGold[slot] < cost)
                             return sendSlot(slot, "message", `Недостаточно монет (${room.playerGold[slot]}/${cost}).`);
                         const wasComplete = getDistrictsCount(slot) >= state.maxDistricts;
                         room.playerDistricts[slot_d].splice(cardInd, 1);
+                        if (building.type === "wine_cellar") building.wineAge = 0;
                         room.playerDistricts[slot].push(building);
                         state.players[slot].action = null;
                         room.playerGold[slot] -= cost;
@@ -1640,104 +1761,128 @@ function init(wsServer, path) {
                         sendStateSlot(slot);
                     }
                 },
-                "arsenal-destroy": (slot, slot_d, cardInd) => {
-                    if (room.phase === 2 && slot === room.currentPlayer && isNoMagistrateAction()
-                        && include(slot, 'arsenal') && room.playerDistricts[slot_d][cardInd]) {
-                        if (getDistrictsCount(slot_d) >= state.maxDistricts)
-                            return sendSlot(slot, "message", 'Вы не можете использовать Арсенал на законченном городе');
-                        destroy(slot_d, cardInd);
-                        destroy(slot, room.playerDistricts[slot].findIndex(card => card.type === 'arsenal'));
-                        countPoints(slot_d);
-                        countPoints(slot);
-                        update({sound: "arsenal"});
-                        sendStateSlot(slot);
-                    }
+                "arsenal-destroy": (slot, targetSlot, cardInd, sourceIndex) => {
+                    const source = districtSource(slot, 'arsenal', sourceIndex, false);
+                    const target = (room.playerDistricts[targetSlot] || [])[cardInd];
+                    if (!districtActionAllowed(slot) || !source || !target || source === target) return;
+                    if (getDistrictsCount(targetSlot) >= state.maxDistricts)
+                        return sendSlot(slot, "message", 'Вы не можете использовать Арсенал на законченном городе');
+                    destroy(targetSlot, cardInd);
+                    destroy(slot, room.playerDistricts[slot].indexOf(source));
+                    countPoints(targetSlot); countPoints(slot);
+                    updateConspiracies(); update({sound: "arsenal"}); updateState();
                 },
-                "forgery-action": (slot) => {
-                    if (room.phase === 2 && slot === room.currentPlayer && isNoMagistrateAction()
-                        && include(slot, 'forgery') && room.forgeryAction && room.playerGold[slot] > 1) {
-                        drawIntoHand(slot, 3);
-                        room.playerGold[slot] -= 2;
-                        room.playerHand[slot] = state.players[slot].hand.length;
-                        room.forgeryAction = false;
-                        countPoints(slot);
-                        update();
-                        sendStateSlot(slot);
-                    }
+                "judicial-chamber-action": (slot, sourceIndex) => {
+                    const source = districtSource(slot, 'judicial_chamber', sourceIndex, false);
+                    if (!districtActionAllowed(slot) || !source || source.judicialUsed) return;
+                    source.judicialUsed = true;
+                    state.buildingBanRound = (room.roundNumber || 1) + 1;
+                    room.nextRoundBuildingBan = true;
+                    state.pendingBuildingBans = state.pendingBuildingBans || [];
+                    state.pendingBuildingBans.push({ownerSlot: slot, sourceId: ensureCardId(source), round: state.buildingBanRound});
+                    update(); sendStateSlot(slot);
                 },
-                "framework-action": (slot, cardInd) => {
-                    if (room.phase === 2 && slot === room.currentPlayer && include(slot, 'framework')
-                        && state.players[slot].hand[cardInd] && isNoMagistrateAction() && isNoSeerAction()) {
-                        const wasComplete = getDistrictsCount(slot) >= state.maxDistricts;
-                        const wasBuilt = build(slot, cardInd, getPlayerDistrictIndex(slot, "framework"), true)
-                        if (wasBuilt[0]) tax(slot, getCityCompletePayload(slot, wasComplete));
-                    }
+                "conspirators-house-action": (slot, sourceIndex, characterId) => {
+                    const source = districtSource(slot, 'conspirators_house', sourceIndex);
+                    if (!districtActionAllowed(slot) || !source || state.playersCount < 4 || !room.characterInGame.includes(characterId)) return;
+                    useDistrict(source);
+                    const sourceId = ensureCardId(source);
+                    const faceCount = state.playersCount + 1 === room.characterInGame.length ? 0 : room.characterInGame.length - 2 - state.playersCount;
+                    const capacity = Math.max(0, faceCount) + 1;
+                    state.pendingConspiracies = (state.pendingConspiracies || []).filter(entry => entry.characterId !== characterId);
+                    state.pendingConspiracies.push({ownerSlot: slot, sourceId, characterId});
+                    state.pendingConspiracies = state.pendingConspiracies.slice(-capacity);
+                    updateConspiracies(); update(); updateState();
                 },
-                "museum-action": (slot, cardInd) => {
-                    if (room.phase === 2 && slot === room.currentPlayer && include(slot, 'museum')
-                        && room.museumAction && state.players[slot].hand[cardInd] && isNoMagistrateAction() && isNoSeerAction()) {
-                        const museum = getPlayerDistrict(slot, "museum");
-                        museum.exposition = museum.exposition || [];
-                        museum.exposition.push(...state.players[slot].hand.splice(cardInd, 1));
-                        room.playerHand[slot]--;
-                        room.museumAction = false;
-                        countPoints(slot);
-                        update();
-                        sendStateSlot(slot);
-                    }
+                "divination-tower-action": (slot, sourceIndex) => {
+                    const source = districtSource(slot, 'divination_tower', sourceIndex);
+                    if (!districtActionAllowed(slot) || !source || !state.districtDeck.length) return;
+                    useDistrict(source);
+                    const player = state.players[slot];
+                    player.peekResumeAction = player.action;
+                    player.action = 'district-peek';
+                    player.chooseSource = 'districtPeek';
+                    player.choose = JSON.parse(JSON.stringify(state.districtDeck.slice(0, setupConfig.getResourceCardCount(room.playerDistricts[slot]))));
+                    room.phase = 3;
+                    update(); sendStateSlot(slot);
                 },
-                "laboratory-action": (slot, cardInd) => {
-                    if (room.phase === 2 && slot === room.currentPlayer && include(slot, 'laboratory')
-                        && room.laboratoryAction && state.players[slot].hand[cardInd] && isNoMagistrateAction() && isNoSeerAction()) {
-                        dropCardHand(slot, cardInd);
-                        room.playerHand[slot]--;
-                        room.playerGold[slot] += 2;
-                        room.laboratoryAction = false;
-                        countPoints(slot);
-                        update();
-                        sendStateSlot(slot);
-                    }
+                "district-peek-close": (slot) => {
+                    if (room.phase !== 3 || slot !== room.currentPlayer || state.players[slot].action !== 'district-peek') return;
+                    closeDistrictPeek(slot);
+                    update(); sendStateSlot(slot);
                 },
-                "build-necropolis": (slot, cardInd) => {
-                    if (room.phase === 2 && slot === room.currentPlayer && includeHand(slot, 'necropolis')
-                        && room.playerDistricts[slot][cardInd]) {
-                        const wasComplete = getDistrictsCount(slot) >= state.maxDistricts;
-                        const wasBuilt = build(slot,
-                            state.players[slot].hand.findIndex((card) => card.type === "necropolis"),
-                            cardInd,
-                            true);
-                        if (wasBuilt[0]) tax(slot, getCityCompletePayload(slot, wasComplete));
-                    }
+                "architects-workshop-action": (slot, sourceIndex) => {
+                    const source = districtSource(slot, 'architects_workshop', sourceIndex);
+                    if (!districtActionAllowed(slot) || !source || room.playerGold[slot] < 3) return;
+                    useDistrict(source);
+                    room.playerGold[slot] -= 3;
+                    state.players[slot].hand.forEach(card => {card.buildDiscount = (card.buildDiscount || 0) + 1;});
+                    countPoints(slot); update(); sendStateSlot(slot);
                 },
-                "build-den-of-thieves": (slot, cardIndexes) => {
-                    if (room.phase === 2 && slot === room.currentPlayer && includeHand(slot, 'den_of_thieves')
-                        && cardIndexes && cardIndexes.every && cardIndexes.every((cardInd) => state.players[slot].hand[cardInd] && state.players[slot].hand[cardInd].type !== "den_of_thieves")) {
-                        const
-                            building = state.players[slot].hand.find((card) => card.type === "den_of_thieves"),
-                            maxCost = getBuildCost(slot, building);
-                        if (room.playerGold[slot] + cardIndexes.length < maxCost) return;
-                        cardIndexes.splice(maxCost);
-                        const
-                            wasComplete = getDistrictsCount(slot) >= state.maxDistricts,
-                            cardsToDrop = state.players[slot].hand.filter((card, ind) => cardIndexes.includes(ind)),
-                            wasBuilt = build(
-                                slot,
-                                state.players[slot].hand.indexOf(building),
-                                undefined,
-                                true);
-                        if (wasBuilt[0]) {
-                            const cost = maxCost - cardIndexes.length;
-                            room.playerGold[slot] -= cost;
-                            state.alchemistCoins += cost;
-                            room.playerHand[slot] -= cardIndexes.length;
-                            cardsToDrop.forEach((card, ind) => {
-                                const _ind = state.players[slot].hand.findIndex(_card => card === _card);
-                                dropCardHand(slot, _ind);
-                            })
-                            wasBuilded(slot, cost, null, wasComplete);
-                        }
-                        update();
-                    }
+                "forgery-action": (slot, sourceIndex) => {
+                    const source = districtSource(slot, 'forgery', sourceIndex);
+                    if (!districtActionAllowed(slot) || !source || room.playerGold[slot] < 2) return;
+                    useDistrict(source);
+                    drawIntoHand(slot, 3);
+                    room.playerGold[slot] -= 2;
+                    room.forgeryAction = !!districtSource(slot, 'forgery');
+                    countPoints(slot); update(); sendStateSlot(slot);
+                },
+                "framework-action": (slot, cardInd, sourceIndex) => {
+                    const source = districtSource(slot, 'framework', sourceIndex, false);
+                    if (!districtActionAllowed(slot) || !source || !state.players[slot].hand[cardInd]) return;
+                    const wasComplete = getDistrictsCount(slot) >= state.maxDistricts;
+                    const result = build(slot, cardInd, room.playerDistricts[slot].indexOf(source), true);
+                    if (result[0]) tax(slot, getCityCompletePayload(slot, wasComplete));
+                },
+                "museum-action": (slot, cardInd, sourceIndex) => {
+                    const source = districtSource(slot, 'museum', sourceIndex);
+                    if (!districtActionAllowed(slot) || !source || !state.players[slot].hand[cardInd]) return;
+                    useDistrict(source);
+                    source.exposition = source.exposition || [];
+                    source.exposition.push(...state.players[slot].hand.splice(cardInd, 1));
+                    room.playerHand[slot] = state.players[slot].hand.length;
+                    room.museumAction = !!districtSource(slot, 'museum');
+                    countPoints(slot); update(); sendStateSlot(slot);
+                },
+                "laboratory-action": (slot, cardInd, sourceIndex) => {
+                    const source = districtSource(slot, 'laboratory', sourceIndex);
+                    if (!districtActionAllowed(slot) || !source || !state.players[slot].hand[cardInd]) return;
+                    useDistrict(source);
+                    dropCardHand(slot, cardInd);
+                    room.playerHand[slot] = state.players[slot].hand.length;
+                    room.playerGold[slot] += 2;
+                    room.laboratoryAction = !!districtSource(slot, 'laboratory');
+                    countPoints(slot); update(); sendStateSlot(slot);
+                },
+                "build-necropolis": (slot, cardInd, handIndex) => {
+                    if (!districtActionAllowed(slot) || !Number.isInteger(cardInd) || !room.playerDistricts[slot][cardInd]) return;
+                    const index = handIndex === undefined ? state.players[slot].hand.findIndex(card => card.type === 'necropolis') : handIndex;
+                    if (!Number.isInteger(index) || !state.players[slot].hand[index] || state.players[slot].hand[index].type !== 'necropolis') return;
+                    const wasComplete = getDistrictsCount(slot) >= state.maxDistricts;
+                    const result = build(slot, index, cardInd, true);
+                    if (result[0]) tax(slot, getCityCompletePayload(slot, wasComplete));
+                },
+                "build-den-of-thieves": (slot, cardIndexes, handIndex) => {
+                    if (!districtActionAllowed(slot) || !Array.isArray(cardIndexes) || new Set(cardIndexes).size !== cardIndexes.length) return;
+                    const hand = state.players[slot].hand;
+                    const index = handIndex === undefined ? hand.findIndex(card => card.type === 'den_of_thieves') : handIndex;
+                    const building = hand[index];
+                    if (!Number.isInteger(index) || !building || building.type !== 'den_of_thieves'
+                        || !cardIndexes.every(cardIndex => Number.isInteger(cardIndex) && hand[cardIndex] && cardIndex !== index)) return;
+                    const maxCost = getBuildCost(slot, building);
+                    const paymentIndexes = cardIndexes.slice(0, maxCost);
+                    const cost = maxCost - paymentIndexes.length;
+                    if (room.playerGold[slot] < cost) return;
+                    const cardsToDrop = paymentIndexes.map(cardIndex => hand[cardIndex]);
+                    const wasComplete = getDistrictsCount(slot) >= state.maxDistricts;
+                    const result = build(slot, index, undefined, true);
+                    if (!result[0]) return;
+                    room.playerGold[slot] -= cost;
+                    state.alchemistCoins += cost;
+                    for (const card of cardsToDrop) dropCardHand(slot, hand.indexOf(card));
+                    room.playerHand[slot] = hand.length;
+                    wasBuilded(slot, cost, null, wasComplete);
                 },
                 "beautify": (slot, slot_d, cardInd) => {
                     if (room.phase === 2 && state.players[slot].action === 'artist-action' && state.players[slot].artistAction
@@ -1755,6 +1900,8 @@ function init(wsServer, path) {
                     finishTurn(slot, false);
                 }
             };
+            this.updateConspiracies = updateConspiracies;
+            this.updateBuildingBans = updateBuildingBans;
             this.clearTurnTimer = clearTurnTimer;
             this.restoreTurnTimer = restoreTurnTimer;
             this.userEventHandlers = {
@@ -1767,8 +1914,13 @@ function init(wsServer, path) {
                         if (room.phase !== 0)
                             throw new Error("Игра уже началась.");
                         if (options !== undefined && (!options || typeof options !== "object" || Array.isArray(options)
-                            || Object.keys(options).some(key => !["starting", "rules"].includes(key))))
+                            || Object.keys(options).some(key => !["starting", "rules", "creatorMode"].includes(key))))
                             throw new Error("Неверные параметры начала партии.");
+                        if (options && Object.prototype.hasOwnProperty.call(options, "creatorMode")
+                            && typeof options.creatorMode !== "boolean")
+                            throw new Error("Режим творца: ожидается логическое значение.");
+                        if (options && options.creatorMode)
+                            throw new Error("Выключите режим творца перед началом партии.");
                         setup = setupConfig.normalizeSetup({
                             format: setupConfig.FORMAT,
                             version: setupConfig.VERSION,
@@ -1864,6 +2016,54 @@ function init(wsServer, path) {
             this.state.gameRules = setupConfig.normalizeRules(snapshot.state.gameRules || (snapshot.room.gameSetup && snapshot.room.gameSetup.rules));
             this.state.randomDiscards = snapshot.state.randomDiscards || [];
             this.state.previousRandomDiscards = snapshot.state.previousRandomDiscards || [];
+            this.room.roundNumber = snapshot.room.roundNumber ?? (this.room.phase ? 1 : 0);
+            this.room.turnId = snapshot.room.turnId ?? 0;
+            if (snapshot.room.turnId === undefined && [2, 3].includes(this.room.phase)) {
+                const legacyActions = {laboratory: "laboratoryAction", forgery: "forgeryAction", museum: "museumAction"};
+                const city = this.room.playerDistricts[this.room.currentPlayer] || [];
+                for (const [type, flag] of Object.entries(legacyActions)) {
+                    const source = city.find(card => card.type === type);
+                    if (source && snapshot.room[flag] === false)
+                        source.actionsUsed = {...source.actionsUsed, [type]: this.room.turnId};
+                }
+            }
+            this.state.lastAgedRound = snapshot.state.lastAgedRound ?? Math.max(0, this.room.roundNumber - 1);
+            this.state.buildingBanRound = snapshot.state.buildingBanRound ?? null;
+            this.room.buildingBan = snapshot.room.buildingBan ?? (this.state.buildingBanRound === this.room.roundNumber);
+            this.room.nextRoundBuildingBan = snapshot.room.nextRoundBuildingBan ?? (this.state.buildingBanRound === this.room.roundNumber + 1);
+            this.state.pendingConspiracies = snapshot.state.pendingConspiracies || [];
+            this.state.pendingBuildingBans = snapshot.state.pendingBuildingBans || [];
+            this.state.draftOrder = snapshot.state.draftOrder || [...new Set(Object.values(this.state.characterRoles).map(Number))];
+            this.state.theaterQueue = snapshot.state.theaterQueue || [];
+            this.state.theaterCursor = snapshot.state.theaterCursor ?? 0;
+            this.room.theaterAction = snapshot.room.theaterAction || null;
+            if (this.room.phase === 1.5 && !snapshot.state.theaterQueue) {
+                // Legacy snapshots contain a single pending exchange, without a queue.
+                const ownerSlot = this.room.currentPlayer;
+                const sourceIndex = (this.room.playerDistricts[ownerSlot] || []).findIndex(card => card.type === "theater");
+                this.state.theaterQueue = sourceIndex < 0 ? [] : [{ownerSlot, sourceIndex}];
+                this.state.theaterCursor = 0;
+                this.room.theaterAction = sourceIndex < 0 ? null : {sourceIndex, position: 1, total: 1};
+            }
+            this.state.turnStartCitySize = snapshot.state.turnStartCitySize
+                ?? setupConfig.getCityDistrictCount(this.room.playerDistricts[this.room.currentPlayer] || []);
+            this.state.nextDistrictId = Number.isSafeInteger(snapshot.state.nextDistrictId) ? snapshot.state.nextDistrictId : 0;
+            const savedCards = [
+                ...Object.values(this.room.playerDistricts).flat(),
+                ...Object.values(this.state.players).flatMap(player => player.hand || []),
+                ...this.state.districtDeck, ...this.state.districtDiscard
+            ];
+            const seenCards = new Set();
+            for (const card of savedCards) {
+                if (!card || seenCards.has(card)) continue;
+                seenCards.add(card);
+                const match = /^district-(\d+)$/.exec(card.instanceId);
+                if (match && Number.isSafeInteger(Number(match[1])))
+                    this.state.nextDistrictId = Math.max(this.state.nextDistrictId, Number(match[1]));
+                if (Array.isArray(card.exposition)) savedCards.push(...card.exposition);
+            }
+            this.updateConspiracies();
+            this.updateBuildingBans();
             this.room.gameSetup = snapshot.room.gameSetup ? setupConfig.normalizeSetup(snapshot.room.gameSetup) : undefined;
             // Old server-side form drafts are no longer shared or persisted.
             for (const key of ["setupDraft", "setupDraftAutomatic", "setupDraftInvalid", "setupDraftPreserveCharacters"])

@@ -29,36 +29,78 @@
         barracks: {name: "Казарма", type: 8, cost: 3, quantity: 3},
         fortress: {name: "Крепость", type: 8, cost: 5, quantity: 2},
 
-        secret_vault: {type: 9, cost: 0, quantity: 1},
-        stable: {type: 9, cost: 2, quantity: 1},
-        haunted_quarter: {type: 9, cost: 3, quantity: 1},
-        keep: {type: 9, cost: 3, quantity: 1},
-        memorial: {type: 9, cost: 3, quantity: 1},
-        framework: {type: 9, cost: 3, quantity: 1},
-        arsenal: {type: 9, cost: 3, quantity: 1},
-        observatory: {type: 9, cost: 4, quantity: 1},
-        poor_house: {type: 9, cost: 4, quantity: 1},
-        monument: {type: 9, cost: 4, quantity: 1},
-        basilica: {type: 9, cost: 4, quantity: 1},
-        museum: {type: 9, cost: 4, quantity: 1},
-        quarry: {type: 9, cost: 4, quantity: 1},
-        ivory_tower: {type: 9, cost: 5, quantity: 1},
-        well_of_wishes: {type: 9, cost: 5, quantity: 1},
-        factory: {type: 9, cost: 5, quantity: 1},
-        map_room: {type: 9, cost: 5, quantity: 1},
-        capitol: {type: 9, cost: 5, quantity: 1},
-        necropolis: {type: 9, cost: 5, quantity: 1},
-        imperial_treasury: {type: 9, cost: 5, quantity: 1},
-        forgery: {type: 9, cost: 5, quantity: 1},
-        laboratory: {type: 9, cost: 6, quantity: 1},
-        school_of_magic: {type: 9, cost: 6, quantity: 1},
-        den_of_thieves: {type: 9, cost: 6, quantity: 1},
-        theater: {type: 9, cost: 6, quantity: 1},
-        dragon_gate: {type: 9, cost: 6, quantity: 1},
-        park: {type: 9, cost: 6, quantity: 1},
-        great_wall: {type: 9, cost: 6, quantity: 1},
-        library: {type: 9, cost: 6, quantity: 1},
-        gold_mine: {type: 9, cost: 6, quantity: 1}
+        secret_vault: {name: "Тайное убежище", type: 9, cost: 0, quantity: 1},
+        stable: {name: "Конюшня", type: 9, cost: 2, quantity: 1},
+        haunted_quarter: {name: "Квартал призраков", type: 9, cost: 3, quantity: 1},
+        keep: {name: "Форт", type: 9, cost: 3, quantity: 1},
+        memorial: {name: "Статуя", type: 9, cost: 3, quantity: 1},
+        framework: {name: "Строительные леса", type: 9, cost: 3, quantity: 1},
+        arsenal: {name: "Оружейная", type: 9, cost: 3, quantity: 1},
+        observatory: {name: "Обсерватория", type: 9, cost: 4, quantity: 1},
+        poor_house: {name: "Богадельня", type: 9, cost: 4, quantity: 1},
+        monument: {name: "Монумент", type: 9, cost: 4, quantity: 1},
+        basilica: {name: "Базилика", type: 9, cost: 4, quantity: 1},
+        museum: {name: "Музей", type: 9, cost: 4, quantity: 1},
+        quarry: {name: "Каменоломня", type: 9, cost: 4, quantity: 1},
+        ivory_tower: {name: "Башня слоновой кости", type: 9, cost: 5, quantity: 1},
+        well_of_wishes: {name: "Колодец желаний", type: 9, cost: 5, quantity: 1},
+        factory: {name: "Фабрика", type: 9, cost: 5, quantity: 1},
+        map_room: {name: "Зал картографии", type: 9, cost: 5, quantity: 1},
+        capitol: {name: "Капитолий", type: 9, cost: 5, quantity: 1},
+        necropolis: {name: "Некрополь", type: 9, cost: 5, quantity: 1},
+        imperial_treasury: {name: "Имперская казна", type: 9, cost: 5, quantity: 1},
+        forgery: {name: "Кузница", type: 9, cost: 5, quantity: 1},
+        laboratory: {name: "Лаборатория", type: 9, cost: 6, quantity: 1},
+        school_of_magic: {name: "Школа магии", type: 9, cost: 6, quantity: 1},
+        den_of_thieves: {name: "Воровское логово", type: 9, cost: 6, quantity: 1},
+        theater: {name: "Театр", type: 9, cost: 6, quantity: 1},
+        dragon_gate: {name: "Драконьи врата", type: 9, cost: 6, quantity: 1},
+        park: {name: "Парк", type: 9, cost: 6, quantity: 1},
+        great_wall: {name: "Великая стена", type: 9, cost: 6, quantity: 1},
+        library: {name: "Библиотека", type: 9, cost: 6, quantity: 1},
+        gold_mine: {name: "Золотая шахта", type: 9, cost: 6, quantity: 1},
+
+        stone_bridge: {name: "Каменный мост", type: 0, cost: 3, quantity: 0,
+            description: "Не имеет типа квартала. В конце игры получите 2 дополнительных очка.",
+            image: "/citadels/cards/placeholders/d01-stone-bridge.svg"},
+        catacombs: {name: "Катакомбы", type: 9, cost: 2, quantity: 1,
+            description: "Не учитывается в счет кварталов для строительства города. В конце игры получите 2 дополнительных очка",
+            image: "/citadels/cards/placeholders/d02-dungeon-light.svg"},
+        architects_workshop: {name: "Мастерская зодчих", type: 9, cost: 5, quantity: 1,
+            description: "Раз в ход за 3 золотых снизьте плату за строительство всех карт вашей руки на 1 до конца игры",
+            image: "/citadels/cards/placeholders/d03-pencil-ruler.svg"},
+        wine_cellar: {name: "Винные погреба", type: 9, cost: 3, quantity: 1,
+            description: "После 5 завершений раунда даёт 3 дополнительных очка",
+            image: "/citadels/cards/placeholders/d04-cellar-barrels.svg"},
+        mirror_hall: {name: "Зеркальный чертог", type: 9, cost: 6, quantity: 1,
+            description: "Становится точной копией уже построенного квартала",
+            image: "/citadels/cards/placeholders/d05-mirror-mirror.svg"},
+        conspirators_house: {name: "Дом заговорщиков", type: 9, cost: 6, quantity: 1,
+            description: "Раз в ход тайно выберите персонажа для сброса в следующем раунде",
+            image: "/citadels/cards/placeholders/d06-cloak-dagger.svg"},
+        divination_tower: {name: "Башня прорицателя", type: 9, cost: 4, quantity: 1,
+            description: "Раз в ход посмотрите столько верхних карт колоды, сколько берёте при выборе ресурса „карты“, не меняя их порядка",
+            image: "/citadels/cards/placeholders/d07-crystal-ball.svg"},
+        artisans_court: {name: "Ремесленный двор", type: 9, cost: 4, quantity: 1,
+            description: "В конце хода получите 1 золотой, если размер вашего города не увеличился",
+            image: "/citadels/cards/placeholders/d08-anvil.svg"},
+        judicial_chamber: {name: "Судейская палата", type: 9, cost: 3, quantity: 1,
+            description: "Один раз запретите всем игрокам строительство на следующий раунд",
+            image: "/citadels/cards/placeholders/d09-scales.svg"},
+        seminary: {name: "Семинария", type: 5, cost: 4, quantity: 0, description: "",
+            image: "/citadels/cards/placeholders/d10-church.svg"},
+        sloboda: {name: "Слобода", type: 4, cost: 6, quantity: 0,
+            description: "Даёт +1 ресурс при получении дохода за дворянские кварталы",
+            image: "/citadels/cards/placeholders/d11-village.svg"},
+        exchange: {name: "Биржа", type: 6, cost: 6, quantity: 0,
+            description: "Даёт +1 ресурс при получении дохода за торговые кварталы",
+            image: "/citadels/cards/placeholders/d12-trade.svg"},
+        papal_residence: {name: "Папская резиденция", type: 5, cost: 6, quantity: 0,
+            description: "Даёт +1 ресурс при получении дохода за кварталы духовенства",
+            image: "/citadels/cards/placeholders/d13-byzantin-temple.svg"},
+        citadel: {name: "Цитадель", type: 8, cost: 6, quantity: 0,
+            description: "Даёт +1 ресурс при получении дохода за воинские кварталы",
+            image: "/citadels/cards/placeholders/d14-castle.svg"}
     };
 
     const FORMAT = "citadels-setup";
@@ -73,7 +115,8 @@
         {type: 4, name: "Дворянские"},
         {type: 5, name: "Церковные"},
         {type: 6, name: "Торговые"},
-        {type: 8, name: "Воинские"}
+        {type: 8, name: "Воинские"},
+        {type: 0, name: "Без типа"}
     ];
     const timerPresets = {
         short: {name: "Быстрая", characterDurationMs: 60000, mainDurationMs: 40000, responseDurationMs: 10000},
@@ -125,11 +168,19 @@
             throw new Error("Особые кварталы: неизвестная карта или неверный список.");
         if (new Set(value).size !== value.length)
             throw new Error("Особые кварталы не должны повторяться.");
-        if (players !== undefined && players < 4 && value.includes("theater"))
-            throw new Error("Театр доступен только при 4–8 игроках.");
+        if (players !== undefined) {
+            const errors = getDistrictPlayerErrors(value, players);
+            if (errors.length) throw new Error(errors.join("\n"));
+        }
         return value.slice();
     }
 
+    function getDistrictPlayerErrors(value, players) {
+        if (players >= 4) return [];
+        const restricted = {theater: "Театр", conspirators_house: "Дом заговорщиков"};
+        return Object.keys(restricted).filter(id => value.includes(id))
+            .map(id => restricted[id] + " доступен только при 4–8 игроках.");
+    }
     const characterRequirements = {
         "4_2": {name: "Император", players: 3},
         "9_1": {name: "Скульптор", players: 3},
@@ -221,7 +272,7 @@
 
     function normalizeRules(value = {}) {
         assertObject(value, "Правила партии");
-        assertKeys(value, ["citySize", "bonuses", "preventRepeatedRandomDiscard"], "Правила партии");
+        assertKeys(value, ["citySize", "bonuses", "preventRepeatedRandomDiscard", "duplicateLimit", "diplomatCompleteCity", "magistrateOverLimit"], "Правила партии");
         const citySize = own(value, "citySize") ? value.citySize : null;
         if (citySize !== null && (!Number.isInteger(citySize) || citySize < 2 || citySize > 10))
             throw new Error("Размер завершённого города: укажите целое число от 2 до 10.");
@@ -236,7 +287,14 @@
         const preventRepeatedRandomDiscard = own(value, "preventRepeatedRandomDiscard") ? value.preventRepeatedRandomDiscard : false;
         if (typeof preventRepeatedRandomDiscard !== "boolean")
             throw new Error("Запрет повторного случайного сброса: ожидается логическое значение.");
-        return {citySize, bonuses, preventRepeatedRandomDiscard};
+        const duplicateLimit = own(value, "duplicateLimit") ? value.duplicateLimit : 0;
+        if (!Number.isSafeInteger(duplicateLimit) || duplicateLimit < 0)
+            throw new Error("Базовый лимит повторок: укажите целое неотрицательное число.");
+        const diplomatCompleteCity = own(value, "diplomatCompleteCity") ? value.diplomatCompleteCity : false;
+        const magistrateOverLimit = own(value, "magistrateOverLimit") ? value.magistrateOverLimit : false;
+        if (typeof diplomatCompleteCity !== "boolean" || typeof magistrateOverLimit !== "boolean")
+            throw new Error("Настройки Дипломата и Магистрата: ожидается логическое значение.");
+        return {citySize, bonuses, preventRepeatedRandomDiscard, duplicateLimit, diplomatCompleteCity, magistrateOverLimit};
     }
 
     function getStartingResources(value, firstCrown) {
@@ -324,6 +382,44 @@
         };
     }
 
+    // A catalog's type is a color; an in-game card's type is its district ID.
+    // Nullish fallback preserves the colorless kind 0 on cards and old snapshots.
+    function getDistrictType(card) {
+        return card.kind ?? districts[card.type]?.type;
+    }
+
+    function countDistricts(city, typeId) {
+        return city.filter(card => card.type === typeId).length;
+    }
+
+    function getCityDistrictCount(city) {
+        return city.reduce((size, card) => size + (card.type === "catacombs" ? 0 : card.type === "monument" ? 2 : 1), 0);
+    }
+    function getBuildCost(city, card) {
+        return Math.max(0, card.cost - (card.buildDiscount || 0)
+            - (getDistrictType(card) === 9 ? countDistricts(city, "factory") : 0));
+    }
+    function getColorIncome(city, color) {
+        const extraSources = ["sloboda", "exchange", "papal_residence", "citadel"];
+        return city.reduce((income, card) => income
+            + (getDistrictType(card) === color ? 1 + Number(extraSources.includes(card.type)) : 0)
+            + Number(card.type === "school_of_magic"), 0);
+    }
+    function getResourceCardCount(city) {
+        return 2 + countDistricts(city, "observatory");
+    }
+    function getGreatWallCount(city) {
+        return countDistricts(city, "great_wall");
+    }
+    // Construction exceptions are supplied explicitly: Quarry must not waive
+    // limits for a Marshal, Diplomat or Magistrate receiving a district.
+    function canAddDistrict(city, typeId, rules, {ignoreLimit = false, removeIndex} = {}) {
+        if (ignoreLimit) return true;
+        const limit = normalizeRules(rules).duplicateLimit;
+        const existing = countDistricts(city, typeId);
+        const outgoingSameType = city[removeIndex]?.type === typeId;
+        return existing <= limit || outgoingSameType;
+    }
     function getCitySize(players, rules) {
         const custom = normalizeRules(rules).citySize;
         return custom === null ? (players === 3 ? 8 : 7) : custom;
@@ -340,9 +436,7 @@
         if (!Number.isInteger(players) || players < 2 || players > 8)
             return ["Для начала игры нужно от 2 до 8 игроков."];
         errors.push(...getCharacterPlayerErrors(setup.characters, players));
-        try {
-            normalizeUniqueDistricts(setup.districts.unique, players);
-        } catch (error) { errors.push(error.message); }
+        errors.push(...getDistrictPlayerErrors(setup.districts.unique, players));
         const summary = getDeckSummary(setup.districts.basic, setup.districts.unique);
         const citySize = getCitySize(players, setup.rules), minimum = citySize * players;
         const required = getStartingRequirements(setup.starting, players);
@@ -354,11 +448,38 @@
             errors.push("Недостаточно базовых кварталов для фиксированного числа особых: нужно " + required.basic + ", в наборе: " + summary.basic + ".");
         if (summary.total < minimum)
             errors.push("Недостаточно карт: " + summary.total + ". Для " + players + " игроков нужно минимум " + minimum + " (" + citySize + " × " + players + ").");
-        if (summary.buildableKinds < citySize)
-            errors.push("Нужно минимум " + citySize + " разных строящихся кварталов; сейчас " + summary.buildableKinds + ".");
+        const ignoresDuplicateLimit = setup.districts.unique.includes("quarry") || setup.characters.includes("3_2");
+        const copiesPerName = ignoresDuplicateLimit ? Infinity : setup.rules.duplicateLimit + 1;
+        // A Monument can be built first, but may not be the finishing district.
+        // The selected deck has at most one physical copy of each special.
+        const monumentCapacity = citySize > 2 && setup.districts.unique.includes("monument") ? 2 : 0;
+        const capacity = basicIds.reduce((sum, id) => sum + Math.min(setup.districts.basic[id], copiesPerName), 0)
+            + setup.districts.unique.filter(id => !["secret_vault", "catacombs", "monument"].includes(id)).length
+            + monumentCapacity;
+        if (capacity < citySize)
+            errors.push("Недостаточная вместимость города: " + capacity + " при размере " + citySize
+                + ". Проверьте количество разных кварталов и лимит повторок.");
         return errors;
     }
 
+    function getCreatorErrors(value) {
+        let setup;
+        try {
+            setup = normalizeSetup(value);
+        } catch (error) {
+            return [error.message];
+        }
+        let closest;
+        for (let players = 2; players <= 8; players++) {
+            if (getCharacterPlayerErrors(setup.characters, players).length
+                || getDistrictPlayerErrors(setup.districts.unique, players).length) continue;
+            const errors = getStartErrors(setup, players);
+            if (!errors.length) return [];
+            if (!closest || errors.length < closest.errors.length) closest = {players, errors};
+        }
+        return closest ? ["Пак не готов ни для одного состава 2–8 игроков. Для " + closest.players + " игроков:"]
+            .concat(closest.errors) : ["Для выбранных персонажей и кварталов нет подходящего состава 2–8 игроков."];
+    }
     // Keep draft storage in this existing browser entry point: the host caches app.html
     // until restart, while it serves updated scripts directly from disk.
     function createDraftStore(getStorage, userId) {
@@ -377,11 +498,13 @@
                     if (text.length > MAX_FILE_SIZE + 512) throw new Error("Draft too large");
                     const draft = JSON.parse(text);
                     if (!draft || draft.version !== 1
-                        || typeof draft.preserveCharacters !== "boolean")
+                        || typeof draft.preserveCharacters !== "boolean"
+                        || (own(draft, "creatorMode") && typeof draft.creatorMode !== "boolean"))
                         throw new Error("Invalid draft");
                     return {
                         setup: normalizeSetup(draft.setup),
-                        preserveCharacters: draft.preserveCharacters
+                        preserveCharacters: draft.preserveCharacters,
+                        creatorMode: draft.creatorMode === true
                     };
                 } catch (error) {
                     try { if (storage) storage.removeItem(key); } catch (ignored) {}
@@ -395,7 +518,8 @@
                     const value = {
                         version: 1,
                         setup: normalizeSetup(draft.setup),
-                        preserveCharacters: draft.preserveCharacters === true
+                        preserveCharacters: draft.preserveCharacters === true,
+                        creatorMode: draft.creatorMode === true
                     };
                     getStorage().setItem(key, JSON.stringify(value));
                     return true;
@@ -409,10 +533,11 @@
     return {
         FORMAT, VERSION, MAX_COPIES, MAX_FILE_SIZE,
         districts, basicIds, uniqueIds, groups, timerPresets, timerLimits,
-        getDefaultBasicCounts, normalizeBasicCounts, normalizeUniqueDistricts,
+        getDefaultBasicCounts, normalizeBasicCounts, normalizeUniqueDistricts, getDistrictPlayerErrors,
         normalizeCharacters, getCharacterPlayerErrors, characterRequirements,
         normalizeTimerSettings, normalizeStarting, normalizeRules, normalizeSetup,
         getStartingResources, getStartingRequirements, createDraftStore,
-        parseSetup, serializeSetup, getDefaultSetup, getDeckSummary, getCitySize, getStartErrors
+        getDistrictType, countDistricts, getCityDistrictCount, getBuildCost, getColorIncome, getResourceCardCount, getGreatWallCount, canAddDistrict,
+        parseSetup, serializeSetup, getDefaultSetup, getDeckSummary, getCitySize, getStartErrors, getCreatorErrors
     };
 }));

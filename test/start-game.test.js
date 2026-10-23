@@ -32,12 +32,12 @@ test("server includes every chosen district, persists setup and deals four cards
     game.userEventHandlers["start-game"]("host", chars, setup.uniqueIds, null, timer, counts);
     const all = game.state.districtDeck.concat(...Object.values(game.state.players).map(player => player.hand));
     assert.equal(game.room.phase, 1);
-    assert.equal(all.length, 88);
+    assert.equal(all.length, 96);
     assert.equal(all.filter(card => card.type === "manor").length, 9);
     for (const id of setup.uniqueIds)
         assert.equal(all.filter(card => card.type === id).length, 1);
     assert.equal(game.room.gameSetup.districts.basic.manor, 9);
-    assert.equal(game.getSnapshot().room.gameSetup.districts.unique.length, 30);
+    assert.equal(game.getSnapshot().room.gameSetup.districts.unique.length, 38);
     Object.values(game.state.players).forEach(player => assert.equal(player.hand.length, 4));
     game.clearTurnTimer();
 });
@@ -110,7 +110,7 @@ test('new starting conditions apply to every hand, gold, city size and public pi
         assert.equal(game.room.playerGold[slot], 9);
     });
     assert.equal(game.state.maxDistricts, 10);
-    assert.equal(game.room.districtDeckCount, 84 - 24);
+    assert.equal(game.room.districtDeckCount, 92 - 24);
     assert.equal(game.room.districtDiscardCount, 0);
     assert.deepEqual(game.room.gameSetup.starting, setup.normalizeStarting({handSize: 6, minUnique: 2, gold: 9}));
     assert.ok(!('districtDeck' in game.room));
@@ -326,7 +326,7 @@ test('a two-district city gets completion bonuses and ends the game only at roun
 test("event dispatcher starts and saves an exact-special deal", () => {
     const {game} = createRoom(2);
     const starting = {handSize: 4, minUnique: 1, gold: 2, exactUnique: true};
-    const uniques = setup.uniqueIds.filter(id => id !== "theater");
+    const uniques = setup.uniqueIds.filter(id => !["theater", "conspirators_house"].includes(id));
     game.userEvent("host", "start-game", [chars, uniques, null, timer, setup.getDefaultBasicCounts(), {starting}]);
     assert.equal(game.room.phase, 1);
     Object.values(game.state.players).forEach(player => {
@@ -352,7 +352,7 @@ test("the randomly assigned first crown receives reduced resources even with gap
     const {game} = createRoom(3);
     game.room.playerSlots = [null, "host", null, null, "player-1", null, "player-2", null];
     const starting = {handSize: 4, minUnique: 1, gold: 2, exactUnique: true, firstCrownReduction: {cards: 3, gold: 2}};
-    const unique = setup.uniqueIds.filter(id => id !== "theater");
+    const unique = setup.uniqueIds.filter(id => !["theater", "conspirators_house"].includes(id));
     game.userEvent("host", "start-game", [chars.concat("9_1"), unique, null, timer, setup.getDefaultBasicCounts(), {starting}]);
     assert.equal(game.room.phase, 1);
     assert.ok([1, 4, 6].includes(game.room.king));

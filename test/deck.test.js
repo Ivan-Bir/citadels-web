@@ -6,7 +6,7 @@ const {createDeck, dealStartingHands, drawDistrictCards, discardDistrictCards} =
 
 for (const players of [2,3,4,5,6,7,8]) {
     test("starting hands reserve specials for every one of " + players + " players", () => {
-        const unique = setup.uniqueIds.filter(id => id !== 'theater').slice(0, players * 2);
+        const unique = setup.uniqueIds.filter(id => !["theater", "conspirators_house"].includes(id)).slice(0, players * 2);
         const deck = createDeck(players, unique), all = deck.slice();
         const hands = dealStartingHands(deck, players, {handSize: 5, minUnique: 2});
         assert.equal(hands.length, players);
@@ -185,7 +185,7 @@ test("repeated draw and discard cycles neither clone nor lose cards", () => {
 for (const players of [2, 3, 8]) {
     for (const fixedCount of [0, 1, 3]) {
         test("exact special count " + fixedCount + " for " + players + " players preserves every card", () => {
-            const deck = createDeck(players, setup.uniqueIds.filter(id => id !== "theater"));
+            const deck = createDeck(players, setup.uniqueIds.filter(id => !["theater", "conspirators_house"].includes(id)));
             // Put excess specials first so unrestricted filling cannot accidentally pass.
             deck.sort((a, b) => Number(b.kind === 9) - Number(a.kind === 9));
             const original = deck.slice();
@@ -204,7 +204,7 @@ for (const players of [2, 3, 8]) {
 }
 
 test("exact dealing rejects a shortage of basic cards atomically even with ample specials", () => {
-    const deck = createDeck(2, setup.uniqueIds.filter(id => id !== "theater"), false, {manor: 5});
+    const deck = createDeck(2, setup.uniqueIds.filter(id => !["theater", "conspirators_house"].includes(id)), false, {manor: 5});
     const before = deck.slice();
     assert.throws(() => dealStartingHands(deck, 2, {handSize: 4, minUnique: 1, exactUnique: true}), /базовых/);
     assert.deepEqual(deck, before);

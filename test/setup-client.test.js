@@ -106,7 +106,7 @@ test("reset restores all four settings blocks, recovers invalid input and preser
         panel.state.basicCounts.manor = 9;
         panel.state.timerSettings.enabled = false;
         panel.state.starting = {handSize: 6, minUnique: 2, gold: 5, exactUnique: true, firstCrownReduction: {cards: 1, gold: 2}};
-        panel.state.rules = {citySize: 10, bonuses: {firstCity: 6, otherCities: 1, allColors: 0}, preventRepeatedRandomDiscard: true};
+        panel.state.rules = {citySize: 10, bonuses: {firstCity: 6, otherCities: 1, allColors: 0}, preventRepeatedRandomDiscard: true, duplicateLimit: 3, diplomatCompleteCity: true, magistrateOverLimit: true};
         const before = panel.getSetup();
         panel.state.starting.handSize = "";
         panel.state.rules.bonuses.firstCity = -1;
@@ -181,4 +181,33 @@ test("host edits persist locally across remounts without sending any socket mess
     assert.equal(writes, 2);
     const viewer = new Panel(props);
     assert.equal(viewer.state.starting.gold, 2);
+});
+
+test("structural import preserves Theater for a future four-player party", () => {
+    const Panel = loadClass("CreateGamePanel", "renderStartingSettings", {FileReader: class {readAsText() {}}});
+    const panel = new Panel({data: {phase: 0, userId: "host", hostId: "host", playerSlots: ["host", "player"]}});
+    panel.presets = {};
+    const pack = setup.getDefaultSetup(4);
+    pack.districts.unique = ["theater"];
+    panel.handleImportSetup({target: {files: [{size: 1}], value: "pack.json"}});
+    panel.importReader.result = setup.serializeSetup(pack);
+    panel.importReader.onload();
+    assert.equal(panel.state.importError, null);
+    assert.deepEqual([...panel.state.districtsSelected], ["theater"]);
+    assert.ok(setup.getStartErrors(panel.getSetup(), 2).length);
+});
+
+test("creator mode survives remount without entering the exported game setup", () => {
+    const data = new Map();
+    const storage = {getItem(k) {return data.get(k) ?? null;}, setItem(k,v) {data.set(k,v);}, removeItem(k) {data.delete(k);}};
+    const Panel = loadClass("CreateGamePanel", "renderStartingSettings", {window: {sessionStorage: storage}, document: {body: {style: {overflow: ""}}}});
+    const props = {data: {phase: 0, userId: "host", hostId: "host", playerSlots: ["host", "player"]}, game: {roomId: "creator"}};
+    const panel = new Panel(props);
+    panel.state.creatorMode = true;
+    panel.state.preserveCharacters = true;
+    panel.componentDidUpdate();
+    const restored = new Panel(props);
+    assert.equal(restored.state.creatorMode, true);
+    assert.equal(Object.hasOwn(restored.getSetup(), "creatorMode"), false);
+    assert.equal(Object.hasOwn(restored.getSetup().rules, "creatorMode"), false);
 });

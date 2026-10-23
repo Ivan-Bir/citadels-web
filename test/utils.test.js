@@ -25,7 +25,7 @@ test("shuffle can produce both orders of two cards with controlled randomness", 
 test("unique district lists are independent copies containing only special cards", () => {
     const first = getUniqueDistricts(), second = getUniqueDistricts();
     assert.notStrictEqual(first, second);
-    assert.equal(first.length, 30);
+    assert.equal(first.length, 38);
     assert.equal(new Set(first).size, first.length);
     assert.ok(first.includes("theater"));
     assert.ok(first.includes("secret_vault"));

@@ -6,7 +6,7 @@ const {createDeck, dealStartingHands, takeRandomCharacters} = require("../utils"
 
 test("new defaults preserve legacy scoring, full starting resources and unrestricted random discards", () => {
     const value = setup.getDefaultSetup(3);
-    assert.deepEqual(value.rules, {citySize: null, bonuses: {firstCity: 4, otherCities: 2, allColors: 3}, preventRepeatedRandomDiscard: false});
+    assert.deepEqual(value.rules, {citySize: null, bonuses: {firstCity: 4, otherCities: 2, allColors: 3}, preventRepeatedRandomDiscard: false, duplicateLimit: 0, diplomatCompleteCity: false, magistrateOverLimit: false});
     assert.deepEqual(value.starting.firstCrownReduction, {cards: 0, gold: 0});
     assert.equal(value.characters.length, 9);
     assert.equal(setup.getDefaultSetup(2).characters.length, 8);
@@ -92,7 +92,7 @@ for (const exactUnique of [false, true]) {
     test("unequal starting hands preserve all cards and the minimum for any crown seat: " + exactUnique, () => {
         for (const players of [2, 3, 8]) {
             for (let crown = 0; crown < players; crown++) {
-                const deck = createDeck(players, setup.uniqueIds.filter(id => id !== "theater"));
+                const deck = createDeck(players, setup.uniqueIds.filter(id => !["theater", "conspirators_house"].includes(id)));
                 const all = deck.slice();
                 const hands = dealStartingHands(deck, players, {handSize: 4, minUnique: 1, exactUnique, firstCrownReduction: {cards: 3}}, crown);
                 hands.forEach((hand, index) => {

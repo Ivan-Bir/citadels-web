@@ -22,11 +22,11 @@ const minimalCounts = players => {
     return counts;
 };
 
-test("catalog has the standard 17 basic districts, 54 cards and four color totals", () => {
-    assert.equal(setup.basicIds.length, 17);
+test("catalog keeps 54 standard basic cards among 23 available non-special kinds", () => {
+    assert.equal(setup.basicIds.length, 23);
     assert.deepEqual(setup.getDeckSummary(undefined, []), {
         basic: 54, unique: 0, total: 54,
-        byType: {4: 12, 5: 11, 6: 20, 8: 11}, buildableKinds: 17
+        byType: {0: 0, 4: 12, 5: 11, 6: 20, 8: 11}, buildableKinds: 17
     });
     const first = setup.getDefaultBasicCounts();
     first.manor = 0;
@@ -41,7 +41,7 @@ test("shared utilities load in a browser without CommonJS", () => {
         getItem: key => storage.get(key) ?? null,
         setItem: (key, value) => storage.set(key, value)
     }), "host");
-    const draft = {setup: context.self.CitadelsSetup.getDefaultSetup(), preserveCharacters: true};
+    const draft = {setup: context.self.CitadelsSetup.getDefaultSetup(), preserveCharacters: true, creatorMode: false};
     assert.equal(store.write("room", draft), true);
     assert.equal(JSON.stringify(store.read("room")), JSON.stringify(draft));
 });
@@ -65,14 +65,14 @@ test("reject malformed maps and unknown or special IDs in basic counts", () => {
         assert.throws(() => setup.normalizeBasicCounts(value), /неизвестное поле/);
     assert.equal({}.polluted, undefined);
 });
-test("all 30 selected unique districts reach the deck, without a 14-card cap", () => {
+test("all 38 selected unique districts reach the deck, without a 14-card cap", () => {
     const deck = utils.createDeck(4, setup.uniqueIds);
-    assert.equal(deck.length, 84);
+    assert.equal(deck.length, 92);
     for (const id of setup.uniqueIds)
         assert.equal(deck.filter(card => card.type === id).length, 1, id);
 });
-test("selected unique counts of 0, 10, 14 and 30 all match the final deck", () => {
-    for (const count of [0, 10, 14, 30]) {
+test("selected unique counts of 0, 10, 14, 30 and 38 all match the final deck", () => {
+    for (const count of [0, 10, 14, 30, 38]) {
         const selected = setup.uniqueIds.slice(0, count);
         assert.equal(utils.createDeck(4, selected).length, 54 + count);
         assert.equal(setup.getDeckSummary(undefined, selected).total, 54 + count);
@@ -205,7 +205,7 @@ test("old files receive starting defaults and the automatic city size", () => {
     const value = config(); delete value.starting; delete value.rules;
     const parsed = setup.parseSetup(JSON.stringify(value));
     assert.deepEqual(parsed.starting, {handSize: 4, minUnique: 0, gold: 2, exactUnique: false, firstCrownReduction: {cards: 0, gold: 0}});
-    assert.deepEqual(parsed.rules, {citySize: null, bonuses: {firstCity: 4, otherCities: 2, allColors: 3}, preventRepeatedRandomDiscard: false});
+    assert.deepEqual(parsed.rules, {citySize: null, bonuses: {firstCity: 4, otherCities: 2, allColors: 3}, preventRepeatedRandomDiscard: false, duplicateLimit: 0, diplomatCompleteCity: false, magistrateOverLimit: false});
     assert.deepEqual([2,3,4,5,6,7,8].map(players => setup.getCitySize(players)), [7,8,7,7,7,7,7]);
     for (const citySize of [2,10])
         assert.deepEqual([2,3,8].map(players => setup.getCitySize(players, {citySize})), [citySize,citySize,citySize]);
@@ -248,7 +248,7 @@ test("start validation uses hand size, reserved specials and custom city size", 
     assert.deepEqual(setup.getStartErrors(value, 2), []);
     value.rules.citySize = 10;
     assert.ok(setup.getStartErrors(value, 2).some(message => /минимум 20/.test(message)));
-    assert.ok(setup.getStartErrors(value, 2).some(message => /10 разных/.test(message)));
+    assert.ok(setup.getStartErrors(value, 2).some(message => /вместимость.*10/.test(message)));
     value.starting.handSize = Number.MAX_SAFE_INTEGER;
     assert.ok(setup.getStartErrors(value, 2).some(message => /раздачи/.test(message)));
 });

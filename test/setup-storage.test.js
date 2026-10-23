@@ -13,7 +13,7 @@ function memoryStorage() {
         removeItem(key) {data.delete(key);}
     };
 }
-const draft = () => ({setup: setup.getDefaultSetup(), preserveCharacters: true});
+const draft = () => ({setup: setup.getDefaultSetup(), preserveCharacters: true, creatorMode: false});
 
 test("draft survives a new store instance and is isolated by room and user", () => {
     const storage = memoryStorage();
@@ -83,4 +83,21 @@ test("unavailable storage, quota errors and missing identity do not break the ed
     assert.equal(noIdentity.write("room", draft()), false);
     assert.equal(noIdentity.read("room"), null);
     assert.equal(unavailable.write("", draft()), false);
+});
+
+test("creator mode stays in the local draft and old drafts restore it disabled", () => {
+    const storage = memoryStorage();
+    const store = createStore(() => storage, "host");
+    const value = {...draft(), creatorMode: true};
+    assert.equal(store.write("room", value), true);
+    assert.equal(createStore(() => storage, "host").read("room").creatorMode, true);
+    assert.equal(setup.serializeSetup(store.read("room").setup).includes("creatorMode"), false);
+    const key = [...storage.data.keys()][0];
+    const old = JSON.parse(storage.getItem(key));
+    delete old.creatorMode;
+    storage.setItem(key, JSON.stringify(old));
+    assert.equal(store.read("room").creatorMode, false);
+    old.creatorMode = "true";
+    storage.setItem(key, JSON.stringify(old));
+    assert.equal(store.read("room"), null);
 });

@@ -6,7 +6,8 @@
   "files": [
     "module.js",
     "utils.js",
-    "public"
+    "public",
+    "district-scoring.js"
   ],
   "scripts": {
     "test": "node --test"
