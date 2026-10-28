@@ -16,7 +16,7 @@ function loadClass(name, firstExcludedMethod, globals = {}) {
         setState(change) { this.state = Object.assign({}, this.state, change); }
     }
     const context = vm.createContext({React: {Component}, CitadelsSetup: setup, ...globals});
-    vm.runInContext(source.slice(start, end) + "}\nglobalThis.TestClass = " + name, context);
+    vm.runInContext(source.slice(0, source.indexOf("class Player extends React.Component")) + source.slice(start, end) + "}\nglobalThis.TestClass = " + name, context);
     return context.TestClass;
 }
 
@@ -210,4 +210,22 @@ test("creator mode survives remount without entering the exported game setup", (
     assert.equal(restored.state.creatorMode, true);
     assert.equal(Object.hasOwn(restored.getSetup(), "creatorMode"), false);
     assert.equal(Object.hasOwn(restored.getSetup().rules, "creatorMode"), false);
+});
+
+test('Stone Bridge is selected alongside special cards without gaining a district type', () => {
+    const Panel = loadClass('CreateGamePanel', 'renderStartingSettings');
+    const panel = new Panel({data: {phase: 0, userId: 'host', hostId: 'host', playerSlots: ['host', 'player']}});
+    assert.ok(panel.getSelectableDistricts().includes('stone_bridge'));
+    assert.equal(panel.isDistrictSelected('stone_bridge'), false);
+    const initial = panel.getSetup();
+    panel.handleClickDistrict('stone_bridge');
+    const selected = panel.getSetup();
+    assert.equal(panel.isDistrictSelected('stone_bridge'), true);
+    assert.equal(selected.districts.basic.stone_bridge, 1);
+    assert.deepEqual([...selected.districts.unique], [...initial.districts.unique]);
+    assert.equal(setup.districts.stone_bridge.type, 0);
+    const restored = setup.parseSetup(setup.serializeSetup(selected));
+    assert.equal(restored.districts.basic.stone_bridge, 1);
+    panel.handleClickDistrict('stone_bridge');
+    assert.equal(panel.getSetup().districts.basic.stone_bridge, 0);
 });

@@ -1,7 +1,7 @@
 "use strict";
 const test = require("node:test");
 const assert = require("node:assert/strict");
-const {calculateDistrictScore} = require("../district-scoring");
+const {calculateDistrictScore, calculateDistrictScoreDetails} = require("../district-scoring");
 
 test("nominal costs include legacy and numeric decorations plus the shared decoration bonus", () => {
     const city = [
@@ -186,4 +186,41 @@ test("a large group of Haunted Quarters preserves every special-district point w
     ];
     assert.equal(calculateDistrictScore(city), 174);
     assert.equal(calculateDistrictScore(city, {allColorsBonus: 50}), 216);
+});
+
+test("score explanations keep nominal cost separate and aggregate only earned bonuses", () => {
+    const city = [
+        {type: "monument", cost: 4, kind: 9},
+        {type: "monument", cost: 4, kind: 9},
+        {type: "catacombs", cost: 2, kind: 9, decoration: true},
+        {type: "stone_bridge", cost: 3, kind: 0, decoration: 2, buildDiscount: 3},
+        {type: "stone_bridge", cost: 3, kind: 0},
+        {type: "memorial", cost: 3, kind: 9}
+    ];
+    const details = calculateDistrictScoreDetails(city, {crowned: true});
+    assert.equal(details.nominal, 19);
+    assert.equal(details.citySize, 7);
+    assert.deepEqual(Object.fromEntries(details.bonuses.map(b => [b.id, b.points])), {
+        decorations: 4, catacombs: 2, stone_bridge: 4, memorial: 5
+    });
+    assert.ok(details.bonuses.every(b => b.label.length > 0 && b.points > 0));
+    assert.equal(details.total, 34);
+    assert.equal(details.total, calculateDistrictScore(city, {crowned: true}));
+    assert.deepEqual(calculateDistrictScoreDetails([]), {citySize: 0, nominal: 0, bonuses: [], total: 0});
+});
+
+test("color explanations use one achievable optimal Haunted Quarter assignment", () => {
+    const city = [
+        {type: "capitol", cost: 5, kind: 9},
+        {type: "capitol", cost: 5, kind: 9},
+        {type: "manor", cost: 3, kind: 4},
+        {type: "temple", cost: 1, kind: 5},
+        {type: "tavern", cost: 1, kind: 6},
+        {type: "haunted_quarter", cost: 3, kind: 9}
+    ];
+    assert.deepEqual(calculateDistrictScoreDetails(city).bonuses.map(b => [b.id, b.points]), [["capitol", 6]]);
+    assert.deepEqual(calculateDistrictScoreDetails(city, {allColorsBonus: 7}).bonuses.map(b => [b.id, b.points]), [["all_colors", 7]]);
+    const both = calculateDistrictScoreDetails(city.concat({type: "haunted_quarter", cost: 3, kind: 9}));
+    assert.deepEqual(both.bonuses.map(b => [b.id, b.points]), [["all_colors", 3], ["capitol", 6]]);
+    assert.equal(both.total, both.nominal + both.bonuses.reduce((sum, b) => sum + b.points, 0));
 });

@@ -25,6 +25,149 @@ test("the client quotes the current construction payment after permanent and per
     assert.equal(game.getBuildCost(0), 2);
 });
 
+test("hand construction hints quote the payable price before taking resources and explain exhausted limits", () => {
+    const {game} = gameClient({tookResource: false, playerGold: {0: 2}, player: {action: null, hand: [{type: "museum", kind: 9, cost: 5, buildDiscount: 1}]}, playerDistricts: {0: [{type: "factory", kind: 9}, {type: "factory", kind: 9}]}});
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 2");
+    game.state.buildDistricts = 0;
+    assert.equal(game.getHandBuildHint(0), "Достигнут лимит строительства в ход");
+    game.state.buildDistricts = 1;
+    game.state.playerGold[0] = 1;
+    assert.equal(game.getHandBuildHint(0), "Недостаточно золота");
+});
+
+test("hand hints distinguish response waits, role bans and card-specific construction exceptions", () => {
+    const {game} = gameClient({citySize: 7, currentCharacter: "4_1", playerGold: {0: 20}, player: {action: null, hand: [{type: "temple", cost: 1, kind: 5}]}});
+    const cases = [
+        [{phase: 3}, "Строительство доступно только в основной ход"],
+        [{phase: 2, currentPlayer: 1}, "Сейчас ход другого игрока"],
+        [{currentPlayer: 0, buildingBan: true}, "Строительство запрещено Судейской палатой"],
+        [{buildingBan: false, witched: "4_1", witchedstate: 2, buildDistricts: -1}, "Сначала завершите обязательное действие"],
+        [{witched: null, blackmailed: ["4_1"]}, "Сначала завершите обязательное действие"],
+        [{blackmailed: [], currentCharacter: "7_2"}, "Этот персонаж не может строить кварталы"],
+        [{buildDistricts: 1, currentCharacter: "4_1"}, "Стоимость постройки: 1"]
+    ];
+    for (const [change, hint] of cases) {
+        Object.assign(game.state, change);
+        assert.equal(game.getHandBuildHint(0), hint);
+    }
+    game.state.player.action = "magistrate-open";
+    assert.equal(game.getHandBuildHint(0), "Сначала завершите обязательное действие");
+    game.state.player.action = null;
+    game.state.playerDistricts[0] = [{type: "temple", kind: 5}];
+    assert.equal(game.getHandBuildHint(0), "Превышен лимит повторяющихся кварталов");
+    game.state.playerDistricts[0].push({type: "quarry", kind: 9});
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 1");
+    game.state.playerDistricts[0].pop();
+    game.state.currentCharacter = "3_2";
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 1");
+    game.state.buildDistricts = 0;
+    game.state.player.hand[0].wizard = true;
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 1");
+    game.state.currentCharacter = "4_1";
+    assert.equal(game.getHandBuildHint(0), "Превышен лимит повторяющихся кварталов");
+    game.state.player.hand[0] = {type: "stable", cost: 2, kind: 9};
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 2");
+    game.state.currentCharacter = "6_3";
+    game.state.player.hand[0] = {type: "market", cost: 2, kind: 6};
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 2");
+    game.state.buildDistricts = -1;
+    assert.equal(game.getHandBuildHint(0), "Этот персонаж не может строить кварталы");
+    game.state.buildDistricts = 1;
+    game.state.player.hand[0] = {type: "secret_vault", cost: 0, kind: 9};
+    assert.equal(game.getHandBuildHint(0), "Тайное убежище нельзя построить");
+    game.state.player.hand[0] = {type: "monument", cost: 4, kind: 9};
+    game.state.playerDistricts[0] = Array.from({length: 5}, () => ({type: "tavern"}));
+    assert.equal(game.getHandBuildHint(0), "Монумент нельзя построить как последний квартал");
+    game.state.playerDistricts[0][0] = {type: "catacombs"};
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 4");
+});
+
+test("hand hints consider free replacements and quote the explicitly selected replacement", () => {
+    const {game} = gameClient({citySize: 7, playerGold: {0: 0}, player: {action: null, hand: [{type: "necropolis", cost: 5, kind: 9}]}, playerDistricts: {0: [{type: "necropolis", kind: 9}]}});
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 5");
+    assert.equal(game.getHandBuildStatus(0, {goldOnly: true}).reason, "Превышен лимит повторяющихся кварталов");
+    game.setUserAction("necropolis", {buildTarget: 0});
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 0");
+    game.handleStopUserAction();
+    game.state.player.hand[0] = {type: "monument", cost: 4, kind: 9};
+    game.state.playerDistricts[0] = [{type: "framework", kind: 9}, ...Array.from({length: 4}, () => ({type: "tavern"}))];
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 4");
+    assert.equal(game.getHandBuildStatus(0, {goldOnly: true}).reason, "Монумент нельзя построить как последний квартал");
+    assert.equal(game.getHandBuildStatus(0, {frameworkIndex: 0}).cost, 0);
+    assert.equal(game.getHandBuildStatus(0, {frameworkIndex: 0}).reason, null);
+    game.setUserAction("framework", {districtSource: 0});
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 0");
+    game.state.player.hand[0] = {type: "framework", cost: 3, kind: 9};
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 0");
+    assert.equal(game.getHandBuildStatus(0, {goldOnly: true}).reason, "Превышен лимит повторяющихся кварталов");
+    game.state.buildingBan = true;
+    assert.equal(game.getHandBuildHint(0), "Строительство запрещено Судейской палатой");
+});
+
+test("hand hints account for card payment and require an active Cardinal with a different funded buyer", () => {
+    const {game} = gameClient({playerGold: {0: 1}, player: {action: null, hand: [{type: "den_of_thieves", cost: 6, kind: 9, buildDiscount: 1}, {type: "temple"}, {type: "market"}, {type: "tavern"}]}, playerDistricts: {0: [{type: "factory", kind: 9}]}});
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 4");
+    assert.equal(game.getHandBuildStatus(0, {goldOnly: true}).reason, "Недостаточно золота");
+    game.setUserAction("den_of_thieves", {buildTarget: 0});
+    game.state.cardChosen = [1, 2];
+    assert.equal(game.getHandBuildStatus(0).cost, 2);
+    assert.equal(game.getHandBuildHint(0), "Недостаточно золота");
+    game.state.cardChosen = [1, 2, 3];
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 1");
+    game.handleStopUserAction();
+    game.state.player.hand.pop();
+    assert.equal(game.getHandBuildHint(0), "Недостаточно золота");
+    const cardinal = gameClient({currentCharacter: "5_3", playerGold: {0: 3, 1: 1}, playerCharacter: {0: ["5_3"], 1: []}, player: {action: "cardinal-action", hand: [{type: "cathedral", cost: 5, kind: 5}, {type: "temple"}, {type: "tavern"}]}}).game;
+    assert.equal(cardinal.getHandBuildHint(0), "Недостаточно золота");
+    cardinal.state.playerGold[1] = 2;
+    assert.equal(cardinal.getHandBuildHint(0), "Стоимость постройки: 5");
+    assert.equal(cardinal.getHandBuildStatus(0, {goldOnly: true}).reason, "Недостаточно золота");
+    cardinal.state.player.action = null;
+    assert.equal(cardinal.getHandBuildHint(0), "Недостаточно золота");
+    cardinal.state.player.action = "cardinal-action";
+    cardinal.state.player.hand.pop();
+    assert.equal(cardinal.getHandBuildHint(0), "Недостаточно золота");
+});
+
+test("Mirror hand hints test copied district restrictions but retain the Mirror payment", () => {
+    const {game} = gameClient({playerGold: {0: 6}, player: {action: null, hand: [{type: "mirror_hall", cost: 6, kind: 9}]}, playerDistricts: {0: [{type: "mirror_hall", kind: 9}], 1: [{type: "temple", kind: 5, cost: 1}]}});
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 6");
+    assert.equal(game.getHandBuildStatus(0, {goldOnly: true}).reason, "Превышен лимит повторяющихся кварталов");
+    game.state.playerGold[0] = 5;
+    assert.equal(game.getHandBuildHint(0), "Недостаточно золота");
+    game.state.playerGold[0] = 6;
+    game.state.playerDistricts[1][0] = {type: "theater", kind: 9};
+    assert.equal(game.getHandBuildHint(0), "Превышен лимит повторяющихся кварталов");
+    game.state.buildDistricts = 0;
+    game.state.playerDistricts[1][0] = {type: "stable", kind: 9};
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 6");
+    assert.equal(game.getHandBuildStatus(0, {goldOnly: true}).reason, "Достигнут лимит строительства в ход");
+    game.state.playerDistricts[0].push({type: "stable", kind: 9});
+    assert.equal(game.getHandBuildHint(0), "Превышен лимит повторяющихся кварталов");
+    game.state.currentCharacter = "6_3";
+    game.state.playerDistricts[1][0] = {type: "market", kind: 6};
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 6");
+    game.state.buildDistricts = -1;
+    assert.equal(game.getHandBuildHint(0), "Этот персонаж не может строить кварталы");
+});
+
+test("reading hand construction hints preserves Museum, Laboratory, Seer and Cardinal card selection", () => {
+    for (const [action, event] of [["museum", "museum-action"], ["laboratory", "laboratory-action"], ["seer-return", "seer-return"], ["cardinal-action-cards", null]]) {
+        const {game, emitted} = gameClient({buildDistricts: 0, playerGold: {0: 0}, player: {action: action === "seer-return" ? action : null, hand: [{type: "market", kind: 6, cost: 2}, {type: "temple", kind: 5, cost: 1}]}, playerDistricts: {0: [{type: "temple", kind: 5}]}});
+        if (action !== "seer-return") game.setUserAction(action, {districtSource: 0, buildTarget: 0});
+        const stateBeforeHint = JSON.stringify(game.state);
+        game.getHandBuildHint(1);
+        assert.equal(JSON.stringify(game.state), stateBeforeHint);
+        game.handleClickHandCard(1);
+        if (action === "cardinal-action-cards") {
+            assert.deepEqual(Array.from(game.state.cardChosen), [1]);
+            assert.deepEqual(emitted, []);
+        } else {
+            assert.deepEqual(emitted, [action === "seer-return" ? [event, 1] : [event, 1, 0]]);
+        }
+    }
+});
+
 test("choosing one Museum sends that exact source index and clears the local selection", () => {
     const {game, emitted} = gameClient();
     game.setUserAction("museum", {districtSource: 3});
@@ -98,7 +241,7 @@ test("Diplomat checks both receiving cities and allows exchanges that do not inc
         game.handleClickBuilding(0, ownCity.length - 1);
         game.handleClickBuilding(1, ownCity.length === 1 ? 1 : 0);
         assert.deepEqual(emitted, []);
-        game.handleClickBuilding(0, 0);
+        if (ownCity.length > 1) game.handleClickBuilding(0, 0);
         game.handleClickBuilding(1, 0);
         assert.deepEqual(emitted, [["exchange-districts", 0, 1, 0]]);
     }
@@ -176,4 +319,67 @@ test("the selected discounted Necropolis can still use Cardinal financing from i
     for (const index of [2,3,4]) game.handleClickHandCard(index);
     game.handleCardinalActionCards();
     assert.deepEqual(emitted, [["cardinal-sell", 1, 1, [2,3,4]]]);
+});
+
+
+test("Diplomat clicking the first selected district again clears selection without exchanging", () => {
+    for (const slot of [0, 1]) {
+        const {game, emitted} = gameClient({player: {action: "diplomat-action", hand: []}, playerGold: {0: 9}, playerDistricts: {0: [{type: "tavern", cost: 1}], 1: [{type: "market", cost: 2}]}});
+        game.handleClickBuilding(slot, 0);
+        assert.deepEqual(Array.from(game.state.cardChosen), [slot, 0]);
+        game.handleClickBuilding(slot, 0);
+        assert.deepEqual(Array.from(game.state.cardChosen), []);
+        assert.deepEqual(emitted, []);
+    }
+});
+
+test("Mirror Hall clicking its hand card again cancels copying without building", () => {
+    const {game, emitted} = gameClient({player: {hand: [{type: "mirror_hall", cost: 6, kind: 9}]}});
+    game.handleClickHandCard(0);
+    assert.equal(game.state.userAction, "mirror_hall");
+    assert.equal(game.state.buildTarget, 0);
+    game.handleClickHandCard(0);
+    assert.equal(game.state.userAction, null);
+    assert.equal(game.state.buildTarget, null);
+    assert.deepEqual(Array.from(game.state.cardChosen), []);
+    assert.deepEqual(emitted, []);
+});
+
+
+test("final city display reveals scored Secret Vaults without adding built districts", () => {
+    const temple = {type: "temple", cost: 1, kind: 5};
+    const {game, emitted} = gameClient({phase: 0, winnerPlayer: 0, playerDistricts: {0: [temple]}, playerScore: {0: 4},
+        playerScoreDetails: {0: {citySize: 1, nominal: 1, bonuses: [{id: "secret_vault", label: "Тайное убежище", points: 3}], total: 4}}});
+    const before = JSON.stringify(game.state);
+    const displayed = game.getDisplayedDistricts(0);
+    assert.deepEqual(Array.from(displayed, card => card.type), ["temple", "secret_vault"]);
+    assert.equal(displayed[1].cost, 0);
+    assert.equal(displayed[1].scoreOnly, true);
+    assert.equal(JSON.stringify(game.state), before);
+    assert.equal(setup.getPlayerScoreDetails(game.state, 0).citySize, 1);
+    assert.equal(setup.getPlayerScoreDetails(game.state, 0).total, 4);
+    assert.deepEqual(emitted, []);
+});
+
+test("final city display supports multiple Vaults and does not duplicate older displayed copies", () => {
+    const {game} = gameClient({phase: 0, winnerPlayer: 1, playerDistricts: {0: [{type: "temple", cost: 1, kind: 5}]},
+        playerScoreDetails: {0: {bonuses: [{id: "secret_vault", points: 6}]}}});
+    assert.deepEqual(Array.from(game.getDisplayedDistricts(0), card => card.type), ["temple", "secret_vault", "secret_vault"]);
+    game.state.playerDistricts[0].push({type: "secret_vault", cost: 0});
+    assert.equal(game.getDisplayedDistricts(0).filter(card => card.type === "secret_vault").length, 2);
+    assert.equal(game.state.playerDistricts[0].length, 2);
+    game.state.phase = 2;
+    game.state.playerDistricts[0].pop();
+    assert.equal(game.getDisplayedDistricts(0).length, 1);
+    game.state.phase = 0;
+    game.state.winnerPlayer = null;
+    assert.equal(game.getDisplayedDistricts(0).length, 1);
+});
+
+test("legacy final city display uses the public scored Vault bonus without reading private hand identities", () => {
+    const {game} = gameClient({phase: 0, winnerPlayer: 0, ender: null, king: 1, citySize: 7,
+        gameSetup: {rules: setup.normalizeRules()}, playerHand: {0: 1}, playerGold: {0: 2}, playerScore: {0: 4},
+        playerDistricts: {0: [{type: "temple", cost: 1, kind: 5}]}});
+    Object.defineProperty(game.state, "player", {get() {throw new Error("private hand was read");}});
+    assert.deepEqual(Array.from(game.getDisplayedDistricts(0), card => card.type), ["temple", "secret_vault"]);
 });

@@ -1,0 +1,14 @@
+Edit Image 1 (Monument). KEEP its exact 707×1121 canvas and its lower title ribbon EXACTLY in place. Image 3 (Harbor) confirms this same title alignment.
+
+Replace the illustration with the approved stone bridge scene in Image 2, preserving its composition, viewpoint, bridge arches, medieval town, people, flags, sky, water and colors. Use EXACTLY THREE gold coins as in Image 2, no fourth coin.
+
+Replace title with «Каменный мост» without quotation marks, using Image 1's same large bold Cyrillic title typeface, size and baseline: ink top y=1024, baseline y=1076, ink height 52–54 pixels. The full title fits on one line. Do not move or resize the title ribbon; retain its approximately 28-pixel bottom margin. No new footer.
+
+Remove Image 1's purple type emblem completely; continue natural parchment in its place. There is no district-type medallion or substitute.
+
+Above the ribbon, use Image 2's pale parchment ability panel and this exact centered three-line text, without quotation marks:
+Не имеет типа квартала.
+В конце игры получите
+2 дополнительных очка.
+
+Preserve the approved bridge art visually. No extra text, symbols or decorations.

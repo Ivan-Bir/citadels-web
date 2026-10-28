@@ -182,11 +182,11 @@ test('alternative payments build the selected hand instance with its own discoun
 test('pending Chamber attribution survives destruction and snapshot restoration',()=>{
  const {game}=fixture();game.room.playerDistricts[0]=[district('judicial_chamber'),district('arsenal')];game.room.playerDistricts[1]=[district('manor')];
  game.slotEventHandlers['judicial-chamber-action'](0,0);
- assert.deepEqual(game.room.buildingBanSources,[{ownerSlot:0,sourceIndex:0,round:3}]);
+ assert.deepEqual(game.room.buildingBanSources,[{ownerSlot:0,sourceSlot:0,sourceIndex:0,round:3}]);
  game.slotEventHandlers['arsenal-destroy'](0,0,0,1);
- assert.deepEqual(game.room.buildingBanSources,[{ownerSlot:0,sourceIndex:null,round:3}]);
+ assert.deepEqual(game.room.buildingBanSources,[{ownerSlot:0,sourceSlot:null,sourceIndex:null,round:3}]);
  const restored=fixture().game;restored.setSnapshot(JSON.parse(JSON.stringify(game.getSnapshot())));
- assert.deepEqual(restored.room.buildingBanSources,[{ownerSlot:0,sourceIndex:null,round:3}]);
+ assert.deepEqual(restored.room.buildingBanSources,[{ownerSlot:0,sourceSlot:null,sourceIndex:null,round:3}]);
  assert.equal(restored.room.nextRoundBuildingBan,true);
 });
 test('killed Emperor cannot activate districts during the out-of-turn crown response',()=>{
@@ -213,4 +213,15 @@ test('restored peek timeout preserves deck, discard and used source',async t=>{
  assert.deepEqual(restored.state.districtDeck.map(c=>c.type),['church','manor']);assert.deepEqual(restored.state.districtDiscard.map(c=>c.type),['market']);
  assert.equal(restored.room.playerHand[0],0);assert.equal(restored.room.playerDistricts[0][0].actionsUsed.divination_tower,1);
  assert.notEqual(restored.room.phase,3);
+});
+
+test('Chamber highlight follows the activated instance after transfer while preserving its initiator',()=>{
+ const {game}=fixture();game.room.playerDistricts[0]=[district('judicial_chamber')];game.room.playerDistricts[1]=[district('manor')];
+ game.slotEventHandlers['judicial-chamber-action'](0,0);
+ const chamber=game.room.playerDistricts[0].pop();game.room.playerDistricts[1].push(chamber);
+ game.updateBuildingBans();
+ assert.deepEqual(game.room.buildingBanSources,[{ownerSlot:0,sourceSlot:1,sourceIndex:1,round:3}]);
+ assert.equal(game.room.nextRoundBuildingBan,true);
+ const restored=fixture().game;restored.setSnapshot(JSON.parse(JSON.stringify(game.getSnapshot())));
+ assert.deepEqual(restored.room.buildingBanSources,game.room.buildingBanSources);
 });

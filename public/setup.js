@@ -289,7 +289,7 @@
             throw new Error("Запрет повторного случайного сброса: ожидается логическое значение.");
         const duplicateLimit = own(value, "duplicateLimit") ? value.duplicateLimit : 0;
         if (!Number.isSafeInteger(duplicateLimit) || duplicateLimit < 0)
-            throw new Error("Базовый лимит повторок: укажите целое неотрицательное число.");
+            throw new Error("Базовый лимит повторяющихся карт: укажите целое неотрицательное число.");
         const diplomatCompleteCity = own(value, "diplomatCompleteCity") ? value.diplomatCompleteCity : false;
         const magistrateOverLimit = own(value, "magistrateOverLimit") ? value.magistrateOverLimit : false;
         if (typeof diplomatCompleteCity !== "boolean" || typeof magistrateOverLimit !== "boolean")
@@ -425,6 +425,138 @@
         return custom === null ? (players === 3 ? 8 : 7) : custom;
     }
 
+    function getDecorationCount(card) {
+        return card.decoration === true ? 1 : (card.decoration || 0);
+    }
+
+    function calculateColorBonuses(city, allColorsBonus) {
+        const colors = {4: 0, 5: 0, 6: 0, 8: 0, 9: 0};
+        let ghosts = 0;
+        for (const card of city) {
+            if (card.type === "haunted_quarter") {
+                ghosts++;
+                continue;
+            }
+            const color = getDistrictType(card);
+            if (color in colors) colors[color]++;
+        }
+        const wells = city.filter(card => card.type === "well_of_wishes").length;
+        const towers = city.filter(card => card.type === "ivory_tower").length;
+        const capitols = city.filter(card => card.type === "capitol").length;
+        const initial = [4, 5, 6, 8].map(color => Math.min(colors[color], 3));
+        let distributions = new Map([[initial.join(","), initial]]);
+        let maximum = -1;
+        let bestBonuses = {};
+
+        // Ordinary color counts above three cannot change a scoring condition.
+        // At most 4^4 distributions survive each step; all remaining ghosts are special.
+        for (let ordinaryGhosts = 0; ordinaryGhosts <= ghosts; ordinaryGhosts++) {
+            const specialCount = colors[9] + ghosts - ordinaryGhosts;
+            for (const counts of distributions.values()) {
+                const bonuses = {
+                    all_colors: specialCount > 0 && counts.every(count => count > 0) ? allColorsBonus : 0,
+                    capitol: specialCount >= 3 || counts.some(count => count >= 3) ? 3 * capitols : 0,
+                    well_of_wishes: specialCount * wells,
+                    ivory_tower: specialCount === 1 ? 5 * towers : 0
+                };
+                const bonus = Object.values(bonuses).reduce((sum, points) => sum + points, 0);
+                if (bonus > maximum) {
+                    maximum = bonus;
+                    bestBonuses = bonuses;
+                }
+            }
+            if (ordinaryGhosts === ghosts) break;
+            const next = new Map();
+            for (const counts of distributions.values()) {
+                for (let color = 0; color < counts.length; color++) {
+                    const assigned = counts.slice();
+                    assigned[color] = Math.min(3, assigned[color] + 1);
+                    next.set(assigned.join(","), assigned);
+                }
+            }
+            distributions = next;
+        }
+        return bestBonuses;
+    }
+
+    function calculateDistrictScoreDetails(city, {
+        handCount = 0, gold = 0, crowned = false, allColorsBonus = 3,
+        firstCityBonus = 0, completedCityBonus = 0, secretVaultCount = 0
+    } = {}) {
+        const labels = {
+            all_colors: "Разноцвет",
+            decorations: "Украшения",
+            first_city: "Первый завершённый город",
+            completed_city: "Завершённый город"
+        };
+        const bonusPoints = new Map();
+        const add = (id, points) => {
+            if (points) bonusPoints.set(id, (bonusPoints.get(id) || 0) + points);
+        };
+        const nominal = city.reduce((sum, card) => sum + card.cost, 0);
+        const decorations = city.reduce((sum, card) => sum + getDecorationCount(card), 0);
+        add("decorations", decorations + Math.floor(decorations / 2));
+        const oddCosts = city.filter(card => (card.cost + getDecorationCount(card)) % 2).length;
+        for (const card of city) {
+            if (card.type === "dragon_gate") add(card.type, 3);
+            if (card.type === "basilica") add(card.type, oddCosts);
+            if (card.type === "stone_bridge" || card.type === "catacombs") add(card.type, 2);
+            if (card.type === "wine_cellar" && card.wineAge >= 5) add(card.type, 3);
+            if (card.type === "map_room") add(card.type, handCount);
+            if (card.type === "imperial_treasury") add(card.type, gold);
+            if (card.type === "memorial" && crowned) add(card.type, 5);
+            if (card.type === "museum") add(card.type, card.exposition ? card.exposition.length : 0);
+        }
+        // Use the same optimal Haunted Quarter assignment for both the total and its explanation.
+        for (const [id, points] of Object.entries(calculateColorBonuses(city, allColorsBonus))) add(id, points);
+        add("first_city", firstCityBonus);
+        add("completed_city", completedCityBonus);
+        add("secret_vault", secretVaultCount * 3);
+        const bonuses = [...bonusPoints].map(([id, points]) => ({id, label: labels[id] || districts[id].name, points}));
+        return {
+            citySize: getCityDistrictCount(city),
+            nominal,
+            bonuses,
+            total: nominal + bonuses.reduce((sum, bonus) => sum + bonus.points, 0)
+        };
+    }
+
+    function calculateDistrictScore(city, options) {
+        return calculateDistrictScoreDetails(city, options).total;
+    }
+
+    function getPlayerScoreDetails(data, slot) {
+        if (data.playerScoreDetails && data.playerScoreDetails[slot])
+            return data.playerScoreDetails[slot];
+        const city = data.playerDistricts && data.playerDistricts[slot];
+        if (!Array.isArray(city)) return null;
+        const rules = normalizeRules(data.gameSetup && data.gameSetup.rules);
+        const players = (data.playerSlots || []).filter(id => id !== null).length;
+        const cityLimit = data.citySize || getCitySize(players, rules);
+        const handCount = (data.playerHand && data.playerHand[slot]) || 0;
+        const details = calculateDistrictScoreDetails(city, {
+            handCount,
+            gold: (data.playerGold && data.playerGold[slot]) || 0,
+            crowned: data.king === Number(slot),
+            allColorsBonus: rules.bonuses.allColors,
+            firstCityBonus: data.ender == slot ? rules.bonuses.firstCity : 0,
+            completedCityBonus: data.ender != slot && getCityDistrictCount(city) >= cityLimit
+                ? rules.bonuses.otherCities : 0
+        });
+        // Older hosts publish the final total without a breakdown. Infer Secret
+        // Vaults only with known historical rules: missing custom bonuses can also
+        // cause a difference divisible by three. The public hand must account for it.
+        const historicalRules = data.gameSetup && data.gameSetup.rules;
+        const knownRules = historicalRules && typeof historicalRules === "object" && !Array.isArray(historicalRules);
+        const finalDifference = data.playerScore && data.playerScore[slot] - details.total;
+        if (knownRules && data.phase === 0 && data.winnerPlayer != null && finalDifference > 0
+            && finalDifference % 3 === 0 && finalDifference <= handCount * 3) {
+            details.bonuses.push({id: "secret_vault", label: districts.secret_vault.name, points: finalDifference});
+            details.total += finalDifference;
+        }
+        return details;
+    }
+
     function getStartErrors(value, players) {
         const errors = [];
         let setup;
@@ -458,7 +590,7 @@
             + monumentCapacity;
         if (capacity < citySize)
             errors.push("Недостаточная вместимость города: " + capacity + " при размере " + citySize
-                + ". Проверьте количество разных кварталов и лимит повторок.");
+                + ". Проверьте количество разных кварталов и лимит повторяющихся карт.");
         return errors;
     }
 
@@ -537,6 +669,7 @@
         normalizeCharacters, getCharacterPlayerErrors, characterRequirements,
         normalizeTimerSettings, normalizeStarting, normalizeRules, normalizeSetup,
         getStartingResources, getStartingRequirements, createDraftStore,
+        calculateDistrictScore, calculateDistrictScoreDetails, getPlayerScoreDetails,
         getDistrictType, countDistricts, getCityDistrictCount, getBuildCost, getColorIncome, getResourceCardCount, getGreatWallCount, canAddDistrict,
         parseSetup, serializeSetup, getDefaultSetup, getDeckSummary, getCitySize, getStartErrors, getCreatorErrors
     };

@@ -1,0 +1,9 @@
+Edit this Citadels rules parchment, preserving its style, Russian typography, icons and all other rules. Make these changes:
+1. Replace "Невыбранные карты идут в отдельный сброс." with "Невыбранные карты идут в сброс."
+2. Replace "Автоматически: 7, при игре втроём — 8." with "По умолчанию: 7, при игре втроём — 8."
+3. Delete "Монумент считается за 2 квартала. Катакомбы — за 0."
+4. Delete "Каменный мост не имеет типа."
+5. In "Кто победил" replace item 2 with "2. Сумму номиналов построек — без украшений и бонусов."
+6. Delete "Первый завершивший город не обязательно победитель."
+7. Delete the entire "Настройки и уточнения" heading and its entire text block.
+Reflow remaining text attractively. Keep the upper three columns. Make "Кто победил" a compact full-width lower section without an empty right quadrant. Preserve all other text and numbers exactly. No red annotations, strikethroughs, extra text or new rules. Keep the parchment border intact.

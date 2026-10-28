@@ -293,6 +293,7 @@ h1, h2, h3 {
 }
 
 .districts .cards-list .card:hover {
+    flex-shrink: 0;
     z-index: 1;
 }
 
@@ -436,6 +437,10 @@ body {
     box-shadow: 0 0 4px 0 #000000;
     border: 1px solid black;
     position: relative;
+}
+
+.card-item {
+    isolation: isolate;
 }
 
 .card-item.card {
@@ -1726,29 +1731,14 @@ button.inactive {
 .district-face-type { font-size: 8cqw; font-weight: bold; text-align: center; padding-top: 3%; }
 .district-face-description { padding-top: 5%; font-size: 8.4cqw; line-height: 1.13; text-align: center; }
 .district-face-kind-0 .district-face-description { padding-top: 12%; }
-.district-payment, .district-state { position: absolute; bottom: 0; left: 0; right: 0; z-index: 1; padding: 3px 2px; border-radius: 0 0 6px 6px; background: #fff1c9ef; color: #312710; text-align: center; font-size: 11px; line-height: 1.2; box-shadow: 0 0 3px #0008; }
-.district-payment span { display: block; font-size: 9px; }
-.district-payment-detail { position: absolute; bottom: 0; left: 0; right: 0; padding: 12px; background: #fff1c9f5; color: #312710; text-align: center; font-size: 20px; }
-.district-payment-detail small { display: block; margin-top: 6px; font-size: 15px; }
-.district-position { position: absolute; bottom: 28px; right: 1px; padding: 2px 4px; border-radius: 3px; background: #221c18df; color: white; font-size: 11px; pointer-events: none; }
-.card-item.zoomed > .district-face, .card-item.zoomed > .district-payment, .card-item.zoomed > .district-state, .card-item.zoomed > .district-position { display: none; }
-.basic-deck-tabs { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-.basic-deck-tab.district-kind-0 { background: #e4e4e4; }
+.card-item.zoomed > .district-face { display: none; }
 .expansion-settings > label { display: flex; align-items: center; gap: 8px; margin: 12px 0; }
 .creator-mode { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 14px; }
-.district-slot.incompatible { outline: 2px dashed #a33022; outline-offset: 2px; }
-.district-attribution { font-size: 11px; color: #555; margin: 14px 0; }
-.district-attribution a { color: inherit; }
-.district-action-used { opacity: .5; }
+.district-slot.incompatible > .card-item { outline: 3px dashed #a33022; outline-offset: -3px; z-index: 1; }
 .district-deferred-active { outline: 3px solid #dbc466; outline-offset: 2px; }
 .district-secret-token { position: absolute; top: 3px; left: 3px; padding: 3px; background: #352c4bed; color: white; border-radius: 3px; font-size: 11px; }
 .district-effects-status { padding: 8px 12px; margin: 6px 0; background: #fff0c9; border: 1px solid #8f7546; border-radius: 4px; font-size: 14px; }
-.short-rules { align-items: flex-start; }
-.short-rules .short-rules-content { display: none; width: min(520px, calc(100vw - 55px)); max-height: calc(100dvh - 85px); overflow: auto; padding: 8px 16px; color: #28231a; background: #fff8e7; font-size: 14px; line-height: 1.4; text-align: left; }
-.short-rules:hover .short-rules-content, .short-rules:focus-within .short-rules-content { display: block; }
 .short-rules:focus-within .short-rules-title { display: none; }
-.short-rules-content p { margin: 8px 0; }
-.short-rules-content ol { padding-left: 22px; }
 @media (max-width: 600px) { .basic-deck-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .district-copy-unavailable { filter: grayscale(1); opacity: .45; cursor: not-allowed; }
 .private-district-targets { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 7px; }
@@ -1761,8 +1751,59 @@ button.inactive {
     .district-effects-status { width: calc(100vw - 16px); }
     .private-district-target .character.card-item { min-width: 0; }
 }
-.action-toolbar { top: auto; bottom: 100%; left: 8px; width: calc(100% - 118px); box-sizing: border-box; flex-wrap: wrap; gap: 8px; padding: 8px; max-height: 28dvh; overflow-y: auto; background: #ffffffe0; border-radius: 6px; }
-.action-toolbar button, .action-toolbar button:first-child, .action-toolbar .button-or + button { margin: 0; }
-.action-toolbar button:before { display: none; }
-.action-toolbar button:disabled { opacity: .55; cursor: not-allowed; }
-@media (max-width: 750px) { .action-toolbar { width: calc(100% - 16px); margin: 0 8px; max-height: 23dvh; } }
+
+/* Keep feedback on the visible custom face and only soften unavailable cards in hand. */
+.custom-district.card-chosen > .district-face { box-shadow: inset 0 0 8px 1px red; }
+.hand-card.district-copy-unavailable { opacity: .85; }
+.action-toolbar { top: auto; bottom: 100%; flex-wrap: wrap; row-gap: 8px; }
+.card-cursor-tooltip { position: fixed; z-index: 12000; max-width: min(340px, calc(100vw - 32px)); box-sizing: border-box; pointer-events: none; padding: 9px 12px; border: 1px solid #8f7546; border-radius: 4px; background: #fff8e7; color: #28231a; box-shadow: 0 2px 8px #0005; font-size: 13px; line-height: 1.4; }
+.card-cursor-tooltip > div + div { margin-top: 4px; }
+.city-score-help { display: inline-flex; vertical-align: middle; }
+.city-score-help > button { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; padding: 3px; color: #514631; border-radius: 50%; }
+.city-score-help > button:hover, .city-score-help > button:focus-visible { background: #fff5d5; color: #8b641c; }
+.city-score-help > button:focus-visible { outline: 2px solid #af974e; outline-offset: 1px; }
+.city-score-help .material-icons { font-size: 18px; }
+.city-score-tooltip { font-weight: normal; text-align: left; line-height: 1.5; }
+.city-score-row { display: flex; align-items: center; gap: 7px; }
+.city-score-row .material-icons { flex: none; font-size: 18px; color: #8b6b2c; }
+.city-score-nominal { margin-top: 5px; }
+.city-score-bonuses { margin-top: 9px; padding-top: 8px; border-top: 1px solid #af974e70; }
+.city-score-bonuses-title { font-weight: bold; }
+.city-score-bonuses .city-score-row, .city-score-district-bonuses { margin-top: 5px; }
+.short-rules img { width: min(1000px, calc(100vw - 40px)); max-height: calc(100dvh - 65px); object-fit: contain; }
+.short-rules:focus-within img { display: block; }
+
+.mirror-copy-actions { top: auto; bottom: 100%; flex-wrap: wrap; row-gap: 8px; }
+.mirror-copy-actions > .status-text { position: static; flex-basis: 100%; order: -1; margin: 0 8px 4px; box-sizing: border-box; text-align: center; }
+
+/* Instance markers stay on visible cards, including another player's revealed hand. */
+.district-discount-marker { position: absolute; top: 4%; right: 5%; z-index: 1; display: inline-flex; align-items: center; gap: 4px; padding: 2px 6px; border: 1px solid #b99955; border-radius: 999px; background: linear-gradient(#fff6d8, #e9d19a); color: #5d421d; box-shadow: 0 1px 3px #3826084d, inset 0 1px 0 #fff8df; font: 600 13px/1 Georgia, "Times New Roman", serif; pointer-events: none; }
+.custom-district .district-discount-marker { top: 16%; }
+.has-build-discount > .card-zoom-button { top: 24%; }
+.district-discount-coin { display: inline-block; flex: none; width: .85em; height: .85em; border: 1px solid #ab7621; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff6bf, #e8c663 45%, #bc8a2c); box-shadow: inset 0 0 0 1px #f5df91, inset 0 0 0 2px #bd8d37; }
+.judicial-state-marker { position: absolute; top: 45%; left: 5%; z-index: 1; display: grid; place-items: center; width: 25px; height: 25px; border: 1px solid; border-radius: 50%; box-shadow: 0 1px 4px #0005; pointer-events: none; }
+.judicial-state-marker .material-icons { font-size: 18px; }
+.judicial-state-marker.active { color: #845408; background: #fff3bd; border-color: #d29d35; }
+.judicial-state-marker.pending { color: #235d9c; background: #e4f2ff; border-color: #568ecb; }
+.judicial-state-marker.spent { color: #655f56; background: #e2dfd8; border-color: #918778; }
+.judicial-spent .district-face-art { filter: saturate(.4); }
+.card-item.zoomed > .district-discount-marker, .card-item.zoomed > .judicial-state-marker { display: none; }
+.card-item-zoomed .district-discount-marker { gap: 8px; font-size: 27px; padding: 7px 12px; }
+.card-item-zoomed .judicial-state-marker { width: 40px; height: 40px; }
+.card-item-zoomed .judicial-state-marker .material-icons { font-size: 28px; }
+@property --judicial-angle { syntax: '<angle>'; initial-value: 0deg; inherits: false; }
+@keyframes judicial-contour { to { --judicial-angle: 360deg; } }
+.judicial-active { --judicial-color: #d69723; --judicial-light: #fff7b6; }
+.judicial-pending { --judicial-color: #407fc4; --judicial-light: #dcf3ff; }
+.judicial-active:not(.zoomed)::after, .judicial-pending:not(.zoomed)::after,
+.judicial-active .card-item-zoomed::after, .judicial-pending .card-item-zoomed::after {
+    content: ''; position: absolute; inset: -3px; z-index: 2; padding: 3px; border-radius: inherit; pointer-events: none;
+    background: conic-gradient(from var(--judicial-angle), var(--judicial-color) 0deg, var(--judicial-light) 75deg, var(--judicial-color) 140deg, var(--judicial-color) 210deg, var(--judicial-light) 265deg, var(--judicial-color) 330deg);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    animation: judicial-contour 3.5s linear infinite;
+}
+.judicial-active:not(.zoomed), .judicial-pending:not(.zoomed) { box-shadow: 0 0 7px 2px var(--judicial-color); }
+@media (prefers-reduced-motion: reduce) {
+    .judicial-active:not(.zoomed)::after, .judicial-pending:not(.zoomed)::after, .judicial-active .card-item-zoomed::after, .judicial-pending .card-item-zoomed::after { animation: none; }
+}

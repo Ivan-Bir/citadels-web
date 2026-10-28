@@ -11,6 +11,13 @@ function makeId() {
     return text;
 }
 
+function sortDistrictIds(ids) {
+    return ids.map((id, index) => ({id, index})).sort((a, b) => {
+        const first = CitadelsSetup.districts[a.id], second = CitadelsSetup.districts[b.id];
+        return first.cost - second.cost || Number(!!first.image) - Number(!!second.image) || a.index - b.index;
+    }).map(entry => entry.id);
+}
+
 class Player extends React.Component {
     render() {
         const
@@ -79,10 +86,10 @@ class Spectators extends React.Component {
     }
 }
 
-function DistrictFace({district}) {
+function DistrictFace({district, inHand = false}) {
     const typeNames = {4: "Дворянский", 5: "Церковный", 6: "Торговый", 8: "Воинский", 9: "Особый"};
     return <div className={"district-face district-face-kind-" + district.type}>
-        <div className="district-face-heading"><strong>{district.name}</strong><span className="district-face-cost" title="Номинальная стоимость">{district.cost}</span></div>
+        <div className="district-face-heading"><strong>{district.name}</strong><span className="district-face-cost" title={inHand ? undefined : "Номинальная стоимость"}>{district.cost}</span></div>
         <img className="district-face-art" src={district.image} alt=""/>
         {district.type !== 0 ? <div className="district-face-type">{typeNames[district.type]}</div> : null}
         <div className="district-face-description">{district.description}</div>
@@ -90,6 +97,34 @@ function DistrictFace({district}) {
 }
 
 class Card extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {hint: null};
+        this.hideHint = () => this.setState({hint: null});
+    }
+    componentDidMount() {
+        window.addEventListener("scroll", this.hideHint, true);
+        window.addEventListener("resize", this.hideHint);
+    }
+    componentWillUnmount() {
+        window.removeEventListener("scroll", this.hideHint, true);
+        window.removeEventListener("resize", this.hideHint);
+    }
+    moveHint(event) {
+        if (event.buttons || event.currentTarget.classList.contains("zoomed") || event.target.closest(".card-zoom-button")) {
+            this.hideHint();
+            return;
+        }
+        const x = event.clientX, y = event.clientY;
+        this.setState({hint: {left: x + 16, top: y + 18}}, () => {
+            if (!this.hintElement) return;
+            const rect = this.hintElement.getBoundingClientRect();
+            this.setState({hint: {
+                left: Math.max(8, Math.min(x + 16, document.documentElement.clientWidth - rect.width - 8)),
+                top: Math.max(8, y + rect.height + 18 < window.innerHeight - 8 ? y + 18 : y - rect.height - 12)
+            }});
+        });
+    }
     render() {
         const
             game = this.props.game,
@@ -117,19 +152,38 @@ class Card extends React.Component {
                 && data.cardChosen[0] === this.props.slot && data.cardChosen[1] === this.props.id,
             currentCharacter = data.currentCharacter === card && isToken,
             isSecretVault = card.type === "secret_vault",
-            decorationCount = card.decoration === true ? 1 : (card.decoration || 0),
-            city = data.playerDistricts && data.playerDistricts[data.userSlot] || [],
-            factories = this.props.inHand && district && CitadelsSetup.getDistrictType(card) === 9 ? CitadelsSetup.countDistricts(city, "factory") : 0,
-            payment = this.props.inHand && district ? CitadelsSetup.getBuildCost(city, card) : null,
-            paymentDetails = district ? "Номинал " + (card.cost === undefined ? district.cost : card.cost) + " − постоянная скидка " + (card.buildDiscount || 0) + " − Фабрики " + factories + " = " + payment : "";
+            decorationCount = card.decoration === true ? 1 : (card.decoration || 0);
         const sourceSelected = this.props.play && this.props.slot === data.userSlot && data.districtSource === this.props.id;
         const theaterSelected = this.props.play && data.phase === 1.5 && this.props.slot === data.currentPlayer
             && data.theaterAction && data.theaterAction.sourceIndex === this.props.id;
         const activeAssignment = this.props.play && (data.conspiratorEffects || []).some(effect =>
             (effect.sourceSlot === undefined ? effect.ownerSlot : effect.sourceSlot) === this.props.slot && effect.sourceIndex === this.props.id);
+        const banSource = this.props.play && card.type === "judicial_chamber" && (data.buildingBanSources || []).find(effect =>
+            (effect.sourceSlot === undefined ? effect.ownerSlot : effect.sourceSlot) === this.props.slot && effect.sourceIndex === this.props.id);
+        const activeBan = !!banSource && data.phase !== 0 && data.buildingBan && banSource.round === data.roundNumber;
+        const pendingBan = !!banSource && data.phase !== 0 && data.nextRoundBuildingBan && banSource.round === data.roundNumber + 1;
+        const spentBan = this.props.play && card.type === "judicial_chamber" && card.judicialUsed && !activeBan && !pendingBan;
+        const discount = !isCharacter && !this.props.play && Number.isFinite(card.buildDiscount) ? Math.max(0, card.buildDiscount) : 0;
+        const markers = <>
+            {discount > 0 ? <span className="district-discount-marker" aria-label={"Постоянная скидка на строительство: " + discount}>
+                <span className="district-discount-coin" aria-hidden="true"/><strong>−{discount}</strong>
+            </span> : null}
+            {activeBan || pendingBan || spentBan ? <span className={cs("judicial-state-marker", {active: activeBan, pending: pendingBan, spent: spentBan})}
+                aria-label={activeBan ? "Запрет строительства действует" : pendingBan ? "Запрет строительства в следующем раунде" : "Способность использована"}>
+                <i className="material-icons" aria-hidden="true">{activeBan ? "gavel" : pendingBan ? "schedule" : "lock"}</i>
+            </span> : null}
+        </>;
         const targetPreview = this.props.play ? game.getRankEightTarget(this.props.slot, this.props.id) : null;
         const mirrorUnavailable = data.userAction === "mirror_hall" && this.props.play && !game.canCopyMirrorTarget(this.props.slot, this.props.id);
         const handBuildBlocked = this.props.inHand && game.isHandBuildTargetBlocked(this.props.id);
+        const hints = [];
+        if (targetPreview) {
+            if (targetPreview.reason) hints.push(targetPreview.reason);
+            if (targetPreview.cost != null) hints.push("Плата: " + targetPreview.cost + " золота", targetPreview.details);
+            else if (!targetPreview.reason) hints.push("Выберите вторую сторону обмена");
+        }
+        if (this.props.play && card.type === "wine_cellar") hints.push("Выдержка: " + (card.wineAge || 0) + "/5" + (card.wineAge >= 5 ? " · +3 очка" : ""));
+        if (this.props.play && card.type === "judicial_chamber") hints.push(activeBan ? "Запрет строительства действует в этом раунде" : pendingBan ? "Запрет строительства начнётся в следующем раунде" : card.judicialUsed ? "Способность использована" : "Запрет доступен");
         return (
             <div className={cs(type, "card-item", {
                 "card-chosen": cardChosen || blackmailedChosen || diplomatCard,
@@ -141,25 +195,32 @@ class Card extends React.Component {
                 "in-action": !isCharacter && ((sourceSelected && data.userAction) || theaterSelected || (data.buildTarget === this.props.id && this.props.inHand)),
                 "custom-district": !!customFace,
                 "district-deferred-active": !!activeAssignment,
+                "judicial-active": !!activeBan,
+                "judicial-pending": !!pendingBan,
+                "judicial-spent": !!spentBan,
+                "hand-card": !!this.props.inHand,
+                "has-build-discount": discount > 0,
                 "district-copy-unavailable": !!mirrorUnavailable || !!handBuildBlocked || !!(targetPreview && !targetPreview.available),
                 "witched-state": !isGallery && !isToken && data.witchedstate === 1 && originalCard === data.witched
             })}
                  style={{backgroundImage}}
                  aria-label={district ? district.name : undefined}
-                 title={handBuildBlocked ? "Превышен лимит повторок" : targetPreview ? targetPreview.reason || (targetPreview.cost === null ? "Выберите вторую сторону обмена" : "Плата: " + targetPreview.cost) : undefined}
-                 onMouseDown={(e) => card !== "0_1" ? game.handleCardPress(e) : null}
+                 title={this.props.inHand ? game.getHandBuildHint(this.props.id) : undefined}
+                 onMouseMove={!this.props.inHand && hints.length ? event => this.moveHint(event) : undefined}
+                 onMouseLeave={this.hideHint}
+                 onMouseDown={(e) => {this.hideHint(); if (card !== "0_1") game.handleCardPress(e);}}
                  onTouchStart={(e) => card !== "0_1" ? game.handleCardPress(e) : null}
                  onClick={(e) => game.handleCardClick(e, this.props.onClick)}>
-                {customFace ? <DistrictFace district={district}/> : null}
+                {customFace ? <DistrictFace district={district} inHand={this.props.inHand}/> : null}
                 {card !== "0_1" ? (<div className="card-zoom-button material-icons"
-                                        onMouseDown={(e) => e.stopPropagation()}
-                                        onTouchStart={(e) => e.stopPropagation()}
-                                        onClick={(e) => game.handleCardZoomClick(e)}>search</div>) : ""}
+                                        onMouseDown={(e) => game.handleCardZoomClick(e)}
+                                        onTouchStart={(e) => game.handleCardZoomClick(e)}>search</div>) : ""}
                 {card !== "0_1" ? (<div className={`card-item-zoomed`}
                                         style={{backgroundImage: backgroundImageZoomed}}>
-                    {customFace ? <DistrictFace district={district}/> : null}
-                    {payment !== null ? <div className="district-payment-detail">К постройке: {payment}<small>{paymentDetails}</small></div> : null}
+                    {customFace ? <DistrictFace district={district} inHand={this.props.inHand}/> : null}
+                    {markers}
                 </div>) : ""}
+                {markers}
                 {decorationCount ? <div className="decoration-coin" style={{top: `${20 * card.cost}px`}}>
                     {decorationCount > 1 ? <span className="decoration-count">{decorationCount}</span> : ""}
                 </div> : ""}
@@ -167,17 +228,14 @@ class Card extends React.Component {
                     <div className="tax-counter-coin"/>
                     <div className="tax-counter-value">{data.tax || 0}</div>
                 </div> : ""}
-                {targetPreview && targetPreview.cost != null ? <div className="district-payment">{targetPreview.available ? "Плата: " : "Недоступно · "}{targetPreview.cost} золота</div> : null}
-                {payment !== null ? <div className="district-payment" title={paymentDetails}>К постройке: {payment}
-                    {(card.buildDiscount || factories) ? <span>−{card.buildDiscount || 0} постоянно · −{factories} Фабрики</span> : null}
-                </div> : null}
-                {card.type === "wine_cellar" && this.props.play ? <div className="district-state" style={targetPreview ? {bottom: 24} : undefined}>Выдержка {card.wineAge || 0}/5{card.wineAge >= 5 ? " · +3 очка" : ""}</div> : null}
-                {card.type === "judicial_chamber" && this.props.play ? <div className="district-state">{card.judicialUsed ? "Запрет использован" : "Запрет доступен"}</div> : null}
                 {activeAssignment ? <div className="district-secret-token" title="Тайное назначение действует на следующий раунд">Тайное назначение</div> : null}
-                {this.props.play ? <span className="district-position" title="Номер постройки в городе">#{this.props.id + 1}</span> : null}
                 {card.exposition ? <div className="exposition-count">
                     <i className="material-icons">content_copy</i> {card.exposition.length}
                 </div> : ""}
+                {!this.props.inHand && this.state.hint && hints.length ? ReactDOM.createPortal(
+                    <div role="tooltip" className="card-cursor-tooltip" ref={element => this.hintElement = element} style={this.state.hint}>
+                        {hints.filter(Boolean).map((hint, index) => <div key={index}>{hint}</div>)}
+                    </div>, document.body) : null}
                 {originalCard !== card ? <div className="card-item-original"
                                               style={{"background-image": getBackgroundImage(true, true)}}/> : ""}
             </div>
@@ -225,7 +283,7 @@ class PlayerSlot extends React.Component {
             slot = this.props.slot,
             game = this.props.game,
             player = data.playerSlots[slot],
-            districts = data.playerDistricts[slot],
+            districts = game.getDisplayedDistricts(slot),
             character = player === data.userId && data.player ? data.player.character : data.playerCharacter[slot],
             magicianAction = data.player && data.player.action === 'magician-action' && data.phase === 2,
             theaterAction = data.player && data.player.action === 'theater-action' && data.phase === 1.5 && data.playerChosen === null,
@@ -308,12 +366,12 @@ class PlayerSlot extends React.Component {
                     <div className='cards-list'>
                         {districts && districts.map((card, id) => (
                             <Card key={id} id={id} card={card} type="card" game={game} slot={slot} play={true}
-                                  onClick={() => game.handleClickBuilding(slot, id)}/>
+                                  onClick={card.scoreOnly ? undefined : () => game.handleClickBuilding(slot, id)}/>
                         ))}
                     </div>
-                    {score ?
+                    {score !== undefined && score !== null && player !== null ?
                         <div className="score-block">
-                            <div className="score">Очки: {score}</div>
+                            <div className="score">Очки: {score} <CityScoreHelp data={data} slot={slot}/></div>
                         </div>
                         : null}
                 </div>
@@ -360,6 +418,45 @@ class SetupHelp extends React.Component {
                       ref={tip => this.tip = tip} style={{left: this.state.left, top: this.state.top}}>
                     Если у вас мало опыта, оставьте настройки по умолчанию
                 </span>, document.body) : null}
+        </span>;
+    }
+}
+
+class CityScoreHelp extends SetupHelp {
+    render() {
+        const {data, slot} = this.props;
+        const details = CitadelsSetup.getPlayerScoreDetails(data, slot);
+        if (!details) return null;
+        const tooltipId = "city-score-" + slot;
+        const cityLimit = data.citySize || CitadelsSetup.getCitySize(data.playerSlots.filter(id => id !== null).length, data.gameSetup && data.gameSetup.rules);
+        const bonusIcons = {all_colors: "palette", first_city: "flag", completed_city: "flag"};
+        const cityBonuses = details.bonuses.filter(bonus => bonusIcons[bonus.id]);
+        const otherBonuses = details.bonuses.filter(bonus => !bonusIcons[bonus.id]);
+        return <span className="setup-help-anchor city-score-help" onMouseEnter={() => this.show()} onMouseLeave={this.close}>
+            <button type="button" ref={button => this.button = button} aria-label="Пояснение очков города"
+                aria-describedby={this.state.open ? tooltipId : undefined} onFocus={() => this.show()} onBlur={this.close}
+                onKeyDown={event => {if (event.key === "Escape") this.close();}} onClick={() => this.show()}>
+                <i className="material-icons" aria-hidden="true">info_outline</i>
+            </button>
+            {this.state.open ? ReactDOM.createPortal(
+                <div id={tooltipId} role="tooltip" className="setup-help-tooltip city-score-tooltip" ref={tip => this.tip = tip}
+                    style={{left: this.state.left, top: this.state.top}}>
+                    <div className="city-score-row">
+                        <i className="material-icons" aria-hidden="true">location_city</i>
+                        <span>Число кварталов: <strong>{details.citySize}/{cityLimit}</strong></span>
+                    </div>
+                    <div className="city-score-nominal">Номинальная стоимость построек: <strong>{details.nominal}</strong></div>
+                    <div className="city-score-bonuses">
+                        <div className="city-score-bonuses-title">Бонусы{details.bonuses.length ? "" : ": нет"}</div>
+                        {cityBonuses.map(bonus => <div className="city-score-row" key={bonus.id}>
+                            <i className="material-icons" aria-hidden="true">{bonusIcons[bonus.id]}</i>
+                            <span>{bonus.label} <strong>+{bonus.points}</strong></span>
+                        </div>)}
+                        {otherBonuses.length ? <div className="city-score-district-bonuses">
+                            {otherBonuses.map(bonus => bonus.label + "\u00a0+" + bonus.points).join(", ")}
+                        </div> : null}
+                    </div>
+                </div>, document.body) : null}
         </span>;
     }
 }
@@ -460,6 +557,30 @@ class CreateGamePanel extends React.Component {
             rules: this.state.rules,
             metadata: Object.assign({}, this.state.setupMetadata, {presetId: this.state.presetSelected || null})
         });
+    }
+
+    getSelectableDistricts() {
+        return sortDistrictIds([...CitadelsSetup.uniqueIds, 'stone_bridge']);
+    }
+
+    isDistrictSelected(district) {
+        return district === 'stone_bridge' ? this.state.basicCounts.stone_bridge > 0 : this.state.districtsSelected.has(district);
+    }
+
+    handleClickDistrict(district) {
+        if (district === 'stone_bridge') {
+            this.setState({
+                basicCounts: Object.assign({}, this.state.basicCounts, {stone_bridge: this.isDistrictSelected(district) ? 0 : 1}),
+                presetSelected: null
+            });
+            return;
+        }
+        if (!this.state.creatorMode && this.playerCount < 4 && ['theater', 'conspirators_house'].includes(district)
+            && !this.state.districtsSelected.has(district)) return;
+        if (this.state.districtsSelected.has(district)) this.state.districtsSelected.delete(district);
+        else this.state.districtsSelected.add(district);
+        this.state.presetSelected = null;
+        this.setState(this.state);
     }
 
     handleBasicCountChange(id, value) {
@@ -634,7 +755,7 @@ class CreateGamePanel extends React.Component {
                     </div>)}
             </div>
             <button type="button" className="starting-settings-reset" disabled={busy}
-                    title="Сбросить стартовые ресурсы, уменьшения для первой короны, размер города, бонусы, лимит повторок и настройки Дипломата и Магистрата"
+                    title="Сбросить стартовые ресурсы, уменьшения для первой короны, размер города, бонусы, лимит повторяющихся карт и настройки Дипломата и Магистрата"
                     onClick={() => this.handleResetStartingSettings()}>По умолчанию</button>
         </div>;
     }
@@ -664,9 +785,9 @@ class CreateGamePanel extends React.Component {
                     <p className="setup-hint">Открытый, закрытый и дополнительный случайный сброс для троих. Ручной сброс не ограничен.</p>
                 </div>
                 <div className="expansion-settings">
-                    <div className="create-game-subtitle">Повторки и способности</div>
+                    <div className="create-game-subtitle">Повторяющиеся карты и способности</div>
                     <label className="city-settings">Дополнительных копий каждого названия
-                        <SetupNumberInput id="duplicate-limit" label="Базовый лимит повторок" value={this.state.rules.duplicateLimit}
+                        <SetupNumberInput id="duplicate-limit" label="Базовый лимит повторяющихся карт" value={this.state.rules.duplicateLimit}
                             disabled={busy} invalid={!Number.isSafeInteger(this.state.rules.duplicateLimit) || this.state.rules.duplicateLimit < 0}
                             onChange={value => this.handleSetupNumberChange("rules", "duplicateLimit", value)}/>
                     </label>
@@ -676,7 +797,7 @@ class CreateGamePanel extends React.Component {
                         Дипломат может обмениваться с завершённым городом соперника</label>
                     <label><input type="checkbox" checked={this.state.rules.magistrateOverLimit} disabled={busy}
                         onChange={event => this.setState({rules: Object.assign({}, this.state.rules, {magistrateOverLimit: event.target.checked})})}/>
-                        Магистрат может конфисковывать сверх лимита повторок</label>
+                        Магистрат может конфисковывать сверх лимита повторяющихся карт</label>
                 </div>
                 {this.renderStartingSettings()}
             </div>
@@ -693,17 +814,21 @@ class CreateGamePanel extends React.Component {
                 <input ref={input => this.importInput = input} type="file" accept=".json,application/json"
                        hidden onChange={event => this.handleImportSetup(event)}/>
             </div>
+            <label className="creator-mode"><input type="checkbox" checked={this.state.creatorMode} disabled={busy}
+                onChange={event => this.handleCreatorModeChange(event.target.checked)}/> Режим творца</label>
+            {this.state.creatorMode ? <p className="setup-hint">Пак для будущей партии на 2–8 игроков. Запуск запрещён, пока режим включён.</p> : null}
         </section>;
     }
 
     renderBasicDeck(summary) {
         const group = this.state.basicGroup;
+        const groups = CitadelsSetup.groups.filter(item => item.type !== 0);
         const busy = this.state.importPending || this.props.data.setupPending;
         return <div className="deck-settings">
             <div className="create-game-subtitle">Базовая колода</div>
             <div id="basic-deck-builder">
                 <div className="basic-deck-tabs" role="tablist" aria-label="Типы базовых кварталов">
-                    {CitadelsSetup.groups.map((item, index) =>
+                    {groups.map((item, index) =>
                         <button key={item.type} id={"deck-tab-" + item.type} type="button" role="tab"
                                 className={"basic-deck-tab district-kind-" + item.type}
                                 aria-selected={group === item.type} aria-controls="basic-deck-cards"
@@ -711,13 +836,13 @@ class CreateGamePanel extends React.Component {
                                 onClick={() => this.setState({basicGroup: item.type})}
                                 onKeyDown={event => {
                                     let next;
-                                    if (event.key === "ArrowRight") next = (index + 1) % CitadelsSetup.groups.length;
-                                    if (event.key === "ArrowLeft") next = (index + CitadelsSetup.groups.length - 1) % CitadelsSetup.groups.length;
+                                    if (event.key === "ArrowRight") next = (index + 1) % groups.length;
+                                    if (event.key === "ArrowLeft") next = (index + groups.length - 1) % groups.length;
                                     if (event.key === "Home") next = 0;
-                                    if (event.key === "End") next = CitadelsSetup.groups.length - 1;
+                                    if (event.key === "End") next = groups.length - 1;
                                     if (next !== undefined) {
                                         event.preventDefault();
-                                        const type = CitadelsSetup.groups[next].type;
+                                        const type = groups[next].type;
                                         this.setState({basicGroup: type}, () => document.getElementById("deck-tab-" + type).focus());
                                     }
                                 }}>
@@ -726,7 +851,7 @@ class CreateGamePanel extends React.Component {
                 </div>
                 <div id="basic-deck-cards" className="basic-deck-cards" role="tabpanel"
                      aria-labelledby={"deck-tab-" + group}>
-                    {CitadelsSetup.basicIds.filter(id => CitadelsSetup.districts[id].type === group).map(id => {
+                    {sortDistrictIds(CitadelsSetup.basicIds.filter(id => CitadelsSetup.districts[id].type === group)).map(id => {
                         const card = CitadelsSetup.districts[id], count = this.state.basicCounts[id];
                         const invalid = !Number.isInteger(count) || count < 0 || count > CitadelsSetup.MAX_COPIES;
                         return <div key={id} className={cs("basic-deck-card", {excluded: count === 0})}>
@@ -751,7 +876,7 @@ class CreateGamePanel extends React.Component {
                     })}
                 </div>
                 <button type="button" className="basic-deck-reset" disabled={busy}
-                        onClick={() => this.setState({basicCounts: CitadelsSetup.getDefaultBasicCounts()})}>
+                        onClick={() => this.setState({basicCounts: Object.assign(CitadelsSetup.getDefaultBasicCounts(), {stone_bridge: this.state.basicCounts.stone_bridge})})}>
                     По умолчанию
                 </button>
             </div>
@@ -786,18 +911,6 @@ class CreateGamePanel extends React.Component {
                 || (type === 4 && this.presets[this.state.presetSelected].characters.includes("4_2") && this.playerCount < 3)))
                 this.state.presetSelected = null;
         }
-        this.setState(this.state);
-    }
-
-    handleClickDistrict(district) {
-        if (!this.state.creatorMode && this.playerCount < 4 && ["theater", "conspirators_house"].includes(district)
-            && !this.state.districtsSelected.has(district))
-            return;
-        if (!this.state.districtsSelected.has(district))
-            this.state.districtsSelected.add(district);
-        else
-            this.state.districtsSelected.delete(district);
-        this.state.presetSelected = null;
         this.setState(this.state);
     }
 
@@ -1084,6 +1197,7 @@ class CreateGamePanel extends React.Component {
     handleClickSelectAllDistricts() {
         this.state.presetSelected = null;
         this.state.districtsSelected = new Set(this.game.getUniqueDistricts());
+        this.state.basicCounts = Object.assign({}, this.state.basicCounts, {stone_bridge: 1});
         this.setState(this.state);
     }
 
@@ -1095,6 +1209,7 @@ class CreateGamePanel extends React.Component {
             this.state.presetSelected = preset;
         this.state.charactersSelected = new Set(this.presets[preset].characters);
         this.state.districtsSelected = new Set(this.presets[preset].quarters);
+        if (!refresh) this.state.basicCounts = Object.assign({}, this.state.basicCounts, {stone_bridge: 0});
     }
 
     render() {
@@ -1184,10 +1299,7 @@ class CreateGamePanel extends React.Component {
             <div className="create-game-panel-modal" role="dialog" aria-modal="true" aria-labelledby="create-game-title">
                 <div className="create-game-header">
                     <div className="create-game-title" id="create-game-title">{galleryMode ? "Галерея карт" : "Настройки игры"}</div>
-                    {!galleryMode ? <><div className="create-game-player-count">Игроков: {playerCount}</div>
-                        <label className="creator-mode"><input type="checkbox" checked={this.state.creatorMode} disabled={setupBusy}
-                            onChange={event => this.handleCreatorModeChange(event.target.checked)}/> Режим творца</label>
-                        {this.state.creatorMode ? <p className="setup-hint">Пак для будущей партии на 2–8 игроков. Запуск запрещён, пока режим включён.</p> : null}</> : null}
+                    {!galleryMode ? <div className="create-game-player-count">Игроков: {playerCount}</div> : null}
                 </div>
                 <div className="characters-panel">
                     <div className="create-game-subtitle">Комбинации</div>
@@ -1232,9 +1344,9 @@ class CreateGamePanel extends React.Component {
                                     className="add-all-districts">(Добавить все)</span>
                             : ""}</div>
                     <div className="district-set">
-                        {game.getUniqueDistricts().map((district) => (
+                        {this.getSelectableDistricts().map((district) => (
                             <div className={cs("district-slot", {
-                                selected: showAllCards || this.state.districtsSelected.has(district),
+                                selected: showAllCards || this.isDistrictSelected(district),
                                 incompatible: !galleryMode && !this.state.creatorMode && playerCount < 4 && ["theater", "conspirators_house"].includes(district) && this.state.districtsSelected.has(district)
                             })}>
                                 <Card card={{type: district}} type="card"
@@ -1243,7 +1355,6 @@ class CreateGamePanel extends React.Component {
                             </div>
                         ))}
                     </div>
-                    <p className="district-attribution">Иконки новых кварталов: Game-icons.net, Lorc и Delapouite, CC BY 3.0. <a href="/citadels/cards/placeholders/ATTRIBUTION.md" target="_blank" rel="noreferrer">Источники и лицензия</a></p>
                     {!galleryMode ? this.renderAdvancedSettings(summary, !!setup && (!this.state.creatorMode || !creatorErrors.length)) : null}
                     {!galleryMode ? <div className="timer-settings">
                         <div className="create-game-subtitle">Настройки времени</div>
@@ -1333,6 +1444,7 @@ class SetupViewer extends React.Component {
         const citySize = data.citySize || (setup && CitadelsSetup.getCitySize(players, setup.rules));
         const summary = setup && CitadelsSetup.getDeckSummary(setup.districts.basic, setup.districts.unique);
         const resources = setup && CitadelsSetup.getStartingResources(setup.starting, true);
+        const specialCards = setup ? sortDistrictIds([...setup.districts.unique, ...Array(setup.districts.basic.stone_bridge || 0).fill("stone_bridge")]) : [];
         const entry = (label, value) => <div className="setup-view-entry" key={label}><dt>{label}</dt><dd>{value}</dd></div>;
         return <div className="create-game-panel setup-viewer">
             <div className="create-game-panel-modal" role="dialog" aria-modal="true" aria-labelledby="setup-view-title">
@@ -1347,8 +1459,8 @@ class SetupViewer extends React.Component {
                         {data.phase === 0 ? <p className="setup-hint">Настройки последней начатой партии.</p> : null}
                         <div className="create-game-subtitle">Особые кварталы</div>
                         <div className="setup-view-cards">
-                            {setup.districts.unique.map(id => <Card key={id} card={{type: id}} type="card" game={game} isGallery={true}/>) }
-                            {!setup.districts.unique.length ? <p>Не выбраны</p> : null}
+                            {specialCards.map((id, index) => <Card key={id + "-" + index} card={{type: id}} type="card" game={game} isGallery={true}/>) }
+                            {!specialCards.length ? <p>Не выбраны</p> : null}
                         </div>
                         <section className="advanced-settings">
                             <div className="advanced-settings-heading">
@@ -1361,7 +1473,7 @@ class SetupViewer extends React.Component {
                             <div id="setup-view-advanced" hidden={!this.state.advancedOpen}>
                                 <div className="create-game-subtitle">Базовая колода</div>
                                 <dl className="setup-view-values">
-                                    {CitadelsSetup.basicIds.map(id => entry(CitadelsSetup.districts[id].name, setup.districts.basic[id]))}
+                                    {CitadelsSetup.groups.filter(group => group.type !== 0).reduce((ids, group) => ids.concat(sortDistrictIds(CitadelsSetup.basicIds.filter(id => CitadelsSetup.districts[id].type === group.type))), []).map(id => entry(CitadelsSetup.districts[id].name, setup.districts.basic[id]))}
                                 </dl>
                                 <div className="create-game-subtitle">Стартовые ресурсы</div>
                                 <dl className="setup-view-values">
@@ -1402,25 +1514,10 @@ class SetupViewer extends React.Component {
     }
 }
 
-function ShortRules({data}) {
-    const rules = CitadelsSetup.normalizeRules(data.gameSetup ? data.gameSetup.rules : undefined);
-    const players = data.playerSlots.filter(slot => slot !== null).length;
-    const citySize = data.citySize || CitadelsSetup.getCitySize(players, rules);
+function ShortRules() {
     return <div className="short-rules panel" tabIndex="0" aria-label="Памятка партии">
         <i className="material-icons">list_alt</i><div className="short-rules-title">Памятка</div>
-        <div className="short-rules-content">
-            <strong>Ход персонажа</strong>
-            <ol><li>Получите золото или выберите карту из взятых. Невыбранные карты уходят в отдельный сброс.</li>
-                <li>Используйте способности и цветовой доход своего персонажа. Обычно можно построить один квартал за ход.</li>
-                <li>Завершите ход. У каждого экземпляра квартала своя способность и своё использование.</li></ol>
-            <p>Цвета: дворянские — жёлтые, церковные — синие, торговые — зелёные, воинские — красные, особые — фиолетовые. Каменный мост бесцветный.</p>
-            <p>Повторки: до {rules.duplicateLimit + 1} копий каждого названия. Каменоломня и Волшебник сохраняют свои исключения строительства.</p>
-            <p>Город завершён при размере {citySize}. Каждый Монумент считается за два, Катакомбы — за ноль.</p>
-            <p>Бонусы: первому завершившему +{rules.bonuses.firstCity}, остальным завершившим +{rules.bonuses.otherCities}, за все пять цветов +{rules.bonuses.allColors}.</p>
-            <p>Доигрывается весь раунд завершения города. Победу определяют итоговые очки, затем сумма номиналов построек без украшений, бонусов и скидок, затем золото. При полном равенстве — совместная победа.</p>
-            <p>При опустевшей колоде сброс перемешивается для обычного добора. Просмотр Башней прорицателя не меняет порядок и не подмешивает сброс.</p>
-            <p>{rules.preventRepeatedRandomDiscard ? "Повторный случайный сброс одного персонажа два раунда подряд запрещён." : "Повторный случайный сброс персонажа разрешён."} Ручной сброс и Дом заговорщиков этим правилом не ограничены.</p>
-        </div>
+        <img src="/citadels/short-rules-expanded.png" alt="Памятка: ход, типы кварталов, подсчёт очков и настройки партии"/>
     </div>;
 }
 
@@ -1461,23 +1558,18 @@ class DistrictPileCounters extends SetupHelp {
 
 function DistrictEffectsStatus({data, game}) {
     const effects = data.conspiratorEffects || [];
-    const banSources = data.buildingBanSources || [];
     const targets = data.player && data.player.conspiratorTargets || [];
-    if (!data.buildingBan && !data.nextRoundBuildingBan && !effects.length && !targets.length && !banSources.length && !data.theaterAction) return null;
+    if (!effects.length && !targets.length && !data.theaterAction) return null;
     return <div className="district-effects-status" role="status">
-        {data.buildingBan ? <div><strong>Судейская палата: строительство запрещено весь текущий раунд.</strong></div> : null}
-        {data.nextRoundBuildingBan ? <div>Судейская палата: строительство запрещено в следующем раунде.</div> : null}
-        {banSources.map((source, index) => <div key={"ban-" + index}>Запрет в раунде {source.round} · {window.commonRoom.getPlayerName(data.playerSlots[source.ownerSlot])}:
-            {source.sourceIndex == null ? " назначение действует; источник покинул город" : " Судейская палата #" + (source.sourceIndex + 1)}.</div>)}
         {effects.map((effect, index) => <div key={index}>Дом заговорщиков · {window.commonRoom.getPlayerName(data.playerSlots[effect.ownerSlot])}:
-            {effect.sourceIndex === null || effect.sourceIndex === undefined ? " назначение действует; источник покинул город" : " действует назначение постройки #" + (effect.sourceIndex + 1)}. Цель скрыта.</div>)}
+            {effect.sourceIndex === null || effect.sourceIndex === undefined ? " назначение действует; источник покинул город" : " действует тайное назначение"}. Цель скрыта.</div>)}
         {targets.length ? <div className="private-district-targets"><span>Ваши действующие тайные цели:</span>
             {targets.map((target, index) => <div key={index} className="private-district-target">
-                <span>{target.sourceIndex == null ? "Источник покинул город" : "Дом #" + (target.sourceIndex + 1)}</span>
+                <span>{target.sourceIndex == null ? "Источник покинул город" : "Дом заговорщиков"}</span>
                 <Card card={target.characterId} type="character" game={game} isToken={true}/>
             </div>)}
         </div> : null}
-        {data.theaterAction ? <div>Театр #{data.theaterAction.sourceIndex + 1} · {window.commonRoom.getPlayerName(data.playerSlots[data.currentPlayer])} · обмен {data.theaterAction.position} из {data.theaterAction.total}. Порядок — по выбору персонажей.</div> : null}
+        {data.theaterAction ? <div>Театр · {window.commonRoom.getPlayerName(data.playerSlots[data.currentPlayer])} · обмен {data.theaterAction.position} из {data.theaterAction.total}. Порядок — по выбору персонажей.</div> : null}
     </div>;
 }
 
@@ -1488,21 +1580,20 @@ function DistrictActions({game, data}) {
     const hand = data.player.hand || [];
     const sourceTypes = ["framework", "museum", "laboratory", "arsenal", "forgery", "architects_workshop", "conspirators_house", "divination_tower", "judicial_chamber"];
     return <>{city.map((card, sourceIndex) => {
-        if (!sourceTypes.includes(card.type)) return null;
+        if (!sourceTypes.includes(card.type) || (card.type === "judicial_chamber" && card.judicialUsed)) return null;
         const used = data.turnId != null && card.actionsUsed && card.actionsUsed[card.type] === data.turnId;
         let unavailable = used;
-        let suffix = used ? " · использовано" : "";
         if (["museum", "laboratory", "framework", "architects_workshop"].includes(card.type) && !hand.length) unavailable = true;
         if (card.type === "framework" && (!data.buildDistricts || data.buildingBan)) unavailable = true;
         if (card.type === "forgery" && gold < 2) unavailable = true;
         if (card.type === "architects_workshop" && gold < 3) unavailable = true;
         if (card.type === "divination_tower" && !data.districtDeckCount) unavailable = true;
         if (card.type === "conspirators_house" && data.playerSlots.filter(slot => slot !== null).length < 4) unavailable = true;
-        if (card.type === "judicial_chamber" && card.judicialUsed) {unavailable = true; suffix = " · использовано навсегда";}
+        if (unavailable) return null;
         const price = card.type === "forgery" ? " · 2 золота" : card.type === "architects_workshop" ? " · 3 золота" : "";
-        return <button key={sourceIndex} disabled={unavailable} className={used ? "district-action-used" : ""}
+        return <button key={sourceIndex}
             onClick={() => game.handleDistrictAction(card.type, sourceIndex)}>
-            {CitadelsSetup.districts[card.type].name} #{sourceIndex + 1}{price}{suffix}
+            {CitadelsSetup.districts[card.type].name}{city.filter(item => item.type === card.type).length > 1 ? " (" + (city.slice(0, sourceIndex + 1).filter(item => item.type === card.type).length) + ")" : ""}{price}
             {card.type === "museum" ? " · экспозиция " + (card.exposition || []).length : ""}
         </button>;
     })}</>;
@@ -1704,6 +1795,8 @@ class Game extends React.Component {
     }
 
     handleClickHandCard(cardInd, forGold) {
+        if (this.state.userAction === "mirror_hall" && this.state.buildTarget === cardInd)
+            return this.handleStopUserAction();
         if (this.isHandBuildTargetBlocked(cardInd)) return;
         if (["cardinal-action-player", "mirror_hall", "conspirators_house"].includes(this.state.userAction))
             return;
@@ -1799,9 +1892,12 @@ class Game extends React.Component {
         if ((ownCard && ownCard.type === "keep") || (opponentCard && opponentCard.type === "keep")) reason = "Форт защищён от персонажей ранга 8";
         else if (opponent !== null && !rules.diplomatCompleteCity && CitadelsSetup.getCityDistrictCount(opponentCity) >= citySize) reason = "Обмен с завершённым городом запрещён настройками";
         else if (pair && ownCard && opponentCard && (!CitadelsSetup.canAddDistrict(ownCity, opponentCard.type, rules, {removeIndex: ownIndex})
-            || !CitadelsSetup.canAddDistrict(opponentCity, ownCard.type, rules, {removeIndex: opponentIndex}))) reason = "Обмен превысит лимит повторок";
+            || !CitadelsSetup.canAddDistrict(opponentCity, ownCard.type, rules, {removeIndex: opponentIndex}))) reason = "Обмен превысит лимит повторяющихся карт";
         else if (cost !== null && (data.playerGold && data.playerGold[data.userSlot] || 0) < cost) reason = "Недостаточно золота: нужно " + cost;
-        return {cost, available: !reason, reason};
+        const details = cost !== null ? "Стоимость чужого квартала " + this.getCardValue(opponentCard)
+            + " + Великие стены " + CitadelsSetup.getGreatWallCount(opponentCity)
+            + " − стоимость своего квартала " + this.getCardValue(ownCard) + "; не ниже 0" : null;
+        return {cost, available: !reason, reason, details};
     }
 
     getRankEightTarget(slot, index) {
@@ -1818,9 +1914,86 @@ class Game extends React.Component {
         else if (CitadelsSetup.getCityDistrictCount(city) >= citySize) reason = "Город завершён";
         else if (action === "marshal-action" && slot === data.userSlot) reason = "Выберите чужую постройку";
         else if (action === "marshal-action" && this.getCardValue(card) > 3) reason = "Стоимость захватываемой постройки больше 3";
-        else if (action === "marshal-action" && !CitadelsSetup.canAddDistrict(data.playerDistricts[data.userSlot] || [], card.type, this.getGameRules())) reason = "Превышен лимит повторок";
+        else if (action === "marshal-action" && !CitadelsSetup.canAddDistrict(data.playerDistricts[data.userSlot] || [], card.type, this.getGameRules())) reason = "Превышен лимит повторяющихся карт";
         else if ((data.playerGold && data.playerGold[data.userSlot] || 0) < cost) reason = "Недостаточно золота: нужно " + cost;
         return {cost, available: !reason, reason};
+    }
+
+    getHandBuildStatus(index, options = {}) {
+        const data = this.state, card = data.player && data.player.hand[index];
+        if (!card) return {cost: 0, reason: null};
+        const baseCost = this.getBuildCost(index), city = data.playerDistricts[data.userSlot] || [];
+        const frameworkIndex = options.goldOnly ? undefined : options.frameworkIndex !== undefined ? options.frameworkIndex
+            : data.userAction === "framework" ? data.districtSource : undefined;
+        const selectedNecropolis = !options.goldOnly && data.userAction === "necropolis" && data.buildTarget === index;
+        const selectedDen = !options.goldOnly && data.userAction === "den_of_thieves" && data.buildTarget === index;
+        const paymentCards = new Set((data.cardChosen || []).filter(cardIndex => Number.isInteger(cardIndex) && cardIndex !== index && data.player.hand[cardIndex])).size;
+        const cost = frameworkIndex !== undefined || selectedNecropolis ? 0 : selectedDen ? Math.max(0, baseCost - paymentCards) : baseCost;
+        let reason = null;
+        if (data.phase !== 2) reason = "Строительство доступно только в основной ход";
+        else if (data.currentPlayer !== data.userSlot) reason = "Сейчас ход другого игрока";
+        else if (data.buildingBan) reason = "Строительство запрещено Судейской палатой";
+        else if (!this.canUseDistrictActions()) reason = "Сначала завершите обязательное действие";
+        else if (data.buildDistricts === -1) reason = "Этот персонаж не может строить кварталы";
+        if (reason) return {cost, reason};
+
+        const candidates = [];
+        const addCandidate = (building, price, removeIndex) => candidates.push({building, price, removeIndex});
+        if (frameworkIndex !== undefined) {
+            if (city[frameworkIndex] && city[frameworkIndex].type === "framework") addCandidate(card, 0, frameworkIndex);
+        } else if (selectedNecropolis) {
+            city.forEach((_, removeIndex) => addCandidate(card, 0, removeIndex));
+        } else if (selectedDen) {
+            addCandidate(card, cost);
+        } else {
+            addCandidate(card, baseCost);
+            if (!options.goldOnly) {
+                if (card.type === "mirror_hall") {
+                    Object.entries(data.playerDistricts).forEach(([slot, buildings]) => {
+                        if (Number(slot) === data.userSlot) return;
+                        buildings.forEach(building => {
+                            if (building.type !== "theater") addCandidate(building, baseCost);
+                        });
+                    });
+                }
+                if (card.type === "den_of_thieves") addCandidate(card, Math.max(0, baseCost - (data.player.hand.length - 1)));
+                city.forEach((building, removeIndex) => {
+                    if (building.type === "framework" || card.type === "necropolis") addCandidate(card, 0, removeIndex);
+                });
+            }
+        }
+        const citySize = data.citySize || CitadelsSetup.getCitySize(Object.keys(data.playerCharacter || {}).length, this.getGameRules());
+        const gold = data.playerGold && data.playerGold[data.userSlot] || 0;
+        const goldNeeded = baseCost - gold;
+        const canFinance = !options.goldOnly && !selectedDen && data.player.action === "cardinal-action"
+            && goldNeeded > 0 && goldNeeded < data.player.hand.length
+            && Object.keys(data.playerCharacter || {}).some(slot => Number(slot) !== data.userSlot && data.playerGold[slot] >= goldNeeded);
+        let closestFailure = -1;
+        reason = "Сначала завершите обязательное действие";
+        for (const {building, price, removeIndex} of candidates) {
+            const failures = [
+                data.buildDistricts === 0 && building.type !== "stable" && !card.wizard
+                    && !(building.kind === 6 && data.currentCharacter === "6_3") ? "Достигнут лимит строительства в ход" : null,
+                building.type === "secret_vault" ? "Тайное убежище нельзя построить" : null,
+                building.type === "monument" && CitadelsSetup.getCityDistrictCount(city.filter((_, districtIndex) => districtIndex !== removeIndex)) + 2 >= citySize
+                    ? "Монумент нельзя построить как последний квартал" : null,
+                !this.canBuildDistrictType(building.type, removeIndex) ? "Превышен лимит повторяющихся кварталов" : null,
+                gold < price && !(canFinance && price === baseCost) ? "Недостаточно золота" : null
+            ];
+            const failure = failures.findIndex(Boolean);
+            if (failure === -1) return {cost, reason: null};
+            // Explain the remaining obstacle of the closest legal construction method.
+            if (failure > closestFailure) {
+                closestFailure = failure;
+                reason = failures[failure];
+            }
+        }
+        return {cost, reason};
+    }
+
+    getHandBuildHint(index) {
+        const {cost, reason} = this.getHandBuildStatus(index);
+        return reason || "Стоимость постройки: " + cost;
     }
 
     getBuildCost(cardInd) {
@@ -2026,6 +2199,9 @@ class Game extends React.Component {
 
     handleClickBuilding(slot, card) {
         if (!this.state.player) return;
+        if (!this.state.userAction && this.state.player.action === "diplomat-action"
+            && this.state.cardChosen[0] === slot && this.state.cardChosen[1] === card)
+            return this.setState({cardChosen: []});
         const target = this.getRankEightTarget(slot, card);
         if (target && !target.available) return;
         if (this.state.userAction === "mirror_hall") {
@@ -2172,6 +2348,19 @@ class Game extends React.Component {
         popup.confirm({content: `Give host ${window.commonRoom.getPlayerName(id)}?`}, (evt) => evt.proceed && this.socket.emit("give-host", id));
     }
 
+    getDisplayedDistricts(slot) {
+        const data = this.state, city = data.playerDistricts[slot] || [];
+        if (data.phase !== 0 || data.winnerPlayer == null) return city;
+        const details = CitadelsSetup.getPlayerScoreDetails(data, slot);
+        const bonus = details && details.bonuses.find(item => item.id === "secret_vault");
+        const vaultCount = bonus && Number.isSafeInteger(bonus.points / 3) ? Math.max(0, bonus.points / 3) : 0;
+        const existing = city.filter(card => card.type === "secret_vault").length;
+        // Final score cards are presentation only: they never alter the built city or hand.
+        return city.concat(Array.from({length: Math.max(0, vaultCount - existing)}, () => ({
+            type: "secret_vault", cost: 0, kind: 9, scoreOnly: true
+        })));
+    }
+
     hasDistricts(building) {
         const data = this.state;
         return data.player && data.playerDistricts[data.userSlot] && data.playerDistricts[data.userSlot].some(card => card.type === building) && data.phase === 2
@@ -2221,7 +2410,7 @@ class Game extends React.Component {
                     framework: "Выберите карту для постройки",
                     museum: "Выберите карту для музея",
                     laboratory: "Выберите карту для сброса Лабораторией",
-                    mirror_hall: "Выберите чужую постройку для копирования (кроме Театра) либо постройте Чертог без эффекта",
+                    mirror_hall: "Выберите квартал для копирования",
                     conspirators_house: "Тайно выберите персонажа для сброса в следующем раунде",
                     necropolis: "Вы можете выбрать квартал для разрушения",
                     den_of_thieves: "Вы можете выбрать карты для оплаты",
@@ -2406,12 +2595,11 @@ class Game extends React.Component {
                                         {blackmailedResponseAction ?
                                             <button onClick={() => this.handleBlackmailedResponse('no')}>Отказаться от
                                                 откупа</button> : null}
-                                        {blackmailedOpenAction || magistrateOpenAction ?
-                                            <button disabled={magistrateOpenAction && !this.canClaimMagistrate()}
-                                                title={magistrateOpenAction && !this.canClaimMagistrate() ? "Конфискация превысит лимит повторок" : undefined}
+                                        {blackmailedOpenAction || (magistrateOpenAction && this.canClaimMagistrate()) ?
+                                            <button
                                                 onClick={() => this.handleTokenOpen('yes')}>Раскрыть
                                                 свой {blackmailedOpenAction ? "шантаж" : "орден"}</button> : null}
-                                        {blackmailedOpenAction || magistrateOpenAction ?
+                                        {blackmailedOpenAction || (magistrateOpenAction && this.canClaimMagistrate()) ?
                                             <span className="button-or">
                                                 или
                                             </span> : null}
@@ -2467,7 +2655,7 @@ class Game extends React.Component {
                                     : null}
                                 {data.userAction ?
                                     <div>
-                                        <div className="action-button">
+                                        <div className={cs("action-button", {"mirror-copy-actions": data.userAction === "mirror_hall"})}>
                                             <button onClick={() => this.handleStopUserAction()}>Отмена действия</button>
                                             <p className="status-text">{userActionText}</p>
                                             {(magicianAction || denOfThievesAction)
@@ -2475,7 +2663,7 @@ class Game extends React.Component {
                                                     onClick={() => this.handleApplyAction(data.userSlot, data.cardChosen)}>
                                                     {data.userAction === "magician" ? "Применить" : "Построить"}
                                                 </button> : null}
-                                            {data.userAction === "mirror_hall" ? <button disabled={!this.canBuildDistrictType("mirror_hall")} onClick={() => this.handleBuildMirror()}>Построить без эффекта за {this.getBuildCost(data.buildTarget)}</button> : null}
+                                            {data.userAction === "mirror_hall" && this.canBuildDistrictType("mirror_hall") ? <button onClick={() => this.handleBuildMirror()}>Построить без эффекта за {this.getBuildCost(data.buildTarget)}</button> : null}
                                             {(necropolisAction || denOfThievesAction)
                                                 ? <button
                                                     onClick={() => this.handleClickBuildForGold()}>

@@ -7,7 +7,7 @@ function init(wsServer, path) {
         channel = "citadels",
         testMode = process.argv[2] === "debug",
         setupConfig = require("./public/setup"),
-        {calculateDistrictScore} = require("./district-scoring"),
+        {calculateDistrictScoreDetails} = require("./district-scoring"),
         normalizeTimerSettings = setupConfig.normalizeTimerSettings,
         defaultTimerSettings = normalizeTimerSettings();
 
@@ -44,6 +44,7 @@ function init(wsServer, path) {
                 playerDistricts: {},
                 playerCharacter: {},
                 playerScore: {},
+                playerScoreDetails: {},
                 districtDeckCount: 0,
                 districtDiscardCount: 0,
                 winnerPlayers: []
@@ -327,6 +328,7 @@ function init(wsServer, path) {
                         room.playerDistricts = {};
                         room.playerCharacter = {};
                         room.playerScore = {};
+                        room.playerScoreDetails = {};
                         room.winnerPlayers = [];
                         room.teamsLocked = true;
                         state.districtDeck = utils.createDeck(state.playersCount, setup.districts.unique, false, setup.districts.basic);
@@ -353,6 +355,7 @@ function init(wsServer, path) {
                                 room.playerDistricts[slot] = [];
                                 room.playerCharacter[slot] = [];
                                 room.playerScore[slot] = 0;
+                                room.playerScoreDetails[slot] = calculateDistrictScoreDetails([]);
                             } else
                                 delete state.players[slot];
                         });
@@ -731,8 +734,7 @@ function init(wsServer, path) {
                     room.currentPlayer = null;
                     room.targetSlot = null;
                     Object.keys(state.players).forEach(slot => {
-                        countPoints(Number(slot));
-                        room.playerScore[slot] += 3 * state.players[slot].hand.filter(card => card.type === "secret_vault").length;
+                        countPoints(Number(slot), true);
                         state.players[slot].character = [];
                         room.playerCharacter[slot] = [];
                     });
@@ -918,17 +920,20 @@ function init(wsServer, path) {
                         nextCharacter();
                     }
                 },
-                countPoints = (slot) => {
-                    room.playerScore[slot] = calculateDistrictScore(room.playerDistricts[slot], {
+                countPoints = (slot, finished = false) => {
+                    const details = calculateDistrictScoreDetails(room.playerDistricts[slot], {
                         handCount: state.players[slot].hand.length,
                         gold: room.playerGold[slot],
                         crowned: room.king === slot,
-                        allColorsBonus: state.gameRules.bonuses.allColors
+                        allColorsBonus: state.gameRules.bonuses.allColors,
+                        firstCityBonus: room.ender == slot ? state.gameRules.bonuses.firstCity : 0,
+                        completedCityBonus: room.ender != slot && getDistrictsCount(slot) >= state.maxDistricts
+                            ? state.gameRules.bonuses.otherCities : 0,
+                        // Hand identities stay private while a game is in progress.
+                        secretVaultCount: finished ? state.players[slot].hand.filter(card => card.type === "secret_vault").length : 0
                     });
-                    if (room.ender == slot)
-                        room.playerScore[slot] += state.gameRules.bonuses.firstCity;
-                    else if (getDistrictsCount(slot) >= state.maxDistricts)
-                        room.playerScore[slot] += state.gameRules.bonuses.otherCities;
+                    room.playerScoreDetails[slot] = details;
+                    room.playerScore[slot] = details.total;
                 },
                 getDistrictsCount = (slot) => setupConfig.getCityDistrictCount(room.playerDistricts[slot]),
                 include = (slot, card) => room.playerDistricts[slot].some(building => building.type === card),
@@ -952,8 +957,17 @@ function init(wsServer, path) {
                 updateBuildingBans = () => {
                     state.pendingBuildingBans = (state.pendingBuildingBans || []).filter(entry => entry.round >= (room.roundNumber || 0));
                     room.buildingBanSources = state.pendingBuildingBans.map(entry => {
-                        const index = (room.playerDistricts[entry.ownerSlot] || []).findIndex(card => card.instanceId === entry.sourceId);
-                        return {ownerSlot: entry.ownerSlot, sourceIndex: index < 0 ? null : index, round: entry.round};
+                        let sourceSlot = null;
+                        let sourceIndex = null;
+                        for (const [slot, city] of Object.entries(room.playerDistricts)) {
+                            const index = city.findIndex(card => card.instanceId === entry.sourceId);
+                            if (index >= 0) {
+                                sourceSlot = Number(slot);
+                                sourceIndex = index;
+                                break;
+                            }
+                        }
+                        return {ownerSlot: entry.ownerSlot, sourceSlot, sourceIndex, round: entry.round};
                     });
                 },
                 updateConspiracies = () => {
@@ -1902,6 +1916,14 @@ function init(wsServer, path) {
             };
             this.updateConspiracies = updateConspiracies;
             this.updateBuildingBans = updateBuildingBans;
+            this.refreshScoreDetails = () => {
+                room.playerScoreDetails = {};
+                const finished = room.phase === 0 && room.winnerPlayer != null;
+                for (const slot of Object.keys(state.players)) {
+                    if (Array.isArray(room.playerDistricts[slot]) && Array.isArray(state.players[slot].hand))
+                        countPoints(Number(slot), finished);
+                }
+            };
             this.clearTurnTimer = clearTurnTimer;
             this.restoreTurnTimer = restoreTurnTimer;
             this.userEventHandlers = {
@@ -2071,6 +2093,7 @@ function init(wsServer, path) {
             this.room.districtDeckCount = this.state.districtDeck.length;
             this.room.districtDiscardCount = this.state.districtDiscard.length;
             this.room.citySize = this.state.maxDistricts;
+            this.refreshScoreDetails();
             this.room.onlinePlayers = new JSONSet();
             this.room.spectators = new JSONSet();
             this.room.onlinePlayers.clear();
