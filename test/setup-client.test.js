@@ -21,10 +21,11 @@ function loadClass(name, firstExcludedMethod, globals = {}) {
 }
 
 function mountedGame() {
+    const document = {body: {style: {}}};
     const handlers = {};
     const socket = {on(event, handler) {handlers[event] = handler;}, emit() {}};
     const Game = loadClass("Game", "getSound", {
-        localStorage: {}, document: {}, window: {socket},
+        localStorage: {}, document, window: {socket},
         CommonRoom: {
             roomInit(game) {game.socket = socket; game.userId = "host"; game.roomId = "test"; return {roomId: "test"};},
             processCommonRoom() {}
@@ -34,8 +35,53 @@ function mountedGame() {
     game.state = {...game.state, phase: 0, userSlot: 0, currentPlayer: 0, hostId: "host",
         showCreateGamePanel: true, setupPending: false, setupError: "previous error", buildTarget: null};
     game.componentDidMount();
-    return {game, handlers};
+    return {game, handlers, document};
 }
+
+test("background choice persists independently of invalid setup input and survives JSON import", () => {
+    const data = new Map();
+    const storage = {getItem: key => data.get(key) ?? null, setItem: (key, value) => data.set(key, value)};
+    const Panel = loadClass("CreateGamePanel", "renderStartingSettings", {
+        window: {sessionStorage: storage}, FileReader: class {readAsText() {}}
+    });
+    const props = {
+        data: {phase: 0, userId: "host", hostId: "host", playerSlots: ["host", "player"]},
+        game: {roomId: "room", socket: {emit() {assert.fail("Background edits must stay local");}}}
+    };
+    const panel = new Panel(props);
+    panel.state.starting.gold = "";
+    panel.handleBackgroundChange("waterfront");
+    const restored = new Panel(props);
+    assert.equal(restored.state.backgroundId, "waterfront");
+    restored.presets = {};
+    const imported = setup.getDefaultSetup();
+    imported.starting.gold = 7;
+    restored.handleImportSetup({target: {files: [{size: 1}], value: "settings.json"}});
+    restored.importReader.result = setup.serializeSetup(imported);
+    restored.importReader.onload();
+    assert.equal(restored.state.backgroundId, "waterfront");
+    assert.equal(restored.state.starting.gold, 7);
+    assert.equal(Object.hasOwn(restored.getSetup(), "backgroundId"), false);
+    assert.equal(setup.serializeSetup(restored.getSetup()).includes('"waterfront"'), false);
+    for (const change of [{phase: 1}, {hostId: "other"}, {setupPending: true}]) {
+        const blocked = new Panel(props);
+        Object.assign(props.data, change);
+        blocked.handleBackgroundChange("royal");
+        assert.equal(blocked.state.backgroundId, "waterfront");
+        Object.assign(props.data, {phase: 0, hostId: "host", setupPending: false});
+    }
+});
+
+test("public room state applies a common background, retains it in the lobby and resets for an old room", () => {
+    const {handlers, document} = mountedGame();
+    const state = {phase: 1, hostId: "host", currentPlayer: 0, playerSlots: ["host", "player"], backgroundId: "waterfront"};
+    handlers.state(state);
+    assert.equal(document.body.style.backgroundImage, 'url("/citadels/backgrounds/waterfront.webp")');
+    handlers.state({...state, phase: 0});
+    assert.equal(document.body.style.backgroundImage, 'url("/citadels/backgrounds/waterfront.webp")');
+    handlers.state({...state, backgroundId: undefined});
+    assert.equal(document.body.style.backgroundImage, 'url("/citadels/bg.jpg")');
+});
 
 test("an externally started game closes the editor independently of the local start request", () => {
     for (const phase of [1, 1.5, 2, 3]) {

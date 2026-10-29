@@ -32,6 +32,7 @@ function init(wsServer, path) {
                 spectators: new JSONSet(),
                 teamsLocked: false,
                 phase: 0,
+                backgroundId: "standard",
                 currentPlayer: null,
                 targetSlot: null,
                 currentCharacter: 0,
@@ -305,11 +306,12 @@ function init(wsServer, path) {
                         return clearTurnTimer();
                     finishTurn(slot, true, true);
                 },
-                startGame = (setup) => {
+                startGame = (setup, backgroundId) => {
                     state.playersCount = room.playerSlots.filter((user) => user !== null).length;
                     if (state.playersCount > 1) {
                         room.timerSettings = normalizeTimerSettings(setup.timer);
                         room.gameSetup = setup;
+                        room.backgroundId = backgroundId;
                         state.gameRules = setup.rules;
                         state.randomDiscards = [];
                         state.previousRandomDiscards = [];
@@ -1269,7 +1271,7 @@ function init(wsServer, path) {
                     }
                     const wasComplete = getDistrictsCount(slot) >= state.maxDistricts;
                     const result = build(slot, cardInd, undefined, false, copy);
-                    if (result[0]) wasBuilded(slot, result[1], null, wasComplete);
+                    if (result[0]) wasBuilded(slot, result[1], copy ? {mirrorBuild: {slot, instanceId: copy.instanceId}} : null, wasComplete);
                 },
                 "kill-character": (slot, char) => {
                     if (room.phase === 2 && state.players[slot].action === 'assassin-action' && room.characterInGame.indexOf(char) > 0) {
@@ -1631,7 +1633,7 @@ function init(wsServer, path) {
                     room.playerHand[buyerSlot] = state.players[buyerSlot].hand.length;
                     state.players[slot].action = null;
                     countPoints(buyerSlot); sendStateSlot(buyerSlot);
-                    wasBuilded(slot, cost, {sound: "kardinal"}, wasComplete);
+                    wasBuilded(slot, cost, Object.assign({sound: "kardinal"}, copy ? {mirrorBuild: {slot, instanceId: copy.instanceId}} : {}), wasComplete);
                 },
                 "navigator-resources": (slot, res) => {
                     if (room.phase === 2 && state.players[slot].action === 'navigator-action' && ~['coins', 'card'].indexOf(res)) {
@@ -1859,6 +1861,16 @@ function init(wsServer, path) {
                     room.museumAction = !!districtSource(slot, 'museum');
                     countPoints(slot); update(); sendStateSlot(slot);
                 },
+                "flea-market-action": (slot, cardInd, sourceIndex) => {
+                    if (!Number.isInteger(cardInd) || !Number.isInteger(sourceIndex)) return;
+                    const source = districtSource(slot, 'flea_market', sourceIndex);
+                    if (!districtActionAllowed(slot) || !source || !state.players[slot].hand[cardInd]) return;
+                    // Discard first: an empty deck must recycle this card along with the existing discard.
+                    dropCardHand(slot, cardInd);
+                    useDistrict(source);
+                    drawIntoHand(slot, 1);
+                    countPoints(slot); update(); sendStateSlot(slot);
+                },
                 "laboratory-action": (slot, cardInd, sourceIndex) => {
                     const source = districtSource(slot, 'laboratory', sourceIndex);
                     if (!districtActionAllowed(slot) || !source || !state.players[slot].hand[cardInd]) return;
@@ -1936,7 +1948,7 @@ function init(wsServer, path) {
                         if (room.phase !== 0)
                             throw new Error("Игра уже началась.");
                         if (options !== undefined && (!options || typeof options !== "object" || Array.isArray(options)
-                            || Object.keys(options).some(key => !["starting", "rules", "creatorMode"].includes(key))))
+                            || Object.keys(options).some(key => !["starting", "rules", "creatorMode", "backgroundId"].includes(key))))
                             throw new Error("Неверные параметры начала партии.");
                         if (options && Object.prototype.hasOwnProperty.call(options, "creatorMode")
                             && typeof options.creatorMode !== "boolean")
@@ -1963,7 +1975,7 @@ function init(wsServer, path) {
                     }
                     room.characterInGame = setup.characters;
                     room.presetSelected = setup.metadata.presetId;
-                    startGame(setup);
+                    startGame(setup, setupConfig.normalizeBackgroundId(options && options.backgroundId));
                 },
                 "abort-game": (user) => {
                     if (user === room.hostId)
@@ -2087,6 +2099,7 @@ function init(wsServer, path) {
             this.updateConspiracies();
             this.updateBuildingBans();
             this.room.gameSetup = snapshot.room.gameSetup ? setupConfig.normalizeSetup(snapshot.room.gameSetup) : undefined;
+            this.room.backgroundId = setupConfig.normalizeBackgroundId(snapshot.room.backgroundId);
             // Old server-side form drafts are no longer shared or persisted.
             for (const key of ["setupDraft", "setupDraftAutomatic", "setupDraftInvalid", "setupDraftPreserveCharacters"])
                 delete this.room[key];

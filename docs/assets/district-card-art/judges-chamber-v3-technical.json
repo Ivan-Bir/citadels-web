@@ -1,0 +1,302 @@
+{
+  "status": "technical-approved",
+  "createdAt": "2026-10-29T16:30:05.465103+00:00",
+  "card": {
+    "sequence": "D09",
+    "id": "judicial_chamber",
+    "name": "Судейская палата"
+  },
+  "artisticApproval": {
+    "by": "user",
+    "statement": "Принимается",
+    "version": "judges-chamber-v3.png"
+  },
+  "method": "Deterministic Pillow bottom-background-only crop, whole-image Lanczos resize and one JPEG encoding directly from accepted PNG; no image generation, color edits or separate text/ribbon moves.",
+  "software": {
+    "Pillow": "12.3.0",
+    "runtime": "/Users/i.biryukov/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3"
+  },
+  "source": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/judges-chamber-v3.png",
+    "sha256": "00a24806dc254fdf5bdfb73848266a74696c75f9e217385eef25c186b2ec3d23",
+    "width": 996,
+    "height": 1578,
+    "mode": "RGB",
+    "bytes": 2012705,
+    "unchangedAfterProcessing": true
+  },
+  "processing": {
+    "crop": {
+      "box": [
+        0,
+        0,
+        996,
+        1548
+      ],
+      "bottomRowsRemoved": 30,
+      "otherRowsRemoved": 0,
+      "removedSourceRowsInclusive": [
+        1548,
+        1577
+      ],
+      "content": "Only dark bottom background below full ribbon, text descenders and purple medallion; no internal cuts"
+    },
+    "padding": {
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "left": 0
+    },
+    "resize": {
+      "width": 707,
+      "height": 1121,
+      "resampling": "Pillow Image.Resampling.LANCZOS"
+    },
+    "jpeg": {
+      "quality": 92,
+      "subsampling": 0,
+      "optimize": true,
+      "progressive": false,
+      "chromaSampling": "4:4:4"
+    },
+    "color": {
+      "sourceMode": "RGB",
+      "outputMode": "RGB",
+      "colorCorrection": "none",
+      "contrastBrightnessSaturationSharpening": "none",
+      "sourceICCProfilePresent": false,
+      "iccProfileAdded": false
+    },
+    "ribbonOrTextRepositioning": false,
+    "internalSeams": false
+  },
+  "output": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/judicial_chamber-compressed.jpg",
+    "sha256": "33788f636a0e45a4a3c63ed93c119dc2103f83cc666b7378d4d31b432dc3bad9",
+    "width": 707,
+    "height": 1121,
+    "mode": "RGB",
+    "bytes": 296844,
+    "format": "JPEG"
+  },
+  "qualitySelection": {
+    "rangeBytes": [
+      200000,
+      300000
+    ],
+    "highestIntegerQuality": 92,
+    "selectedBytes": 296844,
+    "nextQuality": 93,
+    "nextQualityBytes": 321547,
+    "allHigherQualityBytes": {
+      "93": 321547,
+      "94": 351205,
+      "95": 386016,
+      "96": 438513,
+      "97": 498238,
+      "98": 575793,
+      "99": 763465,
+      "100": 977898
+    },
+    "allHigherExceedMaximum": true,
+    "testedQualitiesInclusive": [
+      1,
+      100
+    ]
+  },
+  "baseline": {
+    "coordinates": "Zero-based y, top-left origin",
+    "targetRange": [
+      1074,
+      1075
+    ],
+    "source": {
+      "roi": [
+        650,
+        1400,
+        920,
+        1495
+      ],
+      "roiConvention": "[left, top, right-exclusive, bottom-exclusive]",
+      "threshold": "max(R,G,B) < 75",
+      "ordinaryLetterBottom": 1483,
+      "darkRowsFirst": 1438
+    },
+    "decodedFinalJpeg": {
+      "roi": [
+        460,
+        1000,
+        650,
+        1085
+      ],
+      "roiConvention": "[left, top, right-exclusive, bottom-exclusive]",
+      "threshold": "max(R,G,B) < 75",
+      "ordinaryLetterBottom": 1074,
+      "darkRowsFirst": 1041
+    },
+    "ordinaryLettersROI": "Local title region covering ordinary letters around палата and preceding я; excludes у/д descenders and lower ribbon/background shadow.",
+    "descenders": {
+      "letters": "у and д in Судейская; no р or щ occurs in this title",
+      "source": {
+        "roi": [
+          322,
+          1410,
+          410,
+          1500
+        ],
+        "roiConvention": "[left, top, right-exclusive, bottom-exclusive]",
+        "threshold": "max(R,G,B) < 75",
+        "darkRowsFirst": 1437,
+        "descenderBottom": 1493
+      },
+      "decodedFinalJpeg": {
+        "roi": [
+          228,
+          1010,
+          291,
+          1090
+        ],
+        "roiConvention": "[left, top, right-exclusive, bottom-exclusive]",
+        "threshold": "max(R,G,B) < 75",
+        "darkRowsFirst": 1040,
+        "descenderBottom": 1081
+      },
+      "treatment": "Measured separately; all descenders retained, not used as ordinary baseline."
+    },
+    "references": [
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "width": 707,
+        "height": 1121,
+        "mode": "RGB",
+        "bytes": 246958,
+        "measurement": {
+          "roi": [
+            240,
+            1020,
+            320,
+            1090
+          ],
+          "roiConvention": "[left, top, right-exclusive, bottom-exclusive]",
+          "threshold": "max(R,G,B) < 75",
+          "ordinaryLetterBottom": 1075,
+          "darkRowsFirst": 1024
+        }
+      },
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/harbor.jpg",
+        "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+        "width": 707,
+        "height": 1121,
+        "mode": "RGB",
+        "bytes": 203729,
+        "measurement": {
+          "roi": [
+            309,
+            1020,
+            375,
+            1090
+          ],
+          "roiConvention": "[left, top, right-exclusive, bottom-exclusive]",
+          "threshold": "max(R,G,B) < 75",
+          "ordinaryLetterBottom": 1075,
+          "darkRowsFirst": 1024
+        }
+      }
+    ],
+    "match": "Actual decoded JPEG ordinary letter bottom y1074, originals y1075 at same threshold."
+  },
+  "checks": {
+    "jpegDecoding": "PASS: full Pillow load of final JPEG",
+    "exactDimensions": "PASS: 707×1121",
+    "byteRange": "PASS: 296844 bytes",
+    "baseline": "PASS: decoded JPEG ordinary letters y1074; descenders separately y1081",
+    "sourceHashUnchanged": "PASS: matches accepted source SHA256 before/after processing",
+    "directPngProvenance": "PASS: final encoded directly from accepted PNG after recorded crop/resize",
+    "byteForByteReproduction": "PASS: independently reopened source PNG and re-applied recorded parameters, exact JPEG byte equality",
+    "allHigherQualitiesExceedMaximum": "PASS: all integer quality values 93..100 exceed 300000 bytes",
+    "visualInspection": "PASS: final JPEG and full-resolution native-size three-card comparison inspected via view_image after writing.",
+    "name": {
+      "result": "PASS",
+      "observed": "Судейская палата",
+      "fullTitleVisible": true,
+      "ordinaryLineAndDescendersUncut": true
+    },
+    "ability": {
+      "result": "PASS",
+      "observed": "Один раз запретите всем игрокам строительство на следующий раунд",
+      "observedLines": [
+        "Один раз запретите всем",
+        "игрокам строительство на",
+        "следующий раунд"
+      ],
+      "exactWords": true,
+      "noAddedFinalPeriod": true,
+      "threeReadableLines": true
+    },
+    "threeCoins": {
+      "result": "PASS",
+      "count": 3,
+      "allThreeComplete": true
+    },
+    "purpleMedallionAndRibbon": "PASS: purple medallion, gold rim and full ribbon remain intact, no internal seam or clipping.",
+    "sceneAndDesk": "PASS: green courtroom, small Magistrate, crowd, foreground judge desk, left Justice statuette and right gavel remain intact.",
+    "readability": "PASS: complete name and all ability words readable at 707×1121.",
+    "marginsAndClipping": "PASS: only bottom background source rows 1548..1577 removed; title descenders, ribbon and medallion end above cut; no top or side crop.",
+    "verificationMethod": "Explicit pixel ROIs and threshold for ordinary/descender baselines; manual reading for exact text and symbols, not OCR."
+  },
+  "comparison": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/judges-chamber-v3-comparison.png",
+    "sha256": "6695453af4a53cc8d863337b14b5858d26f35f87d352576015fe2d33c8b7b7cf",
+    "width": 2201,
+    "height": 1177,
+    "mode": "RGB",
+    "bytes": 3142293,
+    "cardsAtNativeSize": [
+      707,
+      1121
+    ],
+    "cardTopLefts": [
+      [
+        16,
+        40
+      ],
+      [
+        747,
+        40
+      ],
+      [
+        1478,
+        40
+      ]
+    ],
+    "cardOrder": [
+      "original monument",
+      "D09 JPEG",
+      "original harbor"
+    ],
+    "commonGuide": {
+      "cardY": 1074,
+      "canvasY": 1114,
+      "rgb": [
+        255,
+        0,
+        170
+      ],
+      "width": 1
+    },
+    "purpose": "QA only; originals and JPEG displayed native-size with a common ordinary-letter guide. No guide on delivered JPEG."
+  },
+  "integration": "JPEG prepared for review only; no catalog or JS changes.",
+  "limitations": [
+    "Resampling and lossy JPEG encoding change pixel values; no separate color adjustment or sharpening was applied.",
+    "Baseline measured in explicit ordinary-letter ROIs, excluding descenders and background shadows.",
+    "Technical user approval pending."
+  ],
+  "technicalApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю JPEG"
+  }
+}

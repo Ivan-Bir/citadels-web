@@ -1,0 +1,44 @@
+Use case: illustration-story
+Asset type: ONE complete Russian Citadels Deluxe special-district card, «Судейская палата», raw PNG for artistic review.
+Operation: EDIT image 1, retaining its successful foreground judge's desk, first-person viewpoint and all card typography/UI, while replacing the courtroom scene and lighting.
+
+Input images and roles:
+1. judges-chamber-v2.png is the EDIT TARGET and authoritative source for complete card layout, exactly three coins, thin regular Cyrillic ability, compact bold title, purple medallion, parchment/ribbon, and the successful narrow foreground judge's desk with peripheral small Justice statuette at left and gavel at right. Preserve the desk and UI. Completely replace the two large petitioners, architecture behind them, crowd scale, colors and lighting as specified below.
+2. 1_3-upscale-v3.png is ONLY CHARACTER IDENTITY reference for the MAGISTRATE: balding head, round glasses, short brown beard, red/orange outer robe, yellow inner garment, modest pale collar. Use these cues on ONE SMALL full-body man standing far away in the hall. DO NOT copy its close-up portrait, character-card layout, title, ability, rank 1, book, giant quill or background. Do not add any character name or number to this district card.
+3. judges-chamber-typography-reference.png is ONLY original bitmap typography evidence: thin regular body lettering in the top example, compact original bold titles. Do not copy any words, green medallion or extra content. Keep the successful target v2 typography rather than reverting to an oversized bold ability.
+
+Requested replacement courtroom scene:
+From the seated judge's position slightly above floor level, looking over the same narrow near edge of the wooden judge's desk, show a LARGE COURTROOM THAT IS SQUARE IN FLOOR PLAN. Broad width and depth are comparable. The composition must expose a wide, almost square open central floor area with perspective grid/stone paving, side walls and benches along BOTH sides, back wall, and readable corners of the room. Use a broad slightly elevated general view, not a long narrow nave, tunnel, aisle or corridor. No giant front-facing judge or opposing judge bench. No close-up people. Maintain natural perspective and a coherent medieval civilian hall.
+The judge's desk remains a narrow strip in the nearest foreground, similar to image 1, with its little bronze Justice ornament near the far-left edge and wooden gavel near the far-right edge; neither prop is the central subject. Do not enlarge them.
+
+MANY PEOPLE, SMALL AND INDISTINCT:
+Many spectators sit in grouped rows on wooden benches along both side walls and across the rear, creating the weight of a public trial. Their heads are small and their faces nearly indistinguishable because of distance, dusk and shadow. Paint groups and subdued silhouettes rather than a gallery of crisp portraits. Keep spectators away from the central open square floor.
+
+ONE CONDEMNED MAGISTRATE:
+At the CENTRE of the open floor, in the FAR HALF OF THE MIDDLE GROUND, stands ONE solitary condemned Magistrate based on image 2. He is a SMALL isolated full-length figure, surrounded by an expanse of open floor. His full body is only roughly 15–18% of the scene's height, never a large foreground portrait. His feet stand well beyond the room's floor midpoint, nearer the back wall than the judge's desk. Keep the foreground and near central floor empty.
+Subtle identifying cues are a balding head, tiny round glasses, short beard and muted red-yellow robe, subdued by the dark room. His hands are calmly clasped in front, shoulders tense, posture constrained under the silent attention of the gathered spectators. No large book or quill. The crowd's quiet attention and the man's isolation convey the gravity of a sentence.
+
+GREEN PALETTE AND RESTRAINED TENSION:
+The chamber's principal colors are muted DARK GREEN, olive, green-grey stone and cool green shadows, with dark wood and restrained green cloth/banners. The whole large space should feel green-toned and dim, not uniformly orange and not neon green. The bright parchment and gold UI retain their existing correct colors.
+Make the atmosphere more tense and weighty through dark masses, dense shadowed spectators, the lone man in the open, and quiet watchfulness. No theatrical villain expression, violence, blood, execution, chains or melodramatic gestures. Traditional natural Citadels painting, expressive large forms and moderate detail.
+
+LOCAL LATE-EVENING LIGHT ONLY:
+Late sunset is seen through only one or two small/limited window areas. A weak, narrow, low warm beam or rim light touches part of the floor and lightly separates the small central Magistrate from the dim space. A few candles provide minor restrained points of warmth. Most of the large green hall stays in COOL EVENING HALF-LIGHT. NO sunset light flooding the whole room, NO broad orange-lit floor, NO orange ceiling/walls, NO bright theatrical spotlight. Sunset is a localized accent amid predominantly muted dark green and olive shadows.
+
+Preserve target card layout and EXACT TEXT:
+Keep the same complete straight-on portrait rectangular card face at approximately 707:1121 ratio, filling the image to all edges. No mockup, surrounding table, added outer frame, border, padding, watermark or extra labels.
+EXACTLY THREE separate embossed golden coin emblems in a vertical upper-left column, unchanged count and relative scale; no price digit.
+Keep the pale readable golden parchment and target's THIN REGULAR black Cyrillic serif ability lettering, not heavy bold:
+Один раз запретите всем игрокам строительство на следующий раунд
+Preserve these exact three lines:
+Один раз запретите всем
+игрокам строительство на
+следующий раунд
+Every word exact, NO final period, NO added punctuation or quotation marks.
+Keep the exact one-line title on its separate lower golden ribbon in the original-style compact black BOLD, fully visible:
+Судейская палата
+Keep the original purple special-district medallion at lower left: gold rim, deep purple field, pink-purple ornamental emblem. Do not alter its color.
+All title letters, parchment, ribbon, medallion and all three coins stay intact and inside the image.
+
+Constraints:
+Change the hall scene as requested while retaining the successful foreground desk/POV and card UI. One small isolated distant Magistrate, many shadowed indistinct spectators, broad square floor, muted green palette, local dusk light. Absolutely no two large foreground petitioners, huge head or close-up Magistrate. No pervasive orange sunlight, no narrow cathedral nave, no church altar, royal throne or modern courtroom. Only readable words are the exact district name and exact ability above. No readable text on papers, banners or walls; no rank number or character-card labels. No photorealism, 3D, neon, cluttered sharp microdetail or new overlay effects.

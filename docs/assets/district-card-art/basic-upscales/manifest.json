@@ -1,0 +1,769 @@
+{
+  "count": 17,
+  "status": "technical-approved",
+  "color_request": "Approximately 10% less intense colors and softer contrast, expressed in prompts; exact chroma change is not measured.",
+  "method": "Built-in imagegen edit of each original; unprocessed PNGs copied byte-for-byte. Original game JPGs remain unchanged.",
+  "cards": [
+    {
+      "id": "manor",
+      "catalog_name": "Поместье",
+      "original_title": "Поместье",
+      "cost": 3,
+      "district_color": "yellow",
+      "source": "public/cards/manor.jpg",
+      "source_sha256": "681fbccc5f54b732aa787c3f1a73bfb7b967776c4733462f6c7b46fa80066764",
+      "image": "manor-upscale-v1.png",
+      "prompt": "manor-upscale-v1.prompt.txt",
+      "prompt_sha256": "86871078f065938392b12e0b6ecab9989ba7c04c2560846381264174ea15427e",
+      "metadata": "manor-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2301347,
+      "sha256": "c2a30754d63f8f064dbf521ef0c15eb20c89dc9dcd02dafdb690ea02a9056fcb",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "sourceInspected": true,
+        "outputInspected": true,
+        "name": "pass: exact factual scanned title",
+        "text": "pass: no ability/rules text",
+        "coins": "pass: exactly 3",
+        "type": "pass: yellow noble tower medallion",
+        "composition": "Manor interior, left staircase/balcony, chair, statue, framed pictures, plants, candles and carpet retained; tiny ornament and masonry are painterly reinterpretations.",
+        "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+        "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+      },
+      "limitations": [
+        "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+        "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/manor-upscaled.jpg",
+      "technical_bytes": 288882,
+      "technical_sha256": "bafc270dbfe6d657477ca35b465bc8cc4af9812ecb6957545fdd4f696340c733",
+      "technical_report": "technical-batch-yellow-green.json",
+      "technical_baseline_ys": [
+        1074
+      ]
+    },
+    {
+      "id": "castle",
+      "catalog_name": "Замок",
+      "original_title": "Замок",
+      "cost": 4,
+      "district_color": "yellow",
+      "source": "public/cards/castle.jpg",
+      "source_sha256": "a319b5d16df15f242de6f59109086927482db2ce39be223bbc04c4b0a4215aa9",
+      "image": "castle-upscale-v1.png",
+      "prompt": "castle-upscale-v1.prompt.txt",
+      "prompt_sha256": "f898fa27200538bc98d91ca30ab5c6804cb4e21367a251b872cab54df6a3323b",
+      "metadata": "castle-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2702475,
+      "sha256": "caf8911e471681db0b13b2910eac89c1c8a78c6486ab3ff7d8a9d03ffb094a91",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "sourceInspected": true,
+        "outputInspected": true,
+        "name": "pass: exact factual scanned title",
+        "text": "pass: no ability/rules text",
+        "coins": "pass: exactly 4",
+        "type": "pass: yellow noble tower medallion",
+        "composition": "Castle silhouette, towers, red pennants, mountains, left arched bridge and central waterfall retained; fine masonry, tree branches and pennant shapes reinterpreted.",
+        "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+        "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+      },
+      "limitations": [
+        "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+        "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/castle-upscaled.jpg",
+      "technical_bytes": 291647,
+      "technical_sha256": "771757ce2a40a49c53c459cdad1e36f7a4b50acce3dddbb96ed582356f66ee68",
+      "technical_report": "technical-batch-yellow-green.json",
+      "technical_baseline_ys": [
+        1074
+      ]
+    },
+    {
+      "id": "palace",
+      "catalog_name": "Дворец",
+      "original_title": "Дворец",
+      "cost": 5,
+      "district_color": "yellow",
+      "source": "public/cards/palace.jpg",
+      "source_sha256": "478e0e02ee48f3c248368daf8ca9547f8f969146fafd1d07a2a86d46fc46e752",
+      "image": "palace-upscale-v1.png",
+      "prompt": "palace-upscale-v1.prompt.txt",
+      "prompt_sha256": "3de3da39710d82a1d247d267a7a037f1c17a920ca2991b300e9a437f405ac64a",
+      "metadata": "palace-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2579518,
+      "sha256": "4eb89f615bd520882722ebcc1404451aac8e530da03b42c64b72323650ae99c9",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "sourceInspected": true,
+        "outputInspected": true,
+        "name": "pass: exact factual scanned title",
+        "text": "pass: no ability/rules text",
+        "coins": "pass: exactly 5",
+        "type": "pass: yellow noble tower medallion",
+        "composition": "Palace tower grouping, blue roofs, foreground domed entrance, bridge, river, sailboat and birds retained; fine crowd/boat figures and masonry reinterpreted.",
+        "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+        "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+      },
+      "limitations": [
+        "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+        "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/palace-upscaled.jpg",
+      "technical_bytes": 285912,
+      "technical_sha256": "1fd295d14521fabb9f4ee99a0e97de624d4ec150081a78d970128219eb39e58c",
+      "technical_report": "technical-batch-yellow-green.json",
+      "technical_baseline_ys": [
+        1074
+      ]
+    },
+    {
+      "id": "tavern",
+      "catalog_name": "Таверна",
+      "original_title": "Таверна",
+      "cost": 1,
+      "district_color": "green",
+      "source": "public/cards/tavern.jpg",
+      "source_sha256": "6006d5c124821eaedb97f3f135410de5d0d08c107b7ff133f44c6021bf0dd889",
+      "image": "tavern-upscale-v1.png",
+      "prompt": "tavern-upscale-v1.prompt.txt",
+      "prompt_sha256": "9dac94a5d0cc0a7d602307b380b145c6401af56532c072fd7002fb5771112895",
+      "metadata": "tavern-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2634918,
+      "sha256": "6eded7e46709350879e1678de4da3f9db6a1f3ec099cef2a8353109077ee1b89",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "sourceInspected": true,
+        "outputInspected": true,
+        "name": "pass: exact factual scanned title",
+        "text": "pass: no ability/rules text",
+        "coins": "pass: exactly 1",
+        "type": "pass: green moneybag medallion",
+        "composition": "Original tavern people and main object arrangement retained, including serving woman, drinking man, bearded diner, foreground blond patron, musician, sausages, garlic, food and candles; fine faces/hands/food detail reinterpreted.",
+        "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+        "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+      },
+      "limitations": [
+        "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+        "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/tavern-upscaled.jpg",
+      "technical_bytes": 299867,
+      "technical_sha256": "a720fae59c9ffd85abb99a3474300fe7c6a75ce229981d934f2976280bf5529a",
+      "technical_report": "technical-batch-yellow-green.json",
+      "technical_baseline_ys": [
+        1074
+      ]
+    },
+    {
+      "id": "market",
+      "catalog_name": "Рынок",
+      "original_title": "Рынок",
+      "cost": 2,
+      "district_color": "green",
+      "source": "public/cards/market.jpg",
+      "source_sha256": "9e1bedb10ac680e112982531132ff4062b1ec93cf3df94b772d613e651eab3b8",
+      "image": "market-upscale-v1.png",
+      "prompt": "market-upscale-v1.prompt.txt",
+      "prompt_sha256": "ef613b961b6756c22372ae5b22b5374619b34714b1b3ebc1cea09f93d9d1dfb8",
+      "metadata": "market-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2765546,
+      "sha256": "e2aa85ca2f30455d7b9067189a13e20ccb8f423463f3543a45acba581f673782",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "sourceInspected": true,
+        "outputInspected": true,
+        "name": "pass: exact factual scanned title",
+        "text": "pass: no ability/rules text",
+        "coins": "pass: exactly 2",
+        "type": "pass: green moneybag medallion",
+        "composition": "Arch, banners, red stalls, merchants, running children, dog, wheels, produce and flowers retained; fine faces, heraldic marks and produce reinterpreted.",
+        "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+        "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+      },
+      "limitations": [
+        "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+        "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/market-upscaled.jpg",
+      "technical_bytes": 288514,
+      "technical_sha256": "edb70f0258fe49c8cb905d1c22f9e997eb34dc077649b65c87061389a259d77e",
+      "technical_report": "technical-batch-yellow-green.json",
+      "technical_baseline_ys": [
+        1074
+      ]
+    },
+    {
+      "id": "trading_post",
+      "catalog_name": "Фактория",
+      "original_title": "Лавка",
+      "cost": 2,
+      "district_color": "green",
+      "source": "public/cards/trading_post.jpg",
+      "source_sha256": "3906487d82ecfca2d227aef462b55a44bcdff48be0bcb2b2a25fdbb1a3d57f02",
+      "image": "trading_post-upscale-v1.png",
+      "prompt": "trading_post-upscale-v1.prompt.txt",
+      "prompt_sha256": "e394cb58fd5d80abc631463ca579fabdcddd522ef4ec9fd258033f1b09a62c10",
+      "metadata": "trading_post-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2533453,
+      "sha256": "41e0e9bdd71bd7bf97656475aa8f2b51de8712ae8f89e970355dab05e19007fc",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "sourceInspected": true,
+        "outputInspected": true,
+        "name": "pass: exact factual scanned title",
+        "text": "pass: no ability/rules text",
+        "coins": "pass: exactly 2",
+        "type": "pass: green moneybag medallion",
+        "composition": "Two sword-shop figures, four shields, weapons, bows, counter, barrels, wheel and cobbled floor retained; fine weapon geometry and fittings reinterpreted.",
+        "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+        "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+      },
+      "limitations": [
+        "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+        "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement.",
+        "Catalogue calls this «Фактория»; actual original scan and output use «Лавка»."
+      ],
+      "technical_output": "public/cards/trading_post-upscaled.jpg",
+      "technical_bytes": 288548,
+      "technical_sha256": "c8b85e9f50c76cb1b0ae195d523efea8175feff28596512e6f150c7322716919",
+      "technical_report": "technical-batch-yellow-green.json",
+      "technical_baseline_ys": [
+        1074
+      ]
+    },
+    {
+      "id": "docks",
+      "catalog_name": "Доки",
+      "original_title": "Доки",
+      "cost": 3,
+      "district_color": "green",
+      "source": "public/cards/docks.jpg",
+      "source_sha256": "15137cf379da1fb391c4c30b1465223608714db0d1ebb5d4df4cb50a4aeb2f1a",
+      "image": "docks-upscale-v1.png",
+      "prompt": "docks-upscale-v1.prompt.txt",
+      "prompt_sha256": "814a3d097d8d33a1e37ae42163af5a8630d73a9d4f08e803f6edc61d8181922d",
+      "metadata": "docks-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2562751,
+      "sha256": "04ead86d7cb9111a2d4b9f106293983e3f69db21773055155a2452ed9820ad05",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "sourceInspected": true,
+        "outputInspected": true,
+        "name": "pass: exact factual scanned title",
+        "text": "pass: no ability/rules text",
+        "coins": "pass: exactly 3",
+        "type": "pass: green moneybag medallion",
+        "composition": "Canal, buildings, distant fortress, boats, quay, barrels/crates, stairs and main people grouping retained; indistinct distant figures and masonry reinterpreted.",
+        "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+        "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+      },
+      "limitations": [
+        "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+        "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/docks-upscaled.jpg",
+      "technical_bytes": 287618,
+      "technical_sha256": "e33ff26366e31a8a3f03a2fb615f16ad40dac057f9fb4c8d228b83acdb52efb0",
+      "technical_report": "technical-batch-yellow-green.json",
+      "technical_baseline_ys": [
+        1074
+      ]
+    },
+    {
+      "id": "harbor",
+      "catalog_name": "Порт",
+      "original_title": "Гавань",
+      "cost": 4,
+      "district_color": "green",
+      "source": "public/cards/harbor.jpg",
+      "source_sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+      "image": "harbor-upscale-v1.png",
+      "prompt": "harbor-upscale-v1.prompt.txt",
+      "prompt_sha256": "c84af8166e61ce26497e354d7be71ecd01575539363184508a3867a2ae005429",
+      "metadata": "harbor-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2527806,
+      "sha256": "97bf1622dd3ee1f710b32ff92c57fd831aa666716ea5e28c73960c12a3cb45ff",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "sourceInspected": true,
+        "outputInspected": true,
+        "name": "pass: exact factual scanned title",
+        "text": "pass: no ability/rules text",
+        "coins": "pass: exactly 4",
+        "type": "pass: green moneybag medallion",
+        "composition": "Dark pointed harbor tower/pennant, cliff castle, hillside town, sailboats and large foreground gull retained; tiny windows, boats and birds reinterpreted.",
+        "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+        "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+      },
+      "limitations": [
+        "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+        "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement.",
+        "Catalogue calls this «Порт»; actual original scan and output use «Гавань»."
+      ],
+      "technical_output": "public/cards/harbor-upscaled.jpg",
+      "technical_bytes": 289245,
+      "technical_sha256": "2378f4af9e30c4c4e4d04b6a3e65506cfb46c69db3600462c2b0a03b693ca27b",
+      "technical_report": "technical-batch-yellow-green.json",
+      "technical_baseline_ys": [
+        1074
+      ]
+    },
+    {
+      "id": "town_hall",
+      "catalog_name": "Ратуша",
+      "original_title": "Ратуша",
+      "cost": 5,
+      "district_color": "green",
+      "source": "public/cards/town_hall.jpg",
+      "source_sha256": "5c949d806e368cf2f2e3de306483c5fafdbc6a878e112b8bafbdc009d6900b36",
+      "image": "town_hall-upscale-v1.png",
+      "prompt": "town_hall-upscale-v1.prompt.txt",
+      "prompt_sha256": "83b977482e34e868196c6c3c47a4815458941850b3b6d0274d8b873b887ae685",
+      "metadata": "town_hall-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2718044,
+      "sha256": "b07e22af33c76ee324d9b42aefade246db7c8d0c01bc3af71c77d8f1fe3e90df",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "sourceInspected": true,
+        "outputInspected": true,
+        "name": "pass: exact factual scanned title",
+        "text": "pass: no ability/rules text",
+        "coins": "pass: exactly 5",
+        "type": "pass: green moneybag medallion",
+        "composition": "Central pillar/arches, pointed windows, desks, clerks, standing women, scrolls, quills, candles, drawers, skull and tiny shelf cat retained; tiny document markings are illustrative, not readable rules.",
+        "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+        "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+      },
+      "limitations": [
+        "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+        "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/town_hall-upscaled.jpg",
+      "technical_bytes": 298535,
+      "technical_sha256": "c70cb893459553d7c7c6268b7f2eeaad3c9ec844a3b53a0a8dc8c2ca272800b3",
+      "technical_report": "technical-batch-yellow-green.json",
+      "technical_baseline_ys": [
+        1074
+      ]
+    },
+    {
+      "id": "temple",
+      "catalog_name": "Храм",
+      "original_title": "Храм",
+      "cost": 1,
+      "district_color": "blue",
+      "source": "public/cards/temple.jpg",
+      "source_sha256": "5484185f6bdd66359f8e2606d6ef783c4fabc3f1477055dd14989151962d0b16",
+      "image": "temple-upscale-v1.png",
+      "prompt": "temple-upscale-v1.prompt.txt",
+      "prompt_sha256": "2c2345f8e77728e339522244f0ba179701d3d4f4accdbae4f52ec8e804731c04",
+      "metadata": "temple-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2554932,
+      "sha256": "45bf04d8546098232382525581b48c6c666d4ec947006cd76c5d34161902fa6a",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "name": "pass: exact source title",
+        "text": "pass: no ability text",
+        "coins": "pass: exactly 1",
+        "type": "pass: blue district medallion",
+        "composition": "Gothic niche, candle cluster, carved panel and bones retained; small carving detail reinterpreted",
+        "color": "warm dark brown and candle lighting retained; exact chroma reduction unmeasured"
+      },
+      "limitations": [
+        "Generative restoration may reinterpret fine details.",
+        "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/temple-upscaled.jpg",
+      "technical_bytes": 289858,
+      "technical_sha256": "29d3e0c4be7cac520dc51a6d8726a2e5cfc6fe75c898c7514bb3b7c86a4576d5",
+      "technical_report": "technical-batch-blue-red.json",
+      "technical_baseline_ys": [
+        1074,
+        1074
+      ]
+    },
+    {
+      "id": "church",
+      "catalog_name": "Церковь",
+      "original_title": "Церковь",
+      "cost": 2,
+      "district_color": "blue",
+      "source": "public/cards/church.jpg",
+      "source_sha256": "21a20a93c52481a7f3a078314a703af2f65804c3fb9c4c95eef3aca0ff32bb0c",
+      "image": "church-upscale-v1.png",
+      "prompt": "church-upscale-v1.prompt.txt",
+      "prompt_sha256": "bf10149b2c48b0370ba440e39018a072fe1fef5ae81ed05414f658a4e7dd5c4f",
+      "metadata": "church-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2526368,
+      "sha256": "8c07ec49718e1bb7b99c75084ad2c8f3ea3fd04e86db1da5ea8fb7041439ba64",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "name": "pass: exact source title",
+        "text": "pass: no ability text",
+        "coins": "pass: exactly 2",
+        "type": "pass: blue district medallion",
+        "composition": "Church, steep green hillside, cliffs, mist, birds, rocks and foreground headstones retained; fine vegetation redrawn",
+        "color": "blue-grey mountain and green hillside retained; exact chroma reduction unmeasured"
+      },
+      "limitations": [
+        "Generative restoration may reinterpret fine details.",
+        "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/church-upscaled.jpg",
+      "technical_bytes": 296752,
+      "technical_sha256": "c0f5dfb6b51ec50c98a93fab3799eb3940cc3626a5161c61056b9c36d702d08b",
+      "technical_report": "technical-batch-blue-red.json",
+      "technical_baseline_ys": [
+        1075,
+        1075,
+        1074
+      ]
+    },
+    {
+      "id": "monastery",
+      "catalog_name": "Монастырь",
+      "original_title": "Монастырь",
+      "cost": 3,
+      "district_color": "blue",
+      "source": "public/cards/monastery.jpg",
+      "source_sha256": "62423bc1a063ad8ef5f600a7dfdbe942085d3a1ca0b3c3dcc324f3fdca610635",
+      "image": "monastery-upscale-v1.png",
+      "prompt": "monastery-upscale-v1.prompt.txt",
+      "prompt_sha256": "d86f91c885eac456b90cfa2d09915f84d8b8e6cd5676bfbb50db80be098de383",
+      "metadata": "monastery-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1580
+      ],
+      "bytes": 2494638,
+      "sha256": "ed9ebc60cd82b0583bf0fbbe4d7f627fedd51bb7ae182638370bf5e2fe90f40d",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "name": "pass: exact source title",
+        "text": "pass: no ability text",
+        "coins": "pass: exactly 3",
+        "type": "pass: blue district medallion",
+        "composition": "Cloister, ribbed vault, columns, tiled floor and four red-robed monks retained; fine stonework redrawn",
+        "color": "warm light and red robes retained; saturation target not measured"
+      },
+      "limitations": [
+        "Generative restoration may reinterpret fine details.",
+        "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/monastery-upscaled.jpg",
+      "technical_bytes": 297603,
+      "technical_sha256": "4946cdaee7f3eb23ff7fb0bbecef182fa26b6c85123f1594b697ca7d244d2777",
+      "technical_report": "technical-batch-blue-red.json",
+      "technical_baseline_ys": [
+        1075,
+        1075,
+        1074
+      ]
+    },
+    {
+      "id": "cathedral",
+      "catalog_name": "Собор",
+      "original_title": "Собор",
+      "cost": 5,
+      "district_color": "blue",
+      "source": "public/cards/cathedral.jpg",
+      "source_sha256": "07bc37d904c78a1dcc31beec84d4c9e69862bab82e6cc28ac5f0c9207cd9ba58",
+      "image": "cathedral-upscale-v1.png",
+      "prompt": "cathedral-upscale-v1.prompt.txt",
+      "prompt_sha256": "6bbb1a2ba1ecebfd7b617d1e8c2c3507957be168c7c7471bdbdb8a6ed6a02c93",
+      "metadata": "cathedral-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2370631,
+      "sha256": "99a0d8dff229c023d0b581928c562bf47b1455636b5f3ba6c6216aeb6917c777",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "name": "pass: exact source title",
+        "text": "pass: no ability text",
+        "coins": "pass: exactly 5",
+        "type": "pass: blue district medallion",
+        "composition": "Cathedral nave, arches, upper clerestory, apse, central sculptural group, pews and foreground figures retained; tiny figures and details reinterpreted; subtle rounded upper corners in output",
+        "color": "golden apse and dark nave retained; generated illumination somewhat more explicit, exact chroma reduction unmeasured"
+      },
+      "limitations": [
+        "Generative restoration may reinterpret fine details.",
+        "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/cathedral-upscaled.jpg",
+      "technical_bytes": 298064,
+      "technical_sha256": "93375179b1970c476607e019e67b7c8ff371fc97f28e72fd69b60f510ab70e23",
+      "technical_report": "technical-batch-blue-red.json",
+      "technical_baseline_ys": [
+        1074,
+        1074,
+        1074
+      ]
+    },
+    {
+      "id": "watchtower",
+      "catalog_name": "Сторожевая башня",
+      "original_title": "Дозорная башня",
+      "cost": 1,
+      "district_color": "red",
+      "source": "public/cards/watchtower.jpg",
+      "source_sha256": "31eda240de58aa70d3dbf6c55bb681bbb4089fceeda9bd8deb591957ea8d7c35",
+      "image": "watchtower-upscale-v1.png",
+      "prompt": "watchtower-upscale-v1.prompt.txt",
+      "prompt_sha256": "a059215f1e9114f054223be205df403b0d58a3fd6798bcd6146b6ad93df3a40d",
+      "metadata": "watchtower-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2258010,
+      "sha256": "d6c68e2491ce3054c8aa0318dd32a7ad9d47daa72ec5990ca78dea20e3cd17a5",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "name": "pass: exact source title",
+        "text": "pass: no ability text",
+        "coins": "pass: exactly 1",
+        "type": "pass: red district medallion",
+        "composition": "Two round battlement towers, archers/guards and black flag, bridge/gate, lit windows, river valley and mountains retained; masonry and small figures redrawn",
+        "color": "grey stone, subdued distant landscape and warm low sky retained; exact chroma reduction unmeasured"
+      },
+      "limitations": [
+        "Generative restoration may reinterpret fine details.",
+        "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/watchtower-upscaled.jpg",
+      "technical_bytes": 288941,
+      "technical_sha256": "6b99b95465f81ba7bcc541874eba5beac1cdc9c7e16e53f80ef4edaf48ba7daf",
+      "technical_report": "technical-batch-blue-red.json",
+      "technical_baseline_ys": [
+        1074,
+        1074,
+        1075
+      ]
+    },
+    {
+      "id": "prison",
+      "catalog_name": "Тюрьма",
+      "original_title": "Тюрьма",
+      "cost": 2,
+      "district_color": "red",
+      "source": "public/cards/prison.jpg",
+      "source_sha256": "4801aaf39b31c808165fdeb7a9ccd89fea59d6a264887886651c2663dbe90c30",
+      "image": "prison-upscale-v1.png",
+      "prompt": "prison-upscale-v1.prompt.txt",
+      "prompt_sha256": "8608cd22d3bd025227316b0690a7c880f1101b35fdf90492f5c3eb980f22870c",
+      "metadata": "prison-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2676504,
+      "sha256": "056f8c480a8fe65f7609e040217d9a0979bb10d024599f5e3aacab40c9ef9de5",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "name": "pass: exact source title",
+        "text": "pass: no ability text",
+        "coins": "pass: exactly 2",
+        "type": "pass: red district medallion",
+        "composition": "High view along prison corridor, barred doors, one prisoner and two armoured guards, chains, polearms, torches and far window/stairs retained",
+        "color": "dark stone and warm torch lighting retained; torch light is more clearly rendered, exact chroma reduction unmeasured"
+      },
+      "limitations": [
+        "Generative restoration may reinterpret fine details.",
+        "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/prison-upscaled.jpg",
+      "technical_bytes": 298510,
+      "technical_sha256": "2487392c82686f43b0c8bee1ef42ba160103ff0d78e09064cd964d2d68872a29",
+      "technical_report": "technical-batch-blue-red.json",
+      "technical_baseline_ys": [
+        1074,
+        1074,
+        1074
+      ]
+    },
+    {
+      "id": "barracks",
+      "catalog_name": "Казарма",
+      "original_title": "Казармы",
+      "cost": 3,
+      "district_color": "red",
+      "source": "public/cards/barracks.jpg",
+      "source_sha256": "8d004041f785fc93ba0bcecc079015ec09623e22b94bb73e86e3d3f38b90d3d9",
+      "image": "barracks-upscale-v1.png",
+      "prompt": "barracks-upscale-v1.prompt.txt",
+      "prompt_sha256": "92d97bf4057d6bcd2ab50e732f21d3bb1e2fe6ef64974fa87ba4d2241f81119c",
+      "metadata": "barracks-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2714823,
+      "sha256": "0a14486317dda30c9fe9e2a05a7d2689ab3aa4bd80385ea5c8fb535865722f5c",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "name": "pass: exact source title",
+        "text": "pass: no ability text",
+        "coins": "pass: exactly 3",
+        "type": "pass: red district medallion",
+        "composition": "Courtyard, square towers, half-timbered gallery, shield bearer and foreground opponent plus lined and distant soldiers retained; faces, costumes and tiny distant figures reinterpreted",
+        "color": "blue sky, warm stone and deep foreground shadows retained; exact chroma reduction unmeasured"
+      },
+      "limitations": [
+        "Generative restoration may reinterpret fine details.",
+        "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/barracks-upscaled.jpg",
+      "technical_bytes": 295029,
+      "technical_sha256": "c44b94e634cb601681e981cbda2ed882b0aa3c9579bace114896b82f154b9a0f",
+      "technical_report": "technical-batch-blue-red.json",
+      "technical_baseline_ys": [
+        1074,
+        1074,
+        1074
+      ]
+    },
+    {
+      "id": "fortress",
+      "catalog_name": "Крепость",
+      "original_title": "Крепость",
+      "cost": 5,
+      "district_color": "red",
+      "source": "public/cards/fortress.jpg",
+      "source_sha256": "691df23cc404b99ecfe8abd7f174d8ad0b3ead7f2afa6a29151baa1f762006b4",
+      "image": "fortress-upscale-v1.png",
+      "prompt": "fortress-upscale-v1.prompt.txt",
+      "prompt_sha256": "fcad6cbc2f6bb529c6631bc336a64f87ba0c3a6b34bfd6d63ee16a51339c2868",
+      "metadata": "fortress-upscale-v1.metadata.json",
+      "dimensions": [
+        996,
+        1579
+      ],
+      "bytes": 2644757,
+      "sha256": "2077abd5012f04c106204ee6a1d3cbfd4d1b1d45fb17b32b29a63a5fed45558f",
+      "status": "technical-approved",
+      "art_status": "accepted",
+      "qa": {
+        "name": "pass: exact source title",
+        "text": "pass: no ability text",
+        "coins": "pass: exactly 5",
+        "type": "pass: red district medallion",
+        "composition": "Stepped rectangular fortress towers, central keep, rocky hill, winding approach and small red-banner party retained; fine crenellation and masonry redrawn",
+        "color": "grey-green fortress and hillside palette retained; exact chroma reduction unmeasured"
+      },
+      "limitations": [
+        "Generative restoration may reinterpret fine details.",
+        "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+        "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+      ],
+      "technical_output": "public/cards/fortress-upscaled.jpg",
+      "technical_bytes": 282850,
+      "technical_sha256": "00eae50dd387415d9f7b66c0b93a831d6e2885fda3eb744836d867764b94c6c6",
+      "technical_report": "technical-batch-blue-red.json",
+      "technical_baseline_ys": [
+        1074,
+        1074,
+        1074,
+        1074
+      ]
+    }
+  ],
+  "review_sheets": [
+    "review-sheet-yellow-green.jpg",
+    "review-sheet-blue-red.jpg"
+  ],
+  "art_status": "accepted",
+  "artistic_approval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю все 17, готовь JPEG"
+  },
+  "technical_review_sheets": [
+    "technical-review-sheet-yellow-green.jpg",
+    "technical-review-sheet-blue-red.jpg"
+  ],
+  "technical_approval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю все 17 JPEG"
+  }
+}

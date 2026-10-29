@@ -1,0 +1,109 @@
+{
+  "asset": "mirror-hall-v2.png",
+  "districtNumber": "D05",
+  "catalog": {
+    "source": "public/setup.js:75-77",
+    "id": "mirror_hall",
+    "name": "Зеркальный чертог",
+    "type": 9,
+    "cost": 6,
+    "quantity": 1,
+    "description": "Становится точной копией уже построенного квартала"
+  },
+  "status": "artistic-approved",
+  "generationDate": "2026-10-29",
+  "revision": {
+    "previousAsset": "mirror-hall-v1.png",
+    "previousArtisticStatus": "rejected",
+    "userFeedbackVerbatim": "Нет, сделай его более мрачным, магическим, мистическим местом",
+    "requestedChange": "Dark mystical ancient mirror hall, blue-violet shadows and cold otherworldly light, retain light readable card UI",
+    "previousAssetPreserved": true
+  },
+  "generation": {
+    "mode": "built-in",
+    "tool": "image_gen.imagegen",
+    "toolPath": "functions.exec -> tools.image_gen__imagegen",
+    "intent": "edit",
+    "callsForThisVersion": 1,
+    "transparentBackground": false,
+    "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/mirror-hall-v2-prompt.txt",
+    "promptSha256": "b8afa3027324236c2a4a7446085e14e7bf5be7cab48fb5c3adee4e54db990303",
+    "references": [
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/mirror-hall-v1.png",
+        "role": "Edit target; original v1 full card-face UI and hall architecture, with atmosphere substantially revised per user feedback",
+        "sha256": "073e40fb228e5037053bfae71753ad7cd78f55d12c68a7b7e6b197eb5ede9840",
+        "inspectedWithViewImageBeforeGeneration": true
+      }
+    ],
+    "sourceOutputPath": "/Users/i.biryukov/.codex/generated_images/01a18794-c52d-71c2-8897-c01d2f143440/exec-bfe3d4c1-56ba-4fdb-b4f1-3ee74a316dd2.png"
+  },
+  "output": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/mirror-hall-v2.png",
+    "format": "PNG",
+    "width": 996,
+    "height": 1579,
+    "bytes": 2486975,
+    "sha256": "323f229278c534430f197712ce6ae30887bf2a837f34fc8fcce50a360c53fd26",
+    "sourceSha256": "323f229278c534430f197712ce6ae30887bf2a837f34fc8fcce50a360c53fd26",
+    "byteForByteCopyVerified": true,
+    "technicalProcessing": [],
+    "resized": false,
+    "cropped": false,
+    "padded": false,
+    "jpegCreated": false
+  },
+  "visualChecks": {
+    "method": "Visual inspection of full built-in output; user artistic review pending",
+    "coins": {
+      "expected": 6,
+      "observed": 6,
+      "pass": true
+    },
+    "name": {
+      "expected": "Зеркальный чертог",
+      "observed": "Зеркальный чертог",
+      "pass": true
+    },
+    "ability": {
+      "expected": "Становится точной копией уже построенного квартала",
+      "observed": "Становится точной копией уже построенного квартала",
+      "pass": true,
+      "terminalPeriod": false
+    },
+    "purpleMedallion": {
+      "pass": true
+    },
+    "readableLightParchmentAndRibbon": {
+      "pass": true,
+      "notes": "Warm light parchment and black serif text remain bright against dark scene"
+    },
+    "atmosphere": {
+      "pass": true,
+      "notes": "Substantially darker blue-violet stone hall, tarnished gold frames, cold luminous mirror reflections and low haze; bright sunlit palace atmosphere removed"
+    },
+    "fullCardFace": {
+      "pass": true,
+      "notes": "Complete rectangular face; no external mockup or outer frame"
+    }
+  },
+  "limitations": [
+    "Generative edit; pixel-identical preservation of UI or all non-target details is not asserted.",
+    "A tiny dark human-like or statue-like silhouette remains near the far right edge inside the largest reflection, despite the prompt asking to remove such figures.",
+    "Reflected architectural perspective and mirror interpretation are visual judgements; mathematical correctness is not asserted.",
+    "This raw artistic PNG has not undergone crop, resize, padding, JPEG conversion or technical lower-title alignment.",
+    "The prior v1 files, shared approval journal, game catalog and public assets were left unchanged."
+  ],
+  "validation": {
+    "pngChunkCrcsVerified": true,
+    "pngIdatDecompressionVerified": true,
+    "scanlineByteCountVerified": true,
+    "sourceCopyRechecked": true,
+    "promptAndOutputSha256Verified": true
+  },
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю, готовь JPEG"
+  }
+}

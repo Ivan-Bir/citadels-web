@@ -91,7 +91,7 @@ test('Judicial Chamber schedules next round, cannot repeat, and ban blocks paid 
 });
 
 test('Mirror pays its own discounted price and permanently copies independent Museum state',()=>{
- const {game}=fixture();game.room.playerDistricts[0]=[district('factory')];
+ const {game,messages}=fixture();game.room.playerDistricts[0]=[district('factory')];
  const original={...district('museum'),decoration:2,exposition:[{...district('theater'),buildDiscount:1}],actionsUsed:{museum:1}};
  game.room.playerDistricts[1]=[original];hand(game,[{...district('mirror_hall'),buildDiscount:2}]);
  game.slotEventHandlers['build-mirror'](0,0,1,0);
@@ -99,6 +99,13 @@ test('Mirror pays its own discounted price and permanently copies independent Mu
  assert.equal(copy.type,'museum');assert.equal(copy.cost,4);assert.equal(copy.decoration,2);
  assert.deepEqual(copy.actionsUsed,{museum:1});assert.equal(copy.exposition[0].type,'theater');
  assert.notEqual(copy,original);assert.notEqual(copy.exposition[0],original.exposition[0]);
+ const event=messages.filter(message=>message.event==='state' && message.data.mirrorBuild).at(-1);
+ assert.deepEqual(event.data.mirrorBuild,{slot:0,instanceId:copy.instanceId});
+ assert.ok(event.target.has('host'));assert.ok(event.target.has('spectator'));
+ assert.notEqual(copy.instanceId,original.instanceId);assert.ok(copy.exposition[0].instanceId);
+ assert.ok(!JSON.stringify(game.getSnapshot()).includes('mirrorBuild'));
+ game.slotEventHandlers['take-resources'](0,'coins');
+ assert.equal(messages.filter(message=>message.event==='state').at(-1).data.mirrorBuild,undefined);
  game.state.players[0].action='warlord-action';game.slotEventHandlers.destroy(0,0,1);
  assert.ok(game.state.districtDiscard.some(c=>c.type==='museum'));assert.ok(game.state.districtDiscard.some(c=>c.type==='theater'));
  assert.equal(original.exposition.length,1);assert.equal(original.decoration,2);
@@ -197,12 +204,37 @@ test('killed Emperor cannot activate districts during the out-of-turn crown resp
 });
 
 test('Cardinal can finance the original Mirror while copying a target district',()=>{
- const {game}=fixture();game.room.currentCharacter='5_3';game.state.players[0].action='cardinal-action';game.room.playerGold[0]=0;
+ const {game,messages}=fixture();game.room.currentCharacter='5_3';game.state.players[0].action='cardinal-action';game.room.playerGold[0]=0;
  game.room.playerDistricts[1]=[{...district('museum'),decoration:2,exposition:[district('manor')]}];
  hand(game,[district('mirror_hall'),...Array.from({length:6},()=>district('market'))]);
  game.slotEventHandlers['cardinal-sell'](0,2,0,[1,2,3,4,5,6],1,0);
  assert.equal(game.room.playerDistricts[0][0].type,'museum');assert.equal(game.room.playerDistricts[0][0].decoration,2);
  assert.equal(game.room.playerGold[2],14);assert.equal(game.room.playerHand[2],6);assert.equal(game.room.playerHand[0],0);
+ assert.deepEqual(messages.filter(message=>message.event==='state').at(-1).data.mirrorBuild,
+  {slot:0,instanceId:game.room.playerDistricts[0][0].instanceId});
+ assert.ok(!JSON.stringify(game.getSnapshot()).includes('mirrorBuild'));
+});
+
+test('Mirror never signals failed construction or construction without a copied effect',()=>{
+ const {game,messages}=fixture();hand(game,[district('mirror_hall')]);
+ game.room.playerDistricts[1]=[district('museum')];game.room.playerGold[0]=0;
+ game.slotEventHandlers['build-mirror'](0,0,1,0);
+ assert.equal(game.room.playerDistricts[0].length,0);
+ game.room.playerGold[0]=20;game.slotEventHandlers['build-mirror'](0,0,0,0);
+ game.slotEventHandlers['build-mirror'](0,0);
+ assert.equal(game.room.playerDistricts[0][0].type,'mirror_hall');
+ assert.ok(messages.filter(message=>message.event==='state').every(message=>!message.data.mirrorBuild));
+ const cardinal=fixture();cardinal.game.room.currentCharacter='5_3';cardinal.game.state.players[0].action='cardinal-action';
+ cardinal.game.room.playerGold[0]=0;cardinal.game.room.playerGold[2]=0;
+ cardinal.game.room.playerDistricts[1]=[district('museum')];
+ hand(cardinal.game,[district('mirror_hall'),...Array.from({length:6},()=>district('market'))]);
+ cardinal.game.slotEventHandlers['cardinal-sell'](0,2,0,[1,2,3,4,5,6],1,0);
+ assert.equal(cardinal.game.room.playerDistricts[0].length,0);
+ assert.ok(cardinal.messages.every(message=>!message.data || !message.data.mirrorBuild));
+ cardinal.game.room.playerGold[2]=20;
+ cardinal.game.slotEventHandlers['cardinal-sell'](0,2,0,[1,2,3,4,5,6]);
+ assert.equal(cardinal.game.room.playerDistricts[0][0].type,'mirror_hall');
+ assert.ok(cardinal.messages.filter(message=>message.event==='state').every(message=>!message.data.mirrorBuild));
 });
 test('restored peek timeout preserves deck, discard and used source',async t=>{
  const {game}=fixture();game.room.playerDistricts[0]=[district('divination_tower')];game.state.districtDeck=[district('church'),district('manor')];game.state.districtDiscard=[district('market')];

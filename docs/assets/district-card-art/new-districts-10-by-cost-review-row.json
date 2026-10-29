@@ -1,0 +1,138 @@
+{
+  "purpose": "Ten accepted district cards in one row sorted by nominal cost ascending; ties preserve original order",
+  "method": "Browser rendering of unchanged original JPEG files at native size; no source image edits",
+  "cards": [
+    {
+      "id": "D02",
+      "name": "Катакомбы",
+      "source": "public/cards/catacombs-compressed.jpg",
+      "source_sha256": "7eb8ab111c2247e0165cda24d8c902afb323356c8d033e11dd57179dab9b120b",
+      "dimensions": [
+        707,
+        1121
+      ],
+      "order": 1,
+      "catalogId": "catacombs",
+      "cost": 2
+    },
+    {
+      "id": "flea_market",
+      "name": "Барахолка",
+      "source": "public/cards/flea_market-compressed.jpg",
+      "order": 9,
+      "catalogId": "flea_market",
+      "cost": 2,
+      "source_sha256": "d5015491019c7affb175dfb03082e1e63b484441eb8bb8060167b1871ebd9257"
+    },
+    {
+      "id": "D01",
+      "name": "Каменный мост",
+      "source": "public/cards/stone_bridge-compressed.jpg",
+      "source_sha256": "78dbc0acb1c1a003405aafaa5268c25b8169346df69ba6679b0d80cc37bf005f",
+      "dimensions": [
+        707,
+        1121
+      ],
+      "order": 0,
+      "catalogId": "stone_bridge",
+      "cost": 3
+    },
+    {
+      "id": "D04",
+      "name": "Винодельня",
+      "source": "public/cards/wine_cellar-compressed.jpg",
+      "source_sha256": "882c0d58f15cba9a92f71d2f7240b9517657467b1561d6d31e544d7d44e54096",
+      "dimensions": [
+        707,
+        1121
+      ],
+      "order": 3,
+      "catalogId": "wine_cellar",
+      "cost": 3
+    },
+    {
+      "id": "D09",
+      "name": "Судейская палата",
+      "source": "public/cards/judicial_chamber-compressed.jpg",
+      "source_sha256": "33788f636a0e45a4a3c63ed93c119dc2103f83cc666b7378d4d31b432dc3bad9",
+      "dimensions": [
+        707,
+        1121
+      ],
+      "order": 8,
+      "catalogId": "judicial_chamber",
+      "cost": 3
+    },
+    {
+      "id": "D07",
+      "name": "Башня прорицателя",
+      "source": "public/cards/divination_tower-compressed.jpg",
+      "source_sha256": "e41e19b0707777ad64dfc4f8674b2e31f6d294a5a8bb3f4dcf398787a0f5ac43",
+      "dimensions": [
+        707,
+        1121
+      ],
+      "order": 6,
+      "catalogId": "divination_tower",
+      "cost": 4
+    },
+    {
+      "id": "D08",
+      "name": "Ремесленный двор",
+      "source": "public/cards/artisans_court-compressed.jpg",
+      "source_sha256": "939b9a98b48eb5c73d9c62c71fb7c64a02a2ba4902b08fc79fb6a5f7f678f234",
+      "dimensions": [
+        707,
+        1121
+      ],
+      "order": 7,
+      "catalogId": "artisans_court",
+      "cost": 4
+    },
+    {
+      "id": "D03",
+      "name": "Мастерская зодчих",
+      "source": "public/cards/architects_workshop-compressed.jpg",
+      "source_sha256": "42c2c591c0c6ccbb2d8b49f3747f501a0948b8cec7d66b77da13e5f9c6dd9dce",
+      "dimensions": [
+        707,
+        1121
+      ],
+      "order": 2,
+      "catalogId": "architects_workshop",
+      "cost": 5
+    },
+    {
+      "id": "D05",
+      "name": "Зеркальный чертог",
+      "source": "public/cards/mirror_hall-compressed.jpg",
+      "source_sha256": "add2a9d56ce8de194113bc1d5b209625c5e9ef18b597fd0351aebcc97c8666b9",
+      "dimensions": [
+        707,
+        1121
+      ],
+      "order": 4,
+      "catalogId": "mirror_hall",
+      "cost": 6
+    },
+    {
+      "id": "D06",
+      "name": "Дом заговорщиков",
+      "source": "public/cards/conspirators_house-compressed.jpg",
+      "source_sha256": "db352ba444e7ced95b33c68ca4402751669ed1a3b9d9f78351c7169d2fc3769c",
+      "dimensions": [
+        707,
+        1121
+      ],
+      "order": 5,
+      "catalogId": "conspirators_house",
+      "cost": 6
+    }
+  ],
+  "output": "docs/assets/district-card-art/new-districts-10-by-cost-review-row.jpg",
+  "dimensions": [
+    7246,
+    1201
+  ],
+  "sha256": "be9295fc0cc6cca1aff447f2a3d4a629bee0080d244ed40d201ae30abbba7cb3"
+}

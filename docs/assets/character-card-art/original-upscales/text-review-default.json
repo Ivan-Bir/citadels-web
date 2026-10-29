@@ -1,0 +1,24 @@
+{
+  "reviewer": "independent character_text_qa agent",
+  "method": "view_image",
+  "sourcePattern": "public/characters/<id>.jpg",
+  "outputPattern": "docs/assets/character-card-art/original-upscales/<id>-upscale-v1.png",
+  "checks": ["name", "rank", "complete ability text including punctuation, ё and numbers", "meaningful symbols", "obvious substantial scene or face changes"],
+  "results": [
+    {"id": "1_1", "status": "PASS"},
+    {"id": "2_1", "status": "PASS"},
+    {"id": "3_1", "status": "PASS"},
+    {"id": "4_1", "status": "PASS"},
+    {"id": "5_1", "status": "PASS"},
+    {"id": "6_1", "status": "PASS"},
+    {"id": "7_1", "status": "PASS"},
+    {"id": "8_1", "status": "PASS"},
+    {"id": "9_1", "status": "PASS"}
+  ],
+  "limitations": [
+    "Manual visual comparison of source and output images; no OCR or automated glyph comparison.",
+    "Results for 1_1 through 6_1 come from the preceding inspection in this same agent context; those six pairs were not reopened in the final pass.",
+    "Artwork review covers obvious substantial changes only; it is not a pixel-level or biometric identity comparison.",
+    "Comparison is against the supplied JPG cards, including their original wording, not against another rules edition."
+  ]
+}

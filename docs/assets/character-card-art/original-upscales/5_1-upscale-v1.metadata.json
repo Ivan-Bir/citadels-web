@@ -1,0 +1,47 @@
+{
+  "id": "5_1",
+  "name": "Епископ",
+  "rank": 5,
+  "original_text": "Персонажи с цифрой 8 не могут использовать свои способности против ваших кварталов.\n\nПолучите 1 золотой за каждый ваш квартал духовенства.",
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/5_1.jpg",
+  "sourceSha256": "44c82ff0cf2c884bf99e94eb425718ec3fa89434a123b934a91c9e5435705de9",
+  "sourceSize": {
+    "width": 814,
+    "height": 1417
+  },
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/5_1-upscale-v1.png",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a18762-f1bd-7182-96fa-984d4feb096a/exec-560202e6-b912-456e-b4fe-e33c6b0250b8.png",
+  "sha256": "ebf27fbb185f1a6a674aebee3d2adba3ad9d3e7e222343271cbaadcff1fa2b2f",
+  "size": {
+    "bytes": 2245264,
+    "width": 950,
+    "height": 1655
+  },
+  "qa": {
+    "name": "pass: exact original Cyrillic title visually verified",
+    "rank": "pass: exact numeral and source emblem retained",
+    "text": "pass: full original ability text visually compared word by word, including numerals and punctuation",
+    "composition": "Older white-haired cleric, open hand, staff and blue window retained; fine staff and robe details restored.",
+    "identity": "pass: source gender, apparent age, face, expression and pose retained; generative fine-detail interpretation",
+    "color": "pass: original palette family and light mood retained; restrained painterly contrast; exact 10% chroma reduction unmeasured",
+    "layout": "pass: full rectangle, title/rank area and original ability scroll retained; no district UI or new text"
+  },
+  "status": "artistic-approved",
+  "limitations": [
+    "Generative restoration may reinterpret fine details and typography contours.",
+    "Approximately 10% lower color intensity is a prompt target, not a pixel measurement.",
+    "Raw generated PNG copied byte-for-byte; no resize, JPEG conversion, crop, padding or public game asset replacement."
+  ],
+  "verification": {
+    "byteCopy": true,
+    "pngDecode": true,
+    "promptExact": true
+  },
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+    "condition": "Preserve and align parchment positions against each original character JPG."
+  }
+}

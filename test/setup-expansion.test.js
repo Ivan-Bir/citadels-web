@@ -5,23 +5,24 @@ const setup = require("../public/setup");
 const utils = require("../utils");
 const card = type => ({type, kind: setup.districts[type].type, cost: setup.districts[type].cost});
 
-test("expansion catalog supplies fourteen opt-in districts while the standard deck stays unchanged", () => {
+test("expansion catalog supplies fifteen opt-in districts while the standard deck stays unchanged", () => {
     const expected = {
         stone_bridge: [0, 3, 0], catacombs: [9, 2, 1], architects_workshop: [9, 5, 1],
         wine_cellar: [9, 3, 1], mirror_hall: [9, 6, 1], conspirators_house: [9, 6, 1],
         divination_tower: [9, 4, 1], artisans_court: [9, 4, 1], judicial_chamber: [9, 3, 1],
         seminary: [5, 4, 0], sloboda: [4, 6, 0], exchange: [6, 6, 0],
-        papal_residence: [5, 6, 0], citadel: [8, 6, 0]
+        papal_residence: [5, 6, 0], citadel: [8, 6, 0], flea_market: [9, 2, 1]
     };
-    assert.equal(Object.keys(setup.districts).length, 61);
+    assert.equal(Object.keys(setup.districts).length, 62);
     assert.equal(setup.basicIds.length, 23);
-    assert.equal(setup.uniqueIds.length, 38);
+    assert.equal(setup.uniqueIds.length, 39);
     for (const [id, values] of Object.entries(expected)) {
         const district = setup.districts[id];
         assert.deepEqual([district.type, district.cost, district.quantity], values, id);
         assert.ok(district.name.length > 0, id);
-        assert.match(district.image, /^\/citadels\/cards\/placeholders\/d\d\d-.+\.svg$/);
+        if (id !== "flea_market") assert.match(district.image, /^\/citadels\/cards\/placeholders\/d\d\d-.+\.svg$/);
     }
+    assert.equal(setup.districts.flea_market.description, "Раз в свой ход можете сбросить 1 карту из руки, чтобы взять 1 карту из колоды.");
     assert.ok(setup.groups.some(group => group.type === 0 && group.name === "Без типа"));
     const standard = setup.getDefaultSetup();
     assert.equal(setup.getDeckSummary(standard.districts.basic, standard.districts.unique).total, 65);

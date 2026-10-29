@@ -1,0 +1,10 @@
+Use case: precise-object-edit. Asset: complete Russian Citadels Deluxe CHARACTER game card.
+EDIT the single original card provided as the ONLY edit target and reference. Faithful artistic upscale/restoration: remove scan blur and JPEG artifacts, restore sharp painterly brush texture and readable native typography in the original traditional illustration style. Preserve the exact identity, face, sex, age, expression, body and hand pose, costume, props, all existing background objects, perspective, composition, original card proportions and full edge-to-edge rectangle. Preserve title banner, rank badge, bottom parchment scroll, every symbol, separator and layout. Do not crop, pad, add borders or external margins. Do not redesign.
+Color: approximately 10% less intense than the original, restrained soft contrast; same palette family, light levels and shadow atmosphere. Do not strengthen golden glow or highlights. No photorealism, 3D, HDR, hyperrealism or oversharpening.
+This is a CHARACTER card: add no district coins or color medallions, new objects, characters, decorative fields, watermarks or text.
+Text: render every Russian word and punctuation verbatim, preserve ё, numbers and original bold/italic emphasis and paragraph count. Reflow minimally only to fit the original same bottom parchment region. Keep exact native decorative serif typography; no translation or paraphrase.
+Card-specific visual invariants: Hunched elderly witch, long hooked nose and white curling hair, burgundy-pink hood and tattered robe, tooth necklace, hand at chest and right hand resting on twisted wooden staff; gray interior with hanging containers, bird cage at upper right and chest at lower right. Preserve age, unkind tired expression, hand positions and clothing.
+Exact rank badge: 1.
+Exact title: «Ведьма».
+Exact ability text (1 paragraph):
+Получите ресурсы и назовите персонажа, которого вы желаете заколдовать, затем передайте ход дальше. После того, как заколдованный персонаж получит ресурсы, продолжите свой ход вместо него, словно вы и есть этот персонаж.

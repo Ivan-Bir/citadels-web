@@ -1,0 +1,41 @@
+{
+  "reviewer": "independent character_text_qa agent",
+  "method": "view_image",
+  "coverage": "9/9",
+  "sourcePattern": "public/characters/<id>.jpg",
+  "outputPattern": "docs/assets/character-card-art/original-upscales/<id>-upscale-v1.png",
+  "checks": ["name", "rank", "complete ability text including punctuation, ё and numbers", "meaningful symbols", "obvious substantial scene or face changes"],
+  "results": [
+    {
+      "id": "1_3",
+      "status": "PASS",
+      "output": "docs/assets/character-card-art/original-upscales/1_3-upscale-v3.png",
+      "previousReviews": [{
+        "version": "v1",
+        "status": "FAIL",
+        "issues": [{
+          "field": "ability punctuation",
+          "source": "который построит этот игрок. Игрок получает",
+          "output": "который построит этот игрок, Игрок получает",
+          "description": "Full stop after игрок replaced with a comma; corrected in the independently reviewed v3."
+        }]
+      }]
+    },
+    {"id": "2_3", "status": "PASS"},
+    {"id": "3_3", "status": "PASS"},
+    {"id": "4_3", "status": "PASS"},
+    {"id": "5_3", "status": "PASS"},
+    {"id": "6_3", "status": "PASS"},
+    {"id": "7_3", "status": "PASS"},
+    {"id": "8_3", "status": "PASS"},
+    {"id": "9_3", "status": "PASS"}
+  ],
+  "limitations": [
+    "Selected outputs are v1 for 2_3 through 9_3 and v3 for 1_3; the 1_3 v2 candidate was not independently inspected by this reviewer.",
+    "Results for 2_3 through 8_3 come from preceding inspections in this same agent context; those pairs were not reopened in the final pass.",
+    "The original 1_3 JPG was viewed in the preceding inspection and retained in this same agent context for comparison with v3.",
+    "Manual visual comparison of source and output images; no OCR or automated glyph comparison.",
+    "Artwork review covers obvious substantial changes only; it is not a pixel-level or biometric identity comparison.",
+    "The supplied JPG image is the source of truth; author transcriptions and other rules editions were not used."
+  ]
+}

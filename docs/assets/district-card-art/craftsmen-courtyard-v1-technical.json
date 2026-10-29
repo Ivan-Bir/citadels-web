@@ -1,0 +1,253 @@
+{
+  "status": "technical-approved",
+  "createdAt": "2026-10-29T15:29:42.489353+00:00",
+  "artisticApproval": {
+    "by": "user",
+    "statement": "Ремесленный двор принимаю, продолжи тех приёмку"
+  },
+  "method": "Deterministic bottom-background-only crop, whole-image Lanczos resize, one JPEG encode directly from accepted PNG; no imagegen or color edits.",
+  "software": {
+    "Pillow": "12.3.0"
+  },
+  "source": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/craftsmen-courtyard-v1.png",
+    "sha256": "6357488be44fb054432f2439aea92c89085d543850bf738c0660697413391b22",
+    "width": 996,
+    "height": 1579,
+    "mode": "RGB",
+    "bytes": 2572352,
+    "unchangedAfterProcessing": true
+  },
+  "processing": {
+    "crop": {
+      "box": [
+        0,
+        0,
+        996,
+        1557
+      ],
+      "bottomRowsRemoved": 22,
+      "otherRowsRemoved": 0,
+      "removedSourceRowsInclusive": [
+        1557,
+        1578
+      ],
+      "content": "Only lowest background rows below whole title ribbon and medallion; no internal cuts"
+    },
+    "padding": {
+      "top": 0,
+      "right": 0,
+      "bottom": 0,
+      "left": 0
+    },
+    "resize": {
+      "width": 707,
+      "height": 1121,
+      "resampling": "Pillow Image.Resampling.LANCZOS"
+    },
+    "jpeg": {
+      "quality": 85,
+      "subsampling": 0,
+      "optimize": true,
+      "progressive": false,
+      "chromaSampling": "4:4:4"
+    },
+    "color": {
+      "sourceMode": "RGB",
+      "outputMode": "RGB",
+      "colorCorrection": "none",
+      "contrastBrightnessSaturationSharpening": "none",
+      "sourceICCProfilePresent": false,
+      "iccProfileAdded": false
+    },
+    "ribbonOrTextRepositioning": false,
+    "internalSeams": false
+  },
+  "output": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/artisans_court-compressed.jpg",
+    "sha256": "939b9a98b48eb5c73d9c62c71fb7c64a02a2ba4902b08fc79fb6a5f7f678f234",
+    "format": "JPEG",
+    "width": 707,
+    "height": 1121,
+    "mode": "RGB",
+    "bytes": 292157
+  },
+  "qualitySelection": {
+    "rangeBytes": [
+      200000,
+      300000
+    ],
+    "highestIntegerQuality": 85,
+    "selectedBytes": 292157,
+    "nextQuality": 86,
+    "nextQualityBytes": 303349,
+    "allHigherQualityBytes": {
+      "86": 303349,
+      "87": 313169,
+      "88": 329242,
+      "89": 340732,
+      "90": 359992,
+      "91": 379340,
+      "92": 397247,
+      "93": 426083,
+      "94": 462747,
+      "95": 504173,
+      "96": 568636,
+      "97": 639874,
+      "98": 737090,
+      "99": 954564,
+      "100": 1164288
+    },
+    "allHigherExceedMaximum": true
+  },
+  "baseline": {
+    "coordinates": "zero-based y; top-left origin",
+    "targetRange": [
+      1074,
+      1075
+    ],
+    "source": {
+      "roi": [
+        280,
+        1420,
+        700,
+        1505
+      ],
+      "roiConvention": "[left, top, right-exclusive, bottom-exclusive]",
+      "threshold": "max(R,G,B) < 75",
+      "ordinaryLetterBottom": 1492,
+      "darkRowsFirst": 1426
+    },
+    "decodedFinalJpeg": {
+      "roi": [
+        200,
+        1015,
+        497,
+        1085
+      ],
+      "roiConvention": "[left, top, right-exclusive, bottom-exclusive]",
+      "threshold": "max(R,G,B) < 75",
+      "ordinaryLetterBottom": 1074,
+      "darkRowsFirst": 1027
+    },
+    "ordinaryLettersROI": "Covers ordinary letters in Ремесленный, excludes all descenders in двор and excludes lower ribbon shadow.",
+    "references": [
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "width": 707,
+        "height": 1121,
+        "measurement": {
+          "roi": [
+            240,
+            1020,
+            320,
+            1090
+          ],
+          "roiConvention": "[left, top, right-exclusive, bottom-exclusive]",
+          "threshold": "max(R,G,B) < 75",
+          "ordinaryLetterBottom": 1075,
+          "darkRowsFirst": 1024
+        }
+      },
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/harbor.jpg",
+        "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+        "width": 707,
+        "height": 1121,
+        "measurement": {
+          "roi": [
+            309,
+            1020,
+            375,
+            1090
+          ],
+          "roiConvention": "[left, top, right-exclusive, bottom-exclusive]",
+          "threshold": "max(R,G,B) < 75",
+          "ordinaryLetterBottom": 1075,
+          "darkRowsFirst": 1024
+        }
+      }
+    ],
+    "match": "Final ordinary-letter bottom y1074; originals y1075 under the same threshold."
+  },
+  "checks": {
+    "jpegDecoding": "PASS: Pillow full load",
+    "exactDimensions": "PASS: 707×1121",
+    "byteRange": "PASS: 292157 bytes",
+    "baseline": "PASS: actual decoded JPEG ordinary-letter bottom y1074",
+    "sourceHashUnchanged": "PASS",
+    "directPngProvenance": "PASS",
+    "byteForByteReproduction": "PASS: independently reopened PNG and applied recorded crop, resize and JPEG options, exact byte equality",
+    "allHigherQualitiesExceedMaximum": "PASS",
+    "visualInspection": "PASS: final JPEG and native-size three-card comparison viewed with tools.view_image. Text and lower card elements fully visible.",
+    "name": {
+      "result": "PASS",
+      "observed": "Ремесленный двор",
+      "fullTitleVisible": true,
+      "ordinaryLineAndDescendersUncut": true
+    },
+    "ability": {
+      "result": "PASS",
+      "observed": "В конце хода получите 1 золотой, если размер вашего города не увеличился",
+      "threeReadableLines": true,
+      "commaPreserved": true,
+      "noAddedFinalPeriod": true
+    },
+    "fourCoins": {
+      "result": "PASS",
+      "count": 4,
+      "allFourComplete": true
+    },
+    "purpleMedallionAndRibbon": "PASS: purple medallion, gold rim and complete lower ribbon visible; no clipping or internal seams.",
+    "readability": "PASS: full name and entire ability readable at 707×1121.",
+    "marginsAndClipping": "PASS: only bottom background rows y1557..1578 removed; whole medallion, ribbon and descenders lie above those rows. No top or side crop.",
+    "verificationMethod": "Ordinary glyph baseline measured by explicit ROI and pixel threshold; manual reading for exact title and ability."
+  },
+  "comparison": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/craftsmen-courtyard-v1-comparison.png",
+    "sha256": "0cf0c7373915e0c4466768d0892228676821d104cd928aacee708280fea23b85",
+    "width": 2201,
+    "height": 1177,
+    "cardsAtNativeSize": [
+      707,
+      1121
+    ],
+    "cardTopLefts": [
+      [
+        16,
+        40
+      ],
+      [
+        747,
+        40
+      ],
+      [
+        1478,
+        40
+      ]
+    ],
+    "commonGuide": {
+      "cardY": 1075,
+      "canvasY": 1115,
+      "rgb": [
+        255,
+        0,
+        170
+      ],
+      "width": 1
+    },
+    "purpose": "QA only; three native-size cards with common baseline guide; the JPEG asset has no guide."
+  },
+  "integration": "Not connected to catalog; no JS or catalog changes.",
+  "limitations": [
+    "Resampling and JPEG encoding change pixels; no exact source pixel preservation claimed. No color correction applied.",
+    "Ordinary-letter baseline uses explicit local glyph ROIs; descenders intentionally excluded."
+  ],
+  "technicalApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Ремесленный двор принимается",
+    "clarification": "Пользователь уточнил, что ответы на вопросы были перепутаны; замечания о шрифте/закате/POV относятся к Судейской палате."
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "status": "PASS",
+  "verified_at_utc": "2026-10-29T11:24:51.964090+00:00",
+  "count": 17,
+  "art_status": "accepted",
+  "technical_status": "accepted",
+  "checks": [
+    "all full decoded JPEG707x1121",
+    "all bytes in200000-300000",
+    "source PNG hashes preserved",
+    "original game JPGs match committed HEAD",
+    "exact JPEG bytes reproduced from PNG plus bottom crop and whole canvas resize",
+    "q+1 exceeds300000 for each card",
+    "ordinary glyph baseline probes remeasured on decoded JPEG at1074-1075",
+    "both technical overview sheets visually inspected"
+  ],
+  "cards": [
+    {
+      "id": "manor",
+      "source": "docs/assets/district-card-art/basic-upscales/manor-upscale-v1.png",
+      "output": "public/cards/manor-upscaled.jpg",
+      "bytes": 288882,
+      "sha256": "bafc270dbfe6d657477ca35b465bc8cc4af9812ecb6957545fdd4f696340c733",
+      "baseline_ys": [
+        1074
+      ],
+      "report": "technical-batch-yellow-green.json"
+    },
+    {
+      "id": "castle",
+      "source": "docs/assets/district-card-art/basic-upscales/castle-upscale-v1.png",
+      "output": "public/cards/castle-upscaled.jpg",
+      "bytes": 291647,
+      "sha256": "771757ce2a40a49c53c459cdad1e36f7a4b50acce3dddbb96ed582356f66ee68",
+      "baseline_ys": [
+        1074
+      ],
+      "report": "technical-batch-yellow-green.json"
+    },
+    {
+      "id": "palace",
+      "source": "docs/assets/district-card-art/basic-upscales/palace-upscale-v1.png",
+      "output": "public/cards/palace-upscaled.jpg",
+      "bytes": 285912,
+      "sha256": "1fd295d14521fabb9f4ee99a0e97de624d4ec150081a78d970128219eb39e58c",
+      "baseline_ys": [
+        1074
+      ],
+      "report": "technical-batch-yellow-green.json"
+    },
+    {
+      "id": "tavern",
+      "source": "docs/assets/district-card-art/basic-upscales/tavern-upscale-v1.png",
+      "output": "public/cards/tavern-upscaled.jpg",
+      "bytes": 299867,
+      "sha256": "a720fae59c9ffd85abb99a3474300fe7c6a75ce229981d934f2976280bf5529a",
+      "baseline_ys": [
+        1074
+      ],
+      "report": "technical-batch-yellow-green.json"
+    },
+    {
+      "id": "market",
+      "source": "docs/assets/district-card-art/basic-upscales/market-upscale-v1.png",
+      "output": "public/cards/market-upscaled.jpg",
+      "bytes": 288514,
+      "sha256": "edb70f0258fe49c8cb905d1c22f9e997eb34dc077649b65c87061389a259d77e",
+      "baseline_ys": [
+        1074
+      ],
+      "report": "technical-batch-yellow-green.json"
+    },
+    {
+      "id": "trading_post",
+      "source": "docs/assets/district-card-art/basic-upscales/trading_post-upscale-v1.png",
+      "output": "public/cards/trading_post-upscaled.jpg",
+      "bytes": 288548,
+      "sha256": "c8b85e9f50c76cb1b0ae195d523efea8175feff28596512e6f150c7322716919",
+      "baseline_ys": [
+        1074
+      ],
+      "report": "technical-batch-yellow-green.json"
+    },
+    {
+      "id": "docks",
+      "source": "docs/assets/district-card-art/basic-upscales/docks-upscale-v1.png",
+      "output": "public/cards/docks-upscaled.jpg",
+      "bytes": 287618,
+      "sha256": "e33ff26366e31a8a3f03a2fb615f16ad40dac057f9fb4c8d228b83acdb52efb0",
+      "baseline_ys": [
+        1074
+      ],
+      "report": "technical-batch-yellow-green.json"
+    },
+    {
+      "id": "harbor",
+      "source": "docs/assets/district-card-art/basic-upscales/harbor-upscale-v1.png",
+      "output": "public/cards/harbor-upscaled.jpg",
+      "bytes": 289245,
+      "sha256": "2378f4af9e30c4c4e4d04b6a3e65506cfb46c69db3600462c2b0a03b693ca27b",
+      "baseline_ys": [
+        1074
+      ],
+      "report": "technical-batch-yellow-green.json"
+    },
+    {
+      "id": "town_hall",
+      "source": "docs/assets/district-card-art/basic-upscales/town_hall-upscale-v1.png",
+      "output": "public/cards/town_hall-upscaled.jpg",
+      "bytes": 298535,
+      "sha256": "c70cb893459553d7c7c6268b7f2eeaad3c9ec844a3b53a0a8dc8c2ca272800b3",
+      "baseline_ys": [
+        1074
+      ],
+      "report": "technical-batch-yellow-green.json"
+    },
+    {
+      "id": "temple",
+      "source": "docs/assets/district-card-art/basic-upscales/temple-upscale-v1.png",
+      "output": "public/cards/temple-upscaled.jpg",
+      "bytes": 289858,
+      "sha256": "29d3e0c4be7cac520dc51a6d8726a2e5cfc6fe75c898c7514bb3b7c86a4576d5",
+      "baseline_ys": [
+        1074,
+        1074
+      ],
+      "report": "technical-batch-blue-red.json"
+    },
+    {
+      "id": "church",
+      "source": "docs/assets/district-card-art/basic-upscales/church-upscale-v1.png",
+      "output": "public/cards/church-upscaled.jpg",
+      "bytes": 296752,
+      "sha256": "c0f5dfb6b51ec50c98a93fab3799eb3940cc3626a5161c61056b9c36d702d08b",
+      "baseline_ys": [
+        1075,
+        1075,
+        1074
+      ],
+      "report": "technical-batch-blue-red.json"
+    },
+    {
+      "id": "monastery",
+      "source": "docs/assets/district-card-art/basic-upscales/monastery-upscale-v1.png",
+      "output": "public/cards/monastery-upscaled.jpg",
+      "bytes": 297603,
+      "sha256": "4946cdaee7f3eb23ff7fb0bbecef182fa26b6c85123f1594b697ca7d244d2777",
+      "baseline_ys": [
+        1075,
+        1075,
+        1074
+      ],
+      "report": "technical-batch-blue-red.json"
+    },
+    {
+      "id": "cathedral",
+      "source": "docs/assets/district-card-art/basic-upscales/cathedral-upscale-v1.png",
+      "output": "public/cards/cathedral-upscaled.jpg",
+      "bytes": 298064,
+      "sha256": "93375179b1970c476607e019e67b7c8ff371fc97f28e72fd69b60f510ab70e23",
+      "baseline_ys": [
+        1074,
+        1074,
+        1074
+      ],
+      "report": "technical-batch-blue-red.json"
+    },
+    {
+      "id": "watchtower",
+      "source": "docs/assets/district-card-art/basic-upscales/watchtower-upscale-v1.png",
+      "output": "public/cards/watchtower-upscaled.jpg",
+      "bytes": 288941,
+      "sha256": "6b99b95465f81ba7bcc541874eba5beac1cdc9c7e16e53f80ef4edaf48ba7daf",
+      "baseline_ys": [
+        1074,
+        1074,
+        1075
+      ],
+      "report": "technical-batch-blue-red.json"
+    },
+    {
+      "id": "prison",
+      "source": "docs/assets/district-card-art/basic-upscales/prison-upscale-v1.png",
+      "output": "public/cards/prison-upscaled.jpg",
+      "bytes": 298510,
+      "sha256": "2487392c82686f43b0c8bee1ef42ba160103ff0d78e09064cd964d2d68872a29",
+      "baseline_ys": [
+        1074,
+        1074,
+        1074
+      ],
+      "report": "technical-batch-blue-red.json"
+    },
+    {
+      "id": "barracks",
+      "source": "docs/assets/district-card-art/basic-upscales/barracks-upscale-v1.png",
+      "output": "public/cards/barracks-upscaled.jpg",
+      "bytes": 295029,
+      "sha256": "c44b94e634cb601681e981cbda2ed882b0aa3c9579bace114896b82f154b9a0f",
+      "baseline_ys": [
+        1074,
+        1074,
+        1074
+      ],
+      "report": "technical-batch-blue-red.json"
+    },
+    {
+      "id": "fortress",
+      "source": "docs/assets/district-card-art/basic-upscales/fortress-upscale-v1.png",
+      "output": "public/cards/fortress-upscaled.jpg",
+      "bytes": 282850,
+      "sha256": "00eae50dd387415d9f7b66c0b93a831d6e2885fda3eb744836d867764b94c6c6",
+      "baseline_ys": [
+        1074,
+        1074,
+        1074,
+        1074
+      ],
+      "report": "technical-batch-blue-red.json"
+    }
+  ],
+  "technical_approval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю все 17 JPEG"
+  }
+}

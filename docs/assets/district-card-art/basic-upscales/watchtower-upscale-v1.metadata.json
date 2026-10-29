@@ -1,0 +1,37 @@
+{
+  "id": "watchtower",
+  "name": "Дозорная башня",
+  "cost": 1,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/watchtower.jpg",
+  "text": "",
+  "qa": {
+    "name": "pass: exact source title",
+    "text": "pass: no ability text",
+    "coins": "pass: exactly 1",
+    "type": "pass: red district medallion",
+    "composition": "Two round battlement towers, archers/guards and black flag, bridge/gate, lit windows, river valley and mountains retained; masonry and small figures redrawn",
+    "color": "grey stone, subdued distant landscape and warm low sky retained; exact chroma reduction unmeasured"
+  },
+  "status": "artistic-approved",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-b0fd-7b70-b043-332aa2028b44/exec-d4afa38b-af5b-422a-be01-8992e754193d.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/watchtower-upscale-v1.png",
+  "size": {
+    "bytes": 2258010,
+    "width": 996,
+    "height": 1579
+  },
+  "sha256": "d6c68e2491ce3054c8aa0318dd32a7ad9d47daa72ec5990ca78dea20e3cd17a5",
+  "sourceSha256": "31eda240de58aa70d3dbf6c55bb681bbb4089fceeda9bd8deb591957ea8d7c35",
+  "limitations": [
+    "Generative restoration may reinterpret fine details.",
+    "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+    "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+  ],
+  "sourceTitleNote": "Printed source title preserved; differs from the catalog label.",
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю все 17, готовь JPEG"
+  }
+}

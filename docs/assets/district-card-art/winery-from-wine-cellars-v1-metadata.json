@@ -1,0 +1,73 @@
+{
+  "asset": "winery-from-wine-cellars-v1.png",
+  "status": "artistic-approved",
+  "createdDate": "2026-10-29",
+  "useCase": "text-localization",
+  "method": "Built-in image_gen.imagegen edit with referenced_image_paths",
+  "source": {
+    "path": "docs/assets/district-card-art/wine-cellars-v1.png",
+    "sha256": "b565468658aed4c955b777d5ff7d9a2291ab4fb3fe04f70431a19f8f194fce2c",
+    "width": 996,
+    "height": 1579,
+    "bytes": 2261849,
+    "approval": "User-approved illustration used as the sole edit target",
+    "unchangedAfterEdit": true
+  },
+  "generatorOutput": {
+    "path": "/Users/i.biryukov/.codex/generated_images/01a18748-e249-7e10-8a4e-b04339ba4df4/exec-ac2780ed-5e0f-4bd0-87ec-b25076281968.png",
+    "sha256": "8553e51604a97d39984ca9889e2056e6ba10bd05a0d7792f50afa83ffc2d02ae"
+  },
+  "output": {
+    "path": "docs/assets/district-card-art/winery-from-wine-cellars-v1.png",
+    "format": "PNG",
+    "width": 996,
+    "height": 1579,
+    "bytes": 2187995,
+    "sha256": "8553e51604a97d39984ca9889e2056e6ba10bd05a0d7792f50afa83ffc2d02ae",
+    "copiedByteForByteFromGenerator": true,
+    "technicalProcessing": "None: no resize, crop, recompression, JPEG conversion, or pixel editing"
+  },
+  "promptFile": "winery-from-wine-cellars-v1-prompt.txt",
+  "toolArguments": {
+    "referenced_image_paths": [
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/wine-cellars-v1.png"
+    ],
+    "transparent_background": false
+  },
+  "requestedEdit": {
+    "from": "Винные погреба",
+    "to": "Винодельня"
+  },
+  "preservedAbilityText": "После 5 завершений раунда даёт 3 дополнительных очка",
+  "checks": [
+    {
+      "method": "view_image visual inspection",
+      "result": "Bottom title reads «Винодельня» correctly."
+    },
+    {
+      "method": "view_image visual inspection",
+      "result": "Ability reads «После 5 завершений раунда даёт 3 дополнительных очка», retaining its three-line arrangement."
+    },
+    {
+      "method": "view_image visual inspection",
+      "result": "Three gold coins, purple medallion, bottom ribbon, parchment panel, wine-cellar scene, composition and warm palette remain visibly consistent with the approved source."
+    },
+    {
+      "method": "PNG IHDR header inspection",
+      "result": "Source and output both measure 996 × 1579 pixels."
+    },
+    {
+      "method": "SHA-256 and byte comparison",
+      "result": "Workspace PNG is byte-identical to generator output; approved source retains its expected SHA-256."
+    }
+  ],
+  "limitations": [
+    "Generative editing does not guarantee pixel-identical preservation outside the changed title. Visual consistency was inspected; no pixel-level identity is claimed.",
+    "Technical JPEG preparation was authorized separately after artistic approval; the card is not integrated into the game catalog."
+  ],
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю, готовь JPEG"
+  }
+}

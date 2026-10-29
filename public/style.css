@@ -405,11 +405,82 @@ body {
     background: url(./bg.jpg);
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     margin: 0;
     background-attachment: fixed;
     align-items: flex-start;
+}
+
+.background-settings {
+    border: 0;
+    padding: 0;
+    margin: 24px 0 0;
+    min-width: 0;
+}
+
+.background-settings legend {
+    width: 100%;
+    padding: 0;
+}
+
+.background-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 520px;
+    margin: 12px auto 0;
+}
+
+.background-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: #ffffffb3;
+    cursor: pointer;
+}
+
+.background-option.selected {
+    border-color: #77552d;
+    background: #fff6e5;
+}
+
+.background-option:focus-within {
+    outline: 2px solid #77552d;
+    outline-offset: 2px;
+}
+
+.background-preview {
+    position: relative;
+    width: 44%;
+    max-width: 160px;
+    flex-shrink: 0;
+}
+
+.background-preview img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 12 / 7;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.background-option input {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    margin: 0;
+    accent-color: #77552d;
+}
+
+.background-settings:disabled .background-option {
+    cursor: default;
+    opacity: .65;
 }
 
 .game {
@@ -1717,8 +1788,70 @@ button.inactive {
 
 /* New district faces use the shared catalog; existing district art stays unchanged. */
 .custom-district { background: #eee8d6; }
+/* One 2.6s storyboard: hold the Mirror, darken, dissolve, let the glints settle. */
+.mirror-transformation {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    overflow: hidden;
+    pointer-events: none;
+    animation: mirror-veil 2600ms linear var(--mirror-delay, 0ms) both;
+}
+.mirror-transformation > * {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    pointer-events: none;
+    animation-duration: 2600ms;
+    animation-delay: var(--mirror-delay, 0ms);
+    animation-timing-function: cubic-bezier(.55, .05, .72, .95);
+    animation-fill-mode: both;
+}
+.mirror-transformation-source {
+    object-fit: cover;
+    animation-name: mirror-source;
+}
+.mirror-transformation-dark {
+    background: radial-gradient(ellipse at 50% 40%, #121525a6, #080a14f2);
+    animation-name: mirror-dark;
+}
+.mirror-transformation-light {
+    background: radial-gradient(ellipse at 25% 35%, #d5ddff70, transparent 52%),
+        radial-gradient(ellipse at 80% 65%, #d5b27b66, transparent 48%),
+        linear-gradient(115deg, transparent 25%, #eef1ff55 48%, transparent 68%);
+    mix-blend-mode: screen;
+    animation-name: mirror-light;
+}
+.mirror-transformation ~ .card-zoom-button { z-index: 2; }
+.card-item.zoomed > .mirror-transformation { visibility: hidden; }
+@keyframes mirror-veil { from { opacity: 1; } to { opacity: 1; } }
+@keyframes mirror-source {
+    0%, 12% { opacity: 1; filter: brightness(1); }
+    38% { opacity: 1; filter: brightness(.65); }
+    76%, 100% { opacity: 0; filter: brightness(.5); }
+}
+@keyframes mirror-dark {
+    0%, 12% { opacity: 0; }
+    44% { opacity: .78; }
+    78% { opacity: .12; }
+    100% { opacity: 0; }
+}
+@keyframes mirror-light {
+    0%, 24% { opacity: 0; transform: translateX(-8%) scale(1.08); }
+    62% { opacity: .72; transform: translateX(3%) scale(1.04); }
+    88% { opacity: .16; transform: translateX(6%) scale(1.01); }
+    100% { opacity: 0; transform: translateX(7%) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .mirror-transformation { display: none; }
+    .mirror-transformation, .mirror-transformation > * { animation: none; }
+}
 .custom-district > .card-zoom-button { top: 24%; }
 .district-face { position: absolute; inset: 0; box-sizing: border-box; display: flex; flex-direction: column; align-items: stretch; border-radius: inherit; padding: 5%; background: #eee8d6; color: #292622; container-type: inline-size; overflow: hidden; }
+.district-face-full-card { display: block; width: 100%; height: 100%; padding: 0; object-fit: fill; }
 .district-face-heading { display: flex; align-items: flex-start; gap: 4%; flex: 0 0 19%; font-size: 10cqw; line-height: 1.05; }
 .district-face-heading strong { flex: 1; }
 .district-face-cost { flex: 0 0 18%; aspect-ratio: 1; display: grid; place-items: center; background: #e3b548; color: #291c05; border: 1px solid #9b701b; border-radius: 50%; font-size: 13cqw; }
@@ -1772,6 +1905,11 @@ button.inactive {
 .city-score-bonuses .city-score-row, .city-score-district-bonuses { margin-top: 5px; }
 .short-rules img { width: min(1000px, calc(100vw - 40px)); max-height: calc(100dvh - 65px); object-fit: contain; }
 .short-rules:focus-within img { display: block; }
+
+.flea-market-actions { top: auto; bottom: 100%; flex-wrap: wrap; gap: 8px; box-sizing: border-box; padding: 6px 8px; }
+.flea-market-actions > .status-text { position: static; flex-basis: 100%; order: -1; margin: 0 0 4px; box-sizing: border-box; text-align: center; }
+.flea-market-actions > button { max-width: 100%; }
+.flea-market-actions > button:before { display: none; }
 
 .mirror-copy-actions { top: auto; bottom: 100%; flex-wrap: wrap; row-gap: 8px; }
 .mirror-copy-actions > .status-text { position: static; flex-basis: 100%; order: -1; margin: 0 8px 4px; box-sizing: border-box; text-align: center; }

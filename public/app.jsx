@@ -87,6 +87,8 @@ class Spectators extends React.Component {
 }
 
 function DistrictFace({district, inHand = false}) {
+    if (district.fullCardImage)
+        return <img className="district-face district-face-full-card" src={district.image} alt={district.name}/>;
     const typeNames = {4: "Дворянский", 5: "Церковный", 6: "Торговый", 8: "Воинский", 9: "Особый"};
     return <div className={"district-face district-face-kind-" + district.type}>
         <div className="district-face-heading"><strong>{district.name}</strong><span className="district-face-cost" title={inHand ? undefined : "Номинальная стоимость"}>{district.cost}</span></div>
@@ -125,6 +127,18 @@ class Card extends React.Component {
             }});
         });
     }
+    renderMirrorTransformation(animation, instanceId) {
+        if (!animation) return null;
+        return <div className="mirror-transformation" aria-hidden="true"
+                    onAnimationEnd={event => {
+                        if (event.target === event.currentTarget && event.animationName === "mirror-veil")
+                            this.props.game.finishMirrorAnimation(instanceId);
+                    }}>
+            <img className="mirror-transformation-source" src="/citadels/cards/mirror_hall-compressed.jpg" alt=""/>
+            <div className="mirror-transformation-dark"/>
+            <div className="mirror-transformation-light"/>
+        </div>;
+    }
     render() {
         const
             game = this.props.game,
@@ -154,6 +168,7 @@ class Card extends React.Component {
             isSecretVault = card.type === "secret_vault",
             decorationCount = card.decoration === true ? 1 : (card.decoration || 0);
         const sourceSelected = this.props.play && this.props.slot === data.userSlot && data.districtSource === this.props.id;
+        const mirrorAnimation = this.props.play && data.mirrorAnimations && data.mirrorAnimations[card.instanceId];
         const theaterSelected = this.props.play && data.phase === 1.5 && this.props.slot === data.currentPlayer
             && data.theaterAction && data.theaterAction.sourceIndex === this.props.id;
         const activeAssignment = this.props.play && (data.conspiratorEffects || []).some(effect =>
@@ -204,6 +219,7 @@ class Card extends React.Component {
                 "witched-state": !isGallery && !isToken && data.witchedstate === 1 && originalCard === data.witched
             })}
                  style={{backgroundImage}}
+                 data-mirror-start={mirrorAnimation ? mirrorAnimation.startedAt : undefined}
                  aria-label={district ? district.name : undefined}
                  title={this.props.inHand ? game.getHandBuildHint(this.props.id) : undefined}
                  onMouseMove={!this.props.inHand && hints.length ? event => this.moveHint(event) : undefined}
@@ -212,12 +228,14 @@ class Card extends React.Component {
                  onTouchStart={(e) => card !== "0_1" ? game.handleCardPress(e) : null}
                  onClick={(e) => game.handleCardClick(e, this.props.onClick)}>
                 {customFace ? <DistrictFace district={district} inHand={this.props.inHand}/> : null}
+                {this.renderMirrorTransformation(mirrorAnimation, card.instanceId)}
                 {card !== "0_1" ? (<div className="card-zoom-button material-icons"
                                         onMouseDown={(e) => game.handleCardZoomClick(e)}
                                         onTouchStart={(e) => game.handleCardZoomClick(e)}>search</div>) : ""}
                 {card !== "0_1" ? (<div className={`card-item-zoomed`}
                                         style={{backgroundImage: backgroundImageZoomed}}>
                     {customFace ? <DistrictFace district={district} inHand={this.props.inHand}/> : null}
+                    {this.renderMirrorTransformation(mirrorAnimation, card.instanceId)}
                     {markers}
                 </div>) : ""}
                 {markers}
@@ -365,7 +383,7 @@ class PlayerSlot extends React.Component {
                     <div className="districts-bg"/>
                     <div className='cards-list'>
                         {districts && districts.map((card, id) => (
-                            <Card key={id} id={id} card={card} type="card" game={game} slot={slot} play={true}
+                            <Card key={card.instanceId || id} id={id} card={card} type="card" game={game} slot={slot} play={true}
                                   onClick={card.scoreOnly ? undefined : () => game.handleClickBuilding(slot, id)}/>
                         ))}
                     </div>
@@ -483,11 +501,14 @@ class CreateGamePanel extends React.Component {
     constructor(props) {
         super(props);
         this.draftStore = CitadelsSetup.createDraftStore(() => window.sessionStorage, props.data.userId);
+        this.backgroundStore = CitadelsSetup.createBackgroundStore(() => window.sessionStorage, props.data.userId);
         const draft = !props.galleryMode && props.data.phase === 0 && props.data.userId === props.data.hostId
             ? this.draftStore.read(props.game && props.game.roomId) : null;
         const saved = !props.galleryMode && (draft ? draft.setup
             : CitadelsSetup.getDefaultSetup(props.data.playerSlots.filter(slot => slot !== null).length));
         this.state = {
+            backgroundId: !props.galleryMode && props.data.phase === 0 && props.data.userId === props.data.hostId
+                ? this.backgroundStore.read(props.game && props.game.roomId) : "standard",
             basicCounts: CitadelsSetup.normalizeBasicCounts(saved ? saved.districts.basic : undefined),
             starting: CitadelsSetup.normalizeStarting(saved ? saved.starting : undefined),
             rules: CitadelsSetup.normalizeRules(saved ? saved.rules : undefined),
@@ -557,6 +578,14 @@ class CreateGamePanel extends React.Component {
             rules: this.state.rules,
             metadata: Object.assign({}, this.state.setupMetadata, {presetId: this.state.presetSelected || null})
         });
+    }
+
+    handleBackgroundChange(backgroundId) {
+        if (!this.canEditSetup() || this.props.data.setupPending || this.state.importPending)
+            return;
+        backgroundId = CitadelsSetup.normalizeBackgroundId(backgroundId);
+        this.backgroundStore.write(this.props.game && this.props.game.roomId, backgroundId);
+        this.setState({backgroundId});
     }
 
     getSelectableDistricts() {
@@ -1402,6 +1431,21 @@ class CreateGamePanel extends React.Component {
                                    onChange={(evt) => this.handleTimerDurationChange("responseDurationMs", evt.target.value)}/>
                         </div>
                     </div> : ""}
+                    {!galleryMode ? <fieldset className="background-settings" disabled={setupBusy}>
+                        <legend className="create-game-subtitle">Фон партии</legend>
+                        <div className="background-options">
+                            {Object.entries(CitadelsSetup.backgrounds).map(([id, background]) =>
+                                <label key={id} className={cs("background-option", {selected: this.state.backgroundId === id})}>
+                                    <span className="background-preview">
+                                        <img src={background.thumbnail} alt="" width="240" height="140" loading="lazy" decoding="async"/>
+                                        <input type="radio" name="party-background" value={id}
+                                            checked={this.state.backgroundId === id}
+                                            onChange={() => this.handleBackgroundChange(id)}/>
+                                    </span>
+                                    <span>{background.name}</span>
+                                </label>)}
+                        </div>
+                    </fieldset> : null}
                 </div>
                 <div className="setup-footer">
                 {!galleryMode && setupErrors.length ? <div className="setup-error" role="alert">
@@ -1415,7 +1459,7 @@ class CreateGamePanel extends React.Component {
                         className={cs({inactive: this.state.creatorMode || !!setupErrors.length || setupBusy})}
                         onClick={() => !this.state.creatorMode && !setupErrors.length && !setupBusy && game.handleClickCreateGame(
                             setup.characters, setup.districts.unique, this.state.presetSelected, setup.timer, setup.districts.basic,
-                            {starting: setup.starting, rules: setup.rules})}>
+                            {starting: setup.starting, rules: setup.rules, backgroundId: this.state.backgroundId})}>
                         {data.setupPending ? "Создание…" : "Создать"}
                     </button> : ""}
                 </div>
@@ -1578,7 +1622,7 @@ function DistrictActions({game, data}) {
     const city = data.playerDistricts[data.userSlot] || [];
     const gold = data.playerGold[data.userSlot] || 0;
     const hand = data.player.hand || [];
-    const sourceTypes = ["framework", "museum", "laboratory", "arsenal", "forgery", "architects_workshop", "conspirators_house", "divination_tower", "judicial_chamber"];
+    const sourceTypes = ["framework", "museum", "laboratory", "arsenal", "forgery", "architects_workshop", "conspirators_house", "divination_tower", "judicial_chamber", "flea_market"];
     return <>{city.map((card, sourceIndex) => {
         if (!sourceTypes.includes(card.type) || (card.type === "judicial_chamber" && card.judicialUsed)) return null;
         const used = data.turnId != null && card.actionsUsed && card.actionsUsed[card.type] === data.turnId;
@@ -1590,11 +1634,14 @@ function DistrictActions({game, data}) {
         if (card.type === "divination_tower" && !data.districtDeckCount) unavailable = true;
         if (card.type === "conspirators_house" && data.playerSlots.filter(slot => slot !== null).length < 4) unavailable = true;
         if (unavailable) return null;
+        const emptyFleaMarket = card.type === "flea_market" && !hand.length;
         const price = card.type === "forgery" ? " · 2 золота" : card.type === "architects_workshop" ? " · 3 золота" : "";
-        return <button key={sourceIndex}
+        return <button key={sourceIndex} disabled={emptyFleaMarket}
+            title={emptyFleaMarket ? "Для обмена нужна хотя бы одна карта в руке" : undefined}
             onClick={() => game.handleDistrictAction(card.type, sourceIndex)}>
             {CitadelsSetup.districts[card.type].name}{city.filter(item => item.type === card.type).length > 1 ? " (" + (city.slice(0, sourceIndex + 1).filter(item => item.type === card.type).length) + ")" : ""}{price}
             {card.type === "museum" ? " · экспозиция " + (card.exposition || []).length : ""}
+            {emptyFleaMarket ? " · нет карт в руке" : ""}
         </button>;
     })}</>;
 }
@@ -1605,8 +1652,14 @@ class Game extends React.Component {
         this.gameName = "citadels";
         const initArgs = CommonRoom.roomInit(this);
         this.initSounds();
+        if (typeof Image !== "undefined") {
+            this.mirrorArt = new Image();
+            this.mirrorArt.src = "/citadels/cards/mirror_hall-compressed.jpg";
+        }
         this.socket.on("game-setup", (gameSetup) => {
-            this.setState({gameSetup});
+            this.clearMirrorAnimations();
+            this.seenMirrorBuilds.clear();
+            this.setState({gameSetup, mirrorAnimations: {}});
         });
         this.socket.on("state", (state) => {
             CommonRoom.processCommonRoom(state, this.state, {
@@ -1624,12 +1677,19 @@ class Game extends React.Component {
                 serverReceivedAt: Date.now(),
                 sound: null
             }, state);
+            delete nextState.mirrorBuild;
+            nextState.mirrorAnimations = this.receiveMirrorBuild(state);
             if (state.phase !== 0 || nextState.userId !== nextState.hostId) {
                 nextState.showCreateGamePanel = false;
                 nextState.setupPending = false;
                 nextState.setupError = null;
             }
             this.resetLocalActionIfStale(nextState);
+            const backgroundId = CitadelsSetup.normalizeBackgroundId(state.backgroundId);
+            if (this.backgroundId !== backgroundId && document.body) {
+                document.body.style.backgroundImage = 'url("' + CitadelsSetup.backgrounds[backgroundId].image + '")';
+                this.backgroundId = backgroundId;
+            }
             this.setState(nextState);
         });
         this.socket.on("setup-error", (message) => {
@@ -1654,7 +1714,9 @@ class Game extends React.Component {
             popup.alert({content: text});
         })
         window.socket.on("disconnect", (event) => {
+            this.clearMirrorAnimations();
             this.setState({
+                mirrorAnimations: {},
                 inited: false,
                 disconnected: true,
                 disconnectReason: event.reason
@@ -1662,6 +1724,47 @@ class Game extends React.Component {
         });
         document.title = `Citadels - ${initArgs.roomId}`;
         this.socket.emit("init", initArgs);
+    }
+
+    receiveMirrorBuild(state) {
+        const active = Object.assign({}, this.state.mirrorAnimations);
+        for (const [id, animation] of Object.entries(active)) {
+            if (state.phase === 0 || state.winnerPlayer != null
+                || !(state.playerDistricts && state.playerDistricts[animation.slot] || []).some(card => card.instanceId === id)) {
+                clearTimeout(this.mirrorAnimationTimers.get(id));
+                this.mirrorAnimationTimers.delete(id);
+                delete active[id];
+            }
+        }
+        const event = state.mirrorBuild;
+        if (!event || typeof event.instanceId !== "string" || this.seenMirrorBuilds.has(event.instanceId)) return active;
+        this.seenMirrorBuilds.add(event.instanceId);
+        if (state.phase === 0 || state.winnerPlayer != null
+            || !(state.playerDistricts && state.playerDistricts[event.slot] || []).some(card => card.instanceId === event.instanceId)
+            || (typeof window !== "undefined" && window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches)) return active;
+        active[event.instanceId] = {slot: event.slot, startedAt: Date.now()};
+        // Fallback for hidden tabs, removed surfaces and interrupted CSS animations.
+        this.mirrorAnimationTimers.set(event.instanceId, setTimeout(() => this.finishMirrorAnimation(event.instanceId), 2700));
+        return active;
+    }
+
+    finishMirrorAnimation(instanceId) {
+        clearTimeout(this.mirrorAnimationTimers.get(instanceId));
+        this.mirrorAnimationTimers.delete(instanceId);
+        this.setState(previous => {
+            const mirrorAnimations = Object.assign({}, previous.mirrorAnimations);
+            delete mirrorAnimations[instanceId];
+            return {mirrorAnimations};
+        });
+    }
+
+    clearMirrorAnimations() {
+        for (const timer of this.mirrorAnimationTimers.values()) clearTimeout(timer);
+        this.mirrorAnimationTimers.clear();
+    }
+
+    componentWillUnmount() {
+        this.clearMirrorAnimations();
     }
 
     resetLocalActionIfStale(state) {
@@ -1676,9 +1779,12 @@ class Game extends React.Component {
                 state.buildTarget = null;
                 state.districtSource = null;
                 state.mirrorTarget = null;
+                state.fleaMarketContext = null;
             };
         if (!hasLocalSelection)
             return;
+        if (state.userAction === "flea_market" && !this.isFleaMarketSelectionCurrent(state))
+            return resetLocalSelection();
         if (state.mirrorTarget && this.state.player && state.player
             && JSON.stringify(this.state.player.hand) !== JSON.stringify(state.player.hand))
             return resetLocalSelection();
@@ -1703,7 +1809,10 @@ class Game extends React.Component {
 
     constructor() {
         super();
+        this.seenMirrorBuilds = new Set();
+        this.mirrorAnimationTimers = new Map();
         this.state = {
+            mirrorAnimations: {},
             inited: false,
             userAction: null,
             cardChosen: [],
@@ -1795,6 +1904,15 @@ class Game extends React.Component {
     }
 
     handleClickHandCard(cardInd, forGold) {
+        if (this.state.userAction === "flea_market") {
+            if (!this.isFleaMarketSelectionCurrent()) return this.handleStopUserAction();
+            if (!Number.isInteger(cardInd) || !this.state.player.hand[cardInd]) return;
+            const selected = this.state.cardChosen[0] === cardInd;
+            this.setState({cardChosen: selected ? [] : [cardInd], fleaMarketContext: Object.assign({}, this.state.fleaMarketContext, {
+                selectedCard: selected ? null : JSON.stringify(this.state.player.hand[cardInd])
+            })});
+            return;
+        }
         if (this.state.userAction === "mirror_hall" && this.state.buildTarget === cardInd)
             return this.handleStopUserAction();
         if (this.isHandBuildTargetBlocked(cardInd)) return;
@@ -1992,6 +2110,8 @@ class Game extends React.Component {
     }
 
     getHandBuildHint(index) {
+        if (this.state.userAction === "flea_market")
+            return this.state.cardChosen.includes(index) ? "Карта выбрана для обмена Барахолкой" : "Выберите эту карту для обмена Барахолкой";
         const {cost, reason} = this.getHandBuildStatus(index);
         return reason || "Стоимость постройки: " + cost;
     }
@@ -2103,16 +2223,50 @@ class Game extends React.Component {
         this.socket.emit('theater-action', slot)
     }
 
-    canUseDistrictActions() {
-        const data = this.state;
+    canUseDistrictActions(data = this.state) {
         return data.phase === 2 && data.currentPlayer === data.userSlot && !!data.player
             && !(data.witched === data.currentCharacter && data.witchedstate === 2)
             && !(data.blackmailed || []).includes(data.currentCharacter)
             && !["magistrate-open", "seer-return", "blackmailed-response", "blackmailed-open", "emperor-nores-action"].includes(data.player.action);
     }
 
+    canUseFleaMarket(sourceIndex, data = this.state) {
+        const source = data.playerDistricts && data.playerDistricts[data.userSlot] && data.playerDistricts[data.userSlot][sourceIndex];
+        return this.canUseDistrictActions(data) && data.winnerPlayer == null && Number.isInteger(sourceIndex)
+            && !!source && source.type === "flea_market" && !!(data.player.hand && data.player.hand.length)
+            && !(data.turnId != null && source.actionsUsed && source.actionsUsed.flea_market === data.turnId);
+    }
+
+    isFleaMarketSelectionCurrent(data = this.state) {
+        const context = data.fleaMarketContext;
+        if (!context || !this.canUseFleaMarket(data.districtSource, data)) return false;
+        const selected = data.cardChosen[0];
+        return context.turnId === data.turnId && context.userSlot === data.userSlot && context.sourceIndex === data.districtSource
+            && context.source === JSON.stringify(data.playerDistricts[data.userSlot][data.districtSource])
+            && context.hand === JSON.stringify(data.player.hand)
+            && (!data.cardChosen.length || (data.cardChosen.length === 1 && Number.isInteger(selected)
+                && !!data.player.hand[selected] && context.selectedCard === JSON.stringify(data.player.hand[selected])));
+    }
+
+    handleFleaMarketExchange() {
+        if (this.state.userAction !== "flea_market") return;
+        if (!this.isFleaMarketSelectionCurrent()) return this.handleStopUserAction();
+        if (this.state.cardChosen.length !== 1) return;
+        this.socket.emit("flea-market-action", this.state.cardChosen[0], this.state.districtSource);
+        this.handleStopUserAction();
+    }
+
     handleDistrictAction(type, sourceIndex) {
         if (!this.canUseDistrictActions()) return;
+        if (type === "flea_market") {
+            if (!this.canUseFleaMarket(sourceIndex)) return;
+            this.setUserAction(type, {districtSource: sourceIndex, fleaMarketContext: {
+                turnId: this.state.turnId, userSlot: this.state.userSlot, sourceIndex,
+                source: JSON.stringify(this.state.playerDistricts[this.state.userSlot][sourceIndex]),
+                hand: JSON.stringify(this.state.player.hand), selectedCard: null
+            }});
+            return;
+        }
         if (["framework", "museum", "laboratory", "arsenal", "conspirators_house"].includes(type)) {
             this.setUserAction(type, {districtSource: sourceIndex});
         } else {
@@ -2182,6 +2336,7 @@ class Game extends React.Component {
             playerChosen: null,
             buildTarget: null,
             districtSource: null,
+            fleaMarketContext: null,
             mirrorTarget: null,
         }, params));
     }
@@ -2193,6 +2348,7 @@ class Game extends React.Component {
             playerChosen: null,
             buildTarget: null,
             districtSource: null,
+            fleaMarketContext: null,
             mirrorTarget: null
         }));
     }
@@ -2298,6 +2454,10 @@ class Game extends React.Component {
             this.zoomed.classList.remove("zoomed");
             this.zoomed = null;
         } else if (node) {
+            const startedAt = Number(node.dataset.mirrorStart);
+            const zoom = node.querySelector(".card-item-zoomed");
+            if (startedAt && zoom)
+                zoom.style.setProperty("--mirror-delay", -Math.min(2600, Date.now() - startedAt) + "ms");
             node.classList.add("zoomed");
             this.zoomed = node;
         }
@@ -2410,6 +2570,7 @@ class Game extends React.Component {
                     framework: "Выберите карту для постройки",
                     museum: "Выберите карту для музея",
                     laboratory: "Выберите карту для сброса Лабораторией",
+                    flea_market: "Выберите одну карту из руки для обмена Барахолкой",
                     mirror_hall: "Выберите квартал для копирования",
                     conspirators_house: "Тайно выберите персонажа для сброса в следующем раунде",
                     necropolis: "Вы можете выбрать квартал для разрушения",
@@ -2655,9 +2816,11 @@ class Game extends React.Component {
                                     : null}
                                 {data.userAction ?
                                     <div>
-                                        <div className={cs("action-button", {"mirror-copy-actions": data.userAction === "mirror_hall"})}>
+                                        <div className={cs("action-button", {"mirror-copy-actions": data.userAction === "mirror_hall", "flea-market-actions": data.userAction === "flea_market"})}>
                                             <button onClick={() => this.handleStopUserAction()}>Отмена действия</button>
                                             <p className="status-text">{userActionText}</p>
+                                            {data.userAction === "flea_market" ? <button disabled={data.cardChosen.length !== 1}
+                                                onClick={() => this.handleFleaMarketExchange()}>Сбросить и взять карту</button> : null}
                                             {(magicianAction || denOfThievesAction)
                                                 ? <button
                                                     onClick={() => this.handleApplyAction(data.userSlot, data.cardChosen)}>

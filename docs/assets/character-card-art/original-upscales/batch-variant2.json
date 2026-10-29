@@ -1,0 +1,354 @@
+[
+  {
+    "id": "1_2",
+    "name": "Ведьма",
+    "rank": 1,
+    "original_text": "Получите ресурсы и назовите персонажа, которого вы желаете заколдовать, затем передайте ход дальше. После того, как заколдованный персонаж получит ресурсы, продолжите свой ход вместо него, словно вы и есть этот персонаж.",
+    "specific": "Hunched elderly witch, long hooked nose and white curling hair, burgundy-pink hood and tattered robe, tooth necklace, hand at chest and right hand resting on twisted wooden staff; gray interior with hanging containers, bird cage at upper right and chest at lower right. Preserve age, unkind tired expression, hand positions and clothing.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/1_2.jpg",
+    "prompt": "Use case: precise-object-edit. Asset: complete Russian Citadels Deluxe CHARACTER game card.\nEDIT the single original card provided as the ONLY edit target and reference. Faithful artistic upscale/restoration: remove scan blur and JPEG artifacts, restore sharp painterly brush texture and readable native typography in the original traditional illustration style. Preserve the exact identity, face, sex, age, expression, body and hand pose, costume, props, all existing background objects, perspective, composition, original card proportions and full edge-to-edge rectangle. Preserve title banner, rank badge, bottom parchment scroll, every symbol, separator and layout. Do not crop, pad, add borders or external margins. Do not redesign.\nColor: approximately 10% less intense than the original, restrained soft contrast; same palette family, light levels and shadow atmosphere. Do not strengthen golden glow or highlights. No photorealism, 3D, HDR, hyperrealism or oversharpening.\nThis is a CHARACTER card: add no district coins or color medallions, new objects, characters, decorative fields, watermarks or text.\nText: render every Russian word and punctuation verbatim, preserve ё, numbers and original bold/italic emphasis and paragraph count. Reflow minimally only to fit the original same bottom parchment region. Keep exact native decorative serif typography; no translation or paraphrase.\nCard-specific visual invariants: Hunched elderly witch, long hooked nose and white curling hair, burgundy-pink hood and tattered robe, tooth necklace, hand at chest and right hand resting on twisted wooden staff; gray interior with hanging containers, bird cage at upper right and chest at lower right. Preserve age, unkind tired expression, hand positions and clothing.\nExact rank badge: 1.\nExact title: «Ведьма».\nExact ability text (1 paragraph):\nПолучите ресурсы и назовите персонажа, которого вы желаете заколдовать, затем передайте ход дальше. После того, как заколдованный персонаж получит ресурсы, продолжите свой ход вместо него, словно вы и есть этот персонаж.",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876b-e4d3-70a2-8058-4c5b40abb5bf/exec-096fef5a-2277-409e-ad71-ce78fc2197b2.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/1_2-upscale-v1.png",
+    "sourceSha256": "2fd0bb16caafd2160921522525b3105f2c5d3c5408e79f1c5d8561d5e5673743",
+    "sha256": "365fbd12885d51957b0fb57d438d2255875de0624362dc34abb1fb8657a8b7bd",
+    "size": {
+      "bytes": 2218511,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact source title visually checked",
+      "rank": "pass: exact source rank visually checked",
+      "text": "pass: each word, ё, numbers, punctuation and paragraph count visually compared to source",
+      "composition": "pass: major pose, costume, props and background retained; fine details generatively reinterpreted",
+      "identity": "pass: face, sex, age and expression retained with painterly reinterpretation",
+      "color": "same palette and restrained contrast; exact 10% reduction unmeasured",
+      "layout": "pass: complete card, original title/rank/ability regions and separators retained"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration can reinterpret fine details and face nuances.",
+      "Approximately 10% lower color intensity is a prompt target, not a measured guarantee.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding, compression or game asset replacement."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "2_2",
+    "name": "Шантажистка",
+    "rank": 2,
+    "original_text": "Положите обличающие письма лицевой стороной вниз на разные жетоны персонажей. Персонаж, желающий избавиться от жетона обличающего письма, может откупиться от вас (половиной своего золота, округляя вниз). Если вы перевернёте письмо с цветком, заберите всё золото этого персонажа.",
+    "specific": "Young adult woman with short dark curled hair and green side veil and gold forehead band, green formal dress, pearl necklace and gold pendant, holding pale cloth embroidered with a red rose in her right hand; draped gray curtains and pale pink interior. Preserve face, sideways glance, dress silhouette and rose embroidery.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/2_2.jpg",
+    "prompt": "Use case: precise-object-edit. Asset: complete Russian Citadels Deluxe CHARACTER game card.\nEDIT the single original card provided as the ONLY edit target and reference. Faithful artistic upscale/restoration: remove scan blur and JPEG artifacts, restore sharp painterly brush texture and readable native typography in the original traditional illustration style. Preserve the exact identity, face, sex, age, expression, body and hand pose, costume, props, all existing background objects, perspective, composition, original card proportions and full edge-to-edge rectangle. Preserve title banner, rank badge, bottom parchment scroll, every symbol, separator and layout. Do not crop, pad, add borders or external margins. Do not redesign.\nColor: approximately 10% less intense than the original, restrained soft contrast; same palette family, light levels and shadow atmosphere. Do not strengthen golden glow or highlights. No photorealism, 3D, HDR, hyperrealism or oversharpening.\nThis is a CHARACTER card: add no district coins or color medallions, new objects, characters, decorative fields, watermarks or text.\nText: render every Russian word and punctuation verbatim, preserve ё, numbers and original bold/italic emphasis and paragraph count. Reflow minimally only to fit the original same bottom parchment region. Keep exact native decorative serif typography; no translation or paraphrase.\nCard-specific visual invariants: Young adult woman with short dark curled hair and green side veil and gold forehead band, green formal dress, pearl necklace and gold pendant, holding pale cloth embroidered with a red rose in her right hand; draped gray curtains and pale pink interior. Preserve face, sideways glance, dress silhouette and rose embroidery.\nExact rank badge: 2.\nExact title: «Шантажистка».\nExact ability text (1 paragraph):\nПоложите обличающие письма лицевой стороной вниз на разные жетоны персонажей. Персонаж, желающий избавиться от жетона обличающего письма, может откупиться от вас (половиной своего золота, округляя вниз). Если вы перевернёте письмо с цветком, заберите всё золото этого персонажа.",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876b-e4d3-70a2-8058-4c5b40abb5bf/exec-5e9268c2-e540-4618-b8c7-b755438b1c5c.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/2_2-upscale-v1.png",
+    "sourceSha256": "121a831fc73711bf307334af1583917eaccac9d862b038753d49fad8be1af467",
+    "sha256": "4483c0b350904bb610ea0573562e2bd7c0d04714662b6dfef424b01f45449701",
+    "size": {
+      "bytes": 2244497,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact source title visually checked",
+      "rank": "pass: exact source rank visually checked",
+      "text": "pass: each word, ё, numbers, punctuation and paragraph count visually compared to source",
+      "composition": "pass: major pose, costume, props and background retained; fine details generatively reinterpreted",
+      "identity": "pass: face, sex, age and expression retained with painterly reinterpretation",
+      "color": "same palette and restrained contrast; exact 10% reduction unmeasured",
+      "layout": "pass: complete card, original title/rank/ability regions and separators retained"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration can reinterpret fine details and face nuances.",
+      "Approximately 10% lower color intensity is a prompt target, not a measured guarantee.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding, compression or game asset replacement."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "3_2",
+    "name": "Волшебник",
+    "rank": 3,
+    "original_text": "Посмотрите карты на руке другого игрока и выберите 1 из них. Либо заплатите её стоимость в банк и немедленно постройте её, либо заберите себе на руку.\n\nВы можете строить одинаковые кварталы.",
+    "specific": "Elderly man with receding white hair, white beard and orange robe with cream lining and ornament, smoking a bent brown pipe with white smoke, right hand gripping twisted dragon-shaped wooden staff, left palm open below small cross-shaped golden light, dark archway and gray background. Preserve masculine face, age, small light and staff form; do not intensify glow. Preserve the fine horizontal divider between the two ability paragraphs.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/3_2.jpg",
+    "prompt": "Use case: precise-object-edit. Asset: complete Russian Citadels Deluxe CHARACTER game card.\nEDIT the single original card provided as the ONLY edit target and reference. Faithful artistic upscale/restoration: remove scan blur and JPEG artifacts, restore sharp painterly brush texture and readable native typography in the original traditional illustration style. Preserve the exact identity, face, sex, age, expression, body and hand pose, costume, props, all existing background objects, perspective, composition, original card proportions and full edge-to-edge rectangle. Preserve title banner, rank badge, bottom parchment scroll, every symbol, separator and layout. Do not crop, pad, add borders or external margins. Do not redesign.\nColor: approximately 10% less intense than the original, restrained soft contrast; same palette family, light levels and shadow atmosphere. Do not strengthen golden glow or highlights. No photorealism, 3D, HDR, hyperrealism or oversharpening.\nThis is a CHARACTER card: add no district coins or color medallions, new objects, characters, decorative fields, watermarks or text.\nText: render every Russian word and punctuation verbatim, preserve ё, numbers and original bold/italic emphasis and paragraph count. Reflow minimally only to fit the original same bottom parchment region. Keep exact native decorative serif typography; no translation or paraphrase.\nCard-specific visual invariants: Elderly man with receding white hair, white beard and orange robe with cream lining and ornament, smoking a bent brown pipe with white smoke, right hand gripping twisted dragon-shaped wooden staff, left palm open below small cross-shaped golden light, dark archway and gray background. Preserve masculine face, age, small light and staff form; do not intensify glow. Preserve the fine horizontal divider between the two ability paragraphs.\nExact rank badge: 3.\nExact title: «Волшебник».\nExact ability text (2 paragraphs separated by the original horizontal ornament):\nПосмотрите карты на руке другого игрока и выберите 1 из них. Либо заплатите её стоимость в банк и немедленно постройте её, либо заберите себе на руку.\n\nВы можете строить одинаковые кварталы.",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876b-e4d3-70a2-8058-4c5b40abb5bf/exec-f4d82ae8-5b20-4631-a56f-1b6ec3e6e8eb.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/3_2-upscale-v1.png",
+    "sourceSha256": "9f85846ab22040d3c83c9ebad7333c2d5528231e38e88a682279ec53bb53e67c",
+    "sha256": "6270da079fb3492e39e02b131602aa8279b07b0143af1ad986f5730191f9ee58",
+    "size": {
+      "bytes": 2218573,
+      "width": 951,
+      "height": 1654
+    },
+    "qa": {
+      "name": "pass: exact source title visually checked",
+      "rank": "pass: exact source rank visually checked",
+      "text": "pass: each word, ё, numbers, punctuation and paragraph count visually compared to source",
+      "composition": "pass: major pose, costume, props and background retained; fine details generatively reinterpreted",
+      "identity": "pass: face, sex, age and expression retained with painterly reinterpretation",
+      "color": "same palette and restrained contrast; exact 10% reduction unmeasured",
+      "layout": "pass: complete card, original title/rank/ability regions and separators retained"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration can reinterpret fine details and face nuances.",
+      "Approximately 10% lower color intensity is a prompt target, not a measured guarantee.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding, compression or game asset replacement."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "4_2",
+    "name": "Император",
+    "rank": 4,
+    "original_text": "Отдайте корону другому игроку и заберите у него либо 1 золотой, либо 1 карту из руки.\n\nПолучите 1 золотой за каждый ваш дворянский квартал.",
+    "specific": "Dark-skinned adult man with short black hair and black beard, small gold crown, white scarf, silver breastplate, burgundy sleeves, gold shoulder plates and necklace, one arm lifted with ornate gold goblet, other hand resting on carved red-brown shield/chair panel with golden horse crest. Warm yellow architecture with hanging lantern. Exact original tiny group-of-three upright figures and plus symbol at bottom right of ability scroll, same count and positions, must be retained; these are native ability symbols. Keep 2 ability paragraphs with fine horizontal ornamental divider.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/4_2.jpg",
+    "prompt": "Use case: precise-object-edit. Asset: complete Russian Citadels Deluxe CHARACTER game card.\nEDIT the single original card provided as the ONLY edit target and reference. Faithful artistic upscale/restoration: remove scan blur and JPEG artifacts, restore sharp painterly brush texture and readable native typography in the original traditional illustration style. Preserve the exact identity, face, sex, age, expression, body and hand pose, costume, props, all existing background objects, perspective, composition, original card proportions and full edge-to-edge rectangle. Preserve title banner, rank badge, bottom parchment scroll, every symbol, separator and layout. Do not crop, pad, add borders or external margins. Do not redesign.\nColor: approximately 10% less intense than the original, restrained soft contrast; same palette family, light levels and shadow atmosphere. Do not strengthen golden glow or highlights. No photorealism, 3D, HDR, hyperrealism or oversharpening.\nThis is a CHARACTER card: add no district coins or color medallions, new objects, characters, decorative fields, watermarks or text.\nText: render every Russian word and punctuation verbatim, preserve ё, numbers and original bold/italic emphasis and paragraph count. Reflow minimally only to fit the original same bottom parchment region. Keep exact native decorative serif typography; no translation or paraphrase.\nCard-specific visual invariants: Dark-skinned adult man with short black hair and black beard, small gold crown, white scarf, silver breastplate, burgundy sleeves, gold shoulder plates and necklace, one arm lifted with ornate gold goblet, other hand resting on carved red-brown shield/chair panel with golden horse crest. Warm yellow architecture with hanging lantern. Exact original tiny group-of-three upright figures and plus symbol at bottom right of ability scroll, same count and positions, must be retained; these are native ability symbols. Keep 2 ability paragraphs with fine horizontal ornamental divider.\nExact rank badge: 4.\nExact title: «Император».\nExact ability text (2 paragraphs separated by the original horizontal ornament):\nОтдайте корону другому игроку и заберите у него либо 1 золотой, либо 1 карту из руки.\n\nПолучите 1 золотой за каждый ваш дворянский квартал.",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876b-e4d3-70a2-8058-4c5b40abb5bf/exec-00d167f7-ee29-4985-a8ac-5d8538a3ad9f.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/4_2-upscale-v1.png",
+    "sourceSha256": "ca3da6e201cf27ca62d30f918886f2515e832fc549782790ae0bf5c749c05947",
+    "sha256": "67a6d4e67921c745626692daa758d3015a83399b4642145977ac621e056f9fa5",
+    "size": {
+      "bytes": 2231910,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact source title visually checked",
+      "rank": "pass: exact source rank visually checked",
+      "text": "pass: each word, ё, numbers, punctuation and paragraph count visually compared to source",
+      "composition": "pass: major pose, costume, props and background retained; fine details generatively reinterpreted",
+      "identity": "pass: face, sex, age and expression retained with painterly reinterpretation",
+      "color": "same palette and restrained contrast; exact 10% reduction unmeasured",
+      "layout": "pass: complete card, original title/rank/ability regions and separators retained; original three upright income symbols and plus retained"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration can reinterpret fine details and face nuances.",
+      "Approximately 10% lower color intensity is a prompt target, not a measured guarantee.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding, compression or game asset replacement.",
+      "Hazy background architecture at left is interpreted with more defined silhouettes than the scan."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "5_2",
+    "name": "Аббат",
+    "rank": 5,
+    "original_text": "Самый богатый игрок отдаёт вам 1 золотой.\n\nПолучите либо 1 карту, либо 1 золотой за каждый ваш квартал духовенства.",
+    "specific": "Bald light-skinned middle-aged monk with brown side hair, orange-brown robe with high cowl and olive-gold hanging cords, pale cross pendant, left-side open palm extended to viewer, other hand holding gray shallow bowl with a few gold coins, blue stone block wall. Preserve worried/cunning upward glance and face shape. Keep 2 ability paragraphs and original fine horizontal ornamental divider; no bottom-right symbols.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/5_2.jpg",
+    "prompt": "Use case: precise-object-edit. Asset: complete Russian Citadels Deluxe CHARACTER game card.\nEDIT the single original card provided as the ONLY edit target and reference. Faithful artistic upscale/restoration: remove scan blur and JPEG artifacts, restore sharp painterly brush texture and readable native typography in the original traditional illustration style. Preserve the exact identity, face, sex, age, expression, body and hand pose, costume, props, all existing background objects, perspective, composition, original card proportions and full edge-to-edge rectangle. Preserve title banner, rank badge, bottom parchment scroll, every symbol, separator and layout. Do not crop, pad, add borders or external margins. Do not redesign.\nColor: approximately 10% less intense than the original, restrained soft contrast; same palette family, light levels and shadow atmosphere. Do not strengthen golden glow or highlights. No photorealism, 3D, HDR, hyperrealism or oversharpening.\nThis is a CHARACTER card: add no district coins or color medallions, new objects, characters, decorative fields, watermarks or text.\nText: render every Russian word and punctuation verbatim, preserve ё, numbers and original bold/italic emphasis and paragraph count. Reflow minimally only to fit the original same bottom parchment region. Keep exact native decorative serif typography; no translation or paraphrase.\nCard-specific visual invariants: Bald light-skinned middle-aged monk with brown side hair, orange-brown robe with high cowl and olive-gold hanging cords, pale cross pendant, left-side open palm extended to viewer, other hand holding gray shallow bowl with a few gold coins, blue stone block wall. Preserve worried/cunning upward glance and face shape. Keep 2 ability paragraphs and original fine horizontal ornamental divider; no bottom-right symbols.\nExact rank badge: 5.\nExact title: «Аббат».\nExact ability text (2 paragraphs separated by the original horizontal ornament):\nСамый богатый игрок отдаёт вам 1 золотой.\n\nПолучите либо 1 карту, либо 1 золотой за каждый ваш квартал духовенства.",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876b-e4d3-70a2-8058-4c5b40abb5bf/exec-144ae7d7-f1be-4f69-97c1-e16fc86ee67a.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/5_2-upscale-v1.png",
+    "sourceSha256": "a49542edcab658fae6fab11c19f4a1ca16e060dd043c269848a2b18bf3893ef4",
+    "sha256": "156be8443237a3c1578b04e8e21b031cb872bbed1cda91dbaaa591aafb19d1d7",
+    "size": {
+      "bytes": 2367325,
+      "width": 951,
+      "height": 1654
+    },
+    "qa": {
+      "name": "pass: exact source title visually checked",
+      "rank": "pass: exact source rank visually checked",
+      "text": "pass: each word, ё, numbers, punctuation and paragraph count visually compared to source",
+      "composition": "pass: major pose, costume, props and background retained; fine details generatively reinterpreted",
+      "identity": "pass: face, sex, age and expression retained with painterly reinterpretation",
+      "color": "same palette and restrained contrast; exact 10% reduction unmeasured",
+      "layout": "pass: complete card, original title/rank/ability regions and separators retained"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration can reinterpret fine details and face nuances.",
+      "Approximately 10% lower color intensity is a prompt target, not a measured guarantee.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding, compression or game asset replacement."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "6_2",
+    "name": "Алхимик",
+    "rank": 6,
+    "original_text": "В конце своего хода вы получаете обратно всё золото, которое потратили в этот ход на строительство кварталов. Вы не можете заплатить золота больше, чем есть у вас в наличии.",
+    "specific": "Young male alchemist with sleepy half-closed eyes, dark curly hair and large white-cream turban with gold band, brown working robe and leather apron, pale forearm wraps, small pouches and ring necklace, holding glowing golden sphere above palm with opposite hand poised over it. Preserve small alchemical apparatus below: angled metal tube and dish at left, round golden liquid vessel on metal stand center, two white candles and two gold ingots to right, gray shadowy workshop background. No stronger magical golden glow or candle highlights. Single ability paragraph.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/6_2.jpg",
+    "prompt": "Use case: precise-object-edit. Asset: complete Russian Citadels Deluxe CHARACTER game card.\nEDIT the single original card provided as the ONLY edit target and reference. Faithful artistic upscale/restoration: remove scan blur and JPEG artifacts, restore sharp painterly brush texture and readable native typography in the original traditional illustration style. Preserve the exact identity, face, sex, age, expression, body and hand pose, costume, props, all existing background objects, perspective, composition, original card proportions and full edge-to-edge rectangle. Preserve title banner, rank badge, bottom parchment scroll, every symbol, separator and layout. Do not crop, pad, add borders or external margins. Do not redesign.\nColor: approximately 10% less intense than the original, restrained soft contrast; same palette family, light levels and shadow atmosphere. Do not strengthen golden glow or highlights. No photorealism, 3D, HDR, hyperrealism or oversharpening.\nThis is a CHARACTER card: add no district coins or color medallions, new objects, characters, decorative fields, watermarks or text.\nText: render every Russian word and punctuation verbatim, preserve ё, numbers and original bold/italic emphasis and paragraph count. Reflow minimally only to fit the original same bottom parchment region. Keep exact native decorative serif typography; no translation or paraphrase.\nCard-specific visual invariants: Young male alchemist with sleepy half-closed eyes, dark curly hair and large white-cream turban with gold band, brown working robe and leather apron, pale forearm wraps, small pouches and ring necklace, holding glowing golden sphere above palm with opposite hand poised over it. Preserve small alchemical apparatus below: angled metal tube and dish at left, round golden liquid vessel on metal stand center, two white candles and two gold ingots to right, gray shadowy workshop background. No stronger magical golden glow or candle highlights. Single ability paragraph.\nExact rank badge: 6.\nExact title: «Алхимик».\nExact ability text (1 paragraph):\nВ конце своего хода вы получаете обратно всё золото, которое потратили в этот ход на строительство кварталов. Вы не можете заплатить золота больше, чем есть у вас в наличии.",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876b-e4d3-70a2-8058-4c5b40abb5bf/exec-1c383539-ccbd-4369-b2ff-5c3d72018d9b.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/6_2-upscale-v1.png",
+    "sourceSha256": "c3531fe2df60b23832b7e2b9c4bde36e41b3a4becc74a3ae288b043638c546f6",
+    "sha256": "d3bf61ae7801f845d83fc5ad14655a5bd75b17a92a1baa295c600e1d285f9875",
+    "size": {
+      "bytes": 2269625,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact source title visually checked",
+      "rank": "pass: exact source rank visually checked",
+      "text": "pass: each word, ё, numbers, punctuation and paragraph count visually compared to source",
+      "composition": "pass: major pose, costume, props and background retained; fine details generatively reinterpreted",
+      "identity": "pass: face, sex, age and expression retained with painterly reinterpretation",
+      "color": "same palette and restrained contrast; exact 10% reduction unmeasured",
+      "layout": "pass: complete card, original title/rank/ability regions and separators retained"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration can reinterpret fine details and face nuances.",
+      "Approximately 10% lower color intensity is a prompt target, not a measured guarantee.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding, compression or game asset replacement."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "7_2",
+    "name": "Навигатор",
+    "rank": 7,
+    "original_text": "Возьмите либо 4 дополнительных золотых, либо 4 дополнительные карты.\n\nВы не можете строить кварталы.",
+    "specific": "Young adult woman navigator, long flowing brown hair swept toward viewer-left, stern serious face and leftward gaze, golden-yellow fitted high-collar military jacket with white high collar/corset and long white gloves, dark burgundy lower clothing, sword at right hip. Both hands grip original large wooden ship steering wheel entering from bottom left, foggy gray-violet ship atmosphere and rigging ropes at upper edges. Preserve woman, posture, wheel arc and visible spokes, hair shape and every prop. The two occurrences of the word «либо» in the first ability paragraph are italic exactly as source. Preserve 2 paragraphs and original fine divider.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/7_2.jpg",
+    "prompt": "Use case: precise-object-edit. Asset: complete Russian Citadels Deluxe CHARACTER game card.\nEDIT the single original card provided as the ONLY edit target and reference. Faithful artistic upscale/restoration: remove scan blur and JPEG artifacts, restore sharp painterly brush texture and readable native typography in the original traditional illustration style. Preserve the exact identity, face, sex, age, expression, body and hand pose, costume, props, all existing background objects, perspective, composition, original card proportions and full edge-to-edge rectangle. Preserve title banner, rank badge, bottom parchment scroll, every symbol, separator and layout. Do not crop, pad, add borders or external margins. Do not redesign.\nColor: approximately 10% less intense than the original, restrained soft contrast; same palette family, light levels and shadow atmosphere. Do not strengthen golden glow or highlights. No photorealism, 3D, HDR, hyperrealism or oversharpening.\nThis is a CHARACTER card: add no district coins or color medallions, new objects, characters, decorative fields, watermarks or text.\nText: render every Russian word and punctuation verbatim, preserve ё, numbers and original bold/italic emphasis and paragraph count. Reflow minimally only to fit the original same bottom parchment region. Keep exact native decorative serif typography; no translation or paraphrase.\nCard-specific visual invariants: Young adult woman navigator, long flowing brown hair swept toward viewer-left, stern serious face and leftward gaze, golden-yellow fitted high-collar military jacket with white high collar/corset and long white gloves, dark burgundy lower clothing, sword at right hip. Both hands grip original large wooden ship steering wheel entering from bottom left, foggy gray-violet ship atmosphere and rigging ropes at upper edges. Preserve woman, posture, wheel arc and visible spokes, hair shape and every prop. The two occurrences of the word «либо» in the first ability paragraph are italic exactly as source. Preserve 2 paragraphs and original fine divider.\nExact rank badge: 7.\nExact title: «Навигатор».\nExact ability text (2 paragraphs separated by the original horizontal ornament):\nВозьмите либо 4 дополнительных золотых, либо 4 дополнительные карты.\n\nВы не можете строить кварталы.",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876b-e4d3-70a2-8058-4c5b40abb5bf/exec-b830e237-1751-4bd9-8f9a-abe84ec35567.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/7_2-upscale-v1.png",
+    "sourceSha256": "2ba02196e053e911347fed9f1fc693b94976aea31191587da1ac4438f7cc9f9c",
+    "sha256": "b25105f84f8da8aca1810c6d6680d2686b4462a7f64eedabfe1f01e5362bdb22",
+    "size": {
+      "bytes": 2197263,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact source title visually checked",
+      "rank": "pass: exact source rank visually checked",
+      "text": "pass: each word, ё, numbers, punctuation and paragraph count visually compared to source; both occurrences of либо remain italic",
+      "composition": "pass: major pose, costume, props and background retained; fine details generatively reinterpreted",
+      "identity": "pass: face, sex, age and expression retained with painterly reinterpretation",
+      "color": "same palette and restrained contrast; exact 10% reduction unmeasured",
+      "layout": "pass: complete card, original title/rank/ability regions and separators retained"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration can reinterpret fine details and face nuances.",
+      "Approximately 10% lower color intensity is a prompt target, not a measured guarantee.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding, compression or game asset replacement."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "8_2",
+    "name": "Дипломат",
+    "rank": 8,
+    "original_text": "Обменяйте 1 свой квартал на квартал другого игрока, и доплатите ему золотые в количестве, равном разнице в стоимости между обменянными кварталами.\n\nПолучите 1 золотой за каждый ваш военный квартал.",
+    "specific": "Slender young light-skinned male diplomat with straight shoulder-length auburn hair, raised eyebrow, sideways glance and sly smile, purple courtly tunic with puffed shoulders, reddish brown sleeves, pale collar and decorative hems, hands together at chest, brown diagonal strap and satchel at viewer-left hip holding two rolled parchments. Red-orange draped column/curtain background. Preserve face, slim male identity, clasped hands, two scrolls and outfit exactly. Preserve 2 ability paragraphs and fine original divider.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/8_2.jpg",
+    "prompt": "Use case: precise-object-edit. Asset: complete Russian Citadels Deluxe CHARACTER game card.\nEDIT the single original card provided as the ONLY edit target and reference. Faithful artistic upscale/restoration: remove scan blur and JPEG artifacts, restore sharp painterly brush texture and readable native typography in the original traditional illustration style. Preserve the exact identity, face, sex, age, expression, body and hand pose, costume, props, all existing background objects, perspective, composition, original card proportions and full edge-to-edge rectangle. Preserve title banner, rank badge, bottom parchment scroll, every symbol, separator and layout. Do not crop, pad, add borders or external margins. Do not redesign.\nColor: approximately 10% less intense than the original, restrained soft contrast; same palette family, light levels and shadow atmosphere. Do not strengthen golden glow or highlights. No photorealism, 3D, HDR, hyperrealism or oversharpening.\nThis is a CHARACTER card: add no district coins or color medallions, new objects, characters, decorative fields, watermarks or text.\nText: render every Russian word and punctuation verbatim, preserve ё, numbers and original bold/italic emphasis and paragraph count. Reflow minimally only to fit the original same bottom parchment region. Keep exact native decorative serif typography; no translation or paraphrase.\nCard-specific visual invariants: Slender young light-skinned male diplomat with straight shoulder-length auburn hair, raised eyebrow, sideways glance and sly smile, purple courtly tunic with puffed shoulders, reddish brown sleeves, pale collar and decorative hems, hands together at chest, brown diagonal strap and satchel at viewer-left hip holding two rolled parchments. Red-orange draped column/curtain background. Preserve face, slim male identity, clasped hands, two scrolls and outfit exactly. Preserve 2 ability paragraphs and fine original divider.\nExact rank badge: 8.\nExact title: «Дипломат».\nExact ability text (2 paragraphs separated by the original horizontal ornament):\nОбменяйте 1 свой квартал на квартал другого игрока, и доплатите ему золотые в количестве, равном разнице в стоимости между обменянными кварталами.\n\nПолучите 1 золотой за каждый ваш военный квартал.",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876b-e4d3-70a2-8058-4c5b40abb5bf/exec-2916f932-9155-4939-ba9a-ed65e06041fa.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/8_2-upscale-v1.png",
+    "sourceSha256": "5eb30974aacd1178d9077eeac4cbeda893d1f791d826762ef0c26d3e73e4fa76",
+    "sha256": "180719e0188a9729b2eeb1dca4ccfc210d3e239ff7cbfbef5088b5f137955c2e",
+    "size": {
+      "bytes": 2112557,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact source title visually checked",
+      "rank": "pass: exact source rank visually checked",
+      "text": "pass: each word, ё, numbers, punctuation and paragraph count visually compared to source",
+      "composition": "pass: major pose, costume, props and background retained; fine details generatively reinterpreted",
+      "identity": "pass: face, sex, age and expression retained with painterly reinterpretation",
+      "color": "same palette and restrained contrast; exact 10% reduction unmeasured",
+      "layout": "pass: complete card, original title/rank/ability regions and separators retained"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration can reinterpret fine details and face nuances.",
+      "Approximately 10% lower color intensity is a prompt target, not a measured guarantee.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding, compression or game asset replacement."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "9_2",
+    "name": "Королева",
+    "rank": 9,
+    "original_text": "Если вы сидите рядом с игроком, который открыл персонажа с цифрой 4, получите 3 золотых.",
+    "specific": "Young adult queen seated in high yellow upholstered wooden throne, long straight black hair with two front braids, silver-and-yellow closed crown, gray-silver collar, yellow bodice and dark charcoal puff sleeves with pale fitted forearms and dark skirt. Unimpressed upward sideways gaze. Both hands rest on long black horizontal silver-ended scepter across lap. Preserve throne carved armrests, her seated posture, hands and scepter ends; gray-violet stone hall and columns behind. Preserve exactly FIVE tiny upright figures with a plus symbol on bottom-right ability parchment in original arrangement. These are native ability symbols, do not add medallions or coins. Single ability paragraph.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/9_2.jpg",
+    "prompt": "Use case: precise-object-edit. Asset: complete Russian Citadels Deluxe CHARACTER game card.\nEDIT the single original card provided as the ONLY edit target and reference. Faithful artistic upscale/restoration: remove scan blur and JPEG artifacts, restore sharp painterly brush texture and readable native typography in the original traditional illustration style. Preserve the exact identity, face, sex, age, expression, body and hand pose, costume, props, all existing background objects, perspective, composition, original card proportions and full edge-to-edge rectangle. Preserve title banner, rank badge, bottom parchment scroll, every symbol, separator and layout. Do not crop, pad, add borders or external margins. Do not redesign.\nColor: approximately 10% less intense than the original, restrained soft contrast; same palette family, light levels and shadow atmosphere. Do not strengthen golden glow or highlights. No photorealism, 3D, HDR, hyperrealism or oversharpening.\nThis is a CHARACTER card: add no district coins or color medallions, new objects, characters, decorative fields, watermarks or text.\nText: render every Russian word and punctuation verbatim, preserve ё, numbers and original bold/italic emphasis and paragraph count. Reflow minimally only to fit the original same bottom parchment region. Keep exact native decorative serif typography; no translation or paraphrase.\nCard-specific visual invariants: Young adult queen seated in high yellow upholstered wooden throne, long straight black hair with two front braids, silver-and-yellow closed crown, gray-silver collar, yellow bodice and dark charcoal puff sleeves with pale fitted forearms and dark skirt. Unimpressed upward sideways gaze. Both hands rest on long black horizontal silver-ended scepter across lap. Preserve throne carved armrests, her seated posture, hands and scepter ends; gray-violet stone hall and columns behind. Preserve exactly FIVE tiny upright figures with a plus symbol on bottom-right ability parchment in original arrangement. These are native ability symbols, do not add medallions or coins. Single ability paragraph.\nExact rank badge: 9.\nExact title: «Королева».\nExact ability text (1 paragraph):\nЕсли вы сидите рядом с игроком, который открыл персонажа с цифрой 4, получите 3 золотых.",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876b-e4d3-70a2-8058-4c5b40abb5bf/exec-29856e2d-283f-4333-a85a-8532f04f64a8.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/9_2-upscale-v1.png",
+    "sourceSha256": "3a681b44af65146927482524f47cc53c4cdc153e3bca1f4a777ef8af87b49fbd",
+    "sha256": "2d3a5b5021c9048d1434ce52965700a92f73202da67d268c0160c219e5699d9b",
+    "size": {
+      "bytes": 2129927,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact source title visually checked",
+      "rank": "pass: exact source rank visually checked",
+      "text": "pass: each word, ё, numbers, punctuation and paragraph count visually compared to source",
+      "composition": "pass: major pose, costume, props and background retained; fine details generatively reinterpreted",
+      "identity": "pass: face, sex, age and expression retained with painterly reinterpretation",
+      "color": "same palette and restrained contrast; exact 10% reduction unmeasured",
+      "layout": "pass: complete card, original title/rank/ability regions and separators retained; original five upright player symbols and plus retained"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration can reinterpret fine details and face nuances.",
+      "Approximately 10% lower color intensity is a prompt target, not a measured guarantee.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding, compression or game asset replacement."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  }
+]

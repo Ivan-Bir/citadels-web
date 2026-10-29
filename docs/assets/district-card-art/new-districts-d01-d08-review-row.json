@@ -1,0 +1,122 @@
+{
+  "purpose": "Single-row visual comparison, original cards unchanged; D08 artistic review pending",
+  "cards": [
+    {
+      "id": "D01",
+      "name": "Каменный мост",
+      "source": "public/cards/stone_bridge-compressed.jpg",
+      "source_sha256": "78dbc0acb1c1a003405aafaa5268c25b8169346df69ba6679b0d80cc37bf005f",
+      "native_dimensions": [
+        707,
+        1121
+      ],
+      "review_dimensions": [
+        707,
+        1121
+      ]
+    },
+    {
+      "id": "D02",
+      "name": "Катакомбы",
+      "source": "public/cards/catacombs-compressed.jpg",
+      "source_sha256": "7eb8ab111c2247e0165cda24d8c902afb323356c8d033e11dd57179dab9b120b",
+      "native_dimensions": [
+        707,
+        1121
+      ],
+      "review_dimensions": [
+        707,
+        1121
+      ]
+    },
+    {
+      "id": "D03",
+      "name": "Мастерская зодчих",
+      "source": "public/cards/architects_workshop-compressed.jpg",
+      "source_sha256": "42c2c591c0c6ccbb2d8b49f3747f501a0948b8cec7d66b77da13e5f9c6dd9dce",
+      "native_dimensions": [
+        707,
+        1121
+      ],
+      "review_dimensions": [
+        707,
+        1121
+      ]
+    },
+    {
+      "id": "D04",
+      "name": "Винодельня",
+      "source": "public/cards/wine_cellar-compressed.jpg",
+      "source_sha256": "882c0d58f15cba9a92f71d2f7240b9517657467b1561d6d31e544d7d44e54096",
+      "native_dimensions": [
+        707,
+        1121
+      ],
+      "review_dimensions": [
+        707,
+        1121
+      ]
+    },
+    {
+      "id": "D05",
+      "name": "Зеркальный чертог",
+      "source": "public/cards/mirror_hall-compressed.jpg",
+      "source_sha256": "add2a9d56ce8de194113bc1d5b209625c5e9ef18b597fd0351aebcc97c8666b9",
+      "native_dimensions": [
+        707,
+        1121
+      ],
+      "review_dimensions": [
+        707,
+        1121
+      ]
+    },
+    {
+      "id": "D06",
+      "name": "Дом заговорщиков",
+      "source": "public/cards/conspirators_house-compressed.jpg",
+      "source_sha256": "db352ba444e7ced95b33c68ca4402751669ed1a3b9d9f78351c7169d2fc3769c",
+      "native_dimensions": [
+        707,
+        1121
+      ],
+      "review_dimensions": [
+        707,
+        1121
+      ]
+    },
+    {
+      "id": "D07",
+      "name": "Башня прорицателя",
+      "source": "public/cards/divination_tower-compressed.jpg",
+      "source_sha256": "e41e19b0707777ad64dfc4f8674b2e31f6d294a5a8bb3f4dcf398787a0f5ac43",
+      "native_dimensions": [
+        707,
+        1121
+      ],
+      "review_dimensions": [
+        707,
+        1121
+      ]
+    },
+    {
+      "id": "D08",
+      "name": "Ремесленный двор",
+      "source": "docs/assets/district-card-art/craftsmen-courtyard-v1.png",
+      "source_sha256": "6357488be44fb054432f2439aea92c89085d543850bf738c0660697413391b22",
+      "native_dimensions": [
+        996,
+        1579
+      ],
+      "review_dimensions": [
+        707,
+        1121
+      ]
+    }
+  ],
+  "output": "new-districts-d01-d08-review-row.jpg",
+  "dimensions": [
+    5782,
+    1187
+  ]
+}

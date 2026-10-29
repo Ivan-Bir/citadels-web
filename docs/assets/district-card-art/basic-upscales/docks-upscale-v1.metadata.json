@@ -1,0 +1,61 @@
+{
+  "id": "docks",
+  "name": "Доки",
+  "sourceTitle": "Доки",
+  "catalogName": "Доки",
+  "cost": 3,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/docks.jpg",
+  "text": "",
+  "qa": {
+    "sourceInspected": true,
+    "outputInspected": true,
+    "name": "pass: exact factual scanned title",
+    "text": "pass: no ability/rules text",
+    "coins": "pass: exactly 3",
+    "type": "pass: green moneybag medallion",
+    "composition": "Canal, buildings, distant fortress, boats, quay, barrels/crates, stairs and main people grouping retained; indistinct distant figures and masonry reinterpreted.",
+    "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+    "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+  },
+  "status": "artistic-approved",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-f875f787-124c-4050-a1c1-4a71e24097bd.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/docks-upscale-v1.png",
+  "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/docks-upscale-v1.prompt.txt",
+  "checks": {
+    "singleOriginalTarget": true,
+    "rawPngCopied": true,
+    "technicalResize": false,
+    "originalJpgUnchanged": true,
+    "coinCount": 3,
+    "title": "Доки",
+    "medallionColor": "green",
+    "byteIdenticalToToolOutput": true,
+    "pngVerified": true
+  },
+  "limitations": [
+    "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+    "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+    "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+  ],
+  "generationHistory": [
+    {
+      "attempt": 1,
+      "result": "Successful generation from the original JPG.",
+      "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-f875f787-124c-4050-a1c1-4a71e24097bd.png"
+    }
+  ],
+  "size": {
+    "bytes": 2562751,
+    "width": 996,
+    "height": 1579
+  },
+  "sha256": "04ead86d7cb9111a2d4b9f106293983e3f69db21773055155a2452ed9820ad05",
+  "sourceSha256": "15137cf379da1fb391c4c30b1465223608714db0d1ebb5d4df4cb50a4aeb2f1a",
+  "promptSha256": "814a3d097d8d33a1e37ae42163af5a8630d73a9d4f08e803f6edc61d8181922d",
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю все 17, готовь JPEG"
+  }
+}

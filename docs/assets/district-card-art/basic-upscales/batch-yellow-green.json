@@ -1,0 +1,522 @@
+[
+  {
+    "id": "manor",
+    "name": "Поместье",
+    "sourceTitle": "Поместье",
+    "catalogName": "Поместье",
+    "cost": 3,
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/manor.jpg",
+    "text": "",
+    "qa": {
+      "sourceInspected": true,
+      "outputInspected": true,
+      "name": "pass: exact factual scanned title",
+      "text": "pass: no ability/rules text",
+      "coins": "pass: exactly 3",
+      "type": "pass: yellow noble tower medallion",
+      "composition": "Manor interior, left staircase/balcony, chair, statue, framed pictures, plants, candles and carpet retained; tiny ornament and masonry are painterly reinterpretations.",
+      "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+      "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+    },
+    "status": "awaiting-artistic-approval",
+    "tool": "built-in image_gen edit",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-fcdb2f7a-ee52-4445-9c3e-97619ef3430b.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/manor-upscale-v1.png",
+    "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/manor-upscale-v1.prompt.txt",
+    "checks": {
+      "singleOriginalTarget": true,
+      "rawPngCopied": true,
+      "technicalResize": false,
+      "originalJpgUnchanged": true,
+      "coinCount": 3,
+      "title": "Поместье",
+      "medallionColor": "yellow",
+      "byteIdenticalToToolOutput": true,
+      "pngVerified": true
+    },
+    "limitations": [
+      "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+      "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+      "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+    ],
+    "generationHistory": [
+      {
+        "attempt": 1,
+        "result": "Initial concurrent call produced no persisted result/output."
+      },
+      {
+        "attempt": 2,
+        "result": "Successful generation from the original JPG with identical prompt.",
+        "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-fcdb2f7a-ee52-4445-9c3e-97619ef3430b.png"
+      }
+    ],
+    "size": {
+      "bytes": 2301347,
+      "width": 996,
+      "height": 1579
+    },
+    "sha256": "c2a30754d63f8f064dbf521ef0c15eb20c89dc9dcd02dafdb690ea02a9056fcb",
+    "sourceSha256": "681fbccc5f54b732aa787c3f1a73bfb7b967776c4733462f6c7b46fa80066764",
+    "promptSha256": "86871078f065938392b12e0b6ecab9989ba7c04c2560846381264174ea15427e"
+  },
+  {
+    "id": "castle",
+    "name": "Замок",
+    "sourceTitle": "Замок",
+    "catalogName": "Замок",
+    "cost": 4,
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/castle.jpg",
+    "text": "",
+    "qa": {
+      "sourceInspected": true,
+      "outputInspected": true,
+      "name": "pass: exact factual scanned title",
+      "text": "pass: no ability/rules text",
+      "coins": "pass: exactly 4",
+      "type": "pass: yellow noble tower medallion",
+      "composition": "Castle silhouette, towers, red pennants, mountains, left arched bridge and central waterfall retained; fine masonry, tree branches and pennant shapes reinterpreted.",
+      "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+      "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+    },
+    "status": "awaiting-artistic-approval",
+    "tool": "built-in image_gen edit",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-09b2604a-f53a-4f05-a1e7-63c0ef52ee70.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/castle-upscale-v1.png",
+    "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/castle-upscale-v1.prompt.txt",
+    "checks": {
+      "singleOriginalTarget": true,
+      "rawPngCopied": true,
+      "technicalResize": false,
+      "originalJpgUnchanged": true,
+      "coinCount": 4,
+      "title": "Замок",
+      "medallionColor": "yellow",
+      "byteIdenticalToToolOutput": true,
+      "pngVerified": true
+    },
+    "limitations": [
+      "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+      "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+      "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+    ],
+    "generationHistory": [
+      {
+        "attempt": 1,
+        "result": "Successful generation from the original JPG.",
+        "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-09b2604a-f53a-4f05-a1e7-63c0ef52ee70.png"
+      }
+    ],
+    "size": {
+      "bytes": 2702475,
+      "width": 996,
+      "height": 1579
+    },
+    "sha256": "caf8911e471681db0b13b2910eac89c1c8a78c6486ab3ff7d8a9d03ffb094a91",
+    "sourceSha256": "a319b5d16df15f242de6f59109086927482db2ce39be223bbc04c4b0a4215aa9",
+    "promptSha256": "f898fa27200538bc98d91ca30ab5c6804cb4e21367a251b872cab54df6a3323b"
+  },
+  {
+    "id": "palace",
+    "name": "Дворец",
+    "sourceTitle": "Дворец",
+    "catalogName": "Дворец",
+    "cost": 5,
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/palace.jpg",
+    "text": "",
+    "qa": {
+      "sourceInspected": true,
+      "outputInspected": true,
+      "name": "pass: exact factual scanned title",
+      "text": "pass: no ability/rules text",
+      "coins": "pass: exactly 5",
+      "type": "pass: yellow noble tower medallion",
+      "composition": "Palace tower grouping, blue roofs, foreground domed entrance, bridge, river, sailboat and birds retained; fine crowd/boat figures and masonry reinterpreted.",
+      "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+      "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+    },
+    "status": "awaiting-artistic-approval",
+    "tool": "built-in image_gen edit",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-bd7f1705-62bb-4b0e-98bd-e3424f63bb44.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/palace-upscale-v1.png",
+    "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/palace-upscale-v1.prompt.txt",
+    "checks": {
+      "singleOriginalTarget": true,
+      "rawPngCopied": true,
+      "technicalResize": false,
+      "originalJpgUnchanged": true,
+      "coinCount": 5,
+      "title": "Дворец",
+      "medallionColor": "yellow",
+      "byteIdenticalToToolOutput": true,
+      "pngVerified": true
+    },
+    "limitations": [
+      "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+      "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+      "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+    ],
+    "generationHistory": [
+      {
+        "attempt": 1,
+        "result": "Successful generation from the original JPG.",
+        "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-bd7f1705-62bb-4b0e-98bd-e3424f63bb44.png"
+      }
+    ],
+    "size": {
+      "bytes": 2579518,
+      "width": 996,
+      "height": 1579
+    },
+    "sha256": "4eb89f615bd520882722ebcc1404451aac8e530da03b42c64b72323650ae99c9",
+    "sourceSha256": "478e0e02ee48f3c248368daf8ca9547f8f969146fafd1d07a2a86d46fc46e752",
+    "promptSha256": "3de3da39710d82a1d247d267a7a037f1c17a920ca2991b300e9a437f405ac64a"
+  },
+  {
+    "id": "tavern",
+    "name": "Таверна",
+    "sourceTitle": "Таверна",
+    "catalogName": "Таверна",
+    "cost": 1,
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/tavern.jpg",
+    "text": "",
+    "qa": {
+      "sourceInspected": true,
+      "outputInspected": true,
+      "name": "pass: exact factual scanned title",
+      "text": "pass: no ability/rules text",
+      "coins": "pass: exactly 1",
+      "type": "pass: green moneybag medallion",
+      "composition": "Original tavern people and main object arrangement retained, including serving woman, drinking man, bearded diner, foreground blond patron, musician, sausages, garlic, food and candles; fine faces/hands/food detail reinterpreted.",
+      "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+      "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+    },
+    "status": "awaiting-artistic-approval",
+    "tool": "built-in image_gen edit",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-30d6911c-7280-458a-b6a3-16cdf613d260.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/tavern-upscale-v1.png",
+    "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/tavern-upscale-v1.prompt.txt",
+    "checks": {
+      "singleOriginalTarget": true,
+      "rawPngCopied": true,
+      "technicalResize": false,
+      "originalJpgUnchanged": true,
+      "coinCount": 1,
+      "title": "Таверна",
+      "medallionColor": "green",
+      "byteIdenticalToToolOutput": true,
+      "pngVerified": true
+    },
+    "limitations": [
+      "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+      "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+      "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+    ],
+    "generationHistory": [
+      {
+        "attempt": 1,
+        "result": "Successful generation from the original JPG.",
+        "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-30d6911c-7280-458a-b6a3-16cdf613d260.png"
+      }
+    ],
+    "size": {
+      "bytes": 2634918,
+      "width": 996,
+      "height": 1579
+    },
+    "sha256": "6eded7e46709350879e1678de4da3f9db6a1f3ec099cef2a8353109077ee1b89",
+    "sourceSha256": "6006d5c124821eaedb97f3f135410de5d0d08c107b7ff133f44c6021bf0dd889",
+    "promptSha256": "9dac94a5d0cc0a7d602307b380b145c6401af56532c072fd7002fb5771112895"
+  },
+  {
+    "id": "market",
+    "name": "Рынок",
+    "sourceTitle": "Рынок",
+    "catalogName": "Рынок",
+    "cost": 2,
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/market.jpg",
+    "text": "",
+    "qa": {
+      "sourceInspected": true,
+      "outputInspected": true,
+      "name": "pass: exact factual scanned title",
+      "text": "pass: no ability/rules text",
+      "coins": "pass: exactly 2",
+      "type": "pass: green moneybag medallion",
+      "composition": "Arch, banners, red stalls, merchants, running children, dog, wheels, produce and flowers retained; fine faces, heraldic marks and produce reinterpreted.",
+      "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+      "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+    },
+    "status": "awaiting-artistic-approval",
+    "tool": "built-in image_gen edit",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-2d1fff3f-dd54-43a9-9ca7-6e251c5f8d3a.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/market-upscale-v1.png",
+    "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/market-upscale-v1.prompt.txt",
+    "checks": {
+      "singleOriginalTarget": true,
+      "rawPngCopied": true,
+      "technicalResize": false,
+      "originalJpgUnchanged": true,
+      "coinCount": 2,
+      "title": "Рынок",
+      "medallionColor": "green",
+      "byteIdenticalToToolOutput": true,
+      "pngVerified": true
+    },
+    "limitations": [
+      "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+      "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+      "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+    ],
+    "generationHistory": [
+      {
+        "attempt": 1,
+        "result": "Successful generation from the original JPG.",
+        "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-2d1fff3f-dd54-43a9-9ca7-6e251c5f8d3a.png"
+      }
+    ],
+    "size": {
+      "bytes": 2765546,
+      "width": 996,
+      "height": 1579
+    },
+    "sha256": "e2aa85ca2f30455d7b9067189a13e20ccb8f423463f3543a45acba581f673782",
+    "sourceSha256": "9e1bedb10ac680e112982531132ff4062b1ec93cf3df94b772d613e651eab3b8",
+    "promptSha256": "ef613b961b6756c22372ae5b22b5374619b34714b1b3ebc1cea09f93d9d1dfb8"
+  },
+  {
+    "id": "trading_post",
+    "name": "Лавка",
+    "sourceTitle": "Лавка",
+    "catalogName": "Фактория",
+    "cost": 2,
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/trading_post.jpg",
+    "text": "",
+    "qa": {
+      "sourceInspected": true,
+      "outputInspected": true,
+      "name": "pass: exact factual scanned title",
+      "text": "pass: no ability/rules text",
+      "coins": "pass: exactly 2",
+      "type": "pass: green moneybag medallion",
+      "composition": "Two sword-shop figures, four shields, weapons, bows, counter, barrels, wheel and cobbled floor retained; fine weapon geometry and fittings reinterpreted.",
+      "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+      "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+    },
+    "status": "awaiting-artistic-approval",
+    "tool": "built-in image_gen edit",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-e8a6ed86-dbca-4847-ad34-c61f957dd507.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/trading_post-upscale-v1.png",
+    "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/trading_post-upscale-v1.prompt.txt",
+    "checks": {
+      "singleOriginalTarget": true,
+      "rawPngCopied": true,
+      "technicalResize": false,
+      "originalJpgUnchanged": true,
+      "coinCount": 2,
+      "title": "Лавка",
+      "medallionColor": "green",
+      "byteIdenticalToToolOutput": true,
+      "pngVerified": true
+    },
+    "limitations": [
+      "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+      "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+      "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement.",
+      "Catalogue calls this «Фактория»; actual original scan and output use «Лавка»."
+    ],
+    "generationHistory": [
+      {
+        "attempt": 1,
+        "result": "Successful generation from the original JPG.",
+        "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-e8a6ed86-dbca-4847-ad34-c61f957dd507.png"
+      }
+    ],
+    "titleDiscrepancy": {
+      "catalog": "Фактория",
+      "originalScan": "Лавка",
+      "decision": "Preserve factual scanned title"
+    },
+    "size": {
+      "bytes": 2533453,
+      "width": 996,
+      "height": 1579
+    },
+    "sha256": "41e0e9bdd71bd7bf97656475aa8f2b51de8712ae8f89e970355dab05e19007fc",
+    "sourceSha256": "3906487d82ecfca2d227aef462b55a44bcdff48be0bcb2b2a25fdbb1a3d57f02",
+    "promptSha256": "e394cb58fd5d80abc631463ca579fabdcddd522ef4ec9fd258033f1b09a62c10"
+  },
+  {
+    "id": "docks",
+    "name": "Доки",
+    "sourceTitle": "Доки",
+    "catalogName": "Доки",
+    "cost": 3,
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/docks.jpg",
+    "text": "",
+    "qa": {
+      "sourceInspected": true,
+      "outputInspected": true,
+      "name": "pass: exact factual scanned title",
+      "text": "pass: no ability/rules text",
+      "coins": "pass: exactly 3",
+      "type": "pass: green moneybag medallion",
+      "composition": "Canal, buildings, distant fortress, boats, quay, barrels/crates, stairs and main people grouping retained; indistinct distant figures and masonry reinterpreted.",
+      "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+      "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+    },
+    "status": "awaiting-artistic-approval",
+    "tool": "built-in image_gen edit",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-f875f787-124c-4050-a1c1-4a71e24097bd.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/docks-upscale-v1.png",
+    "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/docks-upscale-v1.prompt.txt",
+    "checks": {
+      "singleOriginalTarget": true,
+      "rawPngCopied": true,
+      "technicalResize": false,
+      "originalJpgUnchanged": true,
+      "coinCount": 3,
+      "title": "Доки",
+      "medallionColor": "green",
+      "byteIdenticalToToolOutput": true,
+      "pngVerified": true
+    },
+    "limitations": [
+      "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+      "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+      "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+    ],
+    "generationHistory": [
+      {
+        "attempt": 1,
+        "result": "Successful generation from the original JPG.",
+        "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-f875f787-124c-4050-a1c1-4a71e24097bd.png"
+      }
+    ],
+    "size": {
+      "bytes": 2562751,
+      "width": 996,
+      "height": 1579
+    },
+    "sha256": "04ead86d7cb9111a2d4b9f106293983e3f69db21773055155a2452ed9820ad05",
+    "sourceSha256": "15137cf379da1fb391c4c30b1465223608714db0d1ebb5d4df4cb50a4aeb2f1a",
+    "promptSha256": "814a3d097d8d33a1e37ae42163af5a8630d73a9d4f08e803f6edc61d8181922d"
+  },
+  {
+    "id": "harbor",
+    "name": "Гавань",
+    "sourceTitle": "Гавань",
+    "catalogName": "Порт",
+    "cost": 4,
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/harbor.jpg",
+    "text": "",
+    "qa": {
+      "sourceInspected": true,
+      "outputInspected": true,
+      "name": "pass: exact factual scanned title",
+      "text": "pass: no ability/rules text",
+      "coins": "pass: exactly 4",
+      "type": "pass: green moneybag medallion",
+      "composition": "Dark pointed harbor tower/pennant, cliff castle, hillside town, sailboats and large foreground gull retained; tiny windows, boats and birds reinterpreted.",
+      "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+      "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+    },
+    "status": "awaiting-artistic-approval",
+    "tool": "built-in image_gen edit",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-7e691268-45ce-48b0-bbcb-7f90d6d27b5e.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/harbor-upscale-v1.png",
+    "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/harbor-upscale-v1.prompt.txt",
+    "checks": {
+      "singleOriginalTarget": true,
+      "rawPngCopied": true,
+      "technicalResize": false,
+      "originalJpgUnchanged": true,
+      "coinCount": 4,
+      "title": "Гавань",
+      "medallionColor": "green",
+      "byteIdenticalToToolOutput": true,
+      "pngVerified": true
+    },
+    "limitations": [
+      "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+      "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+      "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement.",
+      "Catalogue calls this «Порт»; actual original scan and output use «Гавань»."
+    ],
+    "generationHistory": [
+      {
+        "attempt": 1,
+        "result": "Successful generation from the original JPG.",
+        "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-7e691268-45ce-48b0-bbcb-7f90d6d27b5e.png"
+      }
+    ],
+    "titleDiscrepancy": {
+      "catalog": "Порт",
+      "originalScan": "Гавань",
+      "decision": "Preserve factual scanned title"
+    },
+    "size": {
+      "bytes": 2527806,
+      "width": 996,
+      "height": 1579
+    },
+    "sha256": "97bf1622dd3ee1f710b32ff92c57fd831aa666716ea5e28c73960c12a3cb45ff",
+    "sourceSha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+    "promptSha256": "c84af8166e61ce26497e354d7be71ecd01575539363184508a3867a2ae005429"
+  },
+  {
+    "id": "town_hall",
+    "name": "Ратуша",
+    "sourceTitle": "Ратуша",
+    "catalogName": "Ратуша",
+    "cost": 5,
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/town_hall.jpg",
+    "text": "",
+    "qa": {
+      "sourceInspected": true,
+      "outputInspected": true,
+      "name": "pass: exact factual scanned title",
+      "text": "pass: no ability/rules text",
+      "coins": "pass: exactly 5",
+      "type": "pass: green moneybag medallion",
+      "composition": "Central pillar/arches, pointed windows, desks, clerks, standing women, scrolls, quills, candles, drawers, skull and tiny shelf cat retained; tiny document markings are illustrative, not readable rules.",
+      "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+      "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+    },
+    "status": "awaiting-artistic-approval",
+    "tool": "built-in image_gen edit",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-c8868ae4-1877-4245-80b3-ceeb77377a81.png",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/town_hall-upscale-v1.png",
+    "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/town_hall-upscale-v1.prompt.txt",
+    "checks": {
+      "singleOriginalTarget": true,
+      "rawPngCopied": true,
+      "technicalResize": false,
+      "originalJpgUnchanged": true,
+      "coinCount": 5,
+      "title": "Ратуша",
+      "medallionColor": "green",
+      "byteIdenticalToToolOutput": true,
+      "pngVerified": true
+    },
+    "limitations": [
+      "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+      "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+      "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+    ],
+    "generationHistory": [
+      {
+        "attempt": 1,
+        "result": "Successful generation from the original JPG.",
+        "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-c8868ae4-1877-4245-80b3-ceeb77377a81.png"
+      }
+    ],
+    "size": {
+      "bytes": 2718044,
+      "width": 996,
+      "height": 1579
+    },
+    "sha256": "b07e22af33c76ee324d9b42aefade246db7c8d0c01bc3af71c77d8f1fe3e90df",
+    "sourceSha256": "5c949d806e368cf2f2e3de306483c5fafdbc6a878e112b8bafbdc009d6900b36",
+    "promptSha256": "83b977482e34e868196c6c3c47a4815458941850b3b6d0274d8b873b887ae685"
+  }
+]

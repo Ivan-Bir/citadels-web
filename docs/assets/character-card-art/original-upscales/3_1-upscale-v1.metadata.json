@@ -1,0 +1,47 @@
+{
+  "id": "3_1",
+  "name": "Маг",
+  "rank": 3,
+  "original_text": "Вы можете либо выбрать другого игрока и поменяться с ним картами, либо сбросить с руки любое количество карт, чтобы взять столько же карт из колоды.",
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/3_1.jpg",
+  "sourceSha256": "4fb03448f7043fdaa2f9ff2d673a35e682fe3627f08a86c69e6ba73d9af95d7f",
+  "sourceSize": {
+    "width": 814,
+    "height": 1417
+  },
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/3_1-upscale-v1.png",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a18762-f1bd-7182-96fa-984d4feb096a/exec-45f28e31-a08f-4498-bf0f-8c752c312847.png",
+  "sha256": "5177bfd29f34416bb14537263952b11163007469f5f1dff356880e3c8063b3c5",
+  "size": {
+    "bytes": 2092870,
+    "width": 950,
+    "height": 1655
+  },
+  "qa": {
+    "name": "pass: exact original Cyrillic title visually verified",
+    "rank": "pass: exact numeral and source emblem retained",
+    "text": "pass: full original ability text visually compared word by word, including numerals and punctuation",
+    "composition": "Female face, curly dark hair, red dress, yellow cloth, dove and window retained; small hair and clothing marks reinterpreted.",
+    "identity": "pass: source gender, apparent age, face, expression and pose retained; generative fine-detail interpretation",
+    "color": "pass: original palette family and light mood retained; restrained painterly contrast; exact 10% chroma reduction unmeasured",
+    "layout": "pass: full rectangle, title/rank area and original ability scroll retained; no district UI or new text"
+  },
+  "status": "artistic-approved",
+  "limitations": [
+    "Generative restoration may reinterpret fine details and typography contours.",
+    "Approximately 10% lower color intensity is a prompt target, not a pixel measurement.",
+    "Raw generated PNG copied byte-for-byte; no resize, JPEG conversion, crop, padding or public game asset replacement."
+  ],
+  "verification": {
+    "byteCopy": true,
+    "pngDecode": true,
+    "promptExact": true
+  },
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+    "condition": "Preserve and align parchment positions against each original character JPG."
+  }
+}

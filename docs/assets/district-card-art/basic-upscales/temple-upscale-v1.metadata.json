@@ -1,0 +1,36 @@
+{
+  "id": "temple",
+  "name": "Храм",
+  "cost": 1,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/temple.jpg",
+  "text": "",
+  "qa": {
+    "name": "pass: exact source title",
+    "text": "pass: no ability text",
+    "coins": "pass: exactly 1",
+    "type": "pass: blue district medallion",
+    "composition": "Gothic niche, candle cluster, carved panel and bones retained; small carving detail reinterpreted",
+    "color": "warm dark brown and candle lighting retained; exact chroma reduction unmeasured"
+  },
+  "status": "artistic-approved",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-b0fd-7b70-b043-332aa2028b44/exec-cb8c56a2-b63e-46f6-9f6e-40d4aa5ad2d8.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/temple-upscale-v1.png",
+  "size": {
+    "bytes": 2554932,
+    "width": 996,
+    "height": 1579
+  },
+  "sha256": "45bf04d8546098232382525581b48c6c666d4ec947006cd76c5d34161902fa6a",
+  "sourceSha256": "5484185f6bdd66359f8e2606d6ef783c4fabc3f1477055dd14989151962d0b16",
+  "limitations": [
+    "Generative restoration may reinterpret fine details.",
+    "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+    "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+  ],
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю все 17, готовь JPEG"
+  }
+}

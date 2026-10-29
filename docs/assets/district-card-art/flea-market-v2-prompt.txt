@@ -1,0 +1,37 @@
+Use case: illustration-story
+Asset type: ONE newly generated complete portrait district card for Russian Citadels Deluxe. District name «Барахолка», cost 2, purple special district. A new composition from scratch, artistic review raw PNG.
+
+Reference image roles:
+1. Original public/cards/monument.jpg is the authoritative full-card layout, parchment panel, separate lower title ribbon, purple special medallion, original black Cyrillic typography, margins and painterly style. Do not copy its scene, price, title or rule.
+2. Original public/cards/market.jpg supplies exactly TWO embossed gold coins at upper left, medieval town material language and painterly street atmosphere. Do not copy its straight market avenue, red stalls, banners, people, dog, green medallion or title.
+3. judges-chamber-typography-reference.png is typography ONLY: enlarged original bitmap letter samples from Monument and Harbor. Match thin regular black Cyrillic serif for rules and characteristic original bold black Cyrillic title. Never use chunky bold ability type or a modern decorative serif.
+No previous Барахолка image is an input. Create a different fresh street composition.
+
+Primary request and scene:
+Paint an EARLY MORNING flea market on a WALK-THROUGH MEDIEVAL STREET THAT BENDS AND WINDS. The lane is visibly curved rather than straight: start with broad cobblestones in the near foreground, then sweep around an irregular stone-and-timber building toward one side and bend back into a short glimpse of town. Show the uneven rhythm of modest old facades following this clear gentle S-shaped route. A generous patch of fresh clear AZURE BLUE SKY above the roofline gives the unmistakable morning mood. Early soft low morning sunlight touches the stonework and roofs while cool fresh shadows lie across the paving; not orange sunset or harsh noon light.
+The flea market wares are LAID OUT ON RUGS DIRECTLY ON THE GROUND along the sides of the lane. Make two or three well-defined worn cloth rugs with simple faded rust, dusty blue or olive woven patterns, and leave the curved central walkway open and easy to traverse. A handful of assorted used knick-knacks on the rugs tells the story: a battered brass candlestick, a few old closed books with blank covers, a plain earthenware jug, a wooden keepsake box and a small bundle of worn fabric. A second rug can hold a bowl and a few simple hand tools. Suggest variety with clear broad silhouettes, not hundreds of tiny trinkets. The rugs with second-hand objects are the primary foreground and middle-ground interest.
+Keep the street itself and its bending passage the main subject. Two small discreet people are enough: a seated vendor beside a rug near the side, and a passerby farther along the bend. People remain subordinate to the place, neither portraits nor close-up exchanging hands. Natural medieval dress, weathered wood, rough stone, plaster and faded cloth. An informal modest second-hand market, not a rich bazaar or workshop. No dominant stall, no countertop trading scene, no central large merchant, no rigid long straight street, no crowd.
+
+Style and composition:
+Traditional expressive Citadels hand-painted fantasy board-game illustration: broad confident brushwork, painterly simplification, calm legible architectural shapes, moderate detail and moderate depth. Fresh early light, natural restrained color, azure sky and varied cool-warm shadow. The foreground rugs should be readable as laid flat on the ground; enough open cobbles remain for walking. Avoid too many eye-catching tiny objects, hard photographic detail and glossy CGI.
+
+Complete card framing:
+The image IS the entire straight-on rectangular portrait card face, approximately the original 707:1121 ratio. Artwork reaches all four outer edges. No surrounding tabletop, mockup, mat, added outside frame or padding.
+At upper left, exactly TWO individual embossed golden coin symbols in a vertical stack, matching the original gold coins. Exactly two total, no third coin and no printed price digit.
+At lower left, show the complete PURPLE special-district medallion: gold rim, deep purple interior, pink-purple ornamental emblem, overlapping the separate lower title ribbon in the original position. Do not use the Market reference's green medallion.
+Use the original pale light-golden aged parchment ability panel immediately above the separate lower title ribbon, retaining all edges and the entire medallion inside the image.
+
+Exact text:
+Set this rule VERBATIM in BLACK, original-like THIN REGULAR Cyrillic serif. Match the bitmap reference's light regular weight. Moderate readable original rule-text size, never bold oversized display lettering:
+Раз в свой ход можете сбросить 1 карту из руки, чтобы взять 1 карту из колоды.
+Include BOTH digits 1, the comma after «руки» and the final PERIOD. Suggested balanced line breaks:
+Раз в свой ход можете сбросить
+1 карту из руки, чтобы взять
+1 карту из колоды.
+Do not substitute, omit or duplicate any word.
+On the separate lower ribbon to the right of the purple medallion, print this complete title in BLACK original-style BOLD Cyrillic serif:
+Барахолка
+Keep the title generously readable and fully inside the ribbon, comfortably clear of the medallion. Match the distinctive original title letterforms.
+
+Constraints:
+One finished full card only. Only the exact title and rule above may be readable words. No street signs, shop labels, book text, watermarks, signatures, logos, extra game symbols or text numerals. No contemporary objects, garage sale signage, bright modern awnings, luxury market, huge crowded inventory or dominant stall. No added frame, cutoff coin, cropped title, clipped period, partial medallion or missing ribbon ends. Scene must clearly show a bending traversable street, ground rugs with old knick-knacks, azure sky and early morning.

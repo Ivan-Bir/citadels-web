@@ -1,0 +1,10 @@
+Use case: precise-object-edit. Asset type: complete Russian Citadels Deluxe CHARACTER card.
+EDIT the sole attached original card; this is the sole edit target and reference. Faithful artistic upscale/restoration of scan: recover clear original painterly detail and readable original typography, remove blur/JPEG artifacts. Preserve character identity, face, sex, age, expression, pose, costume, hands, all props and background, perspective and exact composition. Keep the original full rectangular card edge to edge, title ribbon, rank emblem, bottom text parchment, separators, typography style, all symbols and original placement. No crop, padding, external margins, extra frame or redesign.
+Traditional painterly illustration, not photorealism or 3D. Color approximately 10% less intense than original, soft restrained contrast, same light levels and atmosphere; no brighter gold glow, HDR, shiny highlights or oversharpening. No new objects or people, no district price coins or district medallions, no added text.
+Card-specific invariants: Elderly bald white-haired smiling merchant in low spectacles and beige scarf, yellow sleeves and brown tunic, one hand holds brass vase and other turquoise gems, green shop background and original scales, coins, weights, gems, pots and bags on table. Preserve green rank emblem, do not add any price icons.
+Exact top title: «Лавочник». Exact rank in original upper-left emblem: 6.
+Bottom ability text VERBATIM (preserve original paragraph count, original divider between paragraphs and any bold emphasis):
+Вы можете построить любое количество торговых кварталов.
+
+Получите 1 золотой за каждый ваш торговый квартал.
+All Russian letters, ё, digits and punctuation must be exactly as written. Reproduce entire ability text sharply in original serif type on original parchment; no word or line may be changed, added, repeated or omitted.

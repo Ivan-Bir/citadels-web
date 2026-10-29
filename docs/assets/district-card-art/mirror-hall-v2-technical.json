@@ -1,0 +1,303 @@
+{
+  "asset": "mirror_hall-compressed.jpg",
+  "districtId": "mirror_hall",
+  "name": "Зеркальный чертог",
+  "status": "technical-approved",
+  "artisticApproval": {
+    "asset": "mirror-hall-v2.png",
+    "userFeedbackVerbatim": "Принимаю, готовь JPEG"
+  },
+  "date": "2026-10-29",
+  "runtime": {
+    "python": "/Users/i.biryukov/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "pillowVersion": "12.3.0"
+  },
+  "source": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/mirror-hall-v2.png",
+    "format": "PNG",
+    "dimensions": [
+      996,
+      1579
+    ],
+    "bytes": 2486975,
+    "sha256Before": "323f229278c534430f197712ce6ae30887bf2a837f34fc8fcce50a360c53fd26",
+    "sha256After": "323f229278c534430f197712ce6ae30887bf2a837f34fc8fcce50a360c53fd26",
+    "unchanged": true
+  },
+  "processing": {
+    "input": "accepted raw PNG directly",
+    "colorMode": "RGB",
+    "cropBoxXYXYExclusive": [
+      0,
+      0,
+      996,
+      1574
+    ],
+    "removedRows": {
+      "top": 0,
+      "bottom": 5,
+      "left": 0,
+      "right": 0
+    },
+    "cropReason": "Only excess lower background removed to bring ordinary title letters to the original-card lower line",
+    "padding": {
+      "top": 0,
+      "bottom": 0,
+      "left": 0,
+      "right": 0
+    },
+    "resize": {
+      "dimensions": [
+        707,
+        1121
+      ],
+      "resampling": "Pillow Image.Resampling.LANCZOS"
+    },
+    "colorAdjustments": [],
+    "sharpening": false,
+    "localRepositioning": false,
+    "seams": false
+  },
+  "jpeg": {
+    "quality": 87,
+    "subsampling": 0,
+    "chromaSubsampling": "4:4:4",
+    "optimize": true,
+    "progressive": false,
+    "qualitySearch": "Descending integer quality from 100; first result satisfying 200000 <= bytes <= 300000",
+    "attempts": [
+      {
+        "quality": 100,
+        "bytes": 1131743
+      },
+      {
+        "quality": 99,
+        "bytes": 919487
+      },
+      {
+        "quality": 98,
+        "bytes": 712280
+      },
+      {
+        "quality": 97,
+        "bytes": 619148
+      },
+      {
+        "quality": 96,
+        "bytes": 549364
+      },
+      {
+        "quality": 95,
+        "bytes": 486903
+      },
+      {
+        "quality": 94,
+        "bytes": 446287
+      },
+      {
+        "quality": 93,
+        "bytes": 410525
+      },
+      {
+        "quality": 92,
+        "bytes": 382154
+      },
+      {
+        "quality": 91,
+        "bytes": 364341
+      },
+      {
+        "quality": 90,
+        "bytes": 345099
+      },
+      {
+        "quality": 89,
+        "bytes": 326095
+      },
+      {
+        "quality": 88,
+        "bytes": 314743
+      },
+      {
+        "quality": 87,
+        "bytes": 299159
+      }
+    ]
+  },
+  "output": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/mirror_hall-compressed.jpg",
+    "format": "JPEG",
+    "dimensions": [
+      707,
+      1121
+    ],
+    "bytes": 299159,
+    "sha256": "add2a9d56ce8de194113bc1d5b209625c5e9ef18b597fd0351aebcc97c8666b9",
+    "fullDecode": true
+  },
+  "baseline": {
+    "coordinateSystem": "0-based image pixels; ROI upper bounds exclusive",
+    "targetRows": [
+      1074,
+      1075
+    ],
+    "sourceOrdinaryLetterProbe": {
+      "roiXYXYExclusive": [
+        420,
+        1480,
+        700,
+        1520
+      ],
+      "threshold": "max(R,G,B) < 80",
+      "minimumDarkPixelsInRow": 3,
+      "lastRow": 1509,
+      "lastRowsDarkCounts": {
+        "1506": 146,
+        "1507": 144,
+        "1508": 129,
+        "1509": 40,
+        "1510": 0,
+        "1511": 0,
+        "1512": 0,
+        "1513": 0
+      }
+    },
+    "decodedJpegOrdinaryLetterProbe": {
+      "roiXYXYExclusive": [
+        298,
+        1050,
+        498,
+        1089
+      ],
+      "threshold": "max(R,G,B) < 80",
+      "minimumDarkPixelsInRow": 3,
+      "lastRow": 1074,
+      "lastRowsDarkCounts": {
+        "1071": 106,
+        "1072": 106,
+        "1073": 104,
+        "1074": 86,
+        "1075": 0,
+        "1076": 0,
+        "1077": 0,
+        "1078": 0
+      }
+    },
+    "descendersExcluded": "Output probe x298:498 covers ordinary letters of the first word; avoids the р descender in both words",
+    "references": [
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "size": [
+          707,
+          1121
+        ],
+        "baseline": {
+          "roiXYXYExclusive": [
+            250,
+            1050,
+            370,
+            1089
+          ],
+          "threshold": "max(R,G,B) < 80",
+          "minimumDarkPixelsInRow": 3,
+          "lastRow": 1076,
+          "lastRowsDarkCounts": {
+            "1073": 53,
+            "1074": 51,
+            "1075": 37,
+            "1076": 20,
+            "1077": 0,
+            "1078": 0,
+            "1079": 0,
+            "1080": 0
+          }
+        }
+      },
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/harbor.jpg",
+        "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+        "size": [
+          707,
+          1121
+        ],
+        "baseline": {
+          "roiXYXYExclusive": [
+            310,
+            1050,
+            505,
+            1089
+          ],
+          "threshold": "max(R,G,B) < 80",
+          "minimumDarkPixelsInRow": 3,
+          "lastRow": 1075,
+          "lastRowsDarkCounts": {
+            "1072": 127,
+            "1073": 120,
+            "1074": 114,
+            "1075": 72,
+            "1076": 0,
+            "1077": 0,
+            "1078": 0,
+            "1079": 0
+          }
+        }
+      }
+    ]
+  },
+  "comparison": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/mirror-hall-v2-comparison.png",
+    "dimensions": [
+      2161,
+      1181
+    ],
+    "sha256": "63ea402f04923ad58f77695b20d16fe08963f293cb6772e30e2e4ec8733342c8",
+    "cardDimensions": [
+      707,
+      1121
+    ],
+    "cardTop": 40,
+    "commonLineImageY": 1076,
+    "commonLineCanvasY": 1116
+  },
+  "checks": {
+    "sourcePngUnchanged": true,
+    "outputFullDecode": true,
+    "dimensions": true,
+    "bytesInRequestedRange": true,
+    "highestIntegerQualityWithinLimit": true,
+    "baselineInTargetRows": true,
+    "visualReview": "passed; final decoded JPEG and same-size comparison inspected with view_image",
+    "titleExact": {
+      "pass": true,
+      "text": "Зеркальный чертог"
+    },
+    "abilityExact": {
+      "pass": true,
+      "text": "Становится точной копией уже построенного квартала",
+      "finalPeriod": false
+    },
+    "coins": {
+      "pass": true,
+      "expected": 6,
+      "observed": 6
+    },
+    "purpleMedallion": true,
+    "textAndRibbonFullyPreserved": true,
+    "fullMedallionPreserved": true,
+    "readability": true,
+    "comparisonViewed": true,
+    "byteForByteReproductionFromSourceAndSettings": true,
+    "originalReferenceFilesUnchanged": true
+  },
+  "limitations": [
+    "JPEG is lossy; only a whole-card resize and background-only lower crop were applied.",
+    "Tiny dark reflected silhouette and all accepted artistic content remain inherited from v2.",
+    "Human technical approval remains pending."
+  ],
+  "technicalApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю JPEG"
+  }
+}

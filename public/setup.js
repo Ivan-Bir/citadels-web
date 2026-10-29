@@ -100,7 +100,10 @@
             image: "/citadels/cards/placeholders/d13-byzantin-temple.svg"},
         citadel: {name: "Цитадель", type: 8, cost: 6, quantity: 0,
             description: "Даёт +1 ресурс при получении дохода за воинские кварталы",
-            image: "/citadels/cards/placeholders/d14-castle.svg"}
+            image: "/citadels/cards/placeholders/d14-castle.svg"},
+        flea_market: {name: "Барахолка", type: 9, cost: 2, quantity: 1,
+            description: "Раз в свой ход можете сбросить 1 карту из руки, чтобы взять 1 карту из колоды.",
+            image: "/citadels/cards/flea_market-compressed.jpg", fullCardImage: true}
     };
 
     const FORMAT = "citadels-setup";
@@ -108,6 +111,40 @@
     const MAX_COPIES = 99;
     const MAX_FILE_SIZE = 65536;
     const own = (object, key) => Object.prototype.hasOwnProperty.call(object, key);
+    // Presentation preferences stay outside the importable/exportable game setup.
+    const backgrounds = Object.freeze({
+        standard: {name: "Стандартный", image: "/citadels/bg.jpg", thumbnail: "/citadels/backgrounds/standard-thumb.webp"},
+        waterfalls: {name: "Город водопадов", image: "/citadels/backgrounds/waterfalls.webp", thumbnail: "/citadels/backgrounds/waterfalls-thumb.webp"},
+        royal: {name: "Королевская гавань", image: "/citadels/backgrounds/royal.webp", thumbnail: "/citadels/backgrounds/royal-thumb.webp"},
+        waterfront: {name: "Ночной порт", image: "/citadels/backgrounds/waterfront.webp", thumbnail: "/citadels/backgrounds/waterfront-thumb.webp"},
+        waterfall_ring: {name: "Кольцо водопадов", image: "/citadels/backgrounds/waterfall-ring.webp", thumbnail: "/citadels/backgrounds/waterfall-ring-thumb.webp"},
+        island: {name: "Островной замок", image: "/citadels/backgrounds/island.webp", thumbnail: "/citadels/backgrounds/island-thumb.webp"}
+    });
+    function normalizeBackgroundId(value) {
+        return typeof value === "string" && own(backgrounds, value) ? value : "standard";
+    }
+
+    function createBackgroundStore(getStorage, userId) {
+        const keyFor = roomId => typeof userId === "string" && userId.length
+            && typeof roomId === "string" && roomId.length
+            ? "citadels:background:v1:" + encodeURIComponent(userId) + ":" + encodeURIComponent(roomId) : null;
+        return {
+            read(roomId) {
+                const key = keyFor(roomId);
+                if (!key) return "standard";
+                try { return normalizeBackgroundId(getStorage().getItem(key)); }
+                catch (error) { return "standard"; }
+            },
+            write(roomId, value) {
+                const key = keyFor(roomId);
+                if (!key) return false;
+                try {
+                    getStorage().setItem(key, normalizeBackgroundId(value));
+                    return true;
+                } catch (error) { return false; }
+            }
+        };
+    }
     const isObject = value => value !== null && Object.prototype.toString.call(value) === "[object Object]";
     const basicIds = Object.keys(districts).filter(id => districts[id].type !== 9);
     const uniqueIds = Object.keys(districts).filter(id => districts[id].type === 9);
@@ -664,6 +701,7 @@
 
     return {
         FORMAT, VERSION, MAX_COPIES, MAX_FILE_SIZE,
+        backgrounds, normalizeBackgroundId, createBackgroundStore,
         districts, basicIds, uniqueIds, groups, timerPresets, timerLimits,
         getDefaultBasicCounts, normalizeBasicCounts, normalizeUniqueDistricts, getDistrictPlayerErrors,
         normalizeCharacters, getCharacterPlayerErrors, characterRequirements,

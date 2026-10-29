@@ -1,0 +1,116 @@
+{
+  "asset": "mirror-hall-v1.png",
+  "districtNumber": "D05",
+  "catalog": {
+    "source": "public/setup.js:75-77",
+    "id": "mirror_hall",
+    "name": "Зеркальный чертог",
+    "type": 9,
+    "cost": 6,
+    "quantity": 1,
+    "description": "Становится точной копией уже построенного квартала"
+  },
+  "approvalSource": "docs/assets/district-card-art/card-texts-and-approval.md, D05 row and one-at-a-time artistic/technical process",
+  "status": "rejected-artistic-atmosphere",
+  "generationDate": "2026-10-29",
+  "generation": {
+    "mode": "built-in",
+    "tool": "image_gen.imagegen",
+    "toolPath": "functions.exec -> tools.image_gen__imagegen",
+    "intent": "generate",
+    "calls": 1,
+    "transparentBackground": false,
+    "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/mirror-hall-v1-prompt.txt",
+    "promptSha256": "f5654343d8056e5827b25a4b12ebade1227ba39dffe5c70dbad1199e58d3a90f",
+    "references": [
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+        "role": "Authoritative original card face geometry, parchment/ribbon, Cyrillic serif, purple medallion and painted finish",
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "inspectedWithViewImageBeforeGeneration": true
+      },
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/palace.jpg",
+        "role": "Supporting original painterly medieval architecture and palace atmosphere; no geometry authority",
+        "sha256": "478e0e02ee48f3c248368daf8ca9547f8f969146fafd1d07a2a86d46fc46e752",
+        "inspectedWithViewImageBeforeGeneration": true
+      },
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/laboratory.jpg",
+        "role": "Exactly six vertically stacked original gold coin symbols only; excluded from geometric and lower-title reference",
+        "sha256": "9ec8cc903a7e5118a1b7567b546149307fe91a3f8e7f3460b941853e010e5052",
+        "inspectedWithViewImageBeforeGeneration": true
+      }
+    ],
+    "sourceOutputPath": "/Users/i.biryukov/.codex/generated_images/01a18794-c52d-71c2-8897-c01d2f143440/exec-0384e804-b6a5-494e-bb8b-02a92ee487dc.png"
+  },
+  "output": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/mirror-hall-v1.png",
+    "format": "PNG",
+    "width": 996,
+    "height": 1579,
+    "bytes": 2287104,
+    "sha256": "073e40fb228e5037053bfae71753ad7cd78f55d12c68a7b7e6b197eb5ede9840",
+    "sourceSha256": "073e40fb228e5037053bfae71753ad7cd78f55d12c68a7b7e6b197eb5ede9840",
+    "byteForByteCopyVerified": true,
+    "technicalProcessing": [],
+    "resized": false,
+    "cropped": false,
+    "padded": false,
+    "jpegCreated": false
+  },
+  "visualChecks": {
+    "method": "Visual inspection of full built-in generated image; human artistic approval still required",
+    "coins": {
+      "expected": 6,
+      "observed": 6,
+      "pass": true,
+      "notes": "Six distinct gold symbols form one vertical stack at upper left"
+    },
+    "name": {
+      "expected": "Зеркальный чертог",
+      "observed": "Зеркальный чертог",
+      "pass": true,
+      "notes": "Large black Cyrillic serif on lower ribbon, complete and readable"
+    },
+    "ability": {
+      "expected": "Становится точной копией уже построенного квартала",
+      "observed": "Становится точной копией уже построенного квартала",
+      "pass": true,
+      "notes": "Three lines on pale parchment, no terminal period"
+    },
+    "medallion": {
+      "expected": "purple",
+      "pass": true,
+      "notes": "Purple special-district emblem in gold rim at lower left"
+    },
+    "scene": {
+      "pass": true,
+      "notes": "Grand stone hall with broad columns, tall gold-framed arched mirrors, repeated reflected vaults and floor, soft blue-grey/gold palette and painterly texture"
+    },
+    "fullCardFace": {
+      "pass": true,
+      "notes": "Full rectangular portrait card, no tabletop or external mockup; coins, panel, ribbon and emblem all visible"
+    }
+  },
+  "limitations": [
+    "Generative artwork: exact conservation of reference pixels and mathematically exact reflected perspective are not asserted.",
+    "Despite the prompt excluding people, tiny dark human-like silhouettes or statues are visible far inside mirror reflections; these are recorded for artistic review.",
+    "Some framed reflections read as deep architectural views; their mirror interpretation and decorative intensity require user approval.",
+    "No technical geometry, 707x1121 conversion, lower-title baseline measurement or JPEG compression has been performed. These follow only after artistic approval.",
+    "Original game images, catalog, JavaScript, shared approval journal and prior asset history were not edited by this task."
+  ],
+  "validation": {
+    "pngChunkCrcsVerified": true,
+    "pngIdatDecompressionVerified": true,
+    "scanlineByteCountVerified": true,
+    "savedFileViewed": true,
+    "promptAndOutputSha256Verified": true,
+    "jsonParsed": true,
+    "sourceCopyRechecked": true
+  },
+  "userFeedback": {
+    "date": "2026-10-29",
+    "statement": "Нет, сделай его более мрачным, магическим, мистическим местом"
+  }
+}

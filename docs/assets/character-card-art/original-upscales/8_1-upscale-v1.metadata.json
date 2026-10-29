@@ -1,0 +1,47 @@
+{
+  "id": "8_1",
+  "name": "Кондотьер",
+  "rank": 8,
+  "original_text": "Уничтожьте 1 квартал, заплатив на 1 золотой меньше, чем его стоимость.\n\nПолучите 1 золотой за каждый ваш военный квартал.",
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/8_1.jpg",
+  "sourceSha256": "212d7de05ce724e7e41c91b8796d2986aba39b7ed1aa06b7eaa7d064ed20e7ff",
+  "sourceSize": {
+    "width": 814,
+    "height": 1417
+  },
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/8_1-upscale-v1.png",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a18762-f1bd-7182-96fa-984d4feb096a/exec-a07d5b92-de92-4a1f-b378-ba462ac3eea0.png",
+  "sha256": "50adc71e93f0f2705c1f0859fe6003ac39b57fd44aaf5187b0920ad20a1bb632",
+  "size": {
+    "bytes": 2304484,
+    "width": 951,
+    "height": 1654
+  },
+  "qa": {
+    "name": "pass: exact original Cyrillic title visually verified",
+    "rank": "pass: exact numeral and source emblem retained",
+    "text": "pass: full original ability text visually compared word by word, including numerals and punctuation",
+    "composition": "Bald warrior, stern face, white fur, armor, map pieces and candle retained; fine armor/map details reinterpreted.",
+    "identity": "pass: source gender, apparent age, face, expression and pose retained; generative fine-detail interpretation",
+    "color": "pass: original palette family and light mood retained; restrained painterly contrast; exact 10% chroma reduction unmeasured",
+    "layout": "pass: full rectangle, title/rank area and original ability scroll retained; no district UI or new text"
+  },
+  "status": "artistic-approved",
+  "limitations": [
+    "Generative restoration may reinterpret fine details and typography contours.",
+    "Approximately 10% lower color intensity is a prompt target, not a pixel measurement.",
+    "Raw generated PNG copied byte-for-byte; no resize, JPEG conversion, crop, padding or public game asset replacement."
+  ],
+  "verification": {
+    "byteCopy": true,
+    "pngDecode": true,
+    "promptExact": true
+  },
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+    "condition": "Preserve and align parchment positions against each original character JPG."
+  }
+}

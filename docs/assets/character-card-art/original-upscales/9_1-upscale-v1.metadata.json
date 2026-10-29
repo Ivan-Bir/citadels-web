@@ -1,0 +1,47 @@
+{
+  "id": "9_1",
+  "name": "Скульптор",
+  "rank": 9,
+  "original_text": "Украсьте до 2 своих кварталов, положив на них по 1 золотому.\nКаждые 2 украшения дают +1 дополнительных очка в конце игры.",
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/9_1.jpg",
+  "sourceSha256": "3ba8fb94ac2220cc15fc39f9a0e9021d978f65aa9ae46fb0487d1dd6968b329b",
+  "sourceSize": {
+    "width": 951,
+    "height": 1654
+  },
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/9_1-upscale-v1.png",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a18762-f1bd-7182-96fa-984d4feb096a/exec-d334a768-03d9-412d-937e-56e2027c02ee.png",
+  "sha256": "b883eef6dfb934bca945be859929dd22287eabbd4d33a79cac6bb8244ab599a8",
+  "size": {
+    "bytes": 2217399,
+    "width": 951,
+    "height": 1654
+  },
+  "qa": {
+    "name": "pass: exact original Cyrillic title visually verified",
+    "rank": "pass: exact numeral and source emblem retained",
+    "text": "pass: full original ability text visually compared word by word, including numerals and punctuation",
+    "composition": "Female sculptor, apron, mallet, rough block and bespectacled bearded bust retained; stone and cloth detail restored.",
+    "identity": "pass: source gender, apparent age, face, expression and pose retained; generative fine-detail interpretation",
+    "color": "pass: original palette family and light mood retained; restrained painterly contrast; exact 10% chroma reduction unmeasured",
+    "layout": "pass: full rectangle, title/rank area and original ability scroll retained; no district UI or new text"
+  },
+  "status": "artistic-approved",
+  "limitations": [
+    "Generative restoration may reinterpret fine details and typography contours.",
+    "Approximately 10% lower color intensity is a prompt target, not a pixel measurement.",
+    "Raw generated PNG copied byte-for-byte; no resize, JPEG conversion, crop, padding or public game asset replacement."
+  ],
+  "verification": {
+    "byteCopy": true,
+    "pngDecode": true,
+    "promptExact": true
+  },
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+    "condition": "Preserve and align parchment positions against each original character JPG."
+  }
+}

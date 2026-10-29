@@ -1,0 +1,360 @@
+[
+  {
+    "id": "1_3",
+    "name": "Магистрат",
+    "rank": 1,
+    "original_text": "Положите ордеры лицевой стороной вниз на разные жетоны персонажей. Переверните ордер с печатью, чтобы конфисковать первый квартал, который построит этот игрок. Игрок получает обратно всё золото, которое заплатил за постройку квартала.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/1_3.jpg",
+    "sourceSha256": "a03d390efbd82526c1637fdaa43c30871e09403688b3647b3523a06b9c677407",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/1_3-upscale-v3.png",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876c-39af-7f72-86b8-b16a78b1ad7d/exec-340b1d3b-6d49-48e9-b7ce-9b64a3bef1f6.png",
+    "sha256": "ce99301ac738449f292566cc46f84f49c14a8e9969eeee696d3f8f11ec7c79dd",
+    "size": {
+      "bytes": 2128811,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact original title visually verified",
+      "rank": "pass: exact original rank and emblem color",
+      "text": "pass: exact original paragraph, words, ё and punctuation visually verified; period after «этот игрок» corrected in v3",
+      "composition": "Original complete card layout, pose, costume, props and background retained; fine painterly details reinterpreted",
+      "identity": "Original age, sex, hair, expression and identity cues retained with generative facial reinterpretation",
+      "color": "Original palette retained with soft contrast; approximate 10% lower intensity is unmeasured",
+      "layout": "Full rectangular card, ribbons and typography retained; small spacing changes"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration reinterprets fine details and facial rendering.",
+      "Approximate 10% lower color intensity is a prompt target, not measured.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding or compression."
+    ],
+    "editTargetPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/1_3.jpg",
+    "editTargetSha256": "a03d390efbd82526c1637fdaa43c30871e09403688b3647b3523a06b9c677407",
+    "generationHistory": [
+      {
+        "version": 1,
+        "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/1_3-upscale-v1.png",
+        "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876c-39af-7f72-86b8-b16a78b1ad7d/exec-655268fd-e46d-46b6-85af-43a4445a1a81.png",
+        "sha256": "b59aa366d30fa3030c54588c975ea3c8f66815b6fb24bfa7bbec876839970ef0",
+        "issue": "Comma instead of source period after «этот игрок»"
+      },
+      {
+        "version": 2,
+        "editTargetPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/1_3-upscale-v1.png",
+        "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876c-39af-7f72-86b8-b16a78b1ad7d/exec-47368d02-8a99-483d-89c0-9b441a692477.png",
+        "correction": "Requested only comma to period; generator left comma unchanged"
+      },
+      {
+        "version": 3,
+        "editTargetPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/1_3.jpg",
+        "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876c-39af-7f72-86b8-b16a78b1ad7d/exec-340b1d3b-6d49-48e9-b7ce-9b64a3bef1f6.png",
+        "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/1_3-upscale-v3.png",
+        "sha256": "ce99301ac738449f292566cc46f84f49c14a8e9969eeee696d3f8f11ec7c79dd",
+        "correction": "New restoration from original scan with explicit full-stop instruction; source punctuation now correct"
+      }
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "2_3",
+    "name": "Шпион",
+    "rank": 2,
+    "original_text": "Назовите тип квартала и посмотрите руку другого игрока. За каждый квартал названного типа заберите у него 1 золотой и возьмите 1 карту из колоды.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/2_3.jpg",
+    "sourceSha256": "69967d78a1b9731d812b8a738475b979e367696c7bc4d7bc3ceca7f1e85ae082",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/2_3-upscale-v1.png",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876c-39af-7f72-86b8-b16a78b1ad7d/exec-4ef7fb39-3c19-4555-9dc1-583379231056.png",
+    "sha256": "5528258421beea9f7b06f9d6bb4845b74aa09f6393603e32c8bf562b689318eb",
+    "size": {
+      "bytes": 2000629,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact original title visually verified",
+      "rank": "pass: exact original rank and emblem color",
+      "text": "pass: every word, punctuation and digits visually compared to source; original single paragraph retained",
+      "composition": "Original complete card layout, pose, costume, props and background retained; fine painterly details reinterpreted",
+      "identity": "Original age, sex, hair, expression and identity cues retained with generative facial reinterpretation",
+      "color": "Original palette retained with soft contrast; approximate 10% lower intensity is unmeasured",
+      "layout": "Full rectangular card, ribbons and typography retained; small spacing changes"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration reinterprets fine details and facial rendering.",
+      "Approximate 10% lower color intensity is a prompt target, not measured.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding or compression."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "3_3",
+    "name": "Провидица",
+    "rank": 3,
+    "original_text": "Заберите по 1 случайной карте из руки каждого соперника себе на руку. Затем отдайте каждому сопернику, у которого забрали карту, 1 карту из своей руки.\n\nВы можете построить до 2 кварталов.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/3_3.jpg",
+    "sourceSha256": "b8b844986effa9a6bd1c2fb690968228f0076385a3f47a2f4492de6b1e87d33f",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/3_3-upscale-v1.png",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876c-39af-7f72-86b8-b16a78b1ad7d/exec-1e02342c-f497-4b4c-8778-c6921b0f3e32.png",
+    "sha256": "e9ddb3b164a0fb2f87e62b3758129d78908b1ca122d0f895f57d545b29a147cc",
+    "size": {
+      "bytes": 2186134,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact original title visually verified",
+      "rank": "pass: exact original rank and emblem color",
+      "text": "pass: every word, punctuation and digits visually compared to source; two paragraphs and divider retained",
+      "composition": "Woman, bun, forehead pendant, purple dress, cards, candles, table and full card composition retained; small detail reinterpreted",
+      "identity": "Original age, sex, hair, expression and identity cues retained with generative facial reinterpretation",
+      "color": "Original palette retained with soft contrast; approximate 10% lower intensity is unmeasured",
+      "layout": "Full rectangular card, ribbons and typography retained; small spacing changes"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration reinterprets fine details and facial rendering.",
+      "Approximate 10% lower color intensity is a prompt target, not measured.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding or compression."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "4_3",
+    "name": "Патриций",
+    "rank": 4,
+    "original_text": "Заберите корону.\n\nВозьмите 1 карту из колоды за каждый ваш дворянский квартал.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/4_3.jpg",
+    "sourceSha256": "7620534e096c0dd4bd75d91b587033f2fb44dcbe5db63591ff153ae399ce6e6e",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/4_3-upscale-v1.png",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876c-39af-7f72-86b8-b16a78b1ad7d/exec-fcc13dbe-5f58-411d-9d4d-d84c41500768.png",
+    "sha256": "65e30c3d018881da4d1b26b6076b89fa39241578c65974b89ce08f2a1f5042db",
+    "size": {
+      "bytes": 1994891,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact original title visually verified",
+      "rank": "pass: exact original rank and emblem color",
+      "text": "pass: every word, punctuation and digits visually compared to source; two paragraphs and divider retained",
+      "composition": "Original character, pose, clothing, props, background and complete card composition retained with reinterpreted fine details",
+      "identity": "Original age, sex, hair, expression and identity cues retained with generative facial reinterpretation",
+      "color": "Original palette retained with soft contrast; approximate 10% lower intensity is unmeasured",
+      "layout": "Full rectangular card, ribbons and typography retained; small spacing changes"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration reinterprets fine details and facial rendering.",
+      "Approximate 10% lower color intensity is a prompt target, not measured.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding or compression."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "5_3",
+    "name": "Кардинал",
+    "rank": 5,
+    "original_text": "Если у вас не хватает золотых, чтобы построить квартал, продайте свои карты за золото другому игроку (1 карта = 1 золотой).\n\nПолучите 1 карту за каждый ваш квартал духовенства.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/5_3.jpg",
+    "sourceSha256": "c7fb88cc9d1bbe9b655adb55ec1de1326bc926dade77abca6596b46582cd859c",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/5_3-upscale-v1.png",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876c-39af-7f72-86b8-b16a78b1ad7d/exec-7e52734a-4be0-4c0c-bbc5-d0aea0855a8c.png",
+    "sha256": "91cf20a794c23dd8169ca6966b616208c7c5e3c7b94aee4dbe13f733d7bd5b14",
+    "size": {
+      "bytes": 2014982,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact original title visually verified",
+      "rank": "pass: exact original rank and emblem color",
+      "text": "pass: every word, punctuation and digits visually compared to source; two paragraphs and divider retained",
+      "composition": "Original character, pose, clothing, props, background and complete card composition retained with reinterpreted fine details",
+      "identity": "Original age, sex, hair, expression and identity cues retained with generative facial reinterpretation",
+      "color": "Original palette retained with soft contrast; approximate 10% lower intensity is unmeasured",
+      "layout": "Full rectangular card, ribbons and typography retained; small spacing changes"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration reinterprets fine details and facial rendering.",
+      "Approximate 10% lower color intensity is a prompt target, not measured.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding or compression."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "6_3",
+    "name": "Лавочник",
+    "rank": 6,
+    "original_text": "Вы можете построить любое количество торговых кварталов.\n\nПолучите 1 золотой за каждый ваш торговый квартал.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/6_3.jpg",
+    "sourceSha256": "d1a4668ac9315bf9457cf22e77a8bdb0776694fd3c603d2ddfe64d267e59be4b",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/6_3-upscale-v1.png",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876c-39af-7f72-86b8-b16a78b1ad7d/exec-fcae59a7-3cab-484c-ab35-cd488cb7364d.png",
+    "sha256": "f2f0813723972c79a2b3a0d9945e43f179812ef0902824d248cfa33e9a8b593f",
+    "size": {
+      "bytes": 2254682,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact original title visually verified",
+      "rank": "pass: exact original rank and emblem color",
+      "text": "pass: every word, punctuation and digits visually compared to source; two paragraphs and divider retained",
+      "composition": "Original character, pose, clothing, props, background and complete card composition retained with reinterpreted fine details",
+      "identity": "Original age, sex, hair, expression and identity cues retained with generative facial reinterpretation",
+      "color": "Original palette retained with soft contrast; approximate 10% lower intensity is unmeasured",
+      "layout": "Full rectangular card, ribbons and typography retained; small spacing changes"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration reinterprets fine details and facial rendering.",
+      "Approximate 10% lower color intensity is a prompt target, not measured.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding or compression."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "7_3",
+    "name": "Учёный",
+    "rank": 7,
+    "original_text": "Возьмите 7 карт из колоды и выберите 1 из них. Заберите её себе на руку и замешайте остальные карты в колоду.\n\nВы можете построить до 2 кварталов.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/7_3.jpg",
+    "sourceSha256": "0139a6cc70bae51d6d59133d52786f9706bfea8329f6f6ea0c6ae5768b8f4a85",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/7_3-upscale-v1.png",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876c-39af-7f72-86b8-b16a78b1ad7d/exec-0f123492-5746-41fc-9da9-6c498947d27f.png",
+    "sha256": "ebed6501d03937a8f70381d87a10ec58f08f75ba2e355e81799fc589484f799f",
+    "size": {
+      "bytes": 2171873,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact original title visually verified",
+      "rank": "pass: exact original rank and emblem color",
+      "text": "pass: every word, punctuation and digits visually compared to source; two paragraphs and divider retained",
+      "composition": "Original character, pose, clothing, props, background and complete card composition retained with reinterpreted fine details",
+      "identity": "Original age, sex, hair, expression and identity cues retained with generative facial reinterpretation",
+      "color": "Original palette retained with soft contrast; approximate 10% lower intensity is unmeasured",
+      "layout": "Full rectangular card, ribbons and typography retained; small spacing changes"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration reinterprets fine details and facial rendering.",
+      "Approximate 10% lower color intensity is a prompt target, not measured.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding or compression."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "8_3",
+    "name": "Маршал",
+    "rank": 8,
+    "original_text": "Захватите в городе другого игрока 1 квартал, стоимость которого 3 или ниже. Заплатите этому игроку столько золотых, сколько стоило захваченное здание.\n\nПолучите 1 золотой за каждый ваш военный квартал.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/8_3.jpg",
+    "sourceSha256": "cc3c0b08b6e2d2f35ab78c745658c64f666d5c2780ac8fbdf1ad8312d774cc43",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/8_3-upscale-v1.png",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876c-39af-7f72-86b8-b16a78b1ad7d/exec-02661f7f-622f-4965-a9fb-868c9d813ec0.png",
+    "sha256": "cbd9a5c28b469925e6e70b7d28a15f9fb4d322b07a4fafae42025653cff25a33",
+    "size": {
+      "bytes": 2257971,
+      "width": 951,
+      "height": 1654
+    },
+    "qa": {
+      "name": "pass: exact original title visually verified",
+      "rank": "pass: exact original rank and emblem color",
+      "text": "pass: every word, punctuation and digits visually compared to source; two paragraphs and divider retained",
+      "composition": "Original character, pose, clothing, props, background and complete card composition retained with reinterpreted fine details",
+      "identity": "Original age, sex, hair, expression and identity cues retained with generative facial reinterpretation",
+      "color": "Original palette retained with soft contrast; approximate 10% lower intensity is unmeasured",
+      "layout": "Full rectangular card, ribbons and typography retained; small spacing changes"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration reinterprets fine details and facial rendering.",
+      "Approximate 10% lower color intensity is a prompt target, not measured.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding or compression."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  },
+  {
+    "id": "9_3",
+    "name": "Мытарь",
+    "rank": 9,
+    "original_text": "После строительства каждый игрок помещает 1 золотой на жетон сборщика налогов.\n\nЗаберите всё золото с жетона сборщика налогов.",
+    "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/9_3.jpg",
+    "sourceSha256": "4483b9598e210b029ac086713dbc5d84209004bdd62412bb0cd1e6eaaf6e6963",
+    "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/9_3-upscale-v1.png",
+    "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876c-39af-7f72-86b8-b16a78b1ad7d/exec-c5fbec39-a05d-4428-bd7b-a27ae24e0cb4.png",
+    "sha256": "04bbb7bbdb8c20c50b97ec4f6462617bc54bcb69873377f587518ced84c6c0a7",
+    "size": {
+      "bytes": 2154140,
+      "width": 950,
+      "height": 1655
+    },
+    "qa": {
+      "name": "pass: exact original title visually verified",
+      "rank": "pass: exact original rank and emblem color",
+      "text": "pass: every word, punctuation and digits visually compared to source; two paragraphs and divider retained",
+      "composition": "Original tax collector, facial expression, costume, hands, purse, falling coins, bowls, coin stacks, door and full card retained; fine details reinterpreted",
+      "identity": "Original age, sex, hair, expression and identity cues retained with generative facial reinterpretation",
+      "color": "Original palette retained with soft contrast; approximate 10% lower intensity is unmeasured",
+      "layout": "Full rectangular card, ribbons and typography retained; small spacing changes"
+    },
+    "status": "artistic-approved",
+    "limitations": [
+      "Generative restoration reinterprets fine details and facial rendering.",
+      "Approximate 10% lower color intensity is a prompt target, not measured.",
+      "Raw generated PNG copied byte-for-byte; no resize, crop, padding or compression."
+    ],
+    "artisticApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+      "condition": "Preserve and align parchment positions against each original character JPG."
+    }
+  }
+]

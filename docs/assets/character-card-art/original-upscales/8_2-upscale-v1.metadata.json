@@ -1,0 +1,39 @@
+{
+  "id": "8_2",
+  "name": "Дипломат",
+  "rank": 8,
+  "original_text": "Обменяйте 1 свой квартал на квартал другого игрока, и доплатите ему золотые в количестве, равном разнице в стоимости между обменянными кварталами.\n\nПолучите 1 золотой за каждый ваш военный квартал.",
+  "specific": "Slender young light-skinned male diplomat with straight shoulder-length auburn hair, raised eyebrow, sideways glance and sly smile, purple courtly tunic with puffed shoulders, reddish brown sleeves, pale collar and decorative hems, hands together at chest, brown diagonal strap and satchel at viewer-left hip holding two rolled parchments. Red-orange draped column/curtain background. Preserve face, slim male identity, clasped hands, two scrolls and outfit exactly. Preserve 2 ability paragraphs and fine original divider.",
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/8_2.jpg",
+  "prompt": "Use case: precise-object-edit. Asset: complete Russian Citadels Deluxe CHARACTER game card.\nEDIT the single original card provided as the ONLY edit target and reference. Faithful artistic upscale/restoration: remove scan blur and JPEG artifacts, restore sharp painterly brush texture and readable native typography in the original traditional illustration style. Preserve the exact identity, face, sex, age, expression, body and hand pose, costume, props, all existing background objects, perspective, composition, original card proportions and full edge-to-edge rectangle. Preserve title banner, rank badge, bottom parchment scroll, every symbol, separator and layout. Do not crop, pad, add borders or external margins. Do not redesign.\nColor: approximately 10% less intense than the original, restrained soft contrast; same palette family, light levels and shadow atmosphere. Do not strengthen golden glow or highlights. No photorealism, 3D, HDR, hyperrealism or oversharpening.\nThis is a CHARACTER card: add no district coins or color medallions, new objects, characters, decorative fields, watermarks or text.\nText: render every Russian word and punctuation verbatim, preserve ё, numbers and original bold/italic emphasis and paragraph count. Reflow minimally only to fit the original same bottom parchment region. Keep exact native decorative serif typography; no translation or paraphrase.\nCard-specific visual invariants: Slender young light-skinned male diplomat with straight shoulder-length auburn hair, raised eyebrow, sideways glance and sly smile, purple courtly tunic with puffed shoulders, reddish brown sleeves, pale collar and decorative hems, hands together at chest, brown diagonal strap and satchel at viewer-left hip holding two rolled parchments. Red-orange draped column/curtain background. Preserve face, slim male identity, clasped hands, two scrolls and outfit exactly. Preserve 2 ability paragraphs and fine original divider.\nExact rank badge: 8.\nExact title: «Дипломат».\nExact ability text (2 paragraphs separated by the original horizontal ornament):\nОбменяйте 1 свой квартал на квартал другого игрока, и доплатите ему золотые в количестве, равном разнице в стоимости между обменянными кварталами.\n\nПолучите 1 золотой за каждый ваш военный квартал.",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876b-e4d3-70a2-8058-4c5b40abb5bf/exec-2916f932-9155-4939-ba9a-ed65e06041fa.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/8_2-upscale-v1.png",
+  "sourceSha256": "5eb30974aacd1178d9077eeac4cbeda893d1f791d826762ef0c26d3e73e4fa76",
+  "sha256": "180719e0188a9729b2eeb1dca4ccfc210d3e239ff7cbfbef5088b5f137955c2e",
+  "size": {
+    "bytes": 2112557,
+    "width": 950,
+    "height": 1655
+  },
+  "qa": {
+    "name": "pass: exact source title visually checked",
+    "rank": "pass: exact source rank visually checked",
+    "text": "pass: each word, ё, numbers, punctuation and paragraph count visually compared to source",
+    "composition": "pass: major pose, costume, props and background retained; fine details generatively reinterpreted",
+    "identity": "pass: face, sex, age and expression retained with painterly reinterpretation",
+    "color": "same palette and restrained contrast; exact 10% reduction unmeasured",
+    "layout": "pass: complete card, original title/rank/ability regions and separators retained"
+  },
+  "status": "artistic-approved",
+  "limitations": [
+    "Generative restoration can reinterpret fine details and face nuances.",
+    "Approximately 10% lower color intensity is a prompt target, not a measured guarantee.",
+    "Raw generated PNG copied byte-for-byte; no resize, crop, padding, compression or game asset replacement."
+  ],
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+    "condition": "Preserve and align parchment positions against each original character JPG."
+  }
+}

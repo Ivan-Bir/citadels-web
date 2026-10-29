@@ -1,0 +1,44 @@
+Use case: illustration-story
+Asset type: ONE complete full-face portrait Russian Citadels Deluxe district card, «Судейская палата». Raw PNG for artistic review.
+Operation: GENERATE a new composition. This is a fundamentally different camera position, atmosphere and improved typography, not a retouch of a previous illustration.
+
+Reference images and strict roles:
+1. ORIGINAL monument.jpg is authoritative for the complete card-face layout, golden parchment ability panel, separate lower title ribbon, PURPLE special-district medallion and original black Cyrillic lettering. Do not copy its scene, words, four-coin price or ability.
+2. ORIGINAL harbor.jpg is authoritative for the compact ORIGINAL bold title letterforms and title-ribbon proportions. Do not copy the harbor illustration, name, four-coin price or green medallion.
+3. ORIGINAL manor.jpg supplies EXACTLY THREE original gold coins in one upper-left vertical column and the traditional painted medieval material treatment only. Do not copy its room composition, title or yellow medallion.
+4. judges-chamber-typography-reference.png is an enlarged, unretouched bitmap typography reference made from the ORIGINAL monument and harbor lower panels. TOP sample: thin REGULAR ability lettering and bold title. BOTTOM sample: original bold title geometry. Reproduce these actual letterform qualities, not their words, line count or medallion colors. These enlarged samples are FONT STYLE evidence, not a template image to paste. No reference title or reference ability may appear in the result.
+
+Primary scene — first-person viewpoint from the seated judge:
+We ARE the seated judge, looking OUT from BEHIND the judge's bench into a medieval civic courtroom. The camera occupies the judge's position. Do NOT show a judge seated opposite us, a front-facing judge, a judge's face, or the exterior front of a tall judge's bench. The judge is entirely off camera. A narrow strip of the judge's dark wooden desktop runs across only the nearest lower foreground of the illustration.
+Beyond that narrow desktop, the main focus is the courtroom: two petitioners/craftsmen facing toward us, one holding a rolled building plan, and a few civilian spectators on simple wooden benches farther back. Their whole figures are visible at room scale. A clear central floor and the arrangement of benches make the viewpoint from the judging seat unmistakeable. Stone walls, arched side windows, substantial wooden beams and a modest civilian doorway. No altar, throne or monumental centrepiece.
+Small peripheral judicial objects, deliberately subordinate: at the FAR LEFT side edge of the foreground desktop a modest bronze statuette of Justice, recognisable scales and a suggested blindfold; at the FAR RIGHT side edge a SMALL wooden judge's gavel lying beside a little block. Both are visible but small; do not enlarge or centre them, do not make a still life, do not let them hide the hall or petitioners. Neither object should exceed about one sixth of the illustration's height.
+Use expressive large readable shapes, moderate depth and carefully limited detail. The central subject is the judicial hall and the people appearing before the unseen judge.
+
+Atmosphere — unmistakable SUNSET EVENING:
+Low orange-pink sunset light streams obliquely through the side windows and paints long warm strips across the stone floor and benches. The air and distant window sky feel like the end of day, peach/orange near the horizon, with cool violet-blue shadows within the chamber. Warm low-angle side light and long shadows, quieter evening half-light, not bright evenly illuminated noon. The room stays legible, not mostly black. Natural traditional painted color and light, not glossy theatrical glare.
+
+Style:
+Natural hand-painted Citadels board-game illustration like the original references: simplified expressive masses, broad soft brushwork, gently modelled wood and stone, medieval civilian clothing, restrained historical furnishings. Moderate detail, not a photo, 3D render, photorealistic movie frame, flat vector or sharp digital microtexture.
+
+CRITICAL TYPOGRAPHY CORRECTION:
+The previous attempt was rejected because its type was much too large, heavy and generically modern. Carefully follow the ORIGINAL BITMAP letterforms in reference 4.
+Ability: NORMAL REGULAR weight, visibly thin strokes with graceful original serif terminals, open counters, wide gently rounded forms, natural compact text density. It must look like the thin regular explanatory lettering in the TOP reference panel, NOT bold display text, NOT heavy high-contrast oversized newspaper type. Keep its original-relative letter height: at the equivalent 707 px card width, about 30–33 px body letter height, not enormous 45–55 px letters. Let pale parchment around the three lines breathe.
+Title: the ORIGINAL compact black bold Citadels lettering shown in both samples, characteristic tapered/wedge terminals and dense broad shapes. Scale the long two-word title to fit comfortably right of the medallion, without inflating the ribbon. Do not invent a decorative calligraphic font, modern luxury-display serif, exaggerated hairlines, swashes or huge title. Follow the reference strokes, proportions and density; do not claim a named font family.
+
+Exact content and full-card layout:
+The image IS the entire straight-on rectangular card face at approximately the originals' portrait 707:1121 ratio, filling every outer edge. No surrounding table, mockup, extra border, frame, blank padding or rounded outer cutout. Keep all coins, parchment, title ribbon and medallion inside the image.
+Show EXACTLY THREE embossed golden coin emblems at the UPPER LEFT in one vertical column, as in manor.jpg. Not two, four or five. No price numerals.
+At the bottom above a separate lower title ribbon, a light-golden aged parchment panel carries this exact black Cyrillic REGULAR serif ability, verbatim:
+Один раз запретите всем игрокам строительство на следующий раунд
+Use these three balanced lines with the original thinner body lettering:
+Один раз запретите всем
+игрокам строительство на
+следующий раунд
+Every word must be exact. No final period. No added punctuation, no quotation marks. Keep the ability smaller and less heavy than the rejected oversized bold appearance.
+On a separate lower golden title ribbon place the exact title in original-style black BOLD lettering:
+Судейская палата
+The whole title fits in a single line comfortably to the right of the medallion, neither touching it nor being cropped.
+At LOWER LEFT overlapping the title ribbon place the original special-district PURPLE medallion from monument.jpg: gold rim, deep purple interior, pink-purple ornamental emblem. Do not copy the green harbor or yellow manor medallion.
+
+Constraints:
+Only readable text is the exact approved name and exact approved ability. No labels, wall lettering, legible text on plans, signatures, logos, watermarks, extra numbers or reference-card names. Papers may have a simple architectural sketch, not words. No modern suits, microphones, modern equipment, electric light, police station, church, royal throne room, face of the judge, opposite judge's bench, central gavel or oversized Justice statue. No overfilled crowd, no large close-up characters. Preserve full-card readability and a clear FIRST-PERSON judge's viewpoint in unmistakable sunset evening light.

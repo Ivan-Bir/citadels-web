@@ -1,0 +1,32 @@
+Use case: illustration-story
+Asset type: ONE complete full-face portrait district card for the Russian edition of Citadels Deluxe, new district «Башня прорицателя». This is a raw PNG for artistic review.
+
+Reference images and roles:
+1. Original monument.jpg is the authoritative full-card layout reference: pale golden parchment ability panel, separate lower title ribbon, purple special-district medallion, black Cyrillic serif lettering, original-relative margins and scales, hand-painted golden coin symbols. It also gives the EXACT count of FOUR coins in a single upper-left vertical column. Do not copy its monument scene, name or ability.
+2. Original observatory.jpg supplies ONLY the expressive hand-painted medieval architecture and softly atmospheric twilight sky. Do not copy its telescope, observatory dome, urban alley, full moon, scene composition, title or ability. This new tower is a different building and a different scene.
+3. Original fortress.jpg supplies ONLY the convincing painterly stone construction and readable substantial architectural masses. Do not copy its fortress composition, battlements, red medallion, five-coin cost or title.
+
+Primary request and scene:
+Paint an ancient slender medieval seer's tower on a rocky rise, shown as a complete recognizable building in a quiet cool twilight landscape. The composition centres on the expressive architectural silhouette: a tall, slightly weathered stone shaft with arched windows, restrained buttresses, and a steep slate roof, above its visible rocky base. Use a graceful three-quarter general view with the whole roof and building readable; not a close-up or an interior. The upper arched window glows with a gentle mysterious light from the chamber of a seer. Suggest a place of quiet foresight through this modest light, the contemplative atmosphere, and the tower's unusual old architecture. Keep the tower dominant and its large shapes beautifully clear, with only a few carefully chosen architectural details. Cool blue-violet sky, softly separated distant hills, muted blue-green vegetation among stone, and a small warm window-light accent. Soft luminous twilight still makes the stone legible; the image must not become mostly black. Moderate spatial depth and natural painterly atmosphere, no overly busy background. No large character portrait or repeating a candlelit interior scene.
+
+Style:
+Match the original Citadels card references: traditional painted fantasy board-game illustration, expressive broad brushstrokes, beautiful simplified forms, softly modelled stone, natural color and light, a subtle magical mood. Preserve a painterly handmade feel. Not a photograph, glossy digital render, 3D model or flat vector. Avoid excessive sharp micro-detail, hard specular highlights and overly saturated colors.
+
+Card composition and exact content:
+The image IS the entire straight-on rectangular card face, portrait at approximately the originals' 707:1121 aspect ratio, filling the image to all outer edges. No surrounding tabletop, floating mockup, separate outer frame, extra empty border or padding. Keep the whole title ribbon, medallion, ability panel and all lettering inside the image.
+Show EXACTLY FOUR individual embossed gold coin emblems stacked vertically at the upper left, using the style and relative scale of the FOUR coins in monument.jpg. Neither three nor five coins. There is no printed price numeral.
+At the bottom, use the original light-golden aged parchment ability panel, immediately above a separate lower title ribbon. The ability is long: give it enough panel height and a generous readable black Cyrillic serif font matching the original. Keep the panel pale enough for excellent legibility. Render the following text VERBATIM, retaining every word, both commas, ё and the exact German-style low/high double quotation marks „ “. No added final period:
+Раз в ход посмотрите столько верхних карт колоды, сколько берёте при выборе ресурса „карты“, не меняя их порядка
+Use four balanced readable lines, retaining this exact sequence of words:
+Раз в ход посмотрите столько
+верхних карт колоды, сколько
+берёте при выборе ресурса
+„карты“, не меняя их порядка
+The word берёте must contain ё, not е. The first quote before карты is „ and the closing quote is “. Do not paraphrase, omit words or add any punctuation. No enclosing quotes around the whole ability.
+On the separate lower ribbon, render the exact district name in large bold black original-style Cyrillic serif, centered in the space to the right of the medallion:
+Башня прорицателя
+All letters must be visible and the full title must fit comfortably without touching or crossing the purple medallion.
+At lower left overlapping the title ribbon, place the original-style PURPLE special-district medallion: gold rim, deep purple interior and pink/purple ornamental emblem, matching monument.jpg in location and relative scale. Do not use red, yellow, blue or green.
+
+Constraints:
+Deliver exactly one complete finished card. Only readable text is the exact name and exact ability above. No words or symbols on the tower, no added banner text, no watermarks, logos, signatures or price digits. No modern telescope, modern equipment, huge portal, laser beams, neon, floating streams of cards, giant crystal ball, close-up portrait or busy interior. Do not crop the roof, building silhouette, coins, card edges, ability, title or medallion. The whole composition must remain clear and readable with the established Citadels card layout.

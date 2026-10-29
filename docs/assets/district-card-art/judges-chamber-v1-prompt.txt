@@ -1,0 +1,31 @@
+Use case: illustration-story
+Asset type: ONE complete full-face portrait district card for the Russian edition of Citadels Deluxe, new district «Судейская палата». This is a raw PNG for artistic review.
+
+Reference images and roles:
+1. Original monument.jpg is the authoritative full-card layout reference: pale golden parchment ability panel, separate lower title ribbon, purple special-district medallion, black Cyrillic serif lettering, original-relative margins and scales, hand-painted golden coin symbols. Do not copy its monument scene, name, ability or FOUR-coin cost. The new card has exactly THREE coins.
+2. Original manor.jpg supplies the EXACT count of THREE embossed golden coins in one upper-left vertical column and the hand-painted medieval interior treatment only. Do not copy its manor scene, title or yellow medallion.
+3. Original town_hall.jpg supplies ONLY the medieval civilian interior, civilian historical dress and natural painted style. Do not copy its room composition, crowds, five coins, green medallion, title or text.
+
+Primary request and scene:
+Paint a solemn medieval civic judicial chamber: a substantial stone hall with arched windows and a heavy wooden judge's bench or long table on a modest low dais. One presiding judge in a restrained dark medieval robe declares a decision with an expressive open-hand gesture of stopping, beside a seated scribe or adviser. One or two petitioners or craftsmen stand in the middle ground facing the bench. A rolled building plan and a sealed decree or wax seals quietly suggest a temporary ban on building; they contain no readable writing. The PLACE must read clearly as a civic courtroom, with people supporting its story, never an enormous close-up portrait. Use a general room view with expressive large architectural and furniture masses, moderate depth and selected detail, rather than a deep busy crowd scene. Keep all figures in believable medieval civilian clothing. The bench is judicial furniture, not a royal throne or altar. Arched windows admit soft natural daylight, illuminating warm wood, pale weathered stone and restrained cloth colors. Serious civic authority without sinister conspiracy, harsh darkness or theatrical spotlight.
+
+Style:
+Match the original Citadels card references: traditional hand-painted fantasy board-game illustration, expressive broad brushwork, beautifully simplified forms, natural softly modelled materials, clear silhouettes, restrained color and light. Preserve a painterly handmade feel. Not a photograph, glossy digital render, 3D model or flat vector. Avoid excessive sharp micro-detail, hard specular highlights, overly saturated colors, exaggerated blackness and visual clutter.
+
+Card composition and exact content:
+The image IS the entire straight-on rectangular card face, portrait at approximately the originals' 707:1121 aspect ratio, filling the image to all outer edges. No surrounding tabletop, floating mockup, separate outer frame, extra empty border or padding. Keep the whole title ribbon, medallion, ability panel and all lettering inside the image.
+Show EXACTLY THREE individual embossed gold coin emblems stacked vertically at the upper left, using the style, relative scale and count of the THREE coins in manor.jpg. Neither two nor four nor five coins. There is no printed price numeral.
+At the bottom, use the original light-golden aged parchment ability panel, immediately above a separate lower title ribbon. Give the text enough panel height and generous readable black Cyrillic serif letters matching the original. Keep the panel pale enough for excellent legibility. Render the following text VERBATIM, retaining every word and adding NO punctuation, especially NO final period:
+Один раз запретите всем игрокам строительство на следующий раунд
+Use three balanced readable lines, retaining this exact sequence of words:
+Один раз запретите всем
+игрокам строительство
+на следующий раунд
+Do not paraphrase, omit words or add punctuation. No enclosing quotation marks.
+On the separate lower ribbon, render the exact district name in large bold black original-style Cyrillic serif, centered in the space to the right of the medallion:
+Судейская палата
+All letters must be visible and the full title must fit comfortably without touching or crossing the purple medallion.
+At lower left overlapping the title ribbon, place the original-style PURPLE special-district medallion: gold rim, deep purple interior and pink/purple ornamental emblem, matching monument.jpg in location and relative scale. Do not use the yellow manor medallion or green town-hall medallion.
+
+Constraints:
+Deliver exactly one complete finished card. Only readable text is the exact name and exact ability above. No additional labels, words on papers, wall signs, banner text, watermarks, logos, signatures or price digits. No modern courthouse, police station, church, throne room, modern suits, powdered modern judicial wigs, microphones, electric equipment, neon, giant close-up face or crowd. Do not crop the coins, card edges, ability, title or medallion. The entire layout must remain clear and readable in the established Citadels card style.

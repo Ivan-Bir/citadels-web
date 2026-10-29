@@ -1,0 +1,178 @@
+{
+  "card": {
+    "sequence": "D06",
+    "id": "conspirators_house",
+    "name": "Дом заговорщиков",
+    "type": 9,
+    "cost": 6,
+    "quantity": 1,
+    "description": "Раз в ход тайно выберите персонажа для сброса в следующем раунде",
+    "catalogSource": "public/setup.js:78-80",
+    "catalogImage": "/citadels/cards/placeholders/d06-cloak-dagger.svg"
+  },
+  "status": "artistic-revision-requested",
+  "createdAt": "2026-10-29T14:12:21.883089+00:00",
+  "userFeedback": "Концепт хороший: стол, темнота, свечи, капюшоны. Добавь больше мрачности, сделай отсылку на персонажей Вор и Лавочник, Император (он может быть как жертва). Ракурс сделай немного ближе к центру стола. Перегенерируй с нуля",
+  "fromScratchIntent": {
+    "operation": "New generation from scratch with five designated reference images",
+    "previousVersion": "docs/assets/district-card-art/conspirators-house-v1.png",
+    "previousVersionUsedAsReference": false,
+    "previousVersionModified": false,
+    "intent": "Darker secret meeting, camera closer to centre of table, identifiable Thief and Shopkeeper conspiring against Emperor portrait"
+  },
+  "generation": {
+    "mode": "built-in",
+    "tool": "tools.image_gen__imagegen",
+    "toolPath": "functions.exec → tools.image_gen__imagegen",
+    "transparent_background": false,
+    "promptFile": "docs/assets/district-card-art/conspirators-house-v2-prompt.txt",
+    "promptFileTrailingNewline": "Saved file has one terminal newline; call prompt otherwise identical",
+    "referenced_image_paths": [
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/laboratory.jpg",
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/2_1-upscale-v1.png",
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/6_3-upscale-v1.png",
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/4_2-upscale-v1.png"
+    ],
+    "sourceOutput": {
+      "path": "/Users/i.biryukov/.codex/generated_images/01a187b3-e658-74d3-a88a-c6cb81f2c5cf/exec-a30a5819-01b1-4943-94af-c82717889473.png",
+      "bytes": 2450555,
+      "sha256": "c634b610a5739f97a0a6c0e61abbf30fc3503322536e69b009e2beabd49f45fa",
+      "width": 996,
+      "height": 1579
+    },
+    "history": [
+      {
+        "call": 1,
+        "operation": "generate from scratch, not edit",
+        "promptFile": "docs/assets/district-card-art/conspirators-house-v2-prompt.txt",
+        "sourceOutput": "/Users/i.biryukov/.codex/generated_images/01a187b3-e658-74d3-a88a-c6cb81f2c5cf/exec-a30a5819-01b1-4943-94af-c82717889473.png"
+      }
+    ]
+  },
+  "references": [
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+      "bytes": 246958,
+      "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+      "role": "Primary district full face geometry, parchment, lower ribbon, black Cyrillic serif, purple medallion and painted texture",
+      "viewedBeforeGeneration": true
+    },
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/laboratory.jpg",
+      "bytes": 273302,
+      "sha256": "9ec8cc903a7e5118a1b7567b546149307fe91a3f8e7f3460b941853e010e5052",
+      "role": "Exactly six vertical gold coin emblems only; no geometry",
+      "viewedBeforeGeneration": true
+    },
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/2_1-upscale-v1.png",
+      "bytes": 2221793,
+      "sha256": "16a6dda00b8bf073a0f3946d8e733b9bdae73fda7dd9d9bceb86f70294a685f9",
+      "width": 950,
+      "height": 1655,
+      "role": "Thief visual identity only: youthful face, straight dark hair, navy hood, cool palette",
+      "viewedBeforeGeneration": true
+    },
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/6_3-upscale-v1.png",
+      "bytes": 2254682,
+      "sha256": "f2f0813723972c79a2b3a0d9945e43f179812ef0902824d248cfa33e9a8b593f",
+      "width": 950,
+      "height": 1655,
+      "role": "Shopkeeper visual identity only: bald elderly head, white side hair/eyebrows, spectacles, ochre sleeves, dark vest, pale scarf",
+      "viewedBeforeGeneration": true
+    },
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/4_2-upscale-v1.png",
+      "bytes": 2231910,
+      "sha256": "67a6d4e67921c745626692daa758d3015a83399b4642145977ac621e056f9fa5",
+      "width": 950,
+      "height": 1655,
+      "role": "Emperor visual identity only for tabletop portrait: dark skin, short curly black hair/beard, gold crown, white/gold/burgundy costume",
+      "viewedBeforeGeneration": true
+    }
+  ],
+  "output": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/conspirators-house-v2.png",
+    "bytes": 2450555,
+    "sha256": "c634b610a5739f97a0a6c0e61abbf30fc3503322536e69b009e2beabd49f45fa",
+    "width": 996,
+    "height": 1579
+  },
+  "copiedByteForByte": true,
+  "postprocessing": {
+    "resize": false,
+    "crop": false,
+    "padding": false,
+    "colorAdjustment": false,
+    "jpegConversion": false
+  },
+  "visualChecks": {
+    "method": "Direct visual inspection of tool result and saved PNG via view_image",
+    "sixCoins": {
+      "result": "pass",
+      "count": 6,
+      "layout": "single upper-left vertical column"
+    },
+    "name": {
+      "result": "pass",
+      "observed": "Дом заговорщиков",
+      "blackCyrillicSerif": true,
+      "allLettersVisible": true
+    },
+    "ability": {
+      "result": "pass",
+      "observed": "Раз в ход тайно выберите персонажа для сброса в следующем раунде",
+      "noFinalPeriod": true,
+      "blackOnLightParchment": true
+    },
+    "purpleMedallion": {
+      "result": "pass",
+      "location": "lower left"
+    },
+    "characterReferences": {
+      "result": "pass",
+      "thief": "Young straight-dark-haired figure at left with navy hood and silver forearm guard, pointing at target portrait",
+      "shopkeeper": "Elderly bald figure at right, white side hair/eyebrows, spectacles, ochre sleeves, dark vest and pale scarf",
+      "emperor": "Large central tabletop portrait: dark skin, short curly black hair and beard, gold crown, white/gold/red costume",
+      "limitation": "Recognizable visual adaptations, not pixel-identical faces"
+    },
+    "closerTable": {
+      "result": "pass",
+      "observed": "Table and large Emperor portrait fill foreground; large faces and hands with slightly downward view, minimal distant room"
+    },
+    "darkerScene": {
+      "result": "pass",
+      "observed": "Deep navy/charcoal shadow around three conspirators; candle pools on faces/table, light parchment remains readable",
+      "basis": "Qualitative visual assessment, not measured luminance comparison"
+    },
+    "fullCard": {
+      "result": "pass",
+      "observed": "Complete rectangular edge-to-edge face, readable parchment/ribbon/medallion, no mockup or external border"
+    },
+    "noViolence": {
+      "result": "pass",
+      "observed": "Emperor appears alive in portrait; no blood, bodies, weapons or violence"
+    }
+  },
+  "limitations": [
+    "Awaiting user artistic approval.",
+    "Faces and costume details are generative adaptations of the three character references.",
+    "The anonymous third hooded figure is large in the rear but remains in shadow.",
+    "Additional table cards have indistinct silhouettes; the plan has geometric marks and red route arrows, no readable words or numbers.",
+    "Coin count and exact Russian text checked visually, not by OCR.",
+    "Final geometry, lower text alignment, JPEG conversion and file-size work await artistic approval."
+  ],
+  "projectChanges": "Only v2 PNG, prompt and metadata; no prior-version overwrite, catalog changes, public original replacements, commit or push.",
+  "fileVerification": {
+    "pngChunkCRC": "pass",
+    "idatDecompression": "pass",
+    "decodedScanlineBytes": 4719631,
+    "copiedSourceSHA256Matches": true
+  },
+  "subsequentUserFeedback": {
+    "date": "2026-10-29",
+    "statement": "Концепт хорош. Однако портрет короля огромный и лежит по центру. Пусть фото императора лежит сбоку маленькой картинкой. Пусть будет не 3, а 4 заговорщика. Вора мы видим спереди, Лавочника убираем, видим сбоку Патриция, лица немного различимы, но немного, и не всех. По центру у них лежит схема дворца. Перегенерируй с нуля"
+  }
+}

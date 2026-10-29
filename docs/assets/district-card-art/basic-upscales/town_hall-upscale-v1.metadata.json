@@ -1,0 +1,61 @@
+{
+  "id": "town_hall",
+  "name": "Ратуша",
+  "sourceTitle": "Ратуша",
+  "catalogName": "Ратуша",
+  "cost": 5,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/town_hall.jpg",
+  "text": "",
+  "qa": {
+    "sourceInspected": true,
+    "outputInspected": true,
+    "name": "pass: exact factual scanned title",
+    "text": "pass: no ability/rules text",
+    "coins": "pass: exactly 5",
+    "type": "pass: green moneybag medallion",
+    "composition": "Central pillar/arches, pointed windows, desks, clerks, standing women, scrolls, quills, candles, drawers, skull and tiny shelf cat retained; tiny document markings are illustrative, not readable rules.",
+    "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+    "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+  },
+  "status": "artistic-approved",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-c8868ae4-1877-4245-80b3-ceeb77377a81.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/town_hall-upscale-v1.png",
+  "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/town_hall-upscale-v1.prompt.txt",
+  "checks": {
+    "singleOriginalTarget": true,
+    "rawPngCopied": true,
+    "technicalResize": false,
+    "originalJpgUnchanged": true,
+    "coinCount": 5,
+    "title": "Ратуша",
+    "medallionColor": "green",
+    "byteIdenticalToToolOutput": true,
+    "pngVerified": true
+  },
+  "limitations": [
+    "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+    "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+    "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+  ],
+  "generationHistory": [
+    {
+      "attempt": 1,
+      "result": "Successful generation from the original JPG.",
+      "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-c8868ae4-1877-4245-80b3-ceeb77377a81.png"
+    }
+  ],
+  "size": {
+    "bytes": 2718044,
+    "width": 996,
+    "height": 1579
+  },
+  "sha256": "b07e22af33c76ee324d9b42aefade246db7c8d0c01bc3af71c77d8f1fe3e90df",
+  "sourceSha256": "5c949d806e368cf2f2e3de306483c5fafdbc6a878e112b8bafbdc009d6900b36",
+  "promptSha256": "83b977482e34e868196c6c3c47a4815458941850b3b6d0274d8b873b887ae685",
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю все 17, готовь JPEG"
+  }
+}

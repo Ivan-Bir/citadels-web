@@ -1,0 +1,2075 @@
+[
+  {
+    "id": "temple",
+    "status": "technical-approved",
+    "sourcePath": "docs/assets/district-card-art/basic-upscales/temple-upscale-v1.png",
+    "sourceSha256": "45bf04d8546098232382525581b48c6c666d4ec947006cd76c5d34161902fa6a",
+    "outputPath": "public/cards/temple-upscaled.jpg",
+    "outputSha256": "29d3e0c4be7cac520dc51a6d8726a2e5cfc6fe75c898c7514bb3b7c86a4576d5",
+    "sourceUnchanged": true,
+    "geometry": {
+      "sourceSize": [
+        996,
+        1579
+      ],
+      "cropBox": [
+        0,
+        0,
+        996,
+        1567
+      ],
+      "removedBottomRows": 12,
+      "padding": {
+        "top": 0,
+        "left": 0,
+        "right": 0,
+        "bottom": 0,
+        "method": "repeat final source background scanline; first added row equals last source row"
+      },
+      "canvasBeforeResizeSize": [
+        996,
+        1567
+      ],
+      "resize": {
+        "size": [
+          707,
+          1121
+        ],
+        "resample": "Pillow Image.Resampling.LANCZOS",
+        "scaleX": 0.7098393574297188,
+        "scaleY": 0.7153797064454371
+      },
+      "allContentAboveBottomEdgePreserved": true
+    },
+    "jpeg": {
+      "quality": 89,
+      "subsampling": 0,
+      "chroma": "4:4:4",
+      "optimize": true,
+      "progressive": false,
+      "format": "JPEG",
+      "bytes": 289858,
+      "mode": "RGB",
+      "decodedSize": [
+        707,
+        1121
+      ],
+      "nextHigherQuality": 90,
+      "nextHigherQualityBytes": 307808,
+      "selection": "highest integer quality from 100 down to 1 with encoded bytes in [200000,300000], 4:4:4, optimize=True"
+    },
+    "baseline": {
+      "method": "dark-pixel (max RGB < 90) bottom in individually selected ordinary glyph ROIs, median; descenders excluded",
+      "sourceGlyphMeasurements": [
+        {
+          "glyph": "Х",
+          "roi": [
+            459,
+            1430,
+            524,
+            1504
+          ],
+          "bottomY": 1502,
+          "darkPixelCount": 2121
+        },
+        {
+          "glyph": "м",
+          "roi": [
+            624,
+            1452,
+            685,
+            1504
+          ],
+          "bottomY": 1501,
+          "darkPixelCount": 1809
+        }
+      ],
+      "sourceMedianY": 1501.5,
+      "finalDecodedGlyphMeasurements": [
+        {
+          "glyph": "Х",
+          "roi": [
+            325,
+            1022,
+            372,
+            1076
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 1062
+        },
+        {
+          "glyph": "м",
+          "roi": [
+            442,
+            1038,
+            487,
+            1076
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 895
+        }
+      ],
+      "finalDecodedMedianY": 1074.0,
+      "targetYRange": [
+        1074,
+        1075
+      ]
+    },
+    "checks": {
+      "fullDecode": "pass",
+      "sourceHashUnchanged": "pass",
+      "dimensions": "pass",
+      "bytes200000To300000": "pass",
+      "textCoinsMedallion": "pass: visually inspected final decoded JPEG; full title, source coin count and blue/red medallion retained",
+      "noSeams": "pass: no local text/ribbon movement or internal image joins; bottom-only crop and single whole-image resize",
+      "deterministicReproduction": "pass: regenerated from source crop, LANCZOS resize and recorded JPEG options matches output bytes exactly"
+    },
+    "limitations": [
+      "Colour, brightness, saturation and contrast adjustments: none. JPEG conversion introduces normal lossy coding differences.",
+      "Only bottom background is cropped or extended; title, ribbon, medallion and all art above are retained.",
+      "Pixel bottoms include antialiasing and optical round-letter overshoot. The reported baseline uses selected ordinary glyphs, excluding descenders."
+    ],
+    "referenceOriginalJpgs": [
+      {
+        "path": "public/cards/monument.jpg",
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "М",
+            "roi": [
+              247,
+              1024,
+              306,
+              1079
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 1391
+          },
+          {
+            "glyph": "м",
+            "roi": [
+              422,
+              1041,
+              464,
+              1079
+            ],
+            "bottomY": 1076,
+            "darkPixelCount": 843
+          },
+          {
+            "glyph": "т",
+            "roi": [
+              539,
+              1039,
+              570,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 450
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      },
+      {
+        "path": "public/cards/harbor.jpg",
+        "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "Г",
+            "roi": [
+              310,
+              1024,
+              342,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 753
+          },
+          {
+            "glyph": "н",
+            "roi": [
+              435,
+              1040,
+              470,
+              1078
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 743
+          },
+          {
+            "glyph": "ь",
+            "roi": [
+              476,
+              1040,
+              506,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 573
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      }
+    ],
+    "software": {
+      "library": "Pillow",
+      "version": "12.3.0",
+      "pythonExecutable": "/Users/i.biryukov/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3"
+    },
+    "technicalApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю все 17 JPEG"
+    }
+  },
+  {
+    "id": "church",
+    "status": "technical-approved",
+    "sourcePath": "docs/assets/district-card-art/basic-upscales/church-upscale-v1.png",
+    "sourceSha256": "8c07ec49718e1bb7b99c75084ad2c8f3ea3fd04e86db1da5ea8fb7041439ba64",
+    "outputPath": "public/cards/church-upscaled.jpg",
+    "outputSha256": "c0f5dfb6b51ec50c98a93fab3799eb3940cc3626a5161c61056b9c36d702d08b",
+    "sourceUnchanged": true,
+    "geometry": {
+      "sourceSize": [
+        996,
+        1579
+      ],
+      "cropBox": [
+        0,
+        0,
+        996,
+        1579
+      ],
+      "removedBottomRows": 0,
+      "padding": {
+        "top": 0,
+        "left": 0,
+        "right": 0,
+        "bottom": 0,
+        "method": "repeat final source background scanline; first added row equals last source row"
+      },
+      "canvasBeforeResizeSize": [
+        996,
+        1579
+      ],
+      "resize": {
+        "size": [
+          707,
+          1121
+        ],
+        "resample": "Pillow Image.Resampling.LANCZOS",
+        "scaleX": 0.7098393574297188,
+        "scaleY": 0.7099430018999366
+      },
+      "allContentAboveBottomEdgePreserved": true
+    },
+    "jpeg": {
+      "quality": 90,
+      "subsampling": 0,
+      "chroma": "4:4:4",
+      "optimize": true,
+      "progressive": false,
+      "format": "JPEG",
+      "bytes": 296752,
+      "mode": "RGB",
+      "decodedSize": [
+        707,
+        1121
+      ],
+      "nextHigherQuality": 91,
+      "nextHigherQualityBytes": 314113,
+      "selection": "highest integer quality from 100 down to 1 with encoded bytes in [200000,300000], 4:4:4, optimize=True"
+    },
+    "baseline": {
+      "method": "dark-pixel (max RGB < 90) bottom in individually selected ordinary glyph ROIs, median; descenders excluded",
+      "sourceGlyphMeasurements": [
+        {
+          "glyph": "к",
+          "roi": [
+            565,
+            1465,
+            612,
+            1517
+          ],
+          "bottomY": 1515,
+          "darkPixelCount": 1365
+        },
+        {
+          "glyph": "в",
+          "roi": [
+            670,
+            1464,
+            712,
+            1517
+          ],
+          "bottomY": 1514,
+          "darkPixelCount": 1409
+        },
+        {
+          "glyph": "ь",
+          "roi": [
+            719,
+            1463,
+            762,
+            1517
+          ],
+          "bottomY": 1514,
+          "darkPixelCount": 1189
+        }
+      ],
+      "sourceMedianY": 1514.0,
+      "finalDecodedGlyphMeasurements": [
+        {
+          "glyph": "к",
+          "roi": [
+            401,
+            1040,
+            435,
+            1077
+          ],
+          "bottomY": 1075,
+          "darkPixelCount": 686
+        },
+        {
+          "glyph": "в",
+          "roi": [
+            475,
+            1039,
+            506,
+            1077
+          ],
+          "bottomY": 1075,
+          "darkPixelCount": 693
+        },
+        {
+          "glyph": "ь",
+          "roi": [
+            510,
+            1038,
+            541,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 582
+        }
+      ],
+      "finalDecodedMedianY": 1075.0,
+      "targetYRange": [
+        1074,
+        1075
+      ]
+    },
+    "checks": {
+      "fullDecode": "pass",
+      "sourceHashUnchanged": "pass",
+      "dimensions": "pass",
+      "bytes200000To300000": "pass",
+      "textCoinsMedallion": "pass: visually inspected final decoded JPEG; full title, source coin count and blue/red medallion retained",
+      "noSeams": "pass: no local text/ribbon movement or internal image joins; bottom-only crop and single whole-image resize",
+      "deterministicReproduction": "pass: regenerated from source crop, LANCZOS resize and recorded JPEG options matches output bytes exactly"
+    },
+    "limitations": [
+      "Colour, brightness, saturation and contrast adjustments: none. JPEG conversion introduces normal lossy coding differences.",
+      "Only bottom background is cropped or extended; title, ribbon, medallion and all art above are retained.",
+      "Pixel bottoms include antialiasing and optical round-letter overshoot. The reported baseline uses selected ordinary glyphs, excluding descenders."
+    ],
+    "referenceOriginalJpgs": [
+      {
+        "path": "public/cards/monument.jpg",
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "М",
+            "roi": [
+              247,
+              1024,
+              306,
+              1079
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 1391
+          },
+          {
+            "glyph": "м",
+            "roi": [
+              422,
+              1041,
+              464,
+              1079
+            ],
+            "bottomY": 1076,
+            "darkPixelCount": 843
+          },
+          {
+            "glyph": "т",
+            "roi": [
+              539,
+              1039,
+              570,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 450
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      },
+      {
+        "path": "public/cards/harbor.jpg",
+        "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "Г",
+            "roi": [
+              310,
+              1024,
+              342,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 753
+          },
+          {
+            "glyph": "н",
+            "roi": [
+              435,
+              1040,
+              470,
+              1078
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 743
+          },
+          {
+            "glyph": "ь",
+            "roi": [
+              476,
+              1040,
+              506,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 573
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      }
+    ],
+    "software": {
+      "library": "Pillow",
+      "version": "12.3.0",
+      "pythonExecutable": "/Users/i.biryukov/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3"
+    },
+    "technicalApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю все 17 JPEG"
+    }
+  },
+  {
+    "id": "monastery",
+    "status": "technical-approved",
+    "sourcePath": "docs/assets/district-card-art/basic-upscales/monastery-upscale-v1.png",
+    "sourceSha256": "ed9ebc60cd82b0583bf0fbbe4d7f627fedd51bb7ae182638370bf5e2fe90f40d",
+    "outputPath": "public/cards/monastery-upscaled.jpg",
+    "outputSha256": "4946cdaee7f3eb23ff7fb0bbecef182fa26b6c85123f1594b697ca7d244d2777",
+    "sourceUnchanged": true,
+    "geometry": {
+      "sourceSize": [
+        996,
+        1580
+      ],
+      "cropBox": [
+        0,
+        0,
+        996,
+        1575
+      ],
+      "removedBottomRows": 5,
+      "padding": {
+        "top": 0,
+        "left": 0,
+        "right": 0,
+        "bottom": 0,
+        "method": "repeat final source background scanline; first added row equals last source row"
+      },
+      "canvasBeforeResizeSize": [
+        996,
+        1575
+      ],
+      "resize": {
+        "size": [
+          707,
+          1121
+        ],
+        "resample": "Pillow Image.Resampling.LANCZOS",
+        "scaleX": 0.7098393574297188,
+        "scaleY": 0.7117460317460318
+      },
+      "allContentAboveBottomEdgePreserved": true
+    },
+    "jpeg": {
+      "quality": 90,
+      "subsampling": 0,
+      "chroma": "4:4:4",
+      "optimize": true,
+      "progressive": false,
+      "format": "JPEG",
+      "bytes": 297603,
+      "mode": "RGB",
+      "decodedSize": [
+        707,
+        1121
+      ],
+      "nextHigherQuality": 91,
+      "nextHigherQualityBytes": 314791,
+      "selection": "highest integer quality from 100 down to 1 with encoded bytes in [200000,300000], 4:4:4, optimize=True"
+    },
+    "baseline": {
+      "method": "dark-pixel (max RGB < 90) bottom in individually selected ordinary glyph ROIs, median; descenders excluded",
+      "sourceGlyphMeasurements": [
+        {
+          "glyph": "н",
+          "roi": [
+            470,
+            1459,
+            520,
+            1513
+          ],
+          "bottomY": 1510,
+          "darkPixelCount": 1607
+        },
+        {
+          "glyph": "т",
+          "roi": [
+            611,
+            1460,
+            656,
+            1514
+          ],
+          "bottomY": 1511,
+          "darkPixelCount": 988
+        },
+        {
+          "glyph": "ь",
+          "roi": [
+            779,
+            1459,
+            823,
+            1513
+          ],
+          "bottomY": 1510,
+          "darkPixelCount": 1290
+        }
+      ],
+      "sourceMedianY": 1510.0,
+      "finalDecodedGlyphMeasurements": [
+        {
+          "glyph": "н",
+          "roi": [
+            333,
+            1038,
+            370,
+            1077
+          ],
+          "bottomY": 1075,
+          "darkPixelCount": 817
+        },
+        {
+          "glyph": "т",
+          "roi": [
+            433,
+            1039,
+            466,
+            1078
+          ],
+          "bottomY": 1075,
+          "darkPixelCount": 482
+        },
+        {
+          "glyph": "ь",
+          "roi": [
+            552,
+            1038,
+            585,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 644
+        }
+      ],
+      "finalDecodedMedianY": 1075.0,
+      "targetYRange": [
+        1074,
+        1075
+      ]
+    },
+    "checks": {
+      "fullDecode": "pass",
+      "sourceHashUnchanged": "pass",
+      "dimensions": "pass",
+      "bytes200000To300000": "pass",
+      "textCoinsMedallion": "pass: visually inspected final decoded JPEG; full title, source coin count and blue/red medallion retained",
+      "noSeams": "pass: no local text/ribbon movement or internal image joins; bottom-only crop and single whole-image resize",
+      "deterministicReproduction": "pass: regenerated from source crop, LANCZOS resize and recorded JPEG options matches output bytes exactly"
+    },
+    "limitations": [
+      "Colour, brightness, saturation and contrast adjustments: none. JPEG conversion introduces normal lossy coding differences.",
+      "Only bottom background is cropped or extended; title, ribbon, medallion and all art above are retained.",
+      "Pixel bottoms include antialiasing and optical round-letter overshoot. The reported baseline uses selected ordinary glyphs, excluding descenders."
+    ],
+    "referenceOriginalJpgs": [
+      {
+        "path": "public/cards/monument.jpg",
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "М",
+            "roi": [
+              247,
+              1024,
+              306,
+              1079
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 1391
+          },
+          {
+            "glyph": "м",
+            "roi": [
+              422,
+              1041,
+              464,
+              1079
+            ],
+            "bottomY": 1076,
+            "darkPixelCount": 843
+          },
+          {
+            "glyph": "т",
+            "roi": [
+              539,
+              1039,
+              570,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 450
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      },
+      {
+        "path": "public/cards/harbor.jpg",
+        "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "Г",
+            "roi": [
+              310,
+              1024,
+              342,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 753
+          },
+          {
+            "glyph": "н",
+            "roi": [
+              435,
+              1040,
+              470,
+              1078
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 743
+          },
+          {
+            "glyph": "ь",
+            "roi": [
+              476,
+              1040,
+              506,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 573
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      }
+    ],
+    "software": {
+      "library": "Pillow",
+      "version": "12.3.0",
+      "pythonExecutable": "/Users/i.biryukov/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3"
+    },
+    "technicalApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю все 17 JPEG"
+    }
+  },
+  {
+    "id": "cathedral",
+    "status": "technical-approved",
+    "sourcePath": "docs/assets/district-card-art/basic-upscales/cathedral-upscale-v1.png",
+    "sourceSha256": "99a0d8dff229c023d0b581928c562bf47b1455636b5f3ba6c6216aeb6917c777",
+    "outputPath": "public/cards/cathedral-upscaled.jpg",
+    "outputSha256": "93375179b1970c476607e019e67b7c8ff371fc97f28e72fd69b60f510ab70e23",
+    "sourceUnchanged": true,
+    "geometry": {
+      "sourceSize": [
+        996,
+        1579
+      ],
+      "cropBox": [
+        0,
+        0,
+        996,
+        1573
+      ],
+      "removedBottomRows": 6,
+      "padding": {
+        "top": 0,
+        "left": 0,
+        "right": 0,
+        "bottom": 0,
+        "method": "repeat final source background scanline; first added row equals last source row"
+      },
+      "canvasBeforeResizeSize": [
+        996,
+        1573
+      ],
+      "resize": {
+        "size": [
+          707,
+          1121
+        ],
+        "resample": "Pillow Image.Resampling.LANCZOS",
+        "scaleX": 0.7098393574297188,
+        "scaleY": 0.7126509853782581
+      },
+      "allContentAboveBottomEdgePreserved": true
+    },
+    "jpeg": {
+      "quality": 90,
+      "subsampling": 0,
+      "chroma": "4:4:4",
+      "optimize": true,
+      "progressive": false,
+      "format": "JPEG",
+      "bytes": 298064,
+      "mode": "RGB",
+      "decodedSize": [
+        707,
+        1121
+      ],
+      "nextHigherQuality": 91,
+      "nextHigherQualityBytes": 315508,
+      "selection": "highest integer quality from 100 down to 1 with encoded bytes in [200000,300000], 4:4:4, optimize=True"
+    },
+    "baseline": {
+      "method": "dark-pixel (max RGB < 90) bottom in individually selected ordinary glyph ROIs, median; descenders excluded",
+      "sourceGlyphMeasurements": [
+        {
+          "glyph": "С",
+          "roi": [
+            432,
+            1435,
+            493,
+            1511
+          ],
+          "bottomY": 1508,
+          "darkPixelCount": 1738
+        },
+        {
+          "glyph": "о",
+          "roi": [
+            498,
+            1458,
+            548,
+            1511
+          ],
+          "bottomY": 1508,
+          "darkPixelCount": 1417
+        },
+        {
+          "glyph": "б",
+          "roi": [
+            553,
+            1435,
+            602,
+            1511
+          ],
+          "bottomY": 1508,
+          "darkPixelCount": 1907
+        }
+      ],
+      "sourceMedianY": 1508.0,
+      "finalDecodedGlyphMeasurements": [
+        {
+          "glyph": "С",
+          "roi": [
+            306,
+            1022,
+            350,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 867
+        },
+        {
+          "glyph": "о",
+          "roi": [
+            353,
+            1039,
+            389,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 704
+        },
+        {
+          "glyph": "б",
+          "roi": [
+            392,
+            1022,
+            428,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 952
+        }
+      ],
+      "finalDecodedMedianY": 1074.0,
+      "targetYRange": [
+        1074,
+        1075
+      ]
+    },
+    "checks": {
+      "fullDecode": "pass",
+      "sourceHashUnchanged": "pass",
+      "dimensions": "pass",
+      "bytes200000To300000": "pass",
+      "textCoinsMedallion": "pass: visually inspected final decoded JPEG; full title, source coin count and blue/red medallion retained",
+      "noSeams": "pass: no local text/ribbon movement or internal image joins; bottom-only crop and single whole-image resize",
+      "deterministicReproduction": "pass: regenerated from source crop, LANCZOS resize and recorded JPEG options matches output bytes exactly"
+    },
+    "limitations": [
+      "Colour, brightness, saturation and contrast adjustments: none. JPEG conversion introduces normal lossy coding differences.",
+      "Only bottom background is cropped or extended; title, ribbon, medallion and all art above are retained.",
+      "Pixel bottoms include antialiasing and optical round-letter overshoot. The reported baseline uses selected ordinary glyphs, excluding descenders."
+    ],
+    "referenceOriginalJpgs": [
+      {
+        "path": "public/cards/monument.jpg",
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "М",
+            "roi": [
+              247,
+              1024,
+              306,
+              1079
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 1391
+          },
+          {
+            "glyph": "м",
+            "roi": [
+              422,
+              1041,
+              464,
+              1079
+            ],
+            "bottomY": 1076,
+            "darkPixelCount": 843
+          },
+          {
+            "glyph": "т",
+            "roi": [
+              539,
+              1039,
+              570,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 450
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      },
+      {
+        "path": "public/cards/harbor.jpg",
+        "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "Г",
+            "roi": [
+              310,
+              1024,
+              342,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 753
+          },
+          {
+            "glyph": "н",
+            "roi": [
+              435,
+              1040,
+              470,
+              1078
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 743
+          },
+          {
+            "glyph": "ь",
+            "roi": [
+              476,
+              1040,
+              506,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 573
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      }
+    ],
+    "software": {
+      "library": "Pillow",
+      "version": "12.3.0",
+      "pythonExecutable": "/Users/i.biryukov/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3"
+    },
+    "technicalApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю все 17 JPEG"
+    }
+  },
+  {
+    "id": "watchtower",
+    "status": "technical-approved",
+    "sourcePath": "docs/assets/district-card-art/basic-upscales/watchtower-upscale-v1.png",
+    "sourceSha256": "d6c68e2491ce3054c8aa0318dd32a7ad9d47daa72ec5990ca78dea20e3cd17a5",
+    "outputPath": "public/cards/watchtower-upscaled.jpg",
+    "outputSha256": "6b99b95465f81ba7bcc541874eba5beac1cdc9c7e16e53f80ef4edaf48ba7daf",
+    "sourceUnchanged": true,
+    "geometry": {
+      "sourceSize": [
+        996,
+        1579
+      ],
+      "cropBox": [
+        0,
+        0,
+        996,
+        1570
+      ],
+      "removedBottomRows": 9,
+      "padding": {
+        "top": 0,
+        "left": 0,
+        "right": 0,
+        "bottom": 0,
+        "method": "repeat final source background scanline; first added row equals last source row"
+      },
+      "canvasBeforeResizeSize": [
+        996,
+        1570
+      ],
+      "resize": {
+        "size": [
+          707,
+          1121
+        ],
+        "resample": "Pillow Image.Resampling.LANCZOS",
+        "scaleX": 0.7098393574297188,
+        "scaleY": 0.7140127388535031
+      },
+      "allContentAboveBottomEdgePreserved": true
+    },
+    "jpeg": {
+      "quality": 93,
+      "subsampling": 0,
+      "chroma": "4:4:4",
+      "optimize": true,
+      "progressive": false,
+      "format": "JPEG",
+      "bytes": 288941,
+      "mode": "RGB",
+      "decodedSize": [
+        707,
+        1121
+      ],
+      "nextHigherQuality": 94,
+      "nextHigherQualityBytes": 318092,
+      "selection": "highest integer quality from 100 down to 1 with encoded bytes in [200000,300000], 4:4:4, optimize=True"
+    },
+    "baseline": {
+      "method": "dark-pixel (max RGB < 90) bottom in individually selected ordinary glyph ROIs, median; descenders excluded",
+      "sourceGlyphMeasurements": [
+        {
+          "glyph": "н",
+          "roi": [
+            493,
+            1459,
+            539,
+            1508
+          ],
+          "bottomY": 1505,
+          "darkPixelCount": 1372
+        },
+        {
+          "glyph": "а",
+          "roi": [
+            544,
+            1459,
+            582,
+            1508
+          ],
+          "bottomY": 1505,
+          "darkPixelCount": 1090
+        },
+        {
+          "glyph": "я",
+          "roi": [
+            584,
+            1459,
+            628,
+            1508
+          ],
+          "bottomY": 1505,
+          "darkPixelCount": 1250
+        }
+      ],
+      "sourceMedianY": 1505.0,
+      "finalDecodedGlyphMeasurements": [
+        {
+          "glyph": "н",
+          "roi": [
+            349,
+            1041,
+            383,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 692
+        },
+        {
+          "glyph": "а",
+          "roi": [
+            386,
+            1041,
+            414,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 536
+        },
+        {
+          "glyph": "я",
+          "roi": [
+            414,
+            1041,
+            446,
+            1077
+          ],
+          "bottomY": 1075,
+          "darkPixelCount": 634
+        }
+      ],
+      "finalDecodedMedianY": 1074.0,
+      "targetYRange": [
+        1074,
+        1075
+      ]
+    },
+    "checks": {
+      "fullDecode": "pass",
+      "sourceHashUnchanged": "pass",
+      "dimensions": "pass",
+      "bytes200000To300000": "pass",
+      "textCoinsMedallion": "pass: visually inspected final decoded JPEG; full title, source coin count and blue/red medallion retained",
+      "noSeams": "pass: no local text/ribbon movement or internal image joins; bottom-only crop and single whole-image resize",
+      "deterministicReproduction": "pass: regenerated from source crop, LANCZOS resize and recorded JPEG options matches output bytes exactly"
+    },
+    "limitations": [
+      "Colour, brightness, saturation and contrast adjustments: none. JPEG conversion introduces normal lossy coding differences.",
+      "Only bottom background is cropped or extended; title, ribbon, medallion and all art above are retained.",
+      "Pixel bottoms include antialiasing and optical round-letter overshoot. The reported baseline uses selected ordinary glyphs, excluding descenders.",
+      "Accepted source title follows a curved ribbon; alignment targets central ordinary glyphs н/а/я. Other letters retain the source curve and cannot all lie on one horizontal baseline without forbidden local distortion."
+    ],
+    "referenceOriginalJpgs": [
+      {
+        "path": "public/cards/monument.jpg",
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "М",
+            "roi": [
+              247,
+              1024,
+              306,
+              1079
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 1391
+          },
+          {
+            "glyph": "м",
+            "roi": [
+              422,
+              1041,
+              464,
+              1079
+            ],
+            "bottomY": 1076,
+            "darkPixelCount": 843
+          },
+          {
+            "glyph": "т",
+            "roi": [
+              539,
+              1039,
+              570,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 450
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      },
+      {
+        "path": "public/cards/harbor.jpg",
+        "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "Г",
+            "roi": [
+              310,
+              1024,
+              342,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 753
+          },
+          {
+            "glyph": "н",
+            "roi": [
+              435,
+              1040,
+              470,
+              1078
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 743
+          },
+          {
+            "glyph": "ь",
+            "roi": [
+              476,
+              1040,
+              506,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 573
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      }
+    ],
+    "software": {
+      "library": "Pillow",
+      "version": "12.3.0",
+      "pythonExecutable": "/Users/i.biryukov/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3"
+    },
+    "technicalApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю все 17 JPEG"
+    }
+  },
+  {
+    "id": "prison",
+    "status": "technical-approved",
+    "sourcePath": "docs/assets/district-card-art/basic-upscales/prison-upscale-v1.png",
+    "sourceSha256": "056f8c480a8fe65f7609e040217d9a0979bb10d024599f5e3aacab40c9ef9de5",
+    "outputPath": "public/cards/prison-upscaled.jpg",
+    "outputSha256": "2487392c82686f43b0c8bee1ef42ba160103ff0d78e09064cd964d2d68872a29",
+    "sourceUnchanged": true,
+    "geometry": {
+      "sourceSize": [
+        996,
+        1579
+      ],
+      "cropBox": [
+        0,
+        0,
+        996,
+        1569
+      ],
+      "removedBottomRows": 10,
+      "padding": {
+        "top": 0,
+        "left": 0,
+        "right": 0,
+        "bottom": 0,
+        "method": "repeat final source background scanline; first added row equals last source row"
+      },
+      "canvasBeforeResizeSize": [
+        996,
+        1569
+      ],
+      "resize": {
+        "size": [
+          707,
+          1121
+        ],
+        "resample": "Pillow Image.Resampling.LANCZOS",
+        "scaleX": 0.7098393574297188,
+        "scaleY": 0.7144678138942001
+      },
+      "allContentAboveBottomEdgePreserved": true
+    },
+    "jpeg": {
+      "quality": 87,
+      "subsampling": 0,
+      "chroma": "4:4:4",
+      "optimize": true,
+      "progressive": false,
+      "format": "JPEG",
+      "bytes": 298510,
+      "mode": "RGB",
+      "decodedSize": [
+        707,
+        1121
+      ],
+      "nextHigherQuality": 88,
+      "nextHigherQualityBytes": 314502,
+      "selection": "highest integer quality from 100 down to 1 with encoded bytes in [200000,300000], 4:4:4, optimize=True"
+    },
+    "baseline": {
+      "method": "dark-pixel (max RGB < 90) bottom in individually selected ordinary glyph ROIs, median; descenders excluded",
+      "sourceGlyphMeasurements": [
+        {
+          "glyph": "Т",
+          "roi": [
+            404,
+            1430,
+            458,
+            1507
+          ],
+          "bottomY": 1503,
+          "darkPixelCount": 1473
+        },
+        {
+          "glyph": "ь",
+          "roi": [
+            589,
+            1453,
+            633,
+            1507
+          ],
+          "bottomY": 1503,
+          "darkPixelCount": 1242
+        },
+        {
+          "glyph": "м",
+          "roi": [
+            634,
+            1453,
+            696,
+            1507
+          ],
+          "bottomY": 1503,
+          "darkPixelCount": 1908
+        }
+      ],
+      "sourceMedianY": 1503.0,
+      "finalDecodedGlyphMeasurements": [
+        {
+          "glyph": "Т",
+          "roi": [
+            286,
+            1021,
+            326,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 769
+        },
+        {
+          "glyph": "ь",
+          "roi": [
+            418,
+            1038,
+            450,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 640
+        },
+        {
+          "glyph": "м",
+          "roi": [
+            450,
+            1038,
+            495,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 975
+        }
+      ],
+      "finalDecodedMedianY": 1074.0,
+      "targetYRange": [
+        1074,
+        1075
+      ]
+    },
+    "checks": {
+      "fullDecode": "pass",
+      "sourceHashUnchanged": "pass",
+      "dimensions": "pass",
+      "bytes200000To300000": "pass",
+      "textCoinsMedallion": "pass: visually inspected final decoded JPEG; full title, source coin count and blue/red medallion retained",
+      "noSeams": "pass: no local text/ribbon movement or internal image joins; bottom-only crop and single whole-image resize",
+      "deterministicReproduction": "pass: regenerated from source crop, LANCZOS resize and recorded JPEG options matches output bytes exactly"
+    },
+    "limitations": [
+      "Colour, brightness, saturation and contrast adjustments: none. JPEG conversion introduces normal lossy coding differences.",
+      "Only bottom background is cropped or extended; title, ribbon, medallion and all art above are retained.",
+      "Pixel bottoms include antialiasing and optical round-letter overshoot. The reported baseline uses selected ordinary glyphs, excluding descenders."
+    ],
+    "referenceOriginalJpgs": [
+      {
+        "path": "public/cards/monument.jpg",
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "М",
+            "roi": [
+              247,
+              1024,
+              306,
+              1079
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 1391
+          },
+          {
+            "glyph": "м",
+            "roi": [
+              422,
+              1041,
+              464,
+              1079
+            ],
+            "bottomY": 1076,
+            "darkPixelCount": 843
+          },
+          {
+            "glyph": "т",
+            "roi": [
+              539,
+              1039,
+              570,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 450
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      },
+      {
+        "path": "public/cards/harbor.jpg",
+        "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "Г",
+            "roi": [
+              310,
+              1024,
+              342,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 753
+          },
+          {
+            "glyph": "н",
+            "roi": [
+              435,
+              1040,
+              470,
+              1078
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 743
+          },
+          {
+            "glyph": "ь",
+            "roi": [
+              476,
+              1040,
+              506,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 573
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      }
+    ],
+    "software": {
+      "library": "Pillow",
+      "version": "12.3.0",
+      "pythonExecutable": "/Users/i.biryukov/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3"
+    },
+    "technicalApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю все 17 JPEG"
+    }
+  },
+  {
+    "id": "barracks",
+    "status": "technical-approved",
+    "sourcePath": "docs/assets/district-card-art/basic-upscales/barracks-upscale-v1.png",
+    "sourceSha256": "0a14486317dda30c9fe9e2a05a7d2689ab3aa4bd80385ea5c8fb535865722f5c",
+    "outputPath": "public/cards/barracks-upscaled.jpg",
+    "outputSha256": "c44b94e634cb601681e981cbda2ed882b0aa3c9579bace114896b82f154b9a0f",
+    "sourceUnchanged": true,
+    "geometry": {
+      "sourceSize": [
+        996,
+        1579
+      ],
+      "cropBox": [
+        0,
+        0,
+        996,
+        1577
+      ],
+      "removedBottomRows": 2,
+      "padding": {
+        "top": 0,
+        "left": 0,
+        "right": 0,
+        "bottom": 0,
+        "method": "repeat final source background scanline; first added row equals last source row"
+      },
+      "canvasBeforeResizeSize": [
+        996,
+        1577
+      ],
+      "resize": {
+        "size": [
+          707,
+          1121
+        ],
+        "resample": "Pillow Image.Resampling.LANCZOS",
+        "scaleX": 0.7098393574297188,
+        "scaleY": 0.7108433734939759
+      },
+      "allContentAboveBottomEdgePreserved": true
+    },
+    "jpeg": {
+      "quality": 88,
+      "subsampling": 0,
+      "chroma": "4:4:4",
+      "optimize": true,
+      "progressive": false,
+      "format": "JPEG",
+      "bytes": 295029,
+      "mode": "RGB",
+      "decodedSize": [
+        707,
+        1121
+      ],
+      "nextHigherQuality": 89,
+      "nextHigherQualityBytes": 305851,
+      "selection": "highest integer quality from 100 down to 1 with encoded bytes in [200000,300000], 4:4:4, optimize=True"
+    },
+    "baseline": {
+      "method": "dark-pixel (max RGB < 90) bottom in individually selected ordinary glyph ROIs, median; descenders excluded",
+      "sourceGlyphMeasurements": [
+        {
+          "glyph": "К",
+          "roi": [
+            385,
+            1437,
+            452,
+            1514
+          ],
+          "bottomY": 1511,
+          "darkPixelCount": 2550
+        },
+        {
+          "glyph": "м",
+          "roi": [
+            635,
+            1461,
+            696,
+            1514
+          ],
+          "bottomY": 1511,
+          "darkPixelCount": 1895
+        },
+        {
+          "glyph": "ы",
+          "roi": [
+            702,
+            1461,
+            763,
+            1514
+          ],
+          "bottomY": 1511,
+          "darkPixelCount": 1936
+        }
+      ],
+      "sourceMedianY": 1511.0,
+      "finalDecodedGlyphMeasurements": [
+        {
+          "glyph": "К",
+          "roi": [
+            273,
+            1021,
+            321,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 1277
+        },
+        {
+          "glyph": "м",
+          "roi": [
+            450,
+            1038,
+            495,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 964
+        },
+        {
+          "glyph": "ы",
+          "roi": [
+            498,
+            1038,
+            542,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 1000
+        }
+      ],
+      "finalDecodedMedianY": 1074.0,
+      "targetYRange": [
+        1074,
+        1075
+      ]
+    },
+    "checks": {
+      "fullDecode": "pass",
+      "sourceHashUnchanged": "pass",
+      "dimensions": "pass",
+      "bytes200000To300000": "pass",
+      "textCoinsMedallion": "pass: visually inspected final decoded JPEG; full title, source coin count and blue/red medallion retained",
+      "noSeams": "pass: no local text/ribbon movement or internal image joins; bottom-only crop and single whole-image resize",
+      "deterministicReproduction": "pass: regenerated from source crop, LANCZOS resize and recorded JPEG options matches output bytes exactly"
+    },
+    "limitations": [
+      "Colour, brightness, saturation and contrast adjustments: none. JPEG conversion introduces normal lossy coding differences.",
+      "Only bottom background is cropped or extended; title, ribbon, medallion and all art above are retained.",
+      "Pixel bottoms include antialiasing and optical round-letter overshoot. The reported baseline uses selected ordinary glyphs, excluding descenders."
+    ],
+    "referenceOriginalJpgs": [
+      {
+        "path": "public/cards/monument.jpg",
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "М",
+            "roi": [
+              247,
+              1024,
+              306,
+              1079
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 1391
+          },
+          {
+            "glyph": "м",
+            "roi": [
+              422,
+              1041,
+              464,
+              1079
+            ],
+            "bottomY": 1076,
+            "darkPixelCount": 843
+          },
+          {
+            "glyph": "т",
+            "roi": [
+              539,
+              1039,
+              570,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 450
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      },
+      {
+        "path": "public/cards/harbor.jpg",
+        "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "Г",
+            "roi": [
+              310,
+              1024,
+              342,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 753
+          },
+          {
+            "glyph": "н",
+            "roi": [
+              435,
+              1040,
+              470,
+              1078
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 743
+          },
+          {
+            "glyph": "ь",
+            "roi": [
+              476,
+              1040,
+              506,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 573
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      }
+    ],
+    "software": {
+      "library": "Pillow",
+      "version": "12.3.0",
+      "pythonExecutable": "/Users/i.biryukov/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3"
+    },
+    "technicalApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю все 17 JPEG"
+    }
+  },
+  {
+    "id": "fortress",
+    "status": "technical-approved",
+    "sourcePath": "docs/assets/district-card-art/basic-upscales/fortress-upscale-v1.png",
+    "sourceSha256": "2077abd5012f04c106204ee6a1d3cbfd4d1b1d45fb17b32b29a63a5fed45558f",
+    "outputPath": "public/cards/fortress-upscaled.jpg",
+    "outputSha256": "00eae50dd387415d9f7b66c0b93a831d6e2885fda3eb744836d867764b94c6c6",
+    "sourceUnchanged": true,
+    "geometry": {
+      "sourceSize": [
+        996,
+        1579
+      ],
+      "cropBox": [
+        0,
+        0,
+        996,
+        1573
+      ],
+      "removedBottomRows": 6,
+      "padding": {
+        "top": 0,
+        "left": 0,
+        "right": 0,
+        "bottom": 0,
+        "method": "repeat final source background scanline; first added row equals last source row"
+      },
+      "canvasBeforeResizeSize": [
+        996,
+        1573
+      ],
+      "resize": {
+        "size": [
+          707,
+          1121
+        ],
+        "resample": "Pillow Image.Resampling.LANCZOS",
+        "scaleX": 0.7098393574297188,
+        "scaleY": 0.7126509853782581
+      },
+      "allContentAboveBottomEdgePreserved": true
+    },
+    "jpeg": {
+      "quality": 89,
+      "subsampling": 0,
+      "chroma": "4:4:4",
+      "optimize": true,
+      "progressive": false,
+      "format": "JPEG",
+      "bytes": 282850,
+      "mode": "RGB",
+      "decodedSize": [
+        707,
+        1121
+      ],
+      "nextHigherQuality": 90,
+      "nextHigherQualityBytes": 300731,
+      "selection": "highest integer quality from 100 down to 1 with encoded bytes in [200000,300000], 4:4:4, optimize=True"
+    },
+    "baseline": {
+      "method": "dark-pixel (max RGB < 90) bottom in individually selected ordinary glyph ROIs, median; descenders excluded",
+      "sourceGlyphMeasurements": [
+        {
+          "glyph": "К",
+          "roi": [
+            371,
+            1434,
+            435,
+            1510
+          ],
+          "bottomY": 1507,
+          "darkPixelCount": 2388
+        },
+        {
+          "glyph": "п",
+          "roi": [
+            540,
+            1457,
+            589,
+            1510
+          ],
+          "bottomY": 1507,
+          "darkPixelCount": 1557
+        },
+        {
+          "glyph": "т",
+          "roi": [
+            692,
+            1457,
+            736,
+            1510
+          ],
+          "bottomY": 1507,
+          "darkPixelCount": 994
+        },
+        {
+          "glyph": "ь",
+          "roi": [
+            739,
+            1457,
+            781,
+            1510
+          ],
+          "bottomY": 1507,
+          "darkPixelCount": 1252
+        }
+      ],
+      "sourceMedianY": 1507.0,
+      "finalDecodedGlyphMeasurements": [
+        {
+          "glyph": "К",
+          "roi": [
+            263,
+            1021,
+            309,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 1200
+        },
+        {
+          "glyph": "п",
+          "roi": [
+            383,
+            1038,
+            419,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 768
+        },
+        {
+          "glyph": "т",
+          "roi": [
+            491,
+            1038,
+            523,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 482
+        },
+        {
+          "glyph": "ь",
+          "roi": [
+            524,
+            1038,
+            555,
+            1077
+          ],
+          "bottomY": 1074,
+          "darkPixelCount": 625
+        }
+      ],
+      "finalDecodedMedianY": 1074.0,
+      "targetYRange": [
+        1074,
+        1075
+      ]
+    },
+    "checks": {
+      "fullDecode": "pass",
+      "sourceHashUnchanged": "pass",
+      "dimensions": "pass",
+      "bytes200000To300000": "pass",
+      "textCoinsMedallion": "pass: visually inspected final decoded JPEG; full title, source coin count and blue/red medallion retained",
+      "noSeams": "pass: no local text/ribbon movement or internal image joins; bottom-only crop and single whole-image resize",
+      "deterministicReproduction": "pass: regenerated from source crop, LANCZOS resize and recorded JPEG options matches output bytes exactly"
+    },
+    "limitations": [
+      "Colour, brightness, saturation and contrast adjustments: none. JPEG conversion introduces normal lossy coding differences.",
+      "Only bottom background is cropped or extended; title, ribbon, medallion and all art above are retained.",
+      "Pixel bottoms include antialiasing and optical round-letter overshoot. The reported baseline uses selected ordinary glyphs, excluding descenders."
+    ],
+    "referenceOriginalJpgs": [
+      {
+        "path": "public/cards/monument.jpg",
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "М",
+            "roi": [
+              247,
+              1024,
+              306,
+              1079
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 1391
+          },
+          {
+            "glyph": "м",
+            "roi": [
+              422,
+              1041,
+              464,
+              1079
+            ],
+            "bottomY": 1076,
+            "darkPixelCount": 843
+          },
+          {
+            "glyph": "т",
+            "roi": [
+              539,
+              1039,
+              570,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 450
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      },
+      {
+        "path": "public/cards/harbor.jpg",
+        "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+        "size": [
+          707,
+          1121
+        ],
+        "measurements": [
+          {
+            "glyph": "Г",
+            "roi": [
+              310,
+              1024,
+              342,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 753
+          },
+          {
+            "glyph": "н",
+            "roi": [
+              435,
+              1040,
+              470,
+              1078
+            ],
+            "bottomY": 1075,
+            "darkPixelCount": 743
+          },
+          {
+            "glyph": "ь",
+            "roi": [
+              476,
+              1040,
+              506,
+              1078
+            ],
+            "bottomY": 1074,
+            "darkPixelCount": 573
+          }
+        ],
+        "visualOrdinaryBaselineTarget": [
+          1074,
+          1075
+        ]
+      }
+    ],
+    "software": {
+      "library": "Pillow",
+      "version": "12.3.0",
+      "pythonExecutable": "/Users/i.biryukov/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3"
+    },
+    "technicalApproval": {
+      "date": "2026-10-29",
+      "by": "user",
+      "statement": "Принимаю все 17 JPEG"
+    }
+  }
+]

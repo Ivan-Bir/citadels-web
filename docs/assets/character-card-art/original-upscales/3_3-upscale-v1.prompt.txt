@@ -1,0 +1,10 @@
+Use case: precise-object-edit. Asset type: complete Russian Citadels Deluxe CHARACTER card.
+EDIT the sole attached original card; this is the sole edit target and reference. Faithful artistic upscale/restoration of scan: recover clear original painterly detail and readable original typography, remove blur/JPEG artifacts. Preserve character identity, face, sex, age, expression, pose, costume, hands, all props and background, perspective and exact composition. Keep the original full rectangular card edge to edge, title ribbon, rank emblem, bottom text parchment, separators, typography style, all symbols and original placement. No crop, padding, external margins, extra frame or redesign.
+Traditional painterly illustration, not photorealism or 3D. Color approximately 10% less intense than original, soft restrained contrast, same light levels and atmosphere; no brighter gold glow, HDR, shiny highlights or oversharpening. No new objects or people, no district price coins or district medallions, no added text.
+Card-specific invariants: Red-haired woman with high bun and gold forehead pendant, purple dress and white collar/cuffs, seated holding a fan of orange cards and one raised orange card, card-covered table and candles; retain every existing object and candle.
+Exact top title: «Провидица». Exact rank in original upper-left emblem: 3.
+Bottom ability text VERBATIM (preserve original paragraph count, original dividers and any bold emphasis; line wrapping may follow original but no word may be changed, added, repeated or omitted):
+Заберите по 1 случайной карте из руки каждого соперника себе на руку. Затем отдайте каждому сопернику, у которого забрали карту, 1 карту из своей руки.
+
+Вы можете построить до 2 кварталов.
+All Russian letters, ё, digits and punctuation must be exactly as written. Reproduce entire ability text sharply in original serif type on original parchment; do not omit or duplicate lines.

@@ -1,0 +1,125 @@
+{
+  "card": {
+    "sequence": "D06",
+    "id": "conspirators_house",
+    "name": "Дом заговорщиков",
+    "type": 9,
+    "cost": 6,
+    "quantity": 1,
+    "description": "Раз в ход тайно выберите персонажа для сброса в следующем раунде",
+    "catalogSource": "public/setup.js:78-80",
+    "catalogImage": "/citadels/cards/placeholders/d06-cloak-dagger.svg"
+  },
+  "status": "artistic-revision-requested",
+  "createdAt": "2026-10-29T12:50:06.494208+00:00",
+  "generation": {
+    "mode": "built-in",
+    "tool": "tools.image_gen__imagegen",
+    "toolPath": "functions.exec → tools.image_gen__imagegen",
+    "transparent_background": false,
+    "promptFile": "docs/assets/district-card-art/conspirators-house-v1-prompt.txt",
+    "promptFileTrailingNewline": "One terminal newline in saved text; call prompt is otherwise identical",
+    "referenced_image_paths": [
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/tavern.jpg",
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/laboratory.jpg"
+    ],
+    "sourceOutput": {
+      "path": "/Users/i.biryukov/.codex/generated_images/01a187b3-e658-74d3-a88a-c6cb81f2c5cf/exec-a4a6422d-e470-4b71-9ae5-af5dc2d2aecf.png",
+      "bytes": 2331529,
+      "sha256": "c24d25cbbe16a2aec75e839beec06b9bdbe225448d1466bdf968879780f14dcd",
+      "width": 996,
+      "height": 1579
+    },
+    "history": [
+      {
+        "call": 1,
+        "operation": "generate with reference images",
+        "sourceOutput": "/Users/i.biryukov/.codex/generated_images/01a187b3-e658-74d3-a88a-c6cb81f2c5cf/exec-a4a6422d-e470-4b71-9ae5-af5dc2d2aecf.png",
+        "promptFile": "docs/assets/district-card-art/conspirators-house-v1-prompt.txt"
+      }
+    ]
+  },
+  "references": [
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+      "bytes": 246958,
+      "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+      "role": "Primary full card face, parchment, ribbon, type, purple medallion and painterly texture",
+      "viewedBeforeGeneration": true
+    },
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/tavern.jpg",
+      "bytes": 270611,
+      "sha256": "6006d5c124821eaedb97f3f135410de5d0d08c107b7ff133f44c6021bf0dd889",
+      "role": "Supporting painterly medieval people, wooden interior and candlelight only",
+      "viewedBeforeGeneration": true
+    },
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/laboratory.jpg",
+      "bytes": 273302,
+      "sha256": "9ec8cc903a7e5118a1b7567b546149307fe91a3f8e7f3460b941853e010e5052",
+      "role": "Exactly six vertical gold coins only; not geometry",
+      "viewedBeforeGeneration": true
+    }
+  ],
+  "output": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/conspirators-house-v1.png",
+    "bytes": 2331529,
+    "sha256": "c24d25cbbe16a2aec75e839beec06b9bdbe225448d1466bdf968879780f14dcd",
+    "width": 996,
+    "height": 1579
+  },
+  "copiedByteForByte": true,
+  "postprocessing": {
+    "resize": false,
+    "crop": false,
+    "padding": false,
+    "colorAdjustment": false,
+    "jpegConversion": false
+  },
+  "visualChecks": {
+    "method": "Direct visual inspection of tool result and saved PNG via view_image",
+    "sixCoins": {
+      "result": "pass",
+      "observed": 6,
+      "layout": "single vertical column at upper left"
+    },
+    "name": {
+      "result": "pass",
+      "observed": "Дом заговорщиков",
+      "blackCyrillicSerif": true,
+      "allLettersVisible": true
+    },
+    "ability": {
+      "result": "pass",
+      "observed": "Раз в ход тайно выберите персонажа для сброса в следующем раунде",
+      "noFinalPeriod": true,
+      "blackOnLightParchment": true
+    },
+    "purpleMedallion": {
+      "result": "pass",
+      "location": "lower left"
+    },
+    "scene": {
+      "result": "pass",
+      "observed": "Four conspirators around a candlelit wooden table, one pointing at a schematic plan; shut door and curtains; warm light, cool shadows"
+    },
+    "fullCard": {
+      "result": "pass",
+      "observed": "Complete rectangular face, parchment and separate title ribbon within image; no mockup or external border"
+    }
+  },
+  "limitations": [
+    "Artwork awaits user artistic approval.",
+    "Generated drawing interprets reference brushwork and medallion details; not a pixel-identical reproduction.",
+    "Reference ratio is approximate; technical alignment, final dimensions and JPEG size await artistic approval.",
+    "The table includes unreadable geometric cards and plan markings, without legible added text.",
+    "Text and coins were checked visually, not by OCR."
+  ],
+  "projectChanges": "Only this PNG and its prompt/metadata files; no catalog or public original replacement, no commit or push.",
+  "userFeedback": {
+    "date": "2026-10-29",
+    "statement": "Концепт хороший: стол, темнота, свечи, капюшоны. Добавь больше мрачности, сделай отсылку на персонажей Вор и Лавочник, Император (он может быть как жертва). Ракурс сделай немного ближе к центру стола. Перегенерируй с нуля"
+  }
+}

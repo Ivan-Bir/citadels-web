@@ -1,0 +1,31 @@
+Use case: illustration-story
+Asset type: ONE complete, full-face portrait district card for the Russian edition of Citadels Deluxe, a new special district titled «Зеркальный чертог». This is an artistic-review PNG.
+
+Reference images and roles:
+1. monument.jpg is the authoritative reference for full card-face layout and proportions, the original painted finish, pale golden parchment ability panel, separate lower title ribbon, purple special-district medallion, black Cyrillic serif typography, original-relative margins and decorative gold coins. Do not copy its monument scene, four-coin price, name or ability.
+2. palace.jpg is a supporting reference for original Citadels painterly medieval architecture, large readable architectural forms, broad brushwork, quiet natural color and a convincing sense of a grand palace. Do not copy its exterior composition, five-coin price, yellow medallion or name.
+3. laboratory.jpg is a reference ONLY for the count and vertical arrangement of EXACTLY SIX individual embossed gold coin symbols at upper left. Do not use its card dimensions, lower title baseline, geometry, laboratory scene, people, name or ability as a template. Card geometry and parchment/ribbon treatment follow monument.jpg.
+
+Primary request and scene:
+Paint a majestic medieval mirror hall inside a palace. The hall has tall arched mirrors in restrained carved frames, broad stone or marble columns and a quiet patterned stone floor. Use an oblique view that makes a large mirror on the right wall and a few further mirrors clearly legible. Their glass reflects the opposite columns, vaulted ceiling and floor with coherent perspective, visibly repeating the hall's architecture and suggesting a faithful copy. A slight silver-grey glass tint, restrained soft reflected light and the enclosing mirror frames make these surfaces unmistakably mirrors rather than doorways. Keep the reflected architectural forms broad, readable and consistent with the room. This is a physical medieval hall with mirrors, never magical portals or a sequence of open passages. Use a small number of large clear architectural shapes and moderate depth, without an infinite tunnel or recursive mirror maze. No people, furniture clutter or small objects. Soft diffuse daylight reveals warm pale stone, muted blue-grey mirror glass and a little aged gold on the frames. Give the scene dignity and calm.
+
+Style:
+Match the original Citadels reference cards: expressive hand-painted fantasy board-game illustration, broad confident brushstrokes, painterly simplification, convincing stone and glass, soft natural light, moderate contrast and restrained natural colors. No photography, 3D rendering, polished plastic, hyperreal digital gloss, hard sparkling highlights or flat vector art.
+
+Card composition and exact content:
+The image IS the complete rectangular card face, straight on, portrait with approximately the original 707:1121 aspect ratio. Artwork fills the face to every outside edge. Use monument.jpg's established layout and relative scales. No surrounding tabletop, mockup, added outer frame, border or padding.
+Show EXACTLY SIX separate embossed gold coin symbols stacked vertically at the upper left, matching the original raised decorative coin style and size. They express construction cost 6; there must be six individual coins, no seventh coin, no printed price numeral.
+At the bottom, place the original-style pale light-golden aged parchment ability panel immediately above a separate lower title ribbon. Use clearly readable black Cyrillic serif typography closely matching the original reference. Render this ability VERBATIM, with no quotation marks, no terminal period, no punctuation substitutions and no extra words:
+Становится точной копией уже построенного квартала
+It may be balanced over three readable lines, for example:
+Становится точной копией
+уже построенного
+квартала
+Use generous readable lettering; the panel's height should fit this short ability without an enormous empty parchment area.
+On the lower title ribbon, render this name VERBATIM in large bold black original-style Cyrillic serif, centered in the space to the right of the medallion:
+Зеркальный чертог
+The whole name must fit without clipping or overlap with the medallion. Keep the name on one line and maintain an original-style visible lower margin.
+Place the standard PURPLE special-district medallion at lower left, overlapping the title ribbon exactly in the style of monument.jpg: gold rim, deep purple interior and pink-purple ornamental emblem, same relative position and size. No yellow, blue, red or green district medallion.
+
+Constraints:
+Deliver one finished card only. The only readable words are the exact Russian name and ability above. No other letters or digits, signs, inscriptions, logos, signatures or watermarks. No modern furnishings, neon, modern typography, people, bright magical effects, portals, endless corridors, tiny clutter, photographic textures or decorative outer borders. Maintain an original Citadels card feeling while creating a new mirror-hall illustration. Preserve the entire rectangular face with all six coins, parchment, title ribbon and purple medallion visible.

@@ -1,0 +1,233 @@
+{
+  "card": {
+    "sequence": "D09",
+    "id": "judicial_chamber",
+    "name": "Судейская палата",
+    "type": 9,
+    "cost": 3,
+    "quantity": 1,
+    "description": "Один раз запретите всем игрокам строительство на следующий раунд",
+    "catalogSource": "public/setup.js:87-89",
+    "catalogImage": "/citadels/cards/placeholders/d09-scales.svg"
+  },
+  "status": "internally-rejected-accessory-scale",
+  "createdAt": "2026-10-29T15:53:41.170695+00:00",
+  "userFeedback": {
+    "rejectedVersion": "judges-chamber-v1.png",
+    "verbatim": "1) Шрифт совсем не тот 2) Сделай вечернюю атмосферу заката 3) Покажи зал суда от лица судьи. статуэтка правосудия, молоточек видны, но по краям кадра, без акцента",
+    "requestedChanges": [
+      "Closer match to original bitmap typography",
+      "Sunset evening atmosphere",
+      "First-person viewpoint from the judge, peripheral Justice statuette and gavel"
+    ]
+  },
+  "generation": {
+    "mode": "built-in",
+    "tool": "tools.image_gen__imagegen",
+    "toolPath": "functions.exec → tools.image_gen__imagegen",
+    "operation": "First GENERATE attempt for v2; superseded by second call due to oversized Justice statue",
+    "transparent_background": false,
+    "promptFile": "docs/assets/district-card-art/judges-chamber-v2-attempt1-prompt.txt",
+    "promptFileTrailingNewline": "Saved file has one terminal newline; call prompt otherwise identical",
+    "promptSHA256": "22f32c3a1881374d0d6253067601806537baeaa8330808b55c1da6908a71cabb",
+    "referenced_image_paths": [
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/harbor.jpg",
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/manor.jpg",
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/judges-chamber-typography-reference.png"
+    ],
+    "sourceOutput": {
+      "path": "/Users/i.biryukov/.codex/generated_images/01a18848-1f10-7221-ac43-12510b0c65b4/exec-ac9a26bc-03ad-4b82-928f-b7d27dafdd90.png",
+      "bytes": 2156485,
+      "sha256": "bcb5a2cee5ff0787b0dd6bc996350ffc089ad43454754870275484bde6c3f9b4",
+      "width": 996,
+      "height": 1579
+    },
+    "history": [
+      {
+        "call": 1,
+        "operation": "GENERATE new composition from original references, not edit",
+        "promptFile": "docs/assets/district-card-art/judges-chamber-v2-attempt1-prompt.txt",
+        "promptSHA256": "22f32c3a1881374d0d6253067601806537baeaa8330808b55c1da6908a71cabb",
+        "sourceOutput": {
+          "path": "/Users/i.biryukov/.codex/generated_images/01a18848-1f10-7221-ac43-12510b0c65b4/exec-ac9a26bc-03ad-4b82-928f-b7d27dafdd90.png",
+          "bytes": 2156485,
+          "sha256": "bcb5a2cee5ff0787b0dd6bc996350ffc089ad43454754870275484bde6c3f9b4",
+          "width": 996,
+          "height": 1579
+        },
+        "savedOutput": {
+          "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/judges-chamber-v2-attempt1.png",
+          "bytes": 2156485,
+          "sha256": "bcb5a2cee5ff0787b0dd6bc996350ffc089ad43454754870275484bde6c3f9b4",
+          "width": 996,
+          "height": 1579
+        },
+        "selection": "Rejected internally: oversized foreground Justice statue",
+        "changeFromPrevious": null
+      }
+    ]
+  },
+  "references": [
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+      "bytes": 246958,
+      "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+      "role": "Authoritative original full-card layout, purple medallion, regular ability lettering and bold title; not scene, words or four coins",
+      "viewedBeforeGeneration": true
+    },
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/harbor.jpg",
+      "bytes": 203729,
+      "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+      "role": "Original compact bold title bitmap geometry and ribbon proportions only; not scene, name, four coins or green medallion",
+      "viewedBeforeGeneration": true
+    },
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/manor.jpg",
+      "bytes": 217918,
+      "sha256": "681fbccc5f54b732aa787c3f1a73bfb7b967776c4733462f6c7b46fa80066764",
+      "role": "Exactly THREE gold coins in one upper-left vertical column and original medieval painted treatment; not scene, title or yellow medallion",
+      "viewedBeforeGeneration": true
+    },
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/judges-chamber-typography-reference.png",
+      "bytes": 728271,
+      "sha256": "dd2c2207126699a28e58f0d5dd8d2500136179ed8b60a07231265a37acbf66d9",
+      "width": 1414,
+      "height": 1044,
+      "role": "Enlarged bitmap typography evidence from unretouched original lower areas: thin regular body lettering and original bold titles; not words or medallion colors",
+      "viewedBeforeGeneration": true,
+      "preparation": {
+        "tool": "Pillow",
+        "colorMode": "RGB",
+        "canvas": [
+          1414,
+          1044
+        ],
+        "sources": [
+          {
+            "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+            "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+            "cropBox": [
+              0,
+              750,
+              707,
+              1121
+            ],
+            "scale": 2,
+            "resampling": "NEAREST",
+            "destinationBox": [
+              0,
+              0,
+              1414,
+              742
+            ]
+          },
+          {
+            "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/harbor.jpg",
+            "sha256": "a70c7580c7d8ee66e4b9fd96f4bc1061caa2072b450c8de803416afb806fae18",
+            "cropBox": [
+              0,
+              970,
+              707,
+              1121
+            ],
+            "scale": 2,
+            "resampling": "NEAREST",
+            "destinationBox": [
+              0,
+              742,
+              1414,
+              1044
+            ]
+          }
+        ],
+        "notes": "Only reference-image preparation; no relettering, overlays, color correction or generated-output editing."
+      }
+    }
+  ],
+  "output": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/judges-chamber-v2-attempt1.png",
+    "bytes": 2156485,
+    "sha256": "bcb5a2cee5ff0787b0dd6bc996350ffc089ad43454754870275484bde6c3f9b4",
+    "width": 996,
+    "height": 1579
+  },
+  "copiedByteForByte": true,
+  "postprocessing": {
+    "resize": false,
+    "crop": false,
+    "padding": false,
+    "colorAdjustment": false,
+    "jpegConversion": false
+  },
+  "visualChecks": {
+    "method": "Direct manual visual inspection of selected generated image and saved PNG via view_image; exact text read word by word; original bitmap lettering compared visually without named font-family assumption",
+    "threeCoins": {
+      "result": "pass",
+      "count": 3,
+      "layout": "Single upper-left vertical column",
+      "noPriceNumeral": true
+    },
+    "name": {
+      "result": "pass",
+      "observed": "Судейская палата",
+      "oneLine": true,
+      "allLettersVisible": true
+    },
+    "ability": {
+      "result": "pass",
+      "observed": "Один раз запретите всем игрокам строительство на следующий раунд",
+      "observedLines": [
+        "Один раз запретите всем",
+        "игрокам строительство на",
+        "следующий раунд"
+      ],
+      "exactWords": true,
+      "noFinalPeriod": true,
+      "noAddedPunctuation": true,
+      "blackOnLightParchment": true
+    },
+    "typography": {
+      "result": "improved-manual-comparison",
+      "observed": "Ability uses clearly thinner regular strokes, more open counters and less oversized lettering than v1. Title has dense compact bold forms and wedge-like terminals, closer to original ribbon lettering. No exact font identity or metric match claimed.",
+      "exactFontMatchingVerified": false
+    },
+    "purpleMedallion": {
+      "result": "pass",
+      "observed": "Lower-left gold-rimmed deep purple medallion with pink ornamental emblem"
+    },
+    "wholeCard": {
+      "result": "pass",
+      "observed": "Complete portrait rectangular face, three coins, ability panel, separate lower title ribbon and medallion intact; no external border or mockup"
+    },
+    "judgePOV": {
+      "result": "pass",
+      "observed": "We look over the near wooden desk edge into courtroom toward two standing petitioners and spectators on benches. No visible seated or front-facing judge, no opposing judge bench."
+    },
+    "sunset": {
+      "result": "pass",
+      "observed": "Low orange sun and orange-pink window sky, warm oblique beams and long floor shadows, cool violet stone shadows; unmistakable evening rather than noon"
+    },
+    "peripheralAccessories": {
+      "result": "fail",
+      "observed": "Justice statuette along left foreground is too tall and visually prominent; corrected in second generation."
+    },
+    "noExtraReadableText": {
+      "result": "pass",
+      "observed": "Only approved title and ability are readable; plan has an architectural drawing, and scales banner is symbolic, without lettering"
+    }
+  },
+  "limitations": [
+    "Not the selected v2. Retained as generation history because foreground statuette was oversized.",
+    "Exact font identity remains unverified."
+  ],
+  "fileVerification": {
+    "pngChunkCRC": "pass",
+    "idatDecompression": "pass",
+    "decodedScanlineBytes": 4719631,
+    "copiedSourceSHA256Matches": true
+  },
+  "projectChanges": "Only judges-chamber-v2.png, judges-chamber-v2-prompt.txt, judges-chamber-v2-metadata.json, judges-chamber-v2-attempt1.png, judges-chamber-v2-attempt1-prompt.txt, judges-chamber-v2-attempt1-metadata.json and judges-chamber-typography-reference.png. V1, shared log, public, catalog and code untouched; no commit or push."
+}

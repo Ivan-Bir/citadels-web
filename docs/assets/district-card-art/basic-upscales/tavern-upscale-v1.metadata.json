@@ -1,0 +1,61 @@
+{
+  "id": "tavern",
+  "name": "Таверна",
+  "sourceTitle": "Таверна",
+  "catalogName": "Таверна",
+  "cost": 1,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/tavern.jpg",
+  "text": "",
+  "qa": {
+    "sourceInspected": true,
+    "outputInspected": true,
+    "name": "pass: exact factual scanned title",
+    "text": "pass: no ability/rules text",
+    "coins": "pass: exactly 1",
+    "type": "pass: green moneybag medallion",
+    "composition": "Original tavern people and main object arrangement retained, including serving woman, drinking man, bearded diner, foreground blond patron, musician, sausages, garlic, food and candles; fine faces/hands/food detail reinterpreted.",
+    "color": "Palette family and source light arrangement retained. Output has restored local detail; approximate 10% lower chroma was a prompt target, not measured.",
+    "layout": "pass: complete portrait card, parchment ribbon, coin column and medallion retained; no external border/margins or crop"
+  },
+  "status": "artistic-approved",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-30d6911c-7280-458a-b6a3-16cdf613d260.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/tavern-upscale-v1.png",
+  "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/basic-upscales/tavern-upscale-v1.prompt.txt",
+  "checks": {
+    "singleOriginalTarget": true,
+    "rawPngCopied": true,
+    "technicalResize": false,
+    "originalJpgUnchanged": true,
+    "coinCount": 1,
+    "title": "Таверна",
+    "medallionColor": "green",
+    "byteIdenticalToToolOutput": true,
+    "pngVerified": true
+  },
+  "limitations": [
+    "Generative restoration reinterprets small details; artistic acceptance remains pending.",
+    "Approximate 10% lower chroma is a prompt target, not a measured pixel transform.",
+    "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement."
+  ],
+  "generationHistory": [
+    {
+      "attempt": 1,
+      "result": "Successful generation from the original JPG.",
+      "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1874a-7d32-7232-9704-60d220db1693/exec-30d6911c-7280-458a-b6a3-16cdf613d260.png"
+    }
+  ],
+  "size": {
+    "bytes": 2634918,
+    "width": 996,
+    "height": 1579
+  },
+  "sha256": "6eded7e46709350879e1678de4da3f9db6a1f3ec099cef2a8353109077ee1b89",
+  "sourceSha256": "6006d5c124821eaedb97f3f135410de5d0d08c107b7ff133f44c6021bf0dd889",
+  "promptSha256": "9dac94a5d0cc0a7d602307b380b145c6401af56532c072fd7002fb5771112895",
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю все 17, готовь JPEG"
+  }
+}

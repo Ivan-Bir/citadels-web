@@ -1,0 +1,39 @@
+{
+  "id": "7_2",
+  "name": "Навигатор",
+  "rank": 7,
+  "original_text": "Возьмите либо 4 дополнительных золотых, либо 4 дополнительные карты.\n\nВы не можете строить кварталы.",
+  "specific": "Young adult woman navigator, long flowing brown hair swept toward viewer-left, stern serious face and leftward gaze, golden-yellow fitted high-collar military jacket with white high collar/corset and long white gloves, dark burgundy lower clothing, sword at right hip. Both hands grip original large wooden ship steering wheel entering from bottom left, foggy gray-violet ship atmosphere and rigging ropes at upper edges. Preserve woman, posture, wheel arc and visible spokes, hair shape and every prop. The two occurrences of the word «либо» in the first ability paragraph are italic exactly as source. Preserve 2 paragraphs and original fine divider.",
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/characters/7_2.jpg",
+  "prompt": "Use case: precise-object-edit. Asset: complete Russian Citadels Deluxe CHARACTER game card.\nEDIT the single original card provided as the ONLY edit target and reference. Faithful artistic upscale/restoration: remove scan blur and JPEG artifacts, restore sharp painterly brush texture and readable native typography in the original traditional illustration style. Preserve the exact identity, face, sex, age, expression, body and hand pose, costume, props, all existing background objects, perspective, composition, original card proportions and full edge-to-edge rectangle. Preserve title banner, rank badge, bottom parchment scroll, every symbol, separator and layout. Do not crop, pad, add borders or external margins. Do not redesign.\nColor: approximately 10% less intense than the original, restrained soft contrast; same palette family, light levels and shadow atmosphere. Do not strengthen golden glow or highlights. No photorealism, 3D, HDR, hyperrealism or oversharpening.\nThis is a CHARACTER card: add no district coins or color medallions, new objects, characters, decorative fields, watermarks or text.\nText: render every Russian word and punctuation verbatim, preserve ё, numbers and original bold/italic emphasis and paragraph count. Reflow minimally only to fit the original same bottom parchment region. Keep exact native decorative serif typography; no translation or paraphrase.\nCard-specific visual invariants: Young adult woman navigator, long flowing brown hair swept toward viewer-left, stern serious face and leftward gaze, golden-yellow fitted high-collar military jacket with white high collar/corset and long white gloves, dark burgundy lower clothing, sword at right hip. Both hands grip original large wooden ship steering wheel entering from bottom left, foggy gray-violet ship atmosphere and rigging ropes at upper edges. Preserve woman, posture, wheel arc and visible spokes, hair shape and every prop. The two occurrences of the word «либо» in the first ability paragraph are italic exactly as source. Preserve 2 paragraphs and original fine divider.\nExact rank badge: 7.\nExact title: «Навигатор».\nExact ability text (2 paragraphs separated by the original horizontal ornament):\nВозьмите либо 4 дополнительных золотых, либо 4 дополнительные карты.\n\nВы не можете строить кварталы.",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1876b-e4d3-70a2-8058-4c5b40abb5bf/exec-b830e237-1751-4bd9-8f9a-abe84ec35567.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/character-card-art/original-upscales/7_2-upscale-v1.png",
+  "sourceSha256": "2ba02196e053e911347fed9f1fc693b94976aea31191587da1ac4438f7cc9f9c",
+  "sha256": "b25105f84f8da8aca1810c6d6680d2686b4462a7f64eedabfe1f01e5362bdb22",
+  "size": {
+    "bytes": 2197263,
+    "width": 950,
+    "height": 1655
+  },
+  "qa": {
+    "name": "pass: exact source title visually checked",
+    "rank": "pass: exact source rank visually checked",
+    "text": "pass: each word, ё, numbers, punctuation and paragraph count visually compared to source; both occurrences of либо remain italic",
+    "composition": "pass: major pose, costume, props and background retained; fine details generatively reinterpreted",
+    "identity": "pass: face, sex, age and expression retained with painterly reinterpretation",
+    "color": "same palette and restrained contrast; exact 10% reduction unmeasured",
+    "layout": "pass: complete card, original title/rank/ability regions and separators retained"
+  },
+  "status": "artistic-approved",
+  "limitations": [
+    "Generative restoration can reinterpret fine details and face nuances.",
+    "Approximately 10% lower color intensity is a prompt target, not a measured guarantee.",
+    "Raw generated PNG copied byte-for-byte; no resize, crop, padding, compression or game asset replacement."
+  ],
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю. только убедись, чтобы пергамент на персонажах остался на прежнем месте и был выровнен",
+    "condition": "Preserve and align parchment positions against each original character JPG."
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "card": {
+    "sequence": "D07",
+    "id": "divination_tower",
+    "name": "Башня прорицателя",
+    "type": 9,
+    "cost": 4,
+    "quantity": 1,
+    "description": "Раз в ход посмотрите столько верхних карт колоды, сколько берёте при выборе ресурса „карты“, не меняя их порядка",
+    "catalogSource": "public/setup.js:81-83",
+    "catalogImage": "/citadels/cards/placeholders/d07-crystal-ball.svg",
+    "approvalTextSource": "docs/assets/district-card-art/card-texts-and-approval.md:13"
+  },
+  "status": "artistic-approved",
+  "createdAt": "2026-10-29T14:44:00.683912+00:00",
+  "generation": {
+    "mode": "built-in",
+    "tool": "tools.image_gen__imagegen",
+    "toolPath": "functions.exec → tools.image_gen__imagegen",
+    "operation": "New card generation using designated originals as layout and style references",
+    "transparent_background": false,
+    "promptFile": "docs/assets/district-card-art/seer-tower-v1-prompt.txt",
+    "promptFileTrailingNewline": "Saved file has one terminal newline; call prompt otherwise identical",
+    "promptSHA256": "5a92ff729af8dc9682d31d8d8bd910243fe03a7694f27ab689a23e961e03fd87",
+    "referenced_image_paths": [
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/observatory.jpg",
+      "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/fortress.jpg"
+    ],
+    "sourceOutput": {
+      "path": "/Users/i.biryukov/.codex/generated_images/01a1881b-8d33-7d30-9b06-d6f2b7785d15/exec-0d9bcf93-8676-4e0b-9154-bd2bc64eedc0.png",
+      "bytes": 2293006,
+      "sha256": "c96c7780e41e95c306f51a71152ef52569e6900d5fd33380b23252f6bca75203",
+      "width": 996,
+      "height": 1579
+    },
+    "history": [
+      {
+        "call": 1,
+        "operation": "generate new composition",
+        "promptFile": "docs/assets/district-card-art/seer-tower-v1-prompt.txt",
+        "sourceOutput": "/Users/i.biryukov/.codex/generated_images/01a1881b-8d33-7d30-9b06-d6f2b7785d15/exec-0d9bcf93-8676-4e0b-9154-bd2bc64eedc0.png"
+      }
+    ]
+  },
+  "references": [
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+      "bytes": 246958,
+      "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+      "role": "Authoritative original card-face layout: parchment, title ribbon, black Cyrillic serif, purple medallion, exactly four vertical gold coins and original relative scales",
+      "viewedBeforeGeneration": true
+    },
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/observatory.jpg",
+      "bytes": 204393,
+      "sha256": "af50600061dce4ed81bbb9b50af0d117641f2d5c66e535bcc22d91c26ef158a3",
+      "role": "Original painted atmospheric medieval architecture and twilight sky only; not its telescope, dome, alley, moon, composition or text",
+      "viewedBeforeGeneration": true
+    },
+    {
+      "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/fortress.jpg",
+      "bytes": 175684,
+      "sha256": "691df23cc404b99ecfe8abd7f174d8ad0b3ead7f2afa6a29151baa1f762006b4",
+      "role": "Original painterly stone construction and substantial readable architectural masses only; not fortress composition, battlements, red medallion, five coins or title",
+      "viewedBeforeGeneration": true
+    }
+  ],
+  "output": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/seer-tower-v1.png",
+    "bytes": 2293006,
+    "sha256": "c96c7780e41e95c306f51a71152ef52569e6900d5fd33380b23252f6bca75203",
+    "width": 996,
+    "height": 1579
+  },
+  "copiedByteForByte": true,
+  "postprocessing": {
+    "resize": false,
+    "crop": false,
+    "padding": false,
+    "colorAdjustment": false,
+    "jpegConversion": false
+  },
+  "visualChecks": {
+    "method": "Direct visual inspection of generated result and saved PNG via view_image; exact text manually read word by word, not OCR",
+    "fourCoins": {
+      "result": "pass",
+      "count": 4,
+      "layout": "single upper-left vertical column",
+      "noPrintedPrice": true
+    },
+    "name": {
+      "result": "pass",
+      "observed": "Башня прорицателя",
+      "blackCyrillicSerif": true,
+      "allLettersVisible": true
+    },
+    "ability": {
+      "result": "pass",
+      "observed": "Раз в ход посмотрите столько верхних карт колоды, сколько берёте при выборе ресурса „карты“, не меняя их порядка",
+      "observedLines": [
+        "Раз в ход посмотрите столько",
+        "верхних карт колоды, сколько",
+        "берёте при выборе ресурса",
+        "„карты“, не меняя их порядка"
+      ],
+      "exactWordsAndCommas": true,
+      "yoInBeryote": true,
+      "lowHighQuotesAroundKarty": true,
+      "noFinalPeriod": true,
+      "blackOnLightParchment": true,
+      "readableFourLines": true
+    },
+    "purpleMedallion": {
+      "result": "pass",
+      "location": "lower left",
+      "observed": "Gold rim, deep purple field, pink ornamental emblem"
+    },
+    "wholeCard": {
+      "result": "pass",
+      "observed": "Complete rectangular full-face image with all four coins, entire roof and tower, readable parchment ability and full separate lower ribbon; no mockup or external padding"
+    },
+    "scene": {
+      "result": "pass",
+      "observed": "Tall slender weathered stone tower, steep slate roof and smaller attached turrets, arched lit windows, visible rocky base, blue-violet twilight with warm horizon and river valley. Tower is composition centre; no portrait, telescope, portal or floating cards"
+    },
+    "paintedAtmosphere": {
+      "result": "pass",
+      "observed": "Soft painted stone and landscape, legible architectural masses, restrained golden window glow, cool blue-violet sky; not mostly black"
+    },
+    "noExtraReadableText": {
+      "result": "pass",
+      "observed": "Only approved title and ability are readable"
+    }
+  },
+  "limitations": [
+    "Awaiting user artistic approval.",
+    "Manual visual text and coin verification; no OCR performed.",
+    "Generative interpretation adds a distant river, bridge and town; detail in the valley is richer than a minimal landscape but the tower remains dominant.",
+    "Final size, title baseline, lower margin and JPEG weight are deferred until artistic approval.",
+    "No numeric color or brushwork match to originals is claimed."
+  ],
+  "projectChanges": "Only D07 seer-tower-v1.png, seer-tower-v1-prompt.txt and seer-tower-v1-metadata.json; no shared log, catalog, public originals, technical JPEG or code changes; no commit or push.",
+  "fileVerification": {
+    "pngChunkCRC": "pass",
+    "idatDecompression": "pass",
+    "decodedScanlineBytes": 4719631,
+    "copiedSourceSHA256Matches": true
+  },
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Принимаю, готовь JPEG"
+  }
+}

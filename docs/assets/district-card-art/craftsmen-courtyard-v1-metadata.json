@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 1,
+  "sequence": "D08",
+  "status": "artistic-approved",
+  "createdOn": "2026-10-29",
+  "card": {
+    "id": "artisans_court",
+    "name": "Ремесленный двор",
+    "type": 9,
+    "cost": 4,
+    "quantity": 1,
+    "description": "В конце хода получите 1 золотой, если размер вашего города не увеличился",
+    "catalogSource": "public/setup.js:84-86",
+    "catalogImage": "/citadels/cards/placeholders/d08-anvil.svg"
+  },
+  "generation": {
+    "mode": "built-in",
+    "intent": "generate",
+    "tool": "tools.image_gen__imagegen",
+    "useCase": "illustration-story",
+    "transparentBackground": false,
+    "promptFile": "craftsmen-courtyard-v1-prompt.txt",
+    "sourceToolPath": "/Users/i.biryukov/.codex/generated_images/01a18831-e520-7170-bde1-0857f7641c10/exec-fef430e6-0185-40bf-8430-029e3cdbd600.png",
+    "referencedImagePaths": [
+      "public/cards/monument.jpg",
+      "public/cards/factory.jpg",
+      "public/cards/manor.jpg"
+    ],
+    "numLastImagesToInclude": null,
+    "history": [
+      {
+        "attempt": 1,
+        "result": "selected-artistic-review",
+        "action": "new generation from three original reference cards",
+        "targetedEdits": []
+      }
+    ],
+    "promptSha256": "7d1532bf700a157e5f8eac498a51e744c492a1c455667cfe35b384acf1a0ecf8"
+  },
+  "references": [
+    {
+      "path": "public/cards/monument.jpg",
+      "role": "authoritative full-face layout, four coins, parchment, title ribbon, black Cyrillic serif, purple special medallion",
+      "viewedBeforeGeneration": true,
+      "bytes": 246958,
+      "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff"
+    },
+    {
+      "path": "public/cards/factory.jpg",
+      "role": "supporting painterly workmanship and stone/wood material language; not its five coins, machinery or original wording",
+      "viewedBeforeGeneration": true,
+      "bytes": 607878,
+      "sha256": "c25af826f52ebb479ec80bb96c2bdeb2d51b96ee652fa174fb95b825ac46c41e"
+    },
+    {
+      "path": "public/cards/manor.jpg",
+      "role": "supporting medieval timber, architecture and natural painted light; not its three coins, yellow medallion or wording",
+      "viewedBeforeGeneration": true,
+      "bytes": 217918,
+      "sha256": "681fbccc5f54b732aa787c3f1a73bfb7b967776c4733462f6c7b46fa80066764"
+    }
+  ],
+  "output": {
+    "path": "docs/assets/district-card-art/craftsmen-courtyard-v1.png",
+    "format": "PNG",
+    "width": 996,
+    "height": 1579,
+    "bytes": 2572352,
+    "sha256": "6357488be44fb054432f2439aea92c89085d543850bf738c0660697413391b22",
+    "byteIdenticalToToolOutput": true,
+    "copyMethod": "shutil.copyfile; source and destination bytes compared directly",
+    "postProcessing": [],
+    "rawGeneratorOutput": true
+  },
+  "visualChecks": {
+    "method": "full image viewed before generation for each reference and saved output viewed with tools.view_image; manual word-by-word comparison",
+    "savedOutputViewed": true,
+    "exactlyFourGoldCoins": {
+      "status": "pass",
+      "observed": 4,
+      "arrangement": "single vertical column at upper left"
+    },
+    "exactName": {
+      "status": "pass",
+      "observed": "Ремесленный двор"
+    },
+    "exactAbility": {
+      "status": "pass",
+      "observed": "В конце хода получите 1 золотой, если размер вашего города не увеличился",
+      "lineBreaks": [
+        "В конце хода получите 1 золотой,",
+        "если размер вашего города",
+        "не увеличился"
+      ],
+      "noFinalPeriod": true
+    },
+    "purpleMedallion": {
+      "status": "pass",
+      "observed": "gold-rimmed purple medallion with pink-purple ornament, fully inside lower left"
+    },
+    "fullCard": {
+      "status": "pass",
+      "observed": "full rectangular face; all coins, parchment, title letters, ribbon and medallion visible; no exterior mockup or mat"
+    },
+    "scene": {
+      "status": "pass",
+      "observed": "established medieval stone-and-timber courtyard, one woodworker at bench and one cooper; warm daylight, existing workshops, no construction machinery or market crowd"
+    },
+    "noUnrequestedReadableText": {
+      "status": "pass",
+      "observed": "only exact name and ability; no shop signs or watermark"
+    }
+  },
+  "limitations": [
+    "Artistic approval pending from user; no technical approval or in-game integration.",
+    "Exact lower title baseline and 707×1121 delivery geometry have not been measured or adjusted; this raw image is 996×1579.",
+    "No JPEG, resize, crop, padding or color correction has been applied.",
+    "Generative details are interpreted, including background town towers and small tools; original references were used for style and card language, not a pixel-perfect layout reproduction.",
+    "Natural wood and stone are warmly lit; saturation and contrast have not been numerically measured."
+  ],
+  "artisticApproval": {
+    "date": "2026-10-29",
+    "by": "user",
+    "statement": "Ремесленный двор принимаю, продолжи тех приёмку"
+  }
+}
