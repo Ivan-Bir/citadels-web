@@ -1,0 +1,34 @@
+{
+  "id": "poor_house",
+  "name": "Богадельня",
+  "cost": 4,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/poor_house.jpg",
+  "text": "Если в конце вашего хода у вас нет золота, получите 1 золотой.",
+  "scene": "Preserve the quiet gray misty medieval poor-house street, close timbered buildings, warm small window lights, wet cobblestones, chickens/rooster in foreground, original pedestrians and dark cropped cart at lower right. Preserve tall hazy Gothic silhouettes behind town. Keep poor, subdued gray-green/mauve atmosphere and matte painted surfaces. No new people, extra chickens, extra windows, bright sunshine or romantic orange glow.",
+  "status": "awaiting-art-approval",
+  "method": "built-in image_gen edit; one original JPG reference; one initial generation",
+  "dimensions": {
+    "width": 996,
+    "height": 1579
+  },
+  "generatedToolPath": "/Users/i.biryukov/.codex/generated_images/01a1835c-c101-7671-ae47-a39bb5e768ba/exec-1b1b0166-b467-4b5c-8a27-9f8f3a3f83dd.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/poor_house-upscale-v1.png",
+  "outputSHA256": "a9f170f7b2415c41da0a364276b590cd2ca3dc5b3e32cebbb326187becfb5edf",
+  "copiedSHA256": "a9f170f7b2415c41da0a364276b590cd2ca3dc5b3e32cebbb326187becfb5edf",
+  "sourceSHA256": "27d1f361cc61d61b0532fde1322f9abfe594ae83d58910144f2f59e04dfaeec0",
+  "visualQA": {
+    "title": "correct visually",
+    "rules": "complete verbatim text visually verified",
+    "price": "4 gold coins, correct",
+    "type": "purple diamond medallion retained",
+    "composition": "Gray medieval street, timber houses, pedestrians, chickens, wet paving and Gothic background retained.",
+    "limitations": [
+      "Exact count/anatomy of low-resolution chicken and pedestrian shapes not reliably verifiable; rendered details are interpretations.",
+      "Scene is muted but coin highlights are brighter; exact 10% chroma reduction is not verified.",
+      "No technical resizing, compression or production replacement performed."
+    ]
+  },
+  "artisticDirection": "Perceived saturation/chroma approximately 90% of original, soft contrast; artistic target not a pixel-precise guarantee",
+  "technicalProcessing": "None; byte-identical PNG copy",
+  "approval": "Awaiting user artistic review; no acceptance claimed"
+}

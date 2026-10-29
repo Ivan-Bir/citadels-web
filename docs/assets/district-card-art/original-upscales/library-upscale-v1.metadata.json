@@ -1,0 +1,33 @@
+{
+  "id": "library",
+  "name": "Библиотека",
+  "cost": 6,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/library.jpg",
+  "ability": "Если во время получения ресурсов вы выбираете взятие карт, оставьте все взятые карты.",
+  "toolOutputPath": "/Users/i.biryukov/.codex/generated_images/01a1835e-9302-7771-94ab-baf6540466d7/exec-847e8214-1964-4a8c-9093-fedd6aa79cc2.png",
+  "QA": {
+    "title": "pass; exact visible title",
+    "ability": "pass; exact text and punctuation",
+    "coins": "pass; six gold coins",
+    "type": "pass; purple medallion",
+    "composition": "vaults, shelving, tables, tiled aisle and armillary sphere retained; architecture and furnishings interpreted",
+    "color": "Muted interior palette; direct sunlit/gold details remain bright, approximate reduction not measured."
+  },
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/library-upscale-v1.png",
+  "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/library-upscale-v1.prompt.txt",
+  "dimensions": {
+    "width": 996,
+    "height": 1579
+  },
+  "sizeBytes": 2595240,
+  "sha256": "0fc73aab4148d944520070fc3959bd931b7edeac4776db7d102549bb237229cb",
+  "status": "awaiting-art-approval",
+  "mode": "built-in image_gen edit",
+  "referenceCount": 1,
+  "technicalProcessing": "none; generated PNG copied byte-for-byte",
+  "limitations": [
+    "Generative restoration may interpret small painted details.",
+    "Approximate 10% color intensity reduction is an artistic direction, not a measured correction.",
+    "Not resized, compressed, padded, or deployed to game assets."
+  ]
+}

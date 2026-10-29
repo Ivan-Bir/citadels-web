@@ -69,7 +69,7 @@
         architects_workshop: {name: "Мастерская зодчих", type: 9, cost: 5, quantity: 1,
             description: "Раз в ход за 3 золотых снизьте плату за строительство всех карт вашей руки на 1 до конца игры",
             image: "/citadels/cards/placeholders/d03-pencil-ruler.svg"},
-        wine_cellar: {name: "Винные погреба", type: 9, cost: 3, quantity: 1,
+        wine_cellar: {name: "Винодельня", type: 9, cost: 3, quantity: 1,
             description: "После 5 завершений раунда даёт 3 дополнительных очка",
             image: "/citadels/cards/placeholders/d04-cellar-barrels.svg"},
         mirror_hall: {name: "Зеркальный чертог", type: 9, cost: 6, quantity: 1,

@@ -1,0 +1,64 @@
+{
+  "district_id": "catacombs",
+  "title": "Катакомбы",
+  "version": 1,
+  "cost": 2,
+  "district_type": 9,
+  "district_type_name": "особый квартал",
+  "ability_text": "Не учитывается в счет кварталов для строительства города. В конце игры получите 2 дополнительных очка",
+  "status": "awaiting_user_artistic_approval",
+  "created_at_utc": "2026-10-28T14:34:51.785819+00:00",
+  "generator": {
+    "mode": "built-in",
+    "tool": "image_gen.imagegen",
+    "calls": 1,
+    "transparent_background": false,
+    "explicit_pixel_size_requested": false
+  },
+  "source_path": "/Users/i.biryukov/.codex/generated_images/01a182eb-39cd-75a2-83fb-03cbcea19325/exec-a71aef5a-f132-42f9-b6cf-a82816c7673a.png",
+  "output_path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/catacombs-v1.png",
+  "prompt_path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/catacombs-v1-prompt.txt",
+  "references": [
+    {
+      "path": "public/cards/monument.jpg",
+      "role": "primary original full-face layout, ability parchment, black Cyrillic type and purple special-district medallion",
+      "viewed_before_generation": true
+    },
+    {
+      "path": "public/cards/church.jpg",
+      "role": "original two gold coins, their appearance and arrangement",
+      "viewed_before_generation": true
+    },
+    {
+      "path": "public/cards/harbor.jpg",
+      "role": "original painterly architecture, depth and title typography",
+      "viewed_before_generation": true
+    }
+  ],
+  "source_texts": [
+    "public/setup.js:66-68",
+    "docs/assets/district-card-art/card-texts-and-approval.md"
+  ],
+  "output": {
+    "format": "PNG",
+    "width_px": 996,
+    "height_px": 1579,
+    "size_bytes": 2267164,
+    "sha256": "0b1d2d56ba655d499b0159007b2329515d833aa2d132c0ef01d062e4cedf18ae"
+  },
+  "preservation": {
+    "copied_byte_for_byte": true,
+    "source_sha256": "0b1d2d56ba655d499b0159007b2329515d833aa2d132c0ef01d062e4cedf18ae",
+    "postprocessing": []
+  },
+  "visual_verification": {
+    "coin_count": 2,
+    "purple_special_district_medallion_present": true,
+    "title_matches": true,
+    "ability_text_matches": true,
+    "ability_final_period_present": false,
+    "painting": "Stone vaults and arches recede in depth; burial niches and closed tombs, worn stairs, warm torches and cool deep shadows; expressive painterly brushwork.",
+    "limitations": "Artistic draft, not accepted by the user. Pixel dimensions, lower spacing and file weight are intentionally not adjusted or approved at this stage."
+  },
+  "game_catalog_modified": false
+}

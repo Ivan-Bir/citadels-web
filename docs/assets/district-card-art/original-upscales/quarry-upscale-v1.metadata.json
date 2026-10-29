@@ -1,0 +1,32 @@
+{
+  "id": "quarry",
+  "name": "Каменоломня",
+  "cost": 4,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/quarry.jpg",
+  "text": "Вы можете строить такие же кварталы, как уже построенные в вашем городе.",
+  "qa": {
+    "name": "pass",
+    "text": "pass",
+    "coins": "pass: exactly 4",
+    "type": "pass: purple special-district medallion",
+    "composition": "major quarry, rider, birds and scaffold positions preserved; stone texture and distant detail reinterpreted",
+    "color": "blue sky appears more defined and orange stone remains strong despite lower-intensity instruction; needs art approval"
+  },
+  "status": "awaiting-art-approval",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1835d-c2c8-7c80-b697-9fa3f37f46a0/exec-3e15faf5-751b-43bf-8574-2af50a04a0a2.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/quarry-upscale-v1.png",
+  "size": {
+    "bytes": 2743699,
+    "width": 995,
+    "height": 1581
+  },
+  "sha256": "1c750277071e90ced55f3e59535c5dc9641738e2bd224f3ee253830bce27643c",
+  "sourceSha256": "3a0edcc3bbfb7b8fde984047e7f4c2a3fdf17ee82e45cc0c3068946b5aac522c",
+  "limitations": [
+    "Generative restoration may reinterpret fine details.",
+    "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+    "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement.",
+    "User artistic approval is pending."
+  ]
+}

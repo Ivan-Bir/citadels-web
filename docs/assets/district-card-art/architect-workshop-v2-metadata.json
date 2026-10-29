@@ -1,0 +1,95 @@
+{
+  "card_id": "architects_workshop",
+  "sequence": "D03",
+  "title": "Мастерская зодчих",
+  "cost": 5,
+  "district_type": 9,
+  "ability_text": "Раз в ход за 3 золотых снизьте плату за строительство всех карт вашей руки на 1 до конца игры",
+  "variant": "v2",
+  "stage": "artistic_review",
+  "approval_status": "awaiting_user_artistic_approval",
+  "created_at_utc": "2026-10-28T15:26:03.132850+00:00",
+  "generation": {
+    "tool": "image_gen.imagegen",
+    "mode": "built-in",
+    "use_case": "stylized-concept",
+    "transparent_background": false,
+    "exact_pixel_size_requested": false,
+    "source_path": "/Users/i.biryukov/.codex/generated_images/01a1831a-8493-7573-ae1c-eadd13062f52/exec-f2c45b15-b1cb-492d-9ab6-f182c5890a24.png",
+    "source_sha256": "4ee64afdac589f2334dcd4f3ba3d449523e3c2bc274159db903f953ee3534e8b",
+    "prompt_path": "docs/assets/district-card-art/architect-workshop-v2-prompt.txt",
+    "prompt_sha256": "50bb60ff6c823108ff745825e0646eaacd4961f197bb311cec318641ad534df8",
+    "references": [
+      {
+        "path": "docs/assets/district-card-art/architect-workshop-v1.png",
+        "role": "Established card identity: exact title, ability, cost, parchment and ribbon hierarchy, purple medallion; painting composition is replaced",
+        "inspected_before_generation": true,
+        "sha256": "4d081a66d767ac8930d82ce162bc8eccc5b23f351e4fc70a8c8d7c12de876cbe",
+        "dimensions_px": {
+          "width": 996,
+          "height": 1579
+        }
+      },
+      {
+        "path": "public/cards/monument.jpg",
+        "role": "Primary original Citadels painterly style, parchment, typography and purple special-district medallion reference",
+        "inspected_before_generation": true,
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+        "dimensions_px": {
+          "width": 707,
+          "height": 1121
+        }
+      },
+      {
+        "path": "public/cards/factory.jpg",
+        "role": "Original exactly five embossed gold coins; painterly timber, masonry and depth reference",
+        "inspected_before_generation": true,
+        "sha256": "c25af826f52ebb479ec80bb96c2bdeb2d51b96ee652fa174fb95b825ac46c41e",
+        "dimensions_px": {
+          "width": 707,
+          "height": 1121
+        }
+      },
+      {
+        "path": "public/cards/capitol.jpg",
+        "role": "Recognizable architectural quotation: broad vaulted rounded mass, ring of slender pointed towers and taller central spire, reproduced in maquette and elevation drawing",
+        "inspected_before_generation": true,
+        "sha256": "0f517f92f3b5259081e0e5504511a441b2ebb03aee181c1eff70650292ac768e",
+        "dimensions_px": {
+          "width": 707,
+          "height": 1121
+        }
+      }
+    ]
+  },
+  "output": {
+    "path": "docs/assets/district-card-art/architect-workshop-v2.png",
+    "format": "PNG",
+    "dimensions_px": {
+      "width": 996,
+      "height": 1579
+    },
+    "bytes": 2455072,
+    "sha256": "4ee64afdac589f2334dcd4f3ba3d449523e3c2bc274159db903f953ee3534e8b",
+    "copied_without_byte_changes": true,
+    "postprocessing": []
+  },
+  "visual_inspection": {
+    "method": "Generated full-card image viewed directly after generation",
+    "gold_coins_count": 5,
+    "purple_special_district_medallion_present": true,
+    "title_matches_exactly": true,
+    "ability_text_matches_exactly": true,
+    "ability_has_no_final_period": true,
+    "title_medallion_overlap": false,
+    "active_drafting_process_prominent": true,
+    "capitol_reference_in_maquette_and_elevation": true,
+    "scene": "Close medieval architect at a broad drawing table, compass tips contacting a geometric plan, other hand holding a wooden ruler, prominent architectural model, elevation drawing, arch studies, set square, dividers, inkpot and rolled parchment in warm window light",
+    "notes": [
+      "Capitol quotation is recognizable through a rounded vaulted mass, a ring of slender pointed towers and a taller central spire. The generated maquette is more symmetrical and its dome more explicit than the original painted silhouette.",
+      "Painting remains detailed and crisp compared with the broadest brushwork in original cards; artistic preference remains for user review.",
+      "Technical size, padding, ribbon positioning and compression are intentionally deferred until user artistic approval; source PNG copied byte-for-byte."
+    ]
+  },
+  "connected_to_game_catalog": false
+}

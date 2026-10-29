@@ -1,0 +1,18 @@
+Use case: precise-object-edit.
+Asset type: complete Russian Citadels Deluxe special district card restoration.
+Input image 1 is the sole original card and the exact edit target. Make a faithful artistic upscale/restoration, not a redesign.
+Preserve all major objects, architecture, perspective, original composition and painterly medium. Clarify existing brushwork and fine material details naturally; remove scanning blur and compression artifacts. Do not add objects, buildings, people, symbols or ornament. Avoid photorealism, 3D, hyperrealism and oversharpening.
+Color requirement: the result must look slightly LESS colorful than the input, approximately 10% lower saturation/chroma (about 90% of original), with calm, restrained contrast. Preserve original palette and mood. Do not increase orange glow, gold brilliance or purple intensity; keep gold coins and purple medallion recognizable. No glossy/high-contrast reconstruction.
+Card layout invariants: preserve the original exact number of gold cost coins in the top-left stack, purple type medallion at bottom left, parchment silhouette, title banner, original hierarchy, proportions, placement and Cyrillic type style. Whole card edge-to-edge, no cropping, external margin, background or mockup.
+All Russian text must be verbatim, with identical punctuation and numbers, legible without paraphrasing.
+
+PRIORITY COLOR RESTRAINT: restrained muted palette, low-to-moderate saturation, soft contrast. Do NOT make gold/orange brighter, no vivid HDR glow. Preserve source light levels; saturation about 90% of source. Never brighten a dark source or enrich muted colors. The original subdued printed-card atmosphere must remain visible.
+Scene invariants: three hooded thieves around a table in a dim warm-orange medieval room, central hooded figure facing viewer and leaning over a map/document with a dagger, left and right foreground figures mostly in shadow, original hanging candle chandelier at top right and original framed wall picture at rear left. Preserve original people count, poses, table and architectural framing. Keep deep shadows, subdued orange firelight and the original painterly softness; do not increase orange intensity or add candles/effects.
+Exactly SIX gold cost coins.
+Ability text EXACTLY:
+"Оплатите часть или всю
+стоимость воровского логова
+картами по курсу 1 карта = 1
+золотой."
+Title EXACTLY: "Воровское логово".
+Output a high-resolution portrait PNG of the complete original card.

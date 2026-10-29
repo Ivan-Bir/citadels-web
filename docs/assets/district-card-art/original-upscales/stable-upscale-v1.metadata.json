@@ -1,0 +1,34 @@
+{
+  "id": "stable",
+  "name": "Конюшня",
+  "cost": 2,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/stable.jpg",
+  "text": "Строительство конюшни не считается за строительство квартала в свой ход.",
+  "scene": "Preserve the original horses and foal: dark adult horse and dark foal by water in foreground, white grazing horse at left middle ground, horses inside stable at right, leafy tree silhouette at left and across top, orange-roof stable and hazy castle background. Keep the original flat painterly brushwork, especially avoid photographic horses or too crisp stone texture.",
+  "status": "awaiting-art-approval",
+  "method": "built-in image_gen edit; one original JPG reference; one initial generation",
+  "dimensions": {
+    "width": 996,
+    "height": 1579
+  },
+  "generatedToolPath": "/Users/i.biryukov/.codex/generated_images/01a1835c-c101-7671-ae47-a39bb5e768ba/exec-ea1369cc-7f1a-48d8-9556-ae2f77f72e3c.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/stable-upscale-v1.png",
+  "outputSHA256": "ca63b24f5c1675895b056c4aabcfc66b384af005350961179b94a47e927d71c2",
+  "copiedSHA256": "ca63b24f5c1675895b056c4aabcfc66b384af005350961179b94a47e927d71c2",
+  "sourceSHA256": "f3efb3b15de987f71d80b7717b64c6d87fa025f66dfd6d2f42fb4007c24c6fb8",
+  "visualQA": {
+    "title": "correct visually",
+    "rules": "complete verbatim text visually verified",
+    "price": "2 gold coins, correct",
+    "type": "purple medallion retained",
+    "composition": "Foreground mare/foal, white grazing horse, stable, tree and hazy castle retained; painted treatment.",
+    "limitations": [
+      "Fine stable-horse and background details are generative interpretations; exact object-level fidelity needs user review.",
+      "Greens and gold remain bright; precise 10% saturation reduction is not verified.",
+      "No technical resizing, compression or production replacement performed."
+    ]
+  },
+  "artisticDirection": "Perceived saturation/chroma approximately 90% of original, soft contrast; artistic target not a pixel-precise guarantee",
+  "technicalProcessing": "None; byte-identical PNG copy",
+  "approval": "Awaiting user artistic review; no acceptance claimed"
+}

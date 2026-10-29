@@ -1,0 +1,989 @@
+{
+  "count": 14,
+  "status": "awaiting-technical-approval",
+  "art_approval": "All 27 original special-district generated artworks accepted by user before this technical batch.",
+  "reference": {
+    "monument_original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+    "monument_baseline": 1076,
+    "harbor_original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/harbor.jpg",
+    "harbor_baseline": 1075,
+    "target_baseline": [
+      1074,
+      1075
+    ],
+    "coordinate_system": "zero-based pixel y in 707x1121 output; ordinary glyph bottom edges, descenders excluded"
+  },
+  "workflow": "Accepted PNG -> bottom-only crop/padding -> single Lanczos resize to 707x1121 -> JPEG optimize/progressive/subsampling 0. No generative work, color change, separate text/ribbon movement, catalog wiring or original replacement.",
+  "cards": [
+    {
+      "id": "secret_vault",
+      "name": "Тайное убежище",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/secret_vault-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/secret_vault.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/secret_vault-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "9cbfb780ddedd1e24231264364de282574a64d1bcda69b8ce96748658878239c",
+      "originalSHA": "665ea4a26bc5f575de546803604fa037942d31990fb28ae12e659441ac2bd64c",
+      "baseline_before": 1067,
+      "baseline_source": 1504,
+      "glyph_roi_before": [
+        312,
+        1030,
+        371,
+        1070
+      ],
+      "glyph_roi_source": [
+        439,
+        1450,
+        523,
+        1508
+      ],
+      "new_height": 1568,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 11,
+      "baseline_after": 1075,
+      "glyph_roi_after": [
+        312,
+        1036,
+        371,
+        1079
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 89,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 296723,
+      "outputSHA": "678bab44c64d63e1801ab8c38c9ad2884edfd1aabf2826a49977b2d92015837f",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "stable",
+      "name": "Конюшня",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/stable-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/stable.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/stable-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "ca63b24f5c1675895b056c4aabcfc66b384af005350961179b94a47e927d71c2",
+      "originalSHA": "f3efb3b15de987f71d80b7717b64c6d87fa025f66dfd6d2f42fb4007c24c6fb8",
+      "baseline_before": 1070,
+      "baseline_source": 1508,
+      "glyph_roi_before": [
+        340,
+        1030,
+        375,
+        1073
+      ],
+      "glyph_roi_source": [
+        478,
+        1450,
+        529,
+        1512
+      ],
+      "new_height": 1572,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 7,
+      "baseline_after": 1075,
+      "glyph_roi_after": [
+        340,
+        1034,
+        375,
+        1079
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 89,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 289521,
+      "outputSHA": "3dc4bbec3da13a9bf0eab3150dcae63705e057460319339c4135ee3d7b08682d",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "keep",
+      "name": "Форт",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/keep-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/keep.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/keep-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "b871afc5e4e5ade507ae7206a7653a66d2decf6cc3b5db32cad7c8db8ea56eb0",
+      "originalSHA": "5ce81abe3c522b7990204121f63dd71b27a6dfaba9c01059ef0c8fa3b1ef93a8",
+      "baseline_before": 1071,
+      "baseline_source": 1509,
+      "glyph_roi_before": [
+        383,
+        1030,
+        420,
+        1074
+      ],
+      "glyph_roi_source": [
+        539,
+        1450,
+        592,
+        1513
+      ],
+      "new_height": 1573,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 6,
+      "baseline_after": 1075,
+      "glyph_roi_after": [
+        383,
+        1033,
+        420,
+        1079
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 93,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 296173,
+      "outputSHA": "e934e1a56e8de977d8848ad4e5699534c5cff1c118d64935811eb69bebaf239c",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "memorial",
+      "name": "Статуя",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/memorial-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/memorial.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/memorial-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "f234bb7e69a5025514115821004525bd8664a9266e018cc78d95640007c97e94",
+      "originalSHA": "a2266c04405e39300ff33746ab35a1473c3cd36305df3e1fe0d89ec47fe8b1d4",
+      "baseline_before": 1069,
+      "baseline_source": 1507,
+      "glyph_roi_before": [
+        380,
+        1030,
+        410,
+        1072
+      ],
+      "glyph_roi_source": [
+        535,
+        1450,
+        578,
+        1510
+      ],
+      "new_height": 1571,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 8,
+      "baseline_after": 1075,
+      "glyph_roi_after": [
+        380,
+        1034,
+        410,
+        1078
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 90,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 286176,
+      "outputSHA": "9f8aebd2db186fd5eb3a78d526e01cee88035c0b59afc33f5d038021e153ee64",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "framework",
+      "name": "Строительные леса",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/framework-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/framework.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/framework-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "be7663b30bb7df68c3603d4eb05ec5d23b9b600743ed6251f4a44466d1f2a9af",
+      "originalSHA": "cb1abedc99d1fa3d76a77d6a91edf925261578ebd63877d6d66c0eb096538580",
+      "baseline_before": 1066,
+      "baseline_source": 1503,
+      "glyph_roi_before": [
+        348,
+        1030,
+        430,
+        1069
+      ],
+      "glyph_roi_source": [
+        490,
+        1450,
+        606,
+        1506
+      ],
+      "new_height": 1567,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 12,
+      "baseline_after": 1074,
+      "glyph_roi_after": [
+        348,
+        1037,
+        430,
+        1078
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 89,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 293258,
+      "outputSHA": "12f756895651f927f50407b0392ffa7fe3cad91c516ae861485de88e2fcb9c17",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "arsenal",
+      "name": "Оружейная",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/arsenal-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/arsenal.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/arsenal-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "3efe5ac5716be47ca4a5e99c4211f30cbe1b91666f37861fc42312402eedfa85",
+      "originalSHA": "a56c374b790877681b7e1067b6c274f951246a57e33205c3b0e8f2265fa82bcc",
+      "baseline_before": 1072,
+      "baseline_source": 1511,
+      "glyph_roi_before": [
+        443,
+        1030,
+        552,
+        1075
+      ],
+      "glyph_roi_source": [
+        624,
+        1450,
+        778,
+        1515
+      ],
+      "new_height": 1575,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 4,
+      "baseline_after": 1075,
+      "glyph_roi_after": [
+        443,
+        1032,
+        552,
+        1079
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 92,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 289409,
+      "outputSHA": "c4dacd2ce17c6976822b84630806df35437f042760e727bb6d0d875a0bb5a1e6",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "observatory",
+      "name": "Обсерватория",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/observatory-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/observatory.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/observatory-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "714c068ea07635f0b62db7f8b4fb95d11c80dcb80e9e0a744d60df880082e358",
+      "originalSHA": "af50600061dce4ed81bbb9b50af0d117641f2d5c66e535bcc22d91c26ef158a3",
+      "baseline_before": 1070,
+      "baseline_source": 1508,
+      "glyph_roi_before": [
+        418,
+        1030,
+        480,
+        1073
+      ],
+      "glyph_roi_source": [
+        588,
+        1450,
+        677,
+        1512
+      ],
+      "new_height": 1572,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 7,
+      "baseline_after": 1075,
+      "glyph_roi_after": [
+        418,
+        1034,
+        480,
+        1079
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 93,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 295919,
+      "outputSHA": "322d4317a772d37e14bc9538526f43fb257b1229475e2700b1d736388a33a314",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "poor_house",
+      "name": "Богадельня",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/poor_house-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/poor_house.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/poor_house-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "a9f170f7b2415c41da0a364276b590cd2ca3dc5b3e32cebbb326187becfb5edf",
+      "originalSHA": "27d1f361cc61d61b0532fde1322f9abfe594ae83d58910144f2f59e04dfaeec0",
+      "baseline_before": 1070,
+      "baseline_source": 1507,
+      "glyph_roi_before": [
+        406,
+        1030,
+        437,
+        1073
+      ],
+      "glyph_roi_source": [
+        571,
+        1450,
+        616,
+        1512
+      ],
+      "new_height": 1571,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 8,
+      "baseline_after": 1075,
+      "glyph_roi_after": [
+        406,
+        1034,
+        437,
+        1079
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 92,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 293584,
+      "outputSHA": "e907303310e0f9db25b14fd6265867bf74cf5c56a02e83600b1ab33a17dc1ee7",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "monument",
+      "name": "Монумент",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/monument-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "5f631b13c50821e09f20b67d176f47cde799ba8f0c624efbd0af94ff40fb547d",
+      "originalSHA": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff",
+      "baseline_before": 1072,
+      "baseline_source": 1511,
+      "glyph_roi_before": [
+        422,
+        1030,
+        497,
+        1075
+      ],
+      "glyph_roi_source": [
+        594,
+        1450,
+        701,
+        1515
+      ],
+      "new_height": 1575,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 4,
+      "baseline_after": 1075,
+      "glyph_roi_after": [
+        422,
+        1032,
+        497,
+        1079
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 89,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 285100,
+      "outputSHA": "e70001318d43c959cc85f3202abcdbadee986ca09ddfcbcadcec1b182bfe8c09",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "basilica",
+      "name": "Базилика",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/basilica-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/basilica.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/basilica-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "b679a3c1d6de8a36cec5cb62cfec1ac5ff2361c86f098360c443edc91abf2e10",
+      "originalSHA": "311f25e5262e50e23ed648eb6c7aeb09c7e71f4fe02bde73f7d8fbde048acb91",
+      "baseline_before": 1072,
+      "baseline_source": 1511,
+      "glyph_roi_before": [
+        444,
+        1030,
+        520,
+        1075
+      ],
+      "glyph_roi_source": [
+        625,
+        1450,
+        733,
+        1515
+      ],
+      "new_height": 1575,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 4,
+      "baseline_after": 1075,
+      "glyph_roi_after": [
+        444,
+        1032,
+        520,
+        1079
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 90,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 284226,
+      "outputSHA": "964ce1efd5fc77bfb4ea4f7ceba6970fae8d289409daae83ed481eb8563b33c5",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "museum",
+      "name": "Музей",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/museum-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/museum.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/museum-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "c8ec6598ffdc6b4a35f83d33f66c2d1df47114c4d2be8229765e816c70b92691",
+      "originalSHA": "e0c74a700ea9d955540bb229ecb707401dbfe1a26d8f055f2e4d7cc3973cd59e",
+      "baseline_before": 1072,
+      "baseline_source": 1510,
+      "glyph_roi_before": [
+        404,
+        1030,
+        462,
+        1075
+      ],
+      "glyph_roi_source": [
+        569,
+        1450,
+        651,
+        1515
+      ],
+      "new_height": 1574,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 5,
+      "baseline_after": 1075,
+      "glyph_roi_after": [
+        404,
+        1032,
+        462,
+        1079
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 84,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 293155,
+      "outputSHA": "ae073189e304a5bd059b2263fddcbf88da475938febe30761d58ea40b5ec0da1",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "quarry",
+      "name": "Каменоломня",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/quarry-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/quarry.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/quarry-upscaled.jpg",
+      "source_size": [
+        995,
+        1581
+      ],
+      "sourceSHA": "1c750277071e90ced55f3e59535c5dc9641738e2bd224f3ee253830bce27643c",
+      "originalSHA": "3a0edcc3bbfb7b8fde984047e7f4c2a3fdf17ee82e45cc0c3068946b5aac522c",
+      "baseline_before": 1087,
+      "baseline_source": 1534,
+      "glyph_roi_before": [
+        318,
+        1045,
+        429,
+        1090
+      ],
+      "glyph_roi_source": [
+        447,
+        1473,
+        604,
+        1538
+      ],
+      "new_height": 1599,
+      "added_bottom_px": 18,
+      "cropped_bottom_px": 0,
+      "baseline_after": 1075,
+      "glyph_roi_after": [
+        318,
+        1032,
+        429,
+        1079
+      ],
+      "paddingcolor": [
+        41,
+        41,
+        38
+      ],
+      "blendrows": 7,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 87,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 298524,
+      "outputSHA": "da92d0c3408a9f321cc2a5cae6c18b552e59384ec302b12cfc210420f964e0f3",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "all original pixels preserved before resize; added bottom field only",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "ivory_tower",
+      "name": "Башня из слоновой кости",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/ivory_tower-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/ivory_tower.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/ivory_tower-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "c582339c4faa426b2e501ff68e651edf9dbfcc055a39c6bb4e01b1b5a0da8126",
+      "originalSHA": "86b215759a3883b7cbb7c227163c7225e158d7914ce6e78d6682cb558189bcde",
+      "baseline_before": 1057,
+      "baseline_source": 1489,
+      "glyph_roi_before": [
+        367,
+        1030,
+        412,
+        1060
+      ],
+      "glyph_roi_source": [
+        517,
+        1450,
+        581,
+        1494
+      ],
+      "new_height": 1553,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 26,
+      "baseline_after": 1074,
+      "glyph_roi_after": [
+        367,
+        1046,
+        412,
+        1079
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 87,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 298645,
+      "outputSHA": "8eca4d68ec24559dbb6927c109a356503b53aaf8994ae802702773c6d610ff5d",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    },
+    {
+      "id": "well_of_wishes",
+      "name": "Колодец желаний",
+      "source": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/well_of_wishes-upscale-v1.png",
+      "original": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/well_of_wishes.jpg",
+      "output": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/well_of_wishes-upscaled.jpg",
+      "source_size": [
+        996,
+        1579
+      ],
+      "sourceSHA": "37bacf0d88f4e5cc135a7d5fc4f25dcc05b446cfff5fdc52c650885735e9af13",
+      "originalSHA": "6d08b0ba0bfeda7d49ebcef168afe62e5b9400d8a76c6d548bdffcc2d5174711",
+      "baseline_before": 1070,
+      "baseline_source": 1507,
+      "glyph_roi_before": [
+        412,
+        1030,
+        482,
+        1073
+      ],
+      "glyph_roi_source": [
+        580,
+        1450,
+        680,
+        1512
+      ],
+      "new_height": 1571,
+      "added_bottom_px": 0,
+      "cropped_bottom_px": 8,
+      "baseline_after": 1075,
+      "glyph_roi_after": [
+        412,
+        1034,
+        482,
+        1079
+      ],
+      "paddingcolor": null,
+      "blendrows": 0,
+      "output_size": [
+        707,
+        1121
+      ],
+      "jpeg_quality": 89,
+      "jpeg_optimize": true,
+      "jpeg_progressive": true,
+      "jpeg_subsampling": 0,
+      "bytes": 299504,
+      "outputSHA": "a710795b522b0f0bfc3b6a1ddad5c14ae7ac528ede72e0c361593c4aae3b1e50",
+      "status": "awaiting-technical-approval",
+      "QA": {
+        "decode": "pass",
+        "dimensions": "pass: 707x1121",
+        "weight": "pass",
+        "title_baseline": "pass: 1074–1075 using ordinary glyph black pixels, descenders excluded",
+        "crop_safety": "source-space boundary visually reviewed: only surplus bottom background removed, ribbon and medallion untouched",
+        "color": "no color or contrast correction",
+        "source_integrity": "SHA256 unchanged",
+        "visual": "pass: decoded JPEG full-card contact sheets and 1:1 bottom crops inspected; complete readable title, rules, ribbon and medallion",
+        "approved_painting": "preserved apart from one global resize and JPEG encoding; only spare bottom background cropped or new bottom field added"
+      },
+      "limitations": [
+        "A single global resize follows bottom-only crop/padding; slight vertical scale change is inherent.",
+        "Curved title baselines retain their original shape; reported baseline uses central ordinary glyphs.",
+        "No separate ribbon/text movement; no changes between rules and title.",
+        "Technical approval pending."
+      ],
+      "quality_selection_method": "Encode directly from prepared accepted PNG, descending integer quality from 100; choose the highest quality yielding <=300000 bytes.",
+      "baseline_method": "Threshold max(R,G,B)<80 within explicit ordinary-glyph ROI after connected-component inspection; excludes у/р/д/щ descenders and parchment/background. Zero-based y coordinates."
+    }
+  ]
+}

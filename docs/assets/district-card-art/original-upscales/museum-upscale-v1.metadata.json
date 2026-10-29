@@ -1,0 +1,32 @@
+{
+  "id": "museum",
+  "name": "Музей",
+  "cost": 4,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/museum.jpg",
+  "text": "Один раз в ход можете положить 1 карту лицевой стороной вниз под карту музея. В конце игры получите 1 дополнительное очко за каждую карту под картой музея.",
+  "qa": {
+    "name": "pass",
+    "text": "pass",
+    "coins": "pass: exactly 4",
+    "type": "pass: purple special-district medallion",
+    "composition": "major original scene and layout preserved; faces and fine picture details redrawn",
+    "color": "requested about 10% lower intensity; visual comparison requires human art approval"
+  },
+  "status": "awaiting-art-approval",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1835d-c2c8-7c80-b697-9fa3f37f46a0/exec-29733532-7f9e-4758-9c72-a97dc4bb463c.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/museum-upscale-v1.png",
+  "size": {
+    "bytes": 2797032,
+    "width": 996,
+    "height": 1579
+  },
+  "sha256": "c8ec6598ffdc6b4a35f83d33f66c2d1df47114c4d2be8229765e816c70b92691",
+  "sourceSha256": "e0c74a700ea9d955540bb229ecb707401dbfe1a26d8f055f2e4d7cc3973cd59e",
+  "limitations": [
+    "Generative restoration may reinterpret fine details.",
+    "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+    "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement.",
+    "User artistic approval is pending."
+  ]
+}

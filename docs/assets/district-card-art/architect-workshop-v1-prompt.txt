@@ -1,0 +1,23 @@
+Use case: stylized-concept.
+Asset type: complete Russian Citadels Deluxe district card, one new card for artistic review.
+
+Create the full face of the district card «Мастерская зодчих», with a new hand-painted illustration of a medieval architects' and stonemasons' workshop. The supplied images are references, not edit targets:
+Image 1 (monument.jpg) is the primary reference for the full portrait card layout, original pale golden parchment ability panel, narrow bottom title ribbon, black Cyrillic typography, and especially the PURPLE special-district medallion at lower left. Reproduce its gold-rimmed purple medallion with the pink four-lobed emblem and dark center.
+Image 2 (factory.jpg) is the exact reference for the cost: FIVE original embossed golden coins in a vertical stack at the upper left, in the same scale, spacing, and engraved ornamental style. Use exactly five coins, never four or six. It also supports the painted material quality of timber and masonry.
+Image 3 (manor.jpg) supports the original painterly architectural style, expressive brushwork, depth, warm light, and bottom title typography. Do not use its yellow medallion.
+
+Scene: a spacious open medieval workshop and stone courtyard belonging to architects and stonemasons. A large wooden drafting table holds parchment architectural drawings with no readable writing, a period drafting compass, and small wooden models of arches and towers. Worked stone blocks sit naturally within the workshop. Behind the table, a partly built stone vault and building with simple wooden scaffolding form a convincing architectural space, with a strong receding perspective into a sunlit courtyard. Make one coherent, spacious architectural scene, not a collage or an isolated still life of tools. Stone and timber should feel solid and tactile. Warm daylight glows on the rough stone, timber, and parchment, with cooler muted shadows giving depth. Small secondary distant craftspeople may provide scale, but the architecture and workshop are the subject.
+
+Style: match the original Citadels card paintings, with broad visible brushstrokes, expressive perspective, and restrained descriptive detail. A lively painterly illustration, not photorealism, 3D rendering, vector artwork, or over-detailed concept art. No modern instruments, machinery, modern architecture, extra decorative symbols, or extra labels.
+
+Composition: one straight, flat, full-face portrait card, artwork filling the whole upper area edge to edge. Preserve the original visual hierarchy: exactly FIVE gold coins at upper left; an original-looking pale golden parchment ability panel across the lower portion; narrow golden title ribbon at the bottom; the correct PURPLE special-district medallion at lower left on the ribbon. Keep the medallion clear of both the title and ability text. The scene should remain spacious and readable with original card proportions. No external background, mockup, framing scene, outer border, cast shadow, logo, or watermark.
+
+Ability text on the parchment, in centered black Cyrillic serif lettering matching the reference body typography, EXACTLY:
+«Раз в ход за 3 золотых снизьте плату за строительство всех карт вашей руки на 1 до конца игры»
+Do not render the quotation marks. Preserve every word and the digits 3 and 1. There is no final period after «игры». Use balanced readable lines without hyphenating or changing any words.
+
+Title on the bottom ribbon in the original large bold black Cyrillic display serif, distinctly larger and bolder than the ability text, EXACTLY:
+«Мастерская зодчих»
+Do not render the quotation marks. Fit the complete long title neatly in the available ribbon area to the right of the medallion, on one line, with readable spacing and without overlap or clipping. Do not add any other labels, numerals on the coins, or extra text.
+
+Generate only this one card. This output is for artistic approval of painting, typography, text accuracy, coins, and medallion; do not impose an exact pixel size.

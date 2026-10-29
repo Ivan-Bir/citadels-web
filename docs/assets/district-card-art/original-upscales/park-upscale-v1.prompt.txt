@@ -1,0 +1,17 @@
+Use case: precise-object-edit.
+Asset type: complete Russian Citadels Deluxe special district card restoration.
+Input image 1 is the sole original card and the exact edit target. Make a faithful artistic upscale/restoration, not a redesign.
+Preserve all major objects, architecture, perspective, original composition and painterly medium. Clarify existing brushwork and fine material details naturally; remove scanning blur and compression artifacts. Do not add objects, buildings, people, symbols or ornament. Avoid photorealism, 3D, hyperrealism and oversharpening.
+Color requirement: the result must look slightly LESS colorful than the input, approximately 10% lower saturation/chroma (about 90% of original), with calm, restrained contrast. Preserve original palette and mood. Do not increase orange glow, gold brilliance or purple intensity; keep gold coins and purple medallion recognizable. No glossy/high-contrast reconstruction.
+Card layout invariants: preserve the original exact number of gold cost coins in the top-left stack, purple type medallion at bottom left, parchment silhouette, title banner, original hierarchy, proportions, placement and Cyrillic type style. Whole card edge-to-edge, no cropping, external margin, background or mockup.
+All Russian text must be verbatim, with identical punctuation and numbers, legible without paraphrasing.
+
+PRIORITY COLOR RESTRAINT: restrained muted palette, low-to-moderate saturation, soft contrast. Do NOT make gold/orange brighter, no vivid HDR glow. Preserve source light levels; saturation about 90% of source. Never brighten a dark source or enrich muted colors. The original subdued printed-card atmosphere must remain visible.
+Scene invariants: original lush green park with a dark stream running toward foreground, scattered lily pads and reflections, low stone arch bridge crossing near the upper third, exactly the two original tiny human figures near/on bridge, green grassy banks, trees and rocks in their original positions. Preserve natural composition, stream width, bridge shape, perspective and painted dappled daylight. Grass must become gently muted, not neon; do not increase yellow-green saturation, sunbeams or water sparkle. No new people, flowers, animals or buildings.
+Exactly SIX gold cost coins.
+Ability text EXACTLY:
+"Если в конце вашего хода у
+вас нет карт на руке, возьмите
+2 карты."
+Title EXACTLY: "Парк".
+Output a high-resolution portrait PNG of the complete original card.

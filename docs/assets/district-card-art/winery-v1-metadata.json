@@ -1,0 +1,81 @@
+{
+  "card": {
+    "id": "D04",
+    "catalog_key_at_generation": "wine_cellar",
+    "name": "Винодельня",
+    "previous_name": "Винные погреба",
+    "cost": 3,
+    "district_type": 9,
+    "medallion": "purple",
+    "ability_text": "После 5 завершений раунда даёт 3 дополнительных очка"
+  },
+  "status": "artistic-review-pending-user-approval",
+  "request": "Rename to Винодельня and generate one new composition emphasizing barrels, grapes and the craft of making wine",
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "intent": "new full card and new workshop composition from reference images",
+    "generated_at_utc": "2026-10-28T16:27:03.567196+00:00",
+    "source_path": "/Users/i.biryukov/.codex/generated_images/01a18344-a3cb-7d73-9bc6-ef31a86862fb/exec-6f1779c1-ea2f-4968-b644-1e4fd2a8a161.png",
+    "transparent_background": false,
+    "references": [
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+        "role": "Authoritative original full card layout, purple medallion, parchment and Cyrillic type style",
+        "width": 707,
+        "height": 1121,
+        "bytes": 246958,
+        "sha256": "3243c2e2f285ded430ba1ebe59e0cc8fdd328a3874671512f7ccba4f17327eff"
+      },
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/manor.jpg",
+        "role": "Authoritative original cost: three vertically stacked gold coins; medieval painted interior",
+        "width": 707,
+        "height": 1121,
+        "bytes": 217918,
+        "sha256": "681fbccc5f54b732aa787c3f1a73bfb7b967776c4733462f6c7b46fa80066764"
+      },
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/tavern.jpg",
+        "role": "Original hand-painted people, warm materials and active period interior",
+        "width": 707,
+        "height": 1121,
+        "bytes": 270611,
+        "sha256": "6006d5c124821eaedb97f3f135410de5d0d08c107b7ff133f44c6021bf0dd889"
+      },
+      {
+        "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/wine-cellars-v1.png",
+        "role": "Historical preceding variant for district identity and unchanged ability only; composition and name replaced, not geometry authority",
+        "width": 996,
+        "height": 1579,
+        "bytes": 2261849,
+        "sha256": "b565468658aed4c955b777d5ff7d9a2291ab4fb3fe04f70431a19f8f194fce2c"
+      }
+    ],
+    "prompt_path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/winery-v1-prompt.txt",
+    "prompt_sha256": "8e33a939c85ffb23a33452c6d8fa5d8eae740ebec9027ac7f838a343af635a7b"
+  },
+  "artifact": {
+    "path": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/winery-v1.png",
+    "format": "PNG",
+    "width": 996,
+    "height": 1579,
+    "bytes": 2594719,
+    "sha256": "208756dac51a3bf25ea9aea3204dd073a518fca019c41f914ca96a7965abdd38",
+    "copied_byte_for_byte_from_source": true,
+    "post_processing": "None; no resize, compression, crop or added padding"
+  },
+  "validation": {
+    "method": "Visual inspection of native generated image against exact user-requested text and original reference cards",
+    "coin_count": 3,
+    "purple_special_medallion": true,
+    "title_matches": true,
+    "ability_text_matches_including_yo": true,
+    "ability_punctuation": "No terminal punctuation, as specified",
+    "scene": "Winemaker operating wooden screw press under timber roof, prominent oak casks and baskets of grapes, must flowing into collecting tub",
+    "previous_composition_replaced": true
+  },
+  "limitations": [
+    "Only one artistic variant generated; user approval pending",
+    "Technical 707×1121 JPEG export at 200–300 KB intentionally deferred until approval"
+  ]
+}

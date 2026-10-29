@@ -1,0 +1,33 @@
+{
+  "id": "den_of_thieves",
+  "name": "Воровское логово",
+  "cost": 6,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/den_of_thieves.jpg",
+  "ability": "Оплатите часть или всю стоимость воровского логова картами по курсу 1 карта = 1 золотой.",
+  "toolOutputPath": "/Users/i.biryukov/.codex/generated_images/01a1835e-9302-7771-94ab-baf6540466d7/exec-3f883229-b770-47aa-84e8-622bd95427d3.png",
+  "QA": {
+    "title": "pass; exact visible title",
+    "ability": "pass; exact text, = sign, numbers and punctuation",
+    "coins": "pass; six gold coins",
+    "type": "pass; purple medallion",
+    "composition": "three thieves, table and principal room features retained; fine details interpreted",
+    "color": "Orange scene appears more restrained than earlier outputs, but gold remains bright. Artistic reduction is not measured."
+  },
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/den_of_thieves-upscale-v1.png",
+  "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/den_of_thieves-upscale-v1.prompt.txt",
+  "dimensions": {
+    "width": 996,
+    "height": 1579
+  },
+  "sizeBytes": 2373375,
+  "sha256": "7ad7988d887ee2731818fd7fb5eb9a14832b12b572b11219ec1b61b93a3f9d39",
+  "status": "awaiting-art-approval",
+  "mode": "built-in image_gen edit",
+  "referenceCount": 1,
+  "technicalProcessing": "none; generated PNG copied byte-for-byte",
+  "limitations": [
+    "Generative restoration may interpret small painted details.",
+    "Approximate 10% color intensity reduction is an artistic direction, not a measured correction.",
+    "Not resized, compressed, padded, or deployed to game assets."
+  ]
+}

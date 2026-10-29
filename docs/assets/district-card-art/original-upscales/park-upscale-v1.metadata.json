@@ -1,0 +1,33 @@
+{
+  "id": "park",
+  "name": "Парк",
+  "cost": 6,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/park.jpg",
+  "ability": "Если в конце вашего хода у вас нет карт на руке, возьмите 2 карты.",
+  "toolOutputPath": "/Users/i.biryukov/.codex/generated_images/01a1835e-9302-7771-94ab-baf6540466d7/exec-e1661066-d8c2-4c13-b7e5-6b65bee80244.png",
+  "QA": {
+    "title": "pass; exact visible title",
+    "ability": "pass; exact text, number and punctuation",
+    "coins": "pass; six gold coins",
+    "type": "pass; purple medallion",
+    "composition": "bridge, two people, stream and banks retained; vegetation and water details interpreted",
+    "color": "Green remains bright in sunlit grass while shadows are muted; requested approximate reduction not measured."
+  },
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/park-upscale-v1.png",
+  "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/park-upscale-v1.prompt.txt",
+  "dimensions": {
+    "width": 996,
+    "height": 1579
+  },
+  "sizeBytes": 2622108,
+  "sha256": "274ecd099ff3dc9e96672972ebcd37ed950929f70e818fa7b8a70fe4f94b2d24",
+  "status": "awaiting-art-approval",
+  "mode": "built-in image_gen edit",
+  "referenceCount": 1,
+  "technicalProcessing": "none; generated PNG copied byte-for-byte",
+  "limitations": [
+    "Generative restoration may interpret small painted details.",
+    "Approximate 10% color intensity reduction is an artistic direction, not a measured correction.",
+    "Not resized, compressed, padded, or deployed to game assets."
+  ]
+}

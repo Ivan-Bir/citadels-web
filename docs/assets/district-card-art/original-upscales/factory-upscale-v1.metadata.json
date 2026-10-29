@@ -1,0 +1,32 @@
+{
+  "id": "factory",
+  "name": "Фабрика",
+  "cost": 5,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/factory.jpg",
+  "text": "Вы платите на 1 золотой меньше для строительства любого другого особого квартала.",
+  "qa": {
+    "name": "pass",
+    "text": "pass",
+    "coins": "pass: exactly 5",
+    "type": "pass: purple special-district medallion",
+    "composition": "factory, chimneys, wheels, crane, bucket and snow scene retained; machinery and masonry redrawn with more detail",
+    "color": "cold sky preserved, gold and fire remain bright accents; exact 10% reduction unmeasured"
+  },
+  "status": "awaiting-art-approval",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1835d-c2c8-7c80-b697-9fa3f37f46a0/exec-f2c9133e-e76b-49e8-a0ed-d92ca084db28.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/factory-upscale-v1.png",
+  "size": {
+    "bytes": 2808865,
+    "width": 996,
+    "height": 1579
+  },
+  "sha256": "569341568714fa719760e07c2688d753f854c77af9a4e357126eb29ba0b3f15d",
+  "sourceSha256": "c25af826f52ebb479ec80bb96c2bdeb2d51b96ee652fa174fb95b825ac46c41e",
+  "limitations": [
+    "Generative restoration may reinterpret fine details.",
+    "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+    "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement.",
+    "User artistic approval is pending."
+  ]
+}

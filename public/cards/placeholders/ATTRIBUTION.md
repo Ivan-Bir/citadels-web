@@ -13,7 +13,7 @@
 | D01 | Каменный мост | [Stone bridge](https://game-icons.net/1x1/delapouite/stone-bridge.html) | [Delapouite](https://delapouite.com/) | [d01-stone-bridge.svg](d01-stone-bridge.svg) |
 | D02 | Катакомбы | [Dungeon light](https://game-icons.net/1x1/delapouite/dungeon-light.html) | [Delapouite](https://delapouite.com/) | [d02-dungeon-light.svg](d02-dungeon-light.svg) |
 | D03 | Мастерская зодчих | [Pencil ruler](https://game-icons.net/1x1/delapouite/pencil-ruler.html) | [Delapouite](https://delapouite.com/) | [d03-pencil-ruler.svg](d03-pencil-ruler.svg) |
-| D04 | Винные погреба | [Cellar barrels](https://game-icons.net/1x1/delapouite/cellar-barrels.html) | [Delapouite](https://delapouite.com/) | [d04-cellar-barrels.svg](d04-cellar-barrels.svg) |
+| D04 | Винодельня | [Cellar barrels](https://game-icons.net/1x1/delapouite/cellar-barrels.html) | [Delapouite](https://delapouite.com/) | [d04-cellar-barrels.svg](d04-cellar-barrels.svg) |
 | D05 | Зеркальный чертог | [Mirror mirror](https://game-icons.net/1x1/lorc/mirror-mirror.html) | [Lorc](https://lorcblog.blogspot.com/) | [d05-mirror-mirror.svg](d05-mirror-mirror.svg) |
 | D06 | Дом заговорщиков | [Cloak and Dagger](https://game-icons.net/1x1/lorc/cloak-dagger.html) | [Lorc](https://lorcblog.blogspot.com/) | [d06-cloak-dagger.svg](d06-cloak-dagger.svg) |
 | D07 | Башня прорицателя | [Crystal ball](https://game-icons.net/1x1/lorc/crystal-ball.html) | [Lorc](https://lorcblog.blogspot.com/) | [d07-crystal-ball.svg](d07-crystal-ball.svg) |

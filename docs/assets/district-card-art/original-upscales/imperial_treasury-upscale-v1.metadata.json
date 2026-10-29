@@ -1,0 +1,33 @@
+{
+  "id": "imperial_treasury",
+  "name": "Имперская казна",
+  "cost": 5,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/imperial_treasury.jpg",
+  "ability": "В конце игры получите 1 очко за каждый оставшийся у вас золотой.",
+  "toolOutputPath": "/Users/i.biryukov/.codex/generated_images/01a1835e-9302-7771-94ab-baf6540466d7/exec-db1540e9-43ad-4437-b17e-2023e905e265.png",
+  "QA": {
+    "title": "pass; exact visible title",
+    "ability": "pass; exact visible text and punctuation",
+    "coins": "pass; five gold coins",
+    "type": "pass; purple medallion",
+    "composition": "major objects and full card retained; fine details interpreted",
+    "color": "Warm gold is more vivid than the requested calmer target; requires artistic approval."
+  },
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/imperial_treasury-upscale-v1.png",
+  "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/imperial_treasury-upscale-v1.prompt.txt",
+  "dimensions": {
+    "width": 996,
+    "height": 1580
+  },
+  "sizeBytes": 2532635,
+  "sha256": "25f05b69c0d7a395327dd81520c59d6bfed91b0937aeff885dc9e760d8da82be",
+  "status": "awaiting-art-approval",
+  "mode": "built-in image_gen edit",
+  "referenceCount": 1,
+  "technicalProcessing": "none; generated PNG copied byte-for-byte",
+  "limitations": [
+    "Generative restoration may interpret small painted details.",
+    "Approximate 10% color intensity reduction is an artistic direction, not a measured correction.",
+    "Not resized, compressed, padded, or deployed to game assets."
+  ]
+}

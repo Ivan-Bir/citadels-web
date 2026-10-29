@@ -1,0 +1,32 @@
+{
+  "id": "necropolis",
+  "name": "Некрополь",
+  "cost": 5,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/necropolis.jpg",
+  "text": "Вместо оплаты стоимости некрополя, вы можете уничтожить 1 любой квартал в своём городе.",
+  "qa": {
+    "name": "pass",
+    "text": "pass including original comma after некрополя and ё in своём",
+    "coins": "pass: exactly 5",
+    "type": "pass: purple special-district medallion",
+    "composition": "cathedral, towers, statue, tomb and overhead arch preserved; Gothic masonry and cemetery detail reinterpreted",
+    "color": "restrained green-grey scene retained; exact 10% saturation reduction unmeasured"
+  },
+  "status": "awaiting-art-approval",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1835d-c2c8-7c80-b697-9fa3f37f46a0/exec-64baf38c-367a-4f90-85c1-012712b32fdb.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/necropolis-upscale-v1.png",
+  "size": {
+    "bytes": 2381677,
+    "width": 996,
+    "height": 1579
+  },
+  "sha256": "2a7ec0e6639ad2d2c5fea4c79499ce7432d08c439217da28b45c31ef54ebfcc7",
+  "sourceSha256": "6a5a14c1ccfffdfed7f0426cbb1de92b527436bdb070a2e680de60ad39e9ad6c",
+  "limitations": [
+    "Generative restoration may reinterpret fine details.",
+    "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+    "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement.",
+    "User artistic approval is pending."
+  ]
+}

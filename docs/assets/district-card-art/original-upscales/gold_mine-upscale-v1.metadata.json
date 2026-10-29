@@ -1,0 +1,33 @@
+{
+  "id": "gold_mine",
+  "name": "Золотая шахта",
+  "cost": 6,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/gold_mine.jpg",
+  "ability": "Если во время получения ресурсов вы выбираете получение золота, вы получаете на 1 золотой больше.",
+  "toolOutputPath": "/Users/i.biryukov/.codex/generated_images/01a1835e-9302-7771-94ab-baf6540466d7/exec-2bea1ec4-4286-4818-8513-290dac330de1.png",
+  "QA": {
+    "title": "pass; exact visible title",
+    "ability": "pass; exact text, number 1 and punctuation",
+    "coins": "pass; six gold coins",
+    "type": "pass; purple medallion",
+    "composition": "four miners, carts, tunnel supports and lamps retained; fine details interpreted",
+    "color": "Muted gray/brown underground palette retained; yellow ore/gold remains noticeable. Approximate reduction not measured."
+  },
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/gold_mine-upscale-v1.png",
+  "promptPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/gold_mine-upscale-v1.prompt.txt",
+  "dimensions": {
+    "width": 996,
+    "height": 1579
+  },
+  "sizeBytes": 2567748,
+  "sha256": "88081e03c2a5f658a62b30c9118a6ff836ce97e5f66c751dd6d55473d9f3d3a2",
+  "status": "awaiting-art-approval",
+  "mode": "built-in image_gen edit",
+  "referenceCount": 1,
+  "technicalProcessing": "none; generated PNG copied byte-for-byte",
+  "limitations": [
+    "Generative restoration may interpret small painted details.",
+    "Approximate 10% color intensity reduction is an artistic direction, not a measured correction.",
+    "Not resized, compressed, padded, or deployed to game assets."
+  ]
+}

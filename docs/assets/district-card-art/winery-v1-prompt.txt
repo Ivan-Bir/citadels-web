@@ -1,0 +1,34 @@
+Use case: illustration-story
+Asset type: ONE complete full-face portrait district card for the Russian Citadels Deluxe game. New artistic variant of district D04, now named «Винодельня».
+
+Reference roles:
+1. monument.jpg: authoritative original Citadels card face for painted style, full-card geometry, light golden parchment ability panel, lower title ribbon, black Cyrillic serif lettering, and purple special-district medallion. Do not copy its subject, four-coin price, title or ability.
+2. manor.jpg: authoritative original for EXACTLY THREE embossed gold coins stacked vertically at the upper left, their scale, spacing and treatment. Also natural painterly medieval materials. Do not copy its yellow medallion or title.
+3. tavern.jpg: original reference for expressive hand-painted people performing clear actions, warm wood and convincing medieval craft atmosphere. Do not copy its busy tavern scene, people, name, green medallion or one-coin price.
+4. wine-cellars-v1.png: historical previous version only, showing the existing ability and district identity. Completely REPLACE its underground storage-hall composition with the active winemaking workshop described below and REPLACE its old name with «Винодельня». This image is NOT the composition or geometry master.
+
+Primary scene:
+A picturesque medieval WINERY at work, in a sunlit stone working courtyard beneath a timber lean-to roof. The main subject is the craft of MAKING WINE. Show a substantial hand-built oak grape press with a believable vertical wooden screw through a heavy crossbeam, a round slatted pressing basket, and a horizontal lever. One winemaker in simple period linen clothes and apron is actively turning the lever to press the grapes, their hands clearly connected to the tool and their pose naturally expressing effort. Fresh must runs from the press outlet into a small wooden collecting tub. The whole press mechanism should be understandable and mechanically plausible.
+Make ripe grapes and OAK BARRELS prominent: two generous harvest baskets full of purple and green grape bunches near the front, a large richly painted oak cask with curved staves and sturdy hoops prominently framing one side, and a few additional useful casks or grape tubs behind the working winemaker. Keep the scene focused on grapes, the worker and the press with only a small number of appropriate traditional tools. The winery feels used, skilled, warm and productive. A little vine foliage at the courtyard's edge may connect the harvest to the setting. The background stone wall and rough timber roof create clear depth without a long tunnel or repeating cellar arches.
+Use a fresh asymmetrical diagonal composition, an open light-filled workshop and a clear focal triangle connecting grapes, press, and working hands. The wood has weight, grain and convincing joinery. Warm light catches grape clusters, barrel staves and the worker's sleeve; softer cool shadows give depth. Make the wine-making process and the barrels readable even at card scale.
+
+Style:
+Match the ORIGINAL Citadels reference art: expressive traditional hand-painted fantasy board-game illustration, visible broad painterly brushwork, beautiful simplified shapes and textures, warm wood, convincing stone and perspective. Period craft, lively natural light and rich restrained colors. No photograph, no 3D render, no polished CGI, no vector art, no modern equipment.
+
+Full card layout and exact text:
+The image itself is the entire rectangular card face, seen straight on in portrait, with approximately the original 707:1121 proportions and original relative layout. Artwork fills the card to the outer edges. No tabletop, no surrounding mockup, no outer frame, no added border or padding.
+Place EXACTLY THREE separate embossed decorative gold coins vertically at the UPPER LEFT, in the original manor.jpg style and size. No fourth coin and no cost numeral.
+At the bottom retain the original light-golden parchment ability panel directly above the lower name ribbon. Render this ability VERBATIM in clearly readable black Cyrillic serif typography, without quotation marks, extra text, substitutions or terminal punctuation:
+После 5 завершений раунда даёт 3 дополнительных очка
+Balanced readable line breaks are allowed, for example:
+После 5 завершений раунда
+даёт 3 дополнительных
+очка
+The word «даёт» must contain ё exactly, not е. Match the original type's simple clear serif character and generous size.
+On the separate lower title ribbon, render this NEW name VERBATIM in large bold black original-style Cyrillic serif lettering:
+Винодельня
+Center the whole title in the space to the right of the medallion, fully visible and unclipped.
+At lower left, overlapping the title ribbon, use the PURPLE special-district medallion from monument.jpg: gold rim, deep purple interior and pink/purple ornamental emblem, at the original relative scale and position. No other medallion color.
+
+Constraints:
+Produce ONE complete finished card only. The only readable text is the exact ability and new name above. Old name «Винные погреба» must not appear. No readable barrel labels, no signatures, logos or watermarks. No modern bottles, stainless steel, pumps or machinery. No cluttered catalogue of tools, no crowd, no tavern drinking scene, no underground storage aisle. Make this a newly composed artwork about winemaking craftsmanship, with prominent barrels and grapes. Do not crop any part of the complete card, text, coins or medallion.

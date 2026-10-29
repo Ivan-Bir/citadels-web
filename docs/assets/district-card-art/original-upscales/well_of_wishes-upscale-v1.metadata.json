@@ -1,0 +1,32 @@
+{
+  "id": "well_of_wishes",
+  "name": "Колодец желаний",
+  "cost": 5,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/well_of_wishes.jpg",
+  "text": "В конце игры получите 1 дополнительное очко за каждый особый квартал в вашем городе (включая колодец желаний).",
+  "qa": {
+    "name": "pass",
+    "text": "pass",
+    "coins": "pass: exactly 5",
+    "type": "pass: purple special-district medallion",
+    "composition": "well, roof, posts, foliage, crank and parchment layout preserved; fine forest/stone texture reinterpreted",
+    "color": "muted forest palette preserved; yellow-green glow remains a focal highlight; exact saturation reduction unmeasured"
+  },
+  "status": "awaiting-art-approval",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1835d-c2c8-7c80-b697-9fa3f37f46a0/exec-a050c5cf-8c28-487d-afbb-b9bd29ddad01.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/well_of_wishes-upscale-v1.png",
+  "size": {
+    "bytes": 2646740,
+    "width": 996,
+    "height": 1579
+  },
+  "sha256": "37bacf0d88f4e5cc135a7d5fc4f25dcc05b446cfff5fdc52c650885735e9af13",
+  "sourceSha256": "6d08b0ba0bfeda7d49ebcef168afe62e5b9400d8a76c6d548bdffcc2d5174711",
+  "limitations": [
+    "Generative restoration may reinterpret fine details.",
+    "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+    "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement.",
+    "User artistic approval is pending."
+  ]
+}

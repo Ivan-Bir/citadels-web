@@ -1,0 +1,12 @@
+Use case: precise-object-edit.
+Asset type: complete Russian Citadels Deluxe special district card restoration.
+Input image 1 is the sole original card and the exact edit target. Make one faithful artistic upscale/restoration, not a redesigned card.
+Preserve the whole original composition: vaulted stone treasury, dark guard silhouette at left, armor behind center, open decorated chest at upper right, jars and goblets in foreground, wooden crate on rug, scattered gold. Preserve every major object, architecture, perspective, original framing and painted nature. Clarify existing brushwork and fine material details naturally, remove scanning blur and compression artifacts. No new objects, buildings, people, symbols or added embellishments; no photorealism, 3D, hyperrealism or oversharpening.
+Color: retain the original palette and mood but make colors approximately 10% less intense, with saturation/chroma visually around 90% of the original and calm contrast. This is an artistic target. Do not boost saturation or orange glow. Keep recognizable gold coins and purple type medallion.
+Card invariants: exactly FIVE golden cost coins in the original vertical top-left stack. Preserve original purple medallion at bottom left, parchment shape, title banner, original hierarchy, proportions, placement and Cyrillic typography. Entire card edge-to-edge, no cropping, external margin, background or mockup.
+Text must remain verbatim, with identical punctuation and numbers; improve legibility without paraphrasing. Ability text on parchment EXACTLY:
+"В конце игры получите 1 очко
+за каждый оставшийся у вас
+золотой."
+Title EXACTLY: "Имперская казна".
+Output a high-resolution portrait PNG with the complete card.

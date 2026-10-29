@@ -1,0 +1,41 @@
+Use case: stylized-concept.
+Asset type: one complete Russian Citadels Deluxe district card, a second artistic proposal named «Мастерская зодчих».
+
+Create exactly ONE fresh full-face portrait card. Reimagine the painting as a close, coherent medieval architect's workshop scene focused unmistakably on the ACTIVE PROCESS OF DRAFTING AND ARCHITECTURAL DESIGN. Preserve the established card identity, cost, title, ability text and visual hierarchy.
+
+Input images and their distinct roles, in the supplied order:
+Image 1 — architect-workshop-v1.png: card identity/layout reference only. Preserve its complete title and exact ability wording, its FIVE coins, parchment panel, narrow lower title ribbon, gold rim and PURPLE special-district medallion. Preserve their arrangement and proportional hierarchy. Replace its large background construction-site composition with the new intimate drafting scene. It is not the sole painting-style reference.
+Image 2 — monument.jpg: PRIMARY ORIGINAL GAME STYLE reference for expressive painterly brushwork, atmosphere, simplified solid forms, original parchment, black Cyrillic serif typography, gold-rimmed purple medallion with pink four-lobed emblem and dark center. Use this original game's hand-painted visual language; ignore its cost and wording.
+Image 3 — factory.jpg: ORIGINAL GAME STYLE and exact cost reference: precisely FIVE embossed ornamental gold coins stacked vertically at top left. Keep their recognizable relief pattern, scale, spacing and vertical rhythm. It also supplies the original painterly treatment of wooden structures, stone and depth. Ignore its title and ability.
+Image 4 — capitol.jpg: architectural subject reference. The new model and elevation drawing must recognizably quote THIS GAME'S CAPITOL: a huge broad rounded, dome-like vaulted mass with sloping curved shoulders and vertical buttressing, surrounded by numerous very tall slender polygonal towers with pointed caps, and a taller square central tower crowned by a needle spire. Study and repeat this distinctive silhouette faithfully. This is a medieval fantasy monumental Capitol, NOT the modern US Capitol and NOT a classical white neoclassical dome.
+
+Scene and action:
+Inside a medieval master architect's warm timber-and-stone studio, a generous angled wooden drawing table fills most of the main painting. A master architect in simple period garments leans over the table, absorbed in drawing. His two anatomically plausible hands are clearly visible: one uses a metal drafting compass to strike an arc on the parchment while the other steadies a wooden straightedge or set square. Make the compass tips visibly contact the drawing surface and the pose believable. The illuminated hands, compass and geometry are the primary focus.
+Spread several large yellowed parchment drawings naturally across the worktop: a large floor plan with construction circles and axes in the foreground, an elevation and a cutaway of the Capitol beside it. These are architectural line drawings, with fine schematic marks but NO legible handwritten words or extra labels.
+Place a prominent, carefully designed wooden-and-plaster scale maquette of the ORIGINAL GAME CAPITOL on the back-right of the SAME table, large enough for its broad vaulted mass, ring of tall pointed towers and central spire to be immediately recognizable. A few small separate arch and vault study models nearby reinforce the design process. Arrange a period wooden ruler, a large wooden set square, dividers, a plumb bob, rolled parchment and a dark inkpot naturally around the working hands. Tools should be readable but form a lived-in working scene, not a catalog collage or tidy product display.
+A high side window casts warm afternoon light across the maquette, parchment and hands. Interior shelves and heavy wooden beams recede into cooler subdued shadows. A small distant architectural glimpse through the window is optional and subordinate. Do not let a construction site, scaffolding or large building in the background take over the composition.
+
+Style/medium:
+Match the ORIGINAL Citadels paintings in images 2, 3 and 4: broad expressive hand-painted brushstrokes, tactile warm timber, glowing parchment, solid architectural masses, atmospheric depth and restrained descriptive detail. A lively traditional illustration with a clear focal point, not photographic realism, 3D rendering, vector art or excessively polished digital concept art. Keep the architectural maquette visibly a handmade period study model, not a 3D print.
+
+Card layout and immutable text:
+One straight flat full card face, portrait proportions. Artwork fills the upper region edge to edge. Exactly FIVE separate embossed gold coins run vertically down the upper left: count 1, 2, 3, 4, 5, never four or six; no printed numerals on coins. Keep this coin column clear.
+Across the lower area, retain a light golden parchment ability panel with centered black Cyrillic serif text, then the narrow golden title ribbon. At lower left retain the gold-rimmed PURPLE special-district medallion with its pink four-lobed symbol and dark center. Title sits completely to the right of the medallion. Do not overlap or crop the title.
+
+Ability text, EXACTLY these words and digits, no quotation marks and NO final period:
+Раз в ход за 3 золотых снизьте плату за строительство всех карт вашей руки на 1 до конца игры
+
+Suggested balanced lines, preserving every word:
+Раз в ход за 3 золотых
+снизьте плату за строительство
+всех карт вашей руки на 1
+до конца игры
+
+Title, EXACTLY, no quotation marks:
+Мастерская зодчих
+
+Render the complete title on one line in bold black Cyrillic display serif, larger and bolder than the ability. Preserve readable spacing and fit without colliding with the medallion. Keep the narrow ribbon and parchment visually consistent with the established v1 card. Do not introduce any other readable text.
+
+Avoid: extra variants, mockups, external backgrounds, outer frames, cast shadows outside the card, logos, watermarks, readable drawing labels, modern instruments or machinery, modern clothes, photorealism, 3D rendering, the US Capitol, a generic Renaissance church replacing the specific reference, extra fingers, a catalog collage of tools, construction scenery dominating over the drafting action.
+
+This is solely an ARTISTIC APPROVAL image. Generate only this one card. Do not impose an exact pixel resolution, file weight, or technical production layout.

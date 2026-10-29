@@ -1,0 +1,32 @@
+{
+  "id": "capitol",
+  "name": "Капитолий",
+  "cost": 5,
+  "sourcePath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/capitol.jpg",
+  "text": "Если в конце игры у вас построено хотя бы 3 квартала одного типа, получите 3 дополнительных очка.",
+  "qa": {
+    "name": "pass",
+    "text": "pass",
+    "coins": "pass: exactly 5",
+    "type": "pass: purple special-district medallion",
+    "composition": "dark large multi-spired capitol, city, foreground trees, birds and low sun retained; building details reinterpreted",
+    "color": "gold sunset and teal sky retained, no exact saturation claim; art approval pending"
+  },
+  "status": "awaiting-art-approval",
+  "tool": "built-in image_gen edit",
+  "toolpath": "/Users/i.biryukov/.codex/generated_images/01a1835d-c2c8-7c80-b697-9fa3f37f46a0/exec-28098c6e-3b45-44e8-a37d-b399a25fb498.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/original-upscales/capitol-upscale-v1.png",
+  "size": {
+    "bytes": 2590534,
+    "width": 996,
+    "height": 1579
+  },
+  "sha256": "e0b36e55985c9ece75c9029611f6ca12569e596563de747b31b39e076f668f17",
+  "sourceSha256": "0f517f92f3b5259081e0e5504511a441b2ebb03aee181c1eff70650292ac768e",
+  "limitations": [
+    "Generative restoration may reinterpret fine details.",
+    "Approximate 10% lower chroma is a prompt target, not a pixel measurement.",
+    "Raw generated PNG copied byte-for-byte; no resize, compression, padding or game asset replacement.",
+    "User artistic approval is pending."
+  ]
+}

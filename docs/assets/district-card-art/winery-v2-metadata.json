@@ -1,0 +1,36 @@
+{
+  "id": "winery",
+  "name": "Винодельня",
+  "version": 2,
+  "cost": 3,
+  "rulesText": "После 5 завершений раунда даёт 3 дополнительных очка",
+  "status": "awaiting-art-approval",
+  "method": "one built-in image_gen edit with reference roles specified",
+  "referencePaths": [
+    "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/winery-v1.png",
+    "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/monument.jpg",
+    "/Users/i.biryukov/Documents/vk_dev/citadels-web/public/cards/manor.jpg"
+  ],
+  "generatedToolPath": "/Users/i.biryukov/.codex/generated_images/01a1835c-c101-7671-ae47-a39bb5e768ba/exec-53e1e7b8-e419-4b94-993b-5f67713ddf81.png",
+  "outputPath": "/Users/i.biryukov/Documents/vk_dev/citadels-web/docs/assets/district-card-art/winery-v2.png",
+  "dimensions": {
+    "width": 996,
+    "height": 1578
+  },
+  "outputSHA256": "f69d0b7bf84fee0f0bd6d0da53159a3ecfe9c2c11c2f1c32314b690415df5dd3",
+  "copiedSHA256": "f69d0b7bf84fee0f0bd6d0da53159a3ecfe9c2c11c2f1c32314b690415df5dd3",
+  "technicalProcessing": "None; byte-identical PNG copy",
+  "visualQA": {
+    "title": "correct visually",
+    "rules": "verbatim, no final period, correct visually",
+    "price": "3 coins, correct",
+    "type": "purple medallion retained",
+    "improvements": "Wider view, smaller full-body craftsman, press and baskets readable, foreground less crowded than v1.",
+    "limitations": [
+      "Scene still contains distant buildings and vegetation; requested only two clear depth planes is not fully achieved.",
+      "Sunlight, coins and grapes remain brighter and more detailed than requested.",
+      "Leftmost barrel is partially clipped at edge rather than all objects fully visible.",
+      "Not approved; one initial variant only, no autonomous regeneration."
+    ]
+  }
+}
