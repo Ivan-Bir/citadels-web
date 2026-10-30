@@ -8,7 +8,7 @@ const card = type => ({type, kind: setup.districts[type].type, cost: setup.distr
 test("expansion catalog supplies fifteen opt-in districts while the standard deck stays unchanged", () => {
     const expected = {
         stone_bridge: [0, 3, 0], catacombs: [9, 2, 1], architects_workshop: [9, 5, 1],
-        wine_cellar: [9, 3, 1], mirror_hall: [9, 6, 1], conspirators_house: [9, 6, 1],
+        winery: [9, 3, 1], mirror_hall: [9, 6, 1], conspirators_house: [9, 6, 1],
         divination_tower: [9, 4, 1], artisans_court: [9, 4, 1], judicial_chamber: [9, 3, 1],
         seminary: [5, 4, 0], sloboda: [4, 6, 0], exchange: [6, 6, 0],
         papal_residence: [5, 6, 0], citadel: [8, 6, 0], flea_market: [9, 2, 1]

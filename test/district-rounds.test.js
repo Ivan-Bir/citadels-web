@@ -50,7 +50,7 @@ test("final scoring counts every Secret Vault in hand without creating a built d
     assert.equal(game.state.players[0].hand.length, 2);
 });
 
-test("Wine Cellars age once when a round ends, even when the Emperor delays its completion", t => {
+test("Wineries age once when a round ends, even when the Emperor delays its completion", t => {
     const {game} = playingRoom();
     t.after(() => game.clearTurnTimer());
     game.room.roundNumber = 6;
@@ -61,8 +61,8 @@ test("Wine Cellars age once when a round ends, even when the Emperor delays its 
     game.state.players[1].character = ["4_2"];
     game.state.emperorAction = false;
     game.room.king = 0;
-    const mature = {...district("wine_cellar"), wineAge: 4};
-    const young = district("wine_cellar");
+    const mature = {...district("winery"), wineAge: 4};
+    const young = district("winery");
     game.room.playerDistricts[0] = [mature, young];
     event(game, 0, "take-resources", "coins");
     event(game, 0, "end-turn");
@@ -329,7 +329,7 @@ test("snapshots preserve a current building ban alongside another scheduled ban,
     assert.equal(restored.room.buildingBan, false);
 });
 
-test("Wine Cellars completing their fifth round contribute their bonus to the final score", t => {
+test("Wineries completing their fifth round contribute their bonus to the final score", t => {
     const {game} = playingRoom();
     t.after(() => game.clearTurnTimer());
     for (const slot of Object.keys(game.state.players)) {
@@ -339,7 +339,7 @@ test("Wine Cellars completing their fifth round contribute their bonus to the fi
     game.room.roundNumber = 6;
     game.state.lastAgedRound = 5;
     game.room.ender = 0;
-    game.room.playerDistricts[0] = [{...district("wine_cellar"), wineAge: 4}];
+    game.room.playerDistricts[0] = [{...district("winery"), wineAge: 4}];
     event(game, 0, "take-resources", "coins");
     event(game, 0, "end-turn");
     assert.equal(game.room.phase, 0);

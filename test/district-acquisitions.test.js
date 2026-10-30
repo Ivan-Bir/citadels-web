@@ -131,9 +131,9 @@ test("rank-eight district actions reject stale actors, invalid targets and self-
         game.clearTurnTimer();
     }
 });
-test("Marshal and Diplomat reset transferred Wine Cellars while preserving other instance state", () => {
+test("Marshal and Diplomat reset transferred Wineries while preserving other instance state", () => {
     const {game} = actingRoom("marshal-action");
-    const cellar = {...district("wine_cellar"), wineAge: 5, buildDiscount: 1, actionsUsed: {workshop: 3}};
+    const cellar = {...district("winery"), wineAge: 5, buildDiscount: 1, actionsUsed: {workshop: 3}};
     const chamber = {...district("judicial_chamber"), judicialUsed: true, actionsUsed: {judicial: 2}};
     game.room.playerDistricts[1] = [cellar, chamber];
     game.userEvent("host", "seize-district", [1, 0]);
@@ -145,7 +145,7 @@ test("Marshal and Diplomat reset transferred Wine Cellars while preserving other
     assert.equal(game.room.playerDistricts[0][1], chamber);
     assert.equal(chamber.judicialUsed, true);
     assert.deepEqual(chamber.actionsUsed, {judicial: 2});
-    const second = {...district("wine_cellar"), wineAge: 4};
+    const second = {...district("winery"), wineAge: 4};
     cellar.wineAge = 5;
     game.room.playerDistricts[0] = [cellar];
     game.room.playerDistricts[1] = [second];
@@ -263,8 +263,8 @@ test("confiscation keeps the first completed city even when its last district mo
     assert.equal(game.room.phase, 2);
     game.clearTurnTimer();
 });
-test("confiscation resets inherited cellar age, keeps one-use state and can finish the receiving city", () => {
-    const cellar = {...district("wine_cellar"), wineAge: 5, buildDiscount: 2, actionsUsed: {workshop: 2}};
+test("confiscation resets inherited Winery age, keeps one-use state and can finish the receiving city", () => {
+    const cellar = {...district("winery"), wineAge: 5, buildDiscount: 2, actionsUsed: {workshop: 2}};
     const {game, messages} = pendingMagistrate({citySize: 2}, cellar);
     game.room.playerDistricts[0] = [district("market")];
     game.userEvent("host", "magistrate-open", ["yes"]);
@@ -304,9 +304,9 @@ test("start accepts a disabled local creator mode but rejects enabled or malform
     game.clearTurnTimer();
 });
 test("Magistrate response timeout declines a blocked confiscation and returns control to the builder", async () => {
-    const target = {...district("wine_cellar"), wineAge: 5};
+    const target = {...district("winery"), wineAge: 5};
     const {game} = pendingMagistrate({}, target);
-    game.room.playerDistricts[0] = [district("wine_cellar")];
+    game.room.playerDistricts[0] = [district("winery")];
     game.userEvent("host", "magistrate-open", ["yes"]);
     assert.equal(game.room.currentPlayer, 0);
     assert.equal(game.state.players[0].action, "magistrate-open");

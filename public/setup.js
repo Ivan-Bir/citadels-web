@@ -69,9 +69,9 @@
         architects_workshop: {name: "Мастерская зодчих", type: 9, cost: 5, quantity: 1,
             description: "Раз в ход за 3 золотых снизьте плату за строительство всех карт вашей руки на 1 до конца игры",
             image: "/citadels/cards/architects_workshop.jpg", fullCardImage: true},
-        wine_cellar: {name: "Винодельня", type: 9, cost: 3, quantity: 1,
+        winery: {name: "Винодельня", type: 9, cost: 3, quantity: 1,
             description: "После 5 завершений раунда даёт 3 дополнительных очка",
-            image: "/citadels/cards/wine_cellar.jpg", fullCardImage: true},
+            image: "/citadels/cards/winery.jpg", fullCardImage: true},
         mirror_hall: {name: "Зеркальный чертог", type: 9, cost: 6, quantity: 1,
             description: "Становится точной копией уже построенного квартала",
             image: "/citadels/cards/mirror_hall.jpg", fullCardImage: true},
@@ -538,7 +538,7 @@
             if (card.type === "dragon_gate") add(card.type, 3);
             if (card.type === "basilica") add(card.type, oddCosts);
             if (card.type === "stone_bridge" || card.type === "catacombs") add(card.type, 2);
-            if (card.type === "wine_cellar" && card.wineAge >= 5) add(card.type, 3);
+            if (card.type === "winery" && card.wineAge >= 5) add(card.type, 3);
             if (card.type === "map_room") add(card.type, handCount);
             if (card.type === "imperial_treasury") add(card.type, gold);
             if (card.type === "memorial" && crowned) add(card.type, 5);

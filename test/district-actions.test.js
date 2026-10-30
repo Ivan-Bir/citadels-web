@@ -126,7 +126,7 @@ test('income counts premium basic and each magic school, resources use each mine
 });
 
 test('live score uses new bonuses and each scoring instance without a color for Bridge',()=>{
- const {game}=fixture();game.room.playerDistricts[0]=[district('stone_bridge'),district('catacombs'),{...district('wine_cellar'),wineAge:5},district('dragon_gate'),district('dragon_gate')];
+ const {game}=fixture();game.room.playerDistricts[0]=[district('stone_bridge'),district('catacombs'),{...district('winery'),wineAge:5},district('dragon_gate'),district('dragon_gate')];
  game.slotEventHandlers['take-resources'](0,'coins');
  assert.equal(game.room.playerScore[0],33); // nominal20 + fixed13
 });
@@ -148,10 +148,10 @@ test('Mirror rejects own city, Theater, excess duplicates and last Monument; ord
  assert.equal(game.room.playerGold[0],14);
 });
 test('exact copy keeps mature wine and used Chamber, ordinary reconstruction resets them',()=>{
- const {game}=fixture();game.room.playerDistricts[1]=[{...district('wine_cellar'),wineAge:5},{...district('judicial_chamber'),judicialUsed:true}];
+ const {game}=fixture();game.room.playerDistricts[1]=[{...district('winery'),wineAge:5},{...district('judicial_chamber'),judicialUsed:true}];
  hand(game,[district('mirror_hall'),district('mirror_hall')]);game.slotEventHandlers['build-mirror'](0,0,1,0);game.slotEventHandlers['build-mirror'](0,0,1,1);
  assert.equal(game.room.playerDistricts[0][0].wineAge,5);assert.equal(game.room.playerDistricts[0][1].judicialUsed,true);
- game.room.playerDistricts[0]=[];game.room.playerGold[0]=20;hand(game,[{...district('wine_cellar'),wineAge:5},{...district('judicial_chamber'),judicialUsed:true}]);
+ game.room.playerDistricts[0]=[];game.room.playerGold[0]=20;hand(game,[{...district('winery'),wineAge:5},{...district('judicial_chamber'),judicialUsed:true}]);
  game.slotEventHandlers.build(0,0);game.slotEventHandlers.build(0,0);
  assert.equal(game.room.playerDistricts[0][0].wineAge,0);assert.equal(game.room.playerDistricts[0][1].judicialUsed,false);
 });

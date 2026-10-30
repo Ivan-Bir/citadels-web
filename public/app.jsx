@@ -197,7 +197,7 @@ class Card extends React.Component {
             if (targetPreview.cost != null) hints.push("Плата: " + targetPreview.cost + " золота", targetPreview.details);
             else if (!targetPreview.reason) hints.push("Выберите вторую сторону обмена");
         }
-        if (this.props.play && card.type === "wine_cellar") hints.push("Выдержка: " + (card.wineAge || 0) + "/5" + (card.wineAge >= 5 ? " · +3 очка" : ""));
+        if (this.props.play && card.type === "winery") hints.push("Выдержка: " + (card.wineAge || 0) + "/5" + (card.wineAge >= 5 ? " · +3 очка" : ""));
         if (this.props.play && card.type === "judicial_chamber") hints.push(activeBan ? "Запрет строительства действует в этом раунде" : pendingBan ? "Запрет строительства начнётся в следующем раунде" : card.judicialUsed ? "Способность использована" : "Запрет доступен");
         return (
             <div className={cs(type, "card-item", {

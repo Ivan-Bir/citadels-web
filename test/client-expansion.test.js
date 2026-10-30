@@ -184,7 +184,7 @@ test("choosing one Museum sends that exact source index and clears the local sel
 });
 
 test("Mirror Hall lets the player cancel, build without copying, or select a foreign non-Theater district", () => {
-    const {game, emitted} = gameClient({player: {hand: [{type: "mirror_hall", cost: 6, kind: 9}]}, playerDistricts: {0: [], 1: [{type: "theater"}, {type: "wine_cellar"}]}});
+    const {game, emitted} = gameClient({player: {hand: [{type: "mirror_hall", cost: 6, kind: 9}]}, playerDistricts: {0: [], 1: [{type: "theater"}, {type: "winery"}]}});
     game.handleClickHandCard(0);
     assert.equal(game.state.userAction, "mirror_hall");
     assert.deepEqual(emitted, []);

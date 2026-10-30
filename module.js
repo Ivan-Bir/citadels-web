@@ -695,7 +695,7 @@ function init(wsServer, path) {
                     if (state.lastAgedRound !== room.roundNumber) {
                         for (const slot of Object.keys(state.players)) {
                             for (const card of room.playerDistricts[slot]) {
-                                if (card.type === "wine_cellar") card.wineAge = (card.wineAge || 0) + 1;
+                                if (card.type === "winery") card.wineAge = (card.wineAge || 0) + 1;
                             }
                             countPoints(Number(slot));
                         }
@@ -1034,7 +1034,7 @@ function init(wsServer, path) {
                     state.players[slot].hand.splice(cardInd, 1);
                     if (!copiedBuilding) {
                         delete building.actionsUsed;
-                        if (building.type === 'wine_cellar') building.wineAge = 0;
+                        if (building.type === 'winery') building.wineAge = 0;
                         if (building.type === 'judicial_chamber') building.judicialUsed = false;
                     }
                     if (copiedBuilding) {
@@ -1322,7 +1322,7 @@ function init(wsServer, path) {
                         if (ans === 'yes' && state.trueMagistrated === room.currentCharacter) {
                             room.playerGold[magistratedSlot] += state.magistrateAction.cost;
                             state.alchemistCoins -= state.magistrateAction.cost;
-                            if (building.type === "wine_cellar") building.wineAge = 0;
+                            if (building.type === "winery") building.wineAge = 0;
                             room.playerDistricts[slot].push(room.playerDistricts[magistratedSlot].pop());
                             room.magistrated = [];
                             room.trueMagistrated = state.trueMagistrated;
@@ -1728,8 +1728,8 @@ function init(wsServer, path) {
                         state.players[slot].action = null;
                         room.playerGold[slot] -= cost;
                         room.playerGold[opp] += cost;
-                        if (my_building.type === "wine_cellar") my_building.wineAge = 0;
-                        if (opp_building.type === "wine_cellar") opp_building.wineAge = 0;
+                        if (my_building.type === "winery") my_building.wineAge = 0;
+                        if (opp_building.type === "winery") opp_building.wineAge = 0;
                         room.playerDistricts[slot].splice(my_d, 1, opp_building);
                         room.playerDistricts[opp].splice(opp_d, 1, my_building);
                         if (room.ender === null) {
@@ -1764,7 +1764,7 @@ function init(wsServer, path) {
                             return sendSlot(slot, "message", `Недостаточно монет (${room.playerGold[slot]}/${cost}).`);
                         const wasComplete = getDistrictsCount(slot) >= state.maxDistricts;
                         room.playerDistricts[slot_d].splice(cardInd, 1);
-                        if (building.type === "wine_cellar") building.wineAge = 0;
+                        if (building.type === "winery") building.wineAge = 0;
                         room.playerDistricts[slot].push(building);
                         state.players[slot].action = null;
                         room.playerGold[slot] -= cost;

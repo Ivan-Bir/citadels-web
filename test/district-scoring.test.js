@@ -47,16 +47,16 @@ test("each Basilica counts odd nominal costs after decorations, including other 
     assert.equal(calculateDistrictScore(city), 20);
 });
 
-test("each Stone Bridge and Catacombs scores a bonus, and Wine Cellars mature independently after five rounds", () => {
+test("each Stone Bridge and Catacombs scores a bonus, and Wineries mature independently after five rounds", () => {
     const city = [
         {type: "stone_bridge", cost: 3, kind: 0},
         {type: "stone_bridge", cost: 3, kind: 0},
         {type: "catacombs", cost: 2, kind: 9},
         {type: "catacombs", cost: 2, kind: 9},
-        {type: "wine_cellar", cost: 3, kind: 9},
-        {type: "wine_cellar", cost: 3, kind: 9, wineAge: 4},
-        {type: "wine_cellar", cost: 3, kind: 9, wineAge: 5},
-        {type: "wine_cellar", cost: 3, kind: 9, wineAge: 8}
+        {type: "winery", cost: 3, kind: 9},
+        {type: "winery", cost: 3, kind: 9, wineAge: 4},
+        {type: "winery", cost: 3, kind: 9, wineAge: 5},
+        {type: "winery", cost: 3, kind: 9, wineAge: 8}
     ];
     assert.equal(calculateDistrictScore(city), 36);
 });
