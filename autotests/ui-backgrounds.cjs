@@ -2,6 +2,7 @@
 // Usage: node autotests/ui-backgrounds.cjs <playwright node_modules> <React/Babel node_modules>
 const fs = require("node:fs");
 const path = require("node:path");
+const os = require("node:os");
 const http = require("node:http");
 const assert = require("node:assert/strict");
 const {createRequire} = require("node:module");
@@ -12,8 +13,11 @@ const browserDeps = createRequire(path.resolve(browserModules, "__background_che
 const {chromium} = browserDeps("playwright");
 const root = path.resolve(__dirname, "..");
 const publicDir = path.join(root, "public");
-const output = path.join(root, "output/playwright");
+const output = process.env.CITADELS_TEST_OUTPUT
+    ? path.resolve(process.env.CITADELS_TEST_OUTPUT)
+    : fs.mkdtempSync(path.join(os.tmpdir(), "citadels-ui-backgrounds-"));
 fs.mkdirSync(output, {recursive: true});
+console.log("Test artifacts: " + output);
 const source = fs.readFileSync(path.join(publicDir, "app.jsx"), "utf8")
     .replace("ReactDOM.render(<Game/>, document.getElementById('root'));", "window.BackgroundPanel = CreateGamePanel; window.BackgroundGame = Game;");
 const compiled = frontend("@babel/core").transformSync(source, {

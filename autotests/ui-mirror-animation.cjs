@@ -2,6 +2,7 @@
 // Usage: node autotests/ui-mirror-animation.cjs <Playwright node_modules> <React/Babel node_modules>
 const fs = require('node:fs');
 const path = require('node:path');
+const os = require('node:os');
 const http = require('node:http');
 const assert = require('node:assert/strict');
 const {createRequire} = require('node:module');
@@ -10,8 +11,11 @@ if (!browserModules || !frontendModules) throw new Error('Укажите кат�
 const frontend = createRequire(path.resolve(frontendModules, '__mirror_check.cjs'));
 const {chromium} = createRequire(path.resolve(browserModules, '__mirror_check.cjs'))('playwright');
 const publicDir = path.resolve(__dirname, '../public');
-const output = path.resolve(__dirname, '../output/playwright');
+const output = process.env.CITADELS_TEST_OUTPUT
+    ? path.resolve(process.env.CITADELS_TEST_OUTPUT)
+    : fs.mkdtempSync(path.join(os.tmpdir(), 'citadels-ui-mirror-animation-'));
 fs.mkdirSync(output, {recursive: true});
+console.log('Test artifacts: ' + output);
 const source = fs.readFileSync(path.join(publicDir, 'app.jsx'), 'utf8')
     .replace("ReactDOM.render(<Game/>, document.getElementById('root'));", 'window.MirrorGame = Game; window.MirrorPlayerSlot = PlayerSlot;');
 const compiled = frontend('@babel/core').transformSync(source, {
@@ -108,9 +112,10 @@ const server = http.createServer((request, response) => {
         await page.locator('.zoomed .card-item-zoomed').screenshot({path: path.join(output, 'mirror-zoom-middle.png'), animations: 'allow'});
         await page.evaluate(() => game.zoomCard());
         assert.ok(await page.evaluate(() => thumbnailAnimation === document.querySelector('[data-mirror-start] > .mirror-transformation').getAnimations()[0] && thumbnailAnimation.currentTime === 2450));
-        // A custom DistrictFace target uses the same reveal and finishes with its markers intact.
+        // A full-card JPEG target uses the same reveal and finishes with its image intact.
         await page.evaluate(() => {restart('wine_cellar'); freeze(1500);});
-        assert.equal(await page.locator('.player-slot-0 .custom-district > .district-face').count(), 1);
+        assert.equal(await page.locator('.player-slot-0 .district-face-full-card').count(), 2);
+        await page.waitForFunction(() => [...document.querySelectorAll('.player-slot-0 .district-face-full-card')].every(image => image.complete && image.naturalWidth > 0 && image.src.endsWith('/cards/wine_cellar.jpg')));
         for (const width of [390, 320]) {
             await page.setViewportSize({width, height: 844});
             await page.evaluate(() => freeze(1500));
@@ -137,7 +142,7 @@ const server = http.createServer((request, response) => {
         assert.equal(await observer.locator('.player-slot-1 .mirror-transformation').count(), 0);
         await observer.close();
         assert.deepEqual(errors, []);
-        fs.writeFileSync(path.join(output, 'mirror-animation-proof.json'), JSON.stringify({frames, zoomSample, checks: ['actual Card and PlayerSlot rendering', 'source hold and reveal', 'public target untouched', 'stable index shifts/state updates', 'elapsed zoom and no restart on close', 'custom DistrictFace', '390/320 mobile', 'animationend cleanup', 'reduced motion', 'reload', 'spectator']}, null, 2));
+        fs.writeFileSync(path.join(output, 'mirror-animation-proof.json'), JSON.stringify({frames, zoomSample, checks: ['actual Card and PlayerSlot rendering', 'source hold and reveal', 'public target untouched', 'stable index shifts/state updates', 'elapsed zoom and no restart on close', 'full-card JPEG target', '390/320 mobile', 'animationend cleanup', 'reduced motion', 'reload', 'spectator']}, null, 2));
         console.log('Mirror animation browser proof passed; screenshots and samples in ' + output);
     } finally {
         if (browser) await browser.close();

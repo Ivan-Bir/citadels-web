@@ -20,7 +20,8 @@ test("expansion catalog supplies fifteen opt-in districts while the standard dec
         const district = setup.districts[id];
         assert.deepEqual([district.type, district.cost, district.quantity], values, id);
         assert.ok(district.name.length > 0, id);
-        if (id !== "flea_market") assert.match(district.image, /^\/citadels\/cards\/placeholders\/d\d\d-.+\.svg$/);
+        assert.equal(district.image, `/citadels/cards/${id}.jpg`, id);
+        assert.equal(district.fullCardImage, true, id);
     }
     assert.equal(setup.districts.flea_market.description, "Раз в свой ход можете сбросить 1 карту из руки, чтобы взять 1 карту из колоды.");
     assert.ok(setup.groups.some(group => group.type === 0 && group.name === "Без типа"));

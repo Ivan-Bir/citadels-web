@@ -1,8 +1,0 @@
-Edit Image 1 only. It is an approved complete Citadels card. Images 2 (Monument) and 3 (Harbor), both 707×1121, are references ONLY for the bottom title ribbon's position, text size and bottom margin.
-
-Make one tightly localized layout correction: raise the bottom ribbon and its title to match Images 2–3. Output exactly 707×1121 pixels, proportionally downscaled from Image 1, with no crop or stretching. In output coordinates: title's black ink top y=1024; baseline y=1076; ink height about 52–54 px. Ribbon central body y=1012–1093; about 28 px of artwork visible below it. The title should be slightly larger than now, matching the bold Cyrillic display serif of the references. Center it horizontally.
-Exact title: «Каменный мост» (without quotation marks).
-Shorten only the empty parchment space below the ability text to accommodate the raised ribbon; retain all three lines and their placement above it.
-Exact ability text: «Не имеет типа квартала. В конце игры получите 2 дополнительных очка.» (without quotation marks).
-
-PRESERVE Image 1's approved illustration, composition, viewpoint, colors and details: bridge, town, arches, water, sky, people and banners. Preserve exactly THREE gold coins at top left. Preserve most source image pixels, only allowing proportional downsampling and the localized lower-ribbon/text correction. Do not repaint or reinterpret the artwork. No new details, no type medallion, no colored emblem, no extra text, no border. Preserve original v1 separately.

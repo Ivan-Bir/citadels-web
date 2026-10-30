@@ -134,7 +134,7 @@ class Card extends React.Component {
                         if (event.target === event.currentTarget && event.animationName === "mirror-veil")
                             this.props.game.finishMirrorAnimation(instanceId);
                     }}>
-            <img className="mirror-transformation-source" src="/citadels/cards/mirror_hall-compressed.jpg" alt=""/>
+            <img className="mirror-transformation-source" src="/citadels/cards/mirror_hall.jpg" alt=""/>
             <div className="mirror-transformation-dark"/>
             <div className="mirror-transformation-light"/>
         </div>;
@@ -1654,7 +1654,7 @@ class Game extends React.Component {
         this.initSounds();
         if (typeof Image !== "undefined") {
             this.mirrorArt = new Image();
-            this.mirrorArt.src = "/citadels/cards/mirror_hall-compressed.jpg";
+            this.mirrorArt.src = "/citadels/cards/mirror_hall.jpg";
         }
         this.socket.on("game-setup", (gameSetup) => {
             this.clearMirrorAnimations();

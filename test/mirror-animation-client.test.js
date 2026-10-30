@@ -17,7 +17,7 @@ function client(reducedMotion = false) {
     }
     const socket = {on(name, handler) {handlers[name] = handler;}, emit() {}};
     const context = vm.createContext({
-        React: {Component}, CitadelsSetup: setup, localStorage: {},
+        React: {Component}, CitadelsSetup: setup, localStorage: {}, Image: class {},
         Date: class extends Date {static now() {return clock;}},
         setTimeout(callback, duration) {timers.set(++nextTimer, {callback, duration}); return nextTimer;},
         clearTimeout(id) {timers.delete(id);},
@@ -43,6 +43,7 @@ function client(reducedMotion = false) {
 
 test("Mirror transformation starts only for the transient built instance and survives ordinary state without restarting", () => {
     const {game, send, timers, advance} = client();
+    assert.equal(game.mirrorArt.src, setup.districts.mirror_hall.image);
     send(); // An existing copied city on reconnect is not an animation source.
     assert.equal(Object.keys(game.state.mirrorAnimations).length, 0);
     send({mirrorBuild: {slot: 0, instanceId: "district-1"}});

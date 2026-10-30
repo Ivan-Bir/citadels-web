@@ -1,3 +1,4 @@
 node_modules/
 package-lock.json
-output/playwright/
+output/
+.DS_Store

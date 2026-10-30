@@ -1,13 +1,17 @@
 // Usage: node autotests/run-ui.cjs <playwright-cli.js> [http://localhost:3002]
 const fs = require("node:fs");
 const path = require("node:path");
+const os = require("node:os");
 const {execFileSync} = require("node:child_process");
 const [cliPath, baseUrl = "http://localhost:3002"] = process.argv.slice(2);
 if (!cliPath) throw new Error("Укажите путь к playwright-cli.js из установленного @playwright/cli.");
 const origin = new URL(baseUrl).origin;
 const code = require("./ui-party-settings.cjs").toString().replace(JSON.stringify("__BASE_URL__"), JSON.stringify(origin));
-const outputDir = path.resolve(__dirname, "../output/playwright");
+const outputDir = process.env.CITADELS_TEST_OUTPUT
+    ? path.resolve(process.env.CITADELS_TEST_OUTPUT)
+    : fs.mkdtempSync(path.join(os.tmpdir(), "citadels-run-ui-"));
 fs.mkdirSync(outputDir, {recursive: true});
+console.log("Test artifacts: " + outputDir);
 const session = "citadels-ui-" + Date.now();
 const cli = (...args) => {
     try {

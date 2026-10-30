@@ -2,6 +2,7 @@
 // Usage: node autotests/ui-flea-market.cjs <Playwright node_modules> <React/Babel node_modules>
 const fs = require('node:fs');
 const path = require('node:path');
+const os = require('node:os');
 const http = require('node:http');
 const assert = require('node:assert/strict');
 const {createRequire} = require('node:module');
@@ -10,8 +11,11 @@ if (!browserModules || !frontendModules) throw new Error('Укажите кат�
 const frontend = createRequire(path.resolve(frontendModules, '__flea_market_check.cjs'));
 const {chromium} = createRequire(path.resolve(browserModules, '__flea_market_check.cjs'))('playwright');
 const publicDir = path.resolve(__dirname, '../public');
-const output = path.resolve(__dirname, '../output/playwright');
+const output = process.env.CITADELS_TEST_OUTPUT
+    ? path.resolve(process.env.CITADELS_TEST_OUTPUT)
+    : fs.mkdtempSync(path.join(os.tmpdir(), 'citadels-ui-flea-market-'));
 fs.mkdirSync(output, {recursive: true});
+console.log('Test artifacts: ' + output);
 const source = fs.readFileSync(path.join(publicDir, 'app.jsx'), 'utf8')
     .replace("ReactDOM.render(<Game/>, document.getElementById('root'));", 'window.FleaGame = Game; window.FleaCard = Card;');
 const compiled = frontend('@babel/core').transformSync(source, {
@@ -115,10 +119,10 @@ const server = http.createServer((request, response) => {
             assert.deepEqual(await page.evaluate(() => emitted), [['flea-market-action', 0, 0]]);
         }
         // Approved full-card assets use a direct image on the card, zoom and gallery.
-        assert.ok(fs.existsSync(path.join(publicDir, 'cards/flea_market-compressed.jpg')));
+        assert.ok(fs.existsSync(path.join(publicDir, 'cards/flea_market.jpg')));
         {
             const metadata = await page.evaluate(() => ({image: CitadelsSetup.districts.flea_market.image, fullCardImage: CitadelsSetup.districts.flea_market.fullCardImage}));
-            assert.deepEqual(metadata, {image: '/citadels/cards/flea_market-compressed.jpg', fullCardImage: true});
+            assert.deepEqual(metadata, {image: '/citadels/cards/flea_market.jpg', fullCardImage: true});
             await page.evaluate(() => {
                 restart(['flea_market']);
             });

@@ -1,8 +1,0 @@
-Use case: text-localization
-Asset type: Russian Citadels district card; one narrowly localized title edit.
-Input image 1 is the EDIT TARGET, the already approved card artwork. This is not a request for a new illustration.
-Primary request: Replace ONLY the existing bottom ribbon title "Винные погреба" with the exact Russian word "Винодельня".
-Text (verbatim, bottom title): "Винодельня" — letters В и н о д е л ь н я. Keep it centered on the existing bottom ribbon, black bold serif lettering in the same style, fitting the shorter word naturally.
-Preserve the entire image outside the title lettering as faithfully as possible: identical approved wine-cellar illustration and composition, barrels, stone arches, warm lighting and colors, foreground objects, all three gold coins at top left, the purple medallion at lower left, the parchment ability panel and bottom ribbon shapes and textures.
-Keep the ability text EXACTLY as it is in the edit target: "После 5 завершений раунда даёт 3 дополнительных очка". Preserve its placement and line arrangement.
-Constraints: modify only the bottom title lettering. No new scene, no reinterpretation, no restyling, no layout changes, no new objects, no crop, no border, no watermark. Keep the full portrait card and its original aspect ratio. Opaque background.
