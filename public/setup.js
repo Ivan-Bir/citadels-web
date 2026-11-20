@@ -38,7 +38,8 @@
         arsenal: {name: "Оружейная", type: 9, cost: 3, quantity: 1},
         observatory: {name: "Обсерватория", type: 9, cost: 4, quantity: 1},
         poor_house: {name: "Богадельня", type: 9, cost: 4, quantity: 1},
-        monument: {name: "Монумент", type: 9, cost: 4, quantity: 1},
+        monument: {name: "Монумент", type: 9, cost: 5, quantity: 1,
+            description: "Считается за 2 квартала, если слева построено меньше 4-х кварталов"},
         basilica: {name: "Базилика", type: 9, cost: 4, quantity: 1},
         museum: {name: "Музей", type: 9, cost: 4, quantity: 1},
         quarry: {name: "Каменоломня", type: 9, cost: 4, quantity: 1},
@@ -85,7 +86,7 @@
             description: "В конце хода получите 1 золотой, если размер вашего города не увеличился",
             image: "/citadels/cards/artisans_court.jpg", fullCardImage: true},
         judicial_chamber: {name: "Судейская палата", type: 9, cost: 3, quantity: 1,
-            description: "Один раз запретите всем игрокам строительство на следующий раунд",
+            description: "Один раз запретите всем игрокам строительство на следующий раунд. Если до начала этого раунда Палату разрушат, её запрет отменяется.",
             image: "/citadels/cards/judicial_chamber.jpg", fullCardImage: true},
         seminary: {name: "Семинария", type: 5, cost: 4, quantity: 0, description: "",
             image: "/citadels/cards/seminary.jpg", fullCardImage: true},
@@ -103,7 +104,10 @@
             image: "/citadels/cards/citadel.jpg", fullCardImage: true},
         flea_market: {name: "Барахолка", type: 9, cost: 2, quantity: 1,
             description: "Раз в свой ход можете сбросить 1 карту из руки, чтобы взять 1 карту из колоды.",
-            image: "/citadels/cards/flea_market.jpg", fullCardImage: true}
+            image: "/citadels/cards/flea_market.jpg", fullCardImage: true},
+        old_chest: {name: "Старый сундук", type: 9, cost: 1, quantity: 1,
+            description: "При разрушении этого квартала его владелец получает 3 золотых.",
+            image: "/citadels/cards/old_chest.jpg", fullCardImage: true}
     };
 
     const FORMAT = "citadels-setup";
@@ -430,7 +434,10 @@
     }
 
     function getCityDistrictCount(city) {
-        return city.reduce((size, card) => size + (card.type === "catacombs" ? 0 : card.type === "monument" ? 2 : 1), 0);
+        return city.reduce((size, card) => {
+            if (card.type === "catacombs") return size;
+            return size + (card.type === "monument" && size < 4 ? 2 : 1);
+        }, 0);
     }
     function getBuildCost(city, card) {
         return Math.max(0, card.cost - (card.buildDiscount || 0)
@@ -493,7 +500,7 @@
                 const bonuses = {
                     all_colors: specialCount > 0 && counts.every(count => count > 0) ? allColorsBonus : 0,
                     capitol: specialCount >= 3 || counts.some(count => count >= 3) ? 3 * capitols : 0,
-                    well_of_wishes: specialCount * wells,
+                    well_of_wishes: (specialCount - 1) * wells,
                     ivory_tower: specialCount === 1 ? 5 * towers : 0
                 };
                 const bonus = Object.values(bonuses).reduce((sum, points) => sum + points, 0);
@@ -562,6 +569,12 @@
         return calculateDistrictScoreDetails(city, options).total;
     }
 
+    function getGameEndReason(room) {
+        if (room.phase !== 0) return null;
+        // Older hosts marked their final board only by assigning a winner.
+        return room.gameEndReason || (room.winnerPlayer != null ? "completed" : null);
+    }
+
     function getPlayerScoreDetails(data, slot) {
         if (data.playerScoreDetails && data.playerScoreDetails[slot])
             return data.playerScoreDetails[slot];
@@ -586,7 +599,7 @@
         const historicalRules = data.gameSetup && data.gameSetup.rules;
         const knownRules = historicalRules && typeof historicalRules === "object" && !Array.isArray(historicalRules);
         const finalDifference = data.playerScore && data.playerScore[slot] - details.total;
-        if (knownRules && data.phase === 0 && data.winnerPlayer != null && finalDifference > 0
+        if (knownRules && getGameEndReason(data) && finalDifference > 0
             && finalDifference % 3 === 0 && finalDifference <= handCount * 3) {
             details.bonuses.push({id: "secret_vault", label: districts.secret_vault.name, points: finalDifference});
             details.total += finalDifference;
@@ -619,9 +632,8 @@
             errors.push("Недостаточно карт: " + summary.total + ". Для " + players + " игроков нужно минимум " + minimum + " (" + citySize + " × " + players + ").");
         const ignoresDuplicateLimit = setup.districts.unique.includes("quarry") || setup.characters.includes("3_2");
         const copiesPerName = ignoresDuplicateLimit ? Infinity : setup.rules.duplicateLimit + 1;
-        // A Monument can be built first, but may not be the finishing district.
-        // The selected deck has at most one physical copy of each special.
-        const monumentCapacity = citySize > 2 && setup.districts.unique.includes("monument") ? 2 : 0;
+        // Each special has one physical copy. A city can build its Monument first.
+        const monumentCapacity = setup.districts.unique.includes("monument") ? 2 : 0;
         const capacity = basicIds.reduce((sum, id) => sum + Math.min(setup.districts.basic[id], copiesPerName), 0)
             + setup.districts.unique.filter(id => !["secret_vault", "catacombs", "monument"].includes(id)).length
             + monumentCapacity;
@@ -707,7 +719,7 @@
         normalizeCharacters, getCharacterPlayerErrors, characterRequirements,
         normalizeTimerSettings, normalizeStarting, normalizeRules, normalizeSetup,
         getStartingResources, getStartingRequirements, createDraftStore,
-        calculateDistrictScore, calculateDistrictScoreDetails, getPlayerScoreDetails,
+        calculateDistrictScore, calculateDistrictScoreDetails, getPlayerScoreDetails, getGameEndReason,
         getDistrictType, countDistricts, getCityDistrictCount, getBuildCost, getColorIncome, getResourceCardCount, getGreatWallCount, canAddDistrict,
         parseSetup, serializeSetup, getDefaultSetup, getDeckSummary, getCitySize, getStartErrors, getCreatorErrors
     };

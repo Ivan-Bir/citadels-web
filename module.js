@@ -48,6 +48,8 @@ function init(wsServer, path) {
                 playerScoreDetails: {},
                 districtDeckCount: 0,
                 districtDiscardCount: 0,
+                gameEndReason: null,
+                winnerPlayer: null,
                 winnerPlayers: []
             };
             if (testMode)
@@ -87,6 +89,7 @@ function init(wsServer, path) {
                 update = (payload) => {
                     updateConspiracies();
                     updateBuildingBans();
+                    room.stateRevision = (room.stateRevision || 0) + 1;
                     room.serverTime = Date.now();
                     room.districtDeckCount = state.districtDeck.length;
                     room.districtDiscardCount = state.districtDiscard.length;
@@ -250,22 +253,30 @@ function init(wsServer, path) {
                         return clearTurnTimer();
                     scheduleTimer(room.timer.endsAt - Date.now());
                 },
-                restartCurrentTimer = () => {
-                    if (!room.timerSettings || !room.timerSettings.enabled || room.currentPlayer == null || !state.players[room.currentPlayer])
-                        return clearTurnTimer();
+                currentTimerDecision = () => {
+                    const ownerSlot = room.currentPlayer, player = state.players[ownerSlot];
+                    if (!player) return null;
+                    const context = {ownerSlot, character: room.currentCharacter};
                     if (room.phase === 1)
-                        return startCharacterTimer(room.currentPlayer);
-                    if (room.phase === 1.5 && state.players[room.currentPlayer].action === "theater-action")
-                        return startMainTimer(room.currentPlayer);
+                        return {...context, kind: "character"};
+                    if (room.phase === 1.5 && player.action === "theater-action")
+                        return {...context, kind: "main"};
                     if ([2, 3].includes(room.phase)) {
-                        const action = state.players[room.currentPlayer].action;
                         if (room.witched === room.currentCharacter && room.witchedstate === 2)
-                            return startResponseTimer(room.currentPlayer, "witch");
-                        if (["blackmailed-response", "blackmailed-open", "magistrate-open"].includes(action))
-                            return startResponseTimer(room.currentPlayer, action);
-                        return startMainTimer(room.currentPlayer);
+                            return {...context, kind: "response", responseType: "witch"};
+                        if (["blackmailed-response", "blackmailed-open", "magistrate-open"].includes(player.action))
+                            return {...context, kind: "response", responseType: player.action};
+                        return {...context, kind: "main"};
                     }
-                    clearTurnTimer();
+                    return null;
+                },
+                restartCurrentTimer = () => {
+                    const decision = currentTimerDecision();
+                    if (!room.timerSettings || !room.timerSettings.enabled || !decision)
+                        return clearTurnTimer();
+                    if (decision.kind === "character") return startCharacterTimer(decision.ownerSlot);
+                    if (decision.kind === "response") return startResponseTimer(decision.ownerSlot, decision.responseType);
+                    startMainTimer(decision.ownerSlot);
                 },
                 toggleTimersPause = () => {
                     room.timersPaused = !room.timersPaused;
@@ -292,7 +303,7 @@ function init(wsServer, path) {
                         return clearTurnTimer();
                     if (timer.responseType === "witch") {
                         finishPhase3Turn(slot);
-                        moveToResponse(true);
+                        moveToResponse();
                     } else if (state.players[slot].action === "blackmailed-response") {
                         this.slotEventHandlers["blackmailed-response"](slot, "no");
                     } else if (state.players[slot].action === "blackmailed-open") {
@@ -303,8 +314,7 @@ function init(wsServer, path) {
                         clearTurnTimer();
                     }
                 },
-                expireTimer = () => {
-                    const timer = room.timer;
+                expireTimer = (timer = room.timer) => {
                     if (!timer || (timer.character !== room.currentCharacter) || !getTimerAllowedPhases(timer.kind).includes(room.phase))
                         return clearTurnTimer();
                     if (timer.kind === "character")
@@ -329,7 +339,6 @@ function init(wsServer, path) {
                         state.previousRandomDiscards = [];
                         room.roundNumber = 0;
                         room.turnId = 0;
-                        state.buildingBanRound = null;
                         state.lastAgedRound = 0;
                         state.pendingConspiracies = [];
                         state.nextDistrictId = 0;
@@ -343,11 +352,10 @@ function init(wsServer, path) {
                         room.playerCharacter = {};
                         room.playerScore = {};
                         room.playerScoreDetails = {};
-                        room.winnerPlayers = [];
                         room.teamsLocked = true;
                         state.districtDeck = utils.createDeck(state.playersCount, setup.districts.unique, false, setup.districts.basic);
                         state.districtDiscard = [];
-                        if (room.winnerPlayer != null)
+                        if (room.gameEndReason)
                             utils.shuffle(room.playerSlots);
                         room.king = getRandomPlayer();
                         state.firstCrownSlot = room.king;
@@ -375,6 +383,7 @@ function init(wsServer, path) {
                         });
 
                         room.ender = null;
+                        room.gameEndReason = null;
                         room.winnerPlayer = null;
                         room.winnerPlayers = [];
                         room.tax = 0;
@@ -393,8 +402,6 @@ function init(wsServer, path) {
                 },
                 newRound = () => {
                     room.roundNumber = (room.roundNumber || 0) + 1;
-                    room.buildingBan = state.buildingBanRound === room.roundNumber;
-                    room.nextRoundBuildingBan = state.buildingBanRound === room.roundNumber + 1;
                     clearTurnTimer();
                     room.phase = 1;
                     state.currentIndCharacter = 0;
@@ -567,18 +574,20 @@ function init(wsServer, path) {
                     }
                 },
                 waitToResponse = () => (room.witched === room.currentCharacter && room.witchedstate === 2) || room.blackmailed.includes(room.currentCharacter),
-                moveToResponse = (forced, payload) => {
+                moveToResponse = () => {
+                    // The character's resource step ends here, including when it was skipped.
+                    room.tookResource = true;
                     if (room.witched === room.currentCharacter) {
                         room.witchedstate = 1;
                         room.currentPlayer = state.characterRoles["1_2"];
                         startMainTimer(room.currentPlayer);
-                        startTurn(payload);
+                        startTurn();
                     } else if (room.blackmailed.includes(room.currentCharacter)) {
                         state.players[room.currentPlayer].action = 'blackmailed-response';
                         startResponseTimer(room.currentPlayer, "blackmailed-response");
-                        update(payload);
+                        update();
                         sendStateSlot(room.currentPlayer);
-                    } else startTurn(payload);
+                    } else startTurn();
                 },
                 startTurn = (payload) => {
                     state.turnStartCitySize = getDistrictsCount(room.currentPlayer);
@@ -740,18 +749,13 @@ function init(wsServer, path) {
                         sendStateSlot(room.currentPlayer);
                         return;
                     }
-                    if (room.ender != null) return endGame(true);
+                    advanceAfterRound();
+                },
+                advanceAfterRound = () => {
+                    if (room.ender != null) return endGame("completed");
                     newRound();
                 },
-                endGame = (finished) => {
-                    clearTurnTimer();
-                    room.currentPlayer = null;
-                    room.targetSlot = null;
-                    Object.keys(state.players).forEach(slot => {
-                        countPoints(Number(slot), true);
-                        state.players[slot].character = [];
-                        room.playerCharacter[slot] = [];
-                    });
+                getWinners = () => {
                     const getPrintedDistrictCost = (slot) => room.playerDistricts[slot].map(card => card.cost).reduce((a, b) => a + b, 0);
                     let winners = Object.keys(state.players).map(Number);
                     [
@@ -764,15 +768,25 @@ function init(wsServer, path) {
                         const maxScore = Math.max(...winners.map(scoreFn));
                         winners = winners.filter(slot => scoreFn(slot) === maxScore);
                     });
-                    room.winnerPlayers = winners;
-                    room.winnerPlayer = winners[0];
-                    if (finished) {
-                        winners.forEach(slot => {
-                            const userData = {user: room.playerSlots[slot], room};
-                            registry.authUsers.processAchievement(userData, registry.achievements.win100Citadels.id);
-                            registry.authUsers.processAchievement(userData, registry.achievements.winGames.id, {game: registry.games.citadels.id});
-                        });
-                    }
+                    return winners;
+                },
+                endGame = (reason) => {
+                    clearTurnTimer();
+                    room.currentPlayer = null;
+                    room.targetSlot = null;
+                    Object.keys(state.players).forEach(slot => {
+                        countPoints(Number(slot), true);
+                        state.players[slot].character = [];
+                        room.playerCharacter[slot] = [];
+                    });
+                    room.gameEndReason = reason;
+                    room.winnerPlayers = reason === "completed" ? getWinners() : [];
+                    room.winnerPlayer = room.winnerPlayers[0] ?? null;
+                    room.winnerPlayers.forEach(slot => {
+                        const userData = {user: room.playerSlots[slot], room};
+                        registry.authUsers.processAchievement(userData, registry.achievements.win100Citadels.id);
+                        registry.authUsers.processAchievement(userData, registry.achievements.winGames.id, {game: registry.games.citadels.id});
+                    });
                     room.phase = 0;
 
                     room.presetSelected = null;
@@ -821,7 +835,9 @@ function init(wsServer, path) {
                         player.choose = null;
                         player.chooseSource = null;
                     }
-                    player.action = null;
+                    // During a basic resource choice the Emperor's pending crown action stays in this field.
+                    if (player.action !== 'emperor-action')
+                        player.action = null;
                     room.phase = 2;
                     countPoints(slot);
                 },
@@ -896,7 +912,7 @@ function init(wsServer, path) {
                         room.currentPlayer = slot;
                         if (room.blackmailed.includes(room.currentCharacter) && !['blackmailed-response', 'blackmailed-open'].includes(state.players[slot].action)) {
                             state.forceEndAfterBlackmail = {slot, character: room.currentCharacter};
-                            moveToResponse(true);
+                            moveToResponse();
                             if (state.players[slot] && state.players[slot].action === 'blackmailed-response')
                                 this.slotEventHandlers["blackmailed-response"](slot, "no");
                             return;
@@ -934,18 +950,19 @@ function init(wsServer, path) {
                         nextCharacter();
                     }
                 },
-                countPoints = (slot, finished = false) => {
+                countPoints = (slot, finished = false, citySize = getDistrictsCount(slot)) => {
                     const details = calculateDistrictScoreDetails(room.playerDistricts[slot], {
                         handCount: state.players[slot].hand.length,
                         gold: room.playerGold[slot],
                         crowned: room.king === slot,
                         allColorsBonus: state.gameRules.bonuses.allColors,
                         firstCityBonus: room.ender == slot ? state.gameRules.bonuses.firstCity : 0,
-                        completedCityBonus: room.ender != slot && getDistrictsCount(slot) >= state.maxDistricts
+                        completedCityBonus: room.ender != slot && citySize >= state.maxDistricts
                             ? state.gameRules.bonuses.otherCities : 0,
                         // Hand identities stay private while a game is in progress.
                         secretVaultCount: finished ? state.players[slot].hand.filter(card => card.type === "secret_vault").length : 0
                     });
+                    details.citySize = citySize;
                     room.playerScoreDetails[slot] = details;
                     room.playerScore[slot] = details.total;
                 },
@@ -969,20 +986,31 @@ function init(wsServer, path) {
                     card.actionsUsed = {...card.actionsUsed, [card.type]: room.turnId || 0};
                 },
                 updateBuildingBans = () => {
-                    state.pendingBuildingBans = (state.pendingBuildingBans || []).filter(entry => entry.round >= (room.roundNumber || 0));
-                    room.buildingBanSources = state.pendingBuildingBans.map(entry => {
-                        let sourceSlot = null;
-                        let sourceIndex = null;
-                        for (const [slot, city] of Object.entries(room.playerDistricts)) {
-                            const index = city.findIndex(card => card.instanceId === entry.sourceId);
-                            if (index >= 0) {
-                                sourceSlot = Number(slot);
-                                sourceIndex = index;
-                                break;
+                    const round = room.roundNumber || 0;
+                    const bans = [];
+                    room.buildingBanSources = [];
+                    for (const entry of state.pendingBuildingBans || []) {
+                        if (entry.round < round) continue;
+                        if (entry.sourceId) {
+                            let sourceSlot = null;
+                            let sourceIndex = null;
+                            for (const [slot, city] of Object.entries(room.playerDistricts)) {
+                                const index = city.findIndex(card => card.instanceId === entry.sourceId && card.judicialUsed);
+                                if (index >= 0) {
+                                    sourceSlot = Number(slot);
+                                    sourceIndex = index;
+                                    break;
+                                }
                             }
+                            if (sourceSlot === null && entry.round > round) continue;
+                            room.buildingBanSources.push({ownerSlot: entry.ownerSlot, sourceSlot, sourceIndex, round: entry.round});
                         }
-                        return {ownerSlot: entry.ownerSlot, sourceSlot, sourceIndex, round: entry.round};
-                    });
+                        bans.push(entry);
+                    }
+                    state.pendingBuildingBans = bans;
+                    room.buildingBan = bans.some(entry => entry.round === round);
+                    room.nextRoundBuildingBan = bans.some(entry => entry.round === round + 1);
+                    state.buildingBanRound = room.nextRoundBuildingBan ? round + 1 : room.buildingBan ? round : null;
                 },
                 updateConspiracies = () => {
                     room.conspiratorEffects = [];
@@ -1024,10 +1052,6 @@ function init(wsServer, path) {
                     if (room.buildDistricts === -1) return [false, 0];
                     if (!(room.buildDistricts || building.type === "stable" || paymentCard.wizard
                         || (building.kind === 6 && room.currentCharacter === "6_3"))) return [false, 0];
-                    if (building.type === "monument" && setupConfig.getCityDistrictCount(districts.filter((_, index) => index !== replaceCardInd)) + 2 >= state.maxDistricts) {
-                        sendSlot(slot, "message", "Вы не можете построить Монумент как последнее строение");
-                        return [false, 0];
-                    }
                     if (building.type === "secret_vault") {
                         sendSlot(slot, "message", "Вы не можете построить Тайное убежище");
                         return [false, 0];
@@ -1112,6 +1136,7 @@ function init(wsServer, path) {
                         if (building.decoration) {
                             delete building.decoration;
                         }
+                        if (building.type === 'old_chest') room.playerGold[slot_d] += 3;
                         dropCardDistricts(slot_d, cardInd);
                     }
                 },
@@ -1607,7 +1632,7 @@ function init(wsServer, path) {
                         countPoints(slot_d);
                         sendStateSlot(slot);
                         if (action === 'emperor-action') update(soundPayload);
-                        else endRound();
+                        else advanceAfterRound();
                     }
                 },
                 "abbat-steal": (slot, slot_d) => {
@@ -1807,10 +1832,8 @@ function init(wsServer, path) {
                     const source = districtSource(slot, 'judicial_chamber', sourceIndex, false);
                     if (!districtActionAllowed(slot) || !source || source.judicialUsed) return;
                     source.judicialUsed = true;
-                    state.buildingBanRound = (room.roundNumber || 1) + 1;
-                    room.nextRoundBuildingBan = true;
                     state.pendingBuildingBans = state.pendingBuildingBans || [];
-                    state.pendingBuildingBans.push({ownerSlot: slot, sourceId: ensureCardId(source), round: state.buildingBanRound});
+                    state.pendingBuildingBans.push({ownerSlot: slot, sourceId: ensureCardId(source), round: room.roundNumber + 1});
                     update(); sendStateSlot(slot);
                 },
                 "conspirators-house-action": (slot, sourceIndex, characterId) => {
@@ -1947,12 +1970,21 @@ function init(wsServer, path) {
             };
             this.updateConspiracies = updateConspiracies;
             this.updateBuildingBans = updateBuildingBans;
-            this.refreshScoreDetails = () => {
-                room.playerScoreDetails = {};
-                const finished = room.phase === 0 && room.winnerPlayer != null;
-                for (const slot of Object.keys(state.players)) {
-                    if (Array.isArray(room.playerDistricts[slot]) && Array.isArray(state.players[slot].hand))
-                        countPoints(Number(slot), finished);
+            this.refreshScoreDetails = savedDetails => {
+                const finished = !!room.gameEndReason;
+                const oldMonumentResult = finished && Object.values(room.playerDistricts).some(city =>
+                    Array.isArray(city) && city.some(card => card.type === "monument" && card.cost === 4));
+                room.playerScoreDetails = oldMonumentResult ? {...savedDetails} : {};
+                for (const [slot, player] of Object.entries(state.players)) {
+                    const city = room.playerDistricts[slot];
+                    if (room.playerScoreDetails[slot] || !Array.isArray(city) || !Array.isArray(player.hand)) continue;
+                    // Before the rule change, a four-gold Monument counted twice anywhere in the city.
+                    const historicSize = oldMonumentResult
+                        ? city.length + countDistricts(slot, "monument") - countDistricts(slot, "catacombs")
+                        : undefined;
+                    const recordedTotal = oldMonumentResult ? room.playerScore[slot] : undefined;
+                    countPoints(Number(slot), finished, historicSize);
+                    if (Number.isFinite(recordedTotal)) room.playerScore[slot] = recordedTotal;
                 }
             };
             this.clearTurnTimer = clearTurnTimer;
@@ -1997,8 +2029,8 @@ function init(wsServer, path) {
                     startGame(setup, setupConfig.normalizeBackgroundId(options && options.backgroundId));
                 },
                 "abort-game": (user) => {
-                    if (user === room.hostId)
-                        endGame();
+                    if (user === room.hostId && room.phase !== 0)
+                        endGame("aborted");
                 },
                 "toggle-lock": (user) => {
                     if (user === room.hostId)
@@ -2008,6 +2040,13 @@ function init(wsServer, path) {
                 "toggle-timers-pause": (user) => {
                     if (user === room.hostId)
                         toggleTimersPause();
+                },
+                "skip-empty-turn": (user, slot, revision) => {
+                    if (user !== room.hostId || !Number.isInteger(slot) || slot !== room.currentPlayer
+                        || room.playerSlots[slot] !== null || !Number.isSafeInteger(revision) || revision !== room.stateRevision)
+                        return;
+                    const decision = currentTimerDecision();
+                    if (decision) expireTimer(decision);
                 },
                 "players-join": (user, slot) => {
                     if (!room.teamsLocked && room.playerSlots[slot] === null) {
@@ -2065,12 +2104,20 @@ function init(wsServer, path) {
         setSnapshot(snapshot) {
             Object.assign(this.room, snapshot.room);
             Object.assign(this.state, snapshot.state);
+            this.room.winnerPlayer = snapshot.room.winnerPlayer ?? null;
+            this.room.winnerPlayers = snapshot.room.winnerPlayers ?? (this.room.winnerPlayer == null ? [] : [this.room.winnerPlayer]);
+            this.room.gameEndReason = setupConfig.getGameEndReason(snapshot.room);
             this.state.districtDiscard = snapshot.state.districtDiscard || [];
             this.state.gameRules = setupConfig.normalizeRules(snapshot.state.gameRules || (snapshot.room.gameSetup && snapshot.room.gameSetup.rules));
             this.state.randomDiscards = snapshot.state.randomDiscards || [];
             this.state.previousRandomDiscards = snapshot.state.previousRandomDiscards || [];
             this.room.roundNumber = snapshot.room.roundNumber ?? (this.room.phase ? 1 : 0);
             this.room.turnId = snapshot.room.turnId ?? 0;
+            // Previous versions could leave the resource step open after a forced handoff.
+            const currentAction = this.state.players[this.room.currentPlayer]?.action;
+            if (this.room.phase === 2 && ((this.room.witchedstate === 1 && this.room.witched === this.room.currentCharacter)
+                || currentAction === "blackmailed-open" || currentAction === "blackmailed-response"))
+                this.room.tookResource = true;
             if (snapshot.room.turnId === undefined && [2, 3].includes(this.room.phase)) {
                 const legacyActions = {laboratory: "laboratoryAction", forgery: "forgeryAction", museum: "museumAction"};
                 const city = this.room.playerDistricts[this.room.currentPlayer] || [];
@@ -2081,11 +2128,14 @@ function init(wsServer, path) {
                 }
             }
             this.state.lastAgedRound = snapshot.state.lastAgedRound ?? Math.max(0, this.room.roundNumber - 1);
-            this.state.buildingBanRound = snapshot.state.buildingBanRound ?? null;
-            this.room.buildingBan = snapshot.room.buildingBan ?? (this.state.buildingBanRound === this.room.roundNumber);
-            this.room.nextRoundBuildingBan = snapshot.room.nextRoundBuildingBan ?? (this.state.buildingBanRound === this.room.roundNumber + 1);
             this.state.pendingConspiracies = snapshot.state.pendingConspiracies || [];
-            this.state.pendingBuildingBans = snapshot.state.pendingBuildingBans || [];
+            this.state.pendingBuildingBans = [...(snapshot.state.pendingBuildingBans || [])];
+            const round = this.room.roundNumber;
+            // Older snapshots recorded the ban round without identifying its Chamber.
+            for (const [banRound, enabled] of [[round, snapshot.room.buildingBan], [round + 1, snapshot.room.nextRoundBuildingBan]]) {
+                if ((enabled ?? (snapshot.state.buildingBanRound === banRound)) && !this.state.pendingBuildingBans.some(entry => entry.round === banRound))
+                    this.state.pendingBuildingBans.push({round: banRound});
+            }
             this.state.draftOrder = snapshot.state.draftOrder || [...new Set(Object.values(this.state.characterRoles).map(Number))];
             this.state.theaterQueue = snapshot.state.theaterQueue || [];
             this.state.theaterCursor = snapshot.state.theaterCursor ?? 0;
@@ -2104,12 +2154,15 @@ function init(wsServer, path) {
             const savedCards = [
                 ...Object.values(this.room.playerDistricts).flat(),
                 ...Object.values(this.state.players).flatMap(player => player.hand || []),
+                ...Object.values(this.state.players).flatMap(player => player.choose || []),
                 ...this.state.districtDeck, ...this.state.districtDiscard
             ];
             const seenCards = new Set();
             for (const card of savedCards) {
-                if (!card || seenCards.has(card)) continue;
+                if (!card || typeof card !== "object" || seenCards.has(card)) continue;
                 seenCards.add(card);
+                if (this.room.phase !== 0 && card.type === "monument" && card.cost === 4)
+                    card.cost = setupConfig.districts.monument.cost;
                 const match = /^district-(\d+)$/.exec(card.instanceId);
                 if (match && Number.isSafeInteger(Number(match[1])))
                     this.state.nextDistrictId = Math.max(this.state.nextDistrictId, Number(match[1]));
@@ -2125,7 +2178,7 @@ function init(wsServer, path) {
             this.room.districtDeckCount = this.state.districtDeck.length;
             this.room.districtDiscardCount = this.state.districtDiscard.length;
             this.room.citySize = this.state.maxDistricts;
-            this.refreshScoreDetails();
+            this.refreshScoreDetails(snapshot.room.playerScoreDetails);
             this.room.onlinePlayers = new JSONSet();
             this.room.spectators = new JSONSet();
             this.room.onlinePlayers.clear();

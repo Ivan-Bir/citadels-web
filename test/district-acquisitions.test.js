@@ -175,6 +175,25 @@ test("exchanging a Monument announces whichever city newly completes and preserv
         game.clearTurnTimer();
     }
 });
+test("a traded Monument uses the outgoing district's position, including fifth place", () => {
+    const {game} = actingRoom("diplomat-action", {citySize: 6});
+    game.room.playerDistricts[0] = ["manor", "tavern", "temple", "prison", "market"].map(district);
+    game.room.playerDistricts[1] = [district("monument")];
+    game.userEvent("host", "exchange-districts", [4, 1, 0]);
+    assert.equal(game.room.playerDistricts[0][4].type, "monument");
+    assert.equal(game.room.playerScoreDetails[0].citySize, 5);
+    assert.equal(game.room.ender, null);
+});
+
+test("destroying one of four counted districts to the left activates the Monument bonus", () => {
+    const {game} = actingRoom("warlord-action", {citySize: 6});
+    game.room.playerDistricts[1] = ["temple", "catacombs", "manor", "tavern", "market", "monument"].map(district);
+    assert.equal(setup.getCityDistrictCount(game.room.playerDistricts[1]), 5);
+    game.userEvent("host", "destroy", [1, 0]);
+    assert.equal(game.room.playerDistricts[1].length, 5);
+    assert.equal(game.room.playerScoreDetails[1].citySize, 5);
+    assert.equal(game.room.ender, null);
+});
 function pendingMagistrate(rules = {}, building = district("tavern")) {
     const result = actingRoom("magistrate-open", rules);
     const {game} = result;
@@ -188,6 +207,18 @@ function pendingMagistrate(rules = {}, building = district("tavern")) {
     game.room.playerDistricts[1] = [building];
     return result;
 }
+
+test("a confiscated Monument can finish the Magistrate's city when Catacombs precede it", () => {
+    const {game, messages} = pendingMagistrate({citySize: 5}, district("monument"));
+    game.room.playerDistricts[1].unshift(...["tavern", "market", "temple"].map(district));
+    game.room.playerDistricts[0] = ["catacombs", "church", "manor", "prison"].map(district);
+    game.userEvent("host", "magistrate-open", ["yes"]);
+    assert.equal(game.room.playerScoreDetails[1].citySize, 3);
+    assert.equal(game.room.playerScoreDetails[0].citySize, 5);
+    assert.equal(game.room.playerDistricts[0][4].type, "monument");
+    assert.equal(game.room.ender, 0);
+    assert.ok(messages.some(message => message.event === "state" && message.data.sound === "city-complete"));
+});
 
 test("Magistrate obeys X unless the explicit over-limit flag is enabled", () => {
     for (const [rules, existing, allowed] of [

@@ -14,15 +14,15 @@ test('construction uses permanent discount plus every Factory but preserves nomi
  assert.equal(game.room.playerDistricts[0][2].buildDiscount,2);
 });
 
-test('city size treats each Monument as two and Catacombs as zero',()=>{
- const {game}=fixture();game.state.maxDistricts=7;
+test('Monuments already worth four city positions leave the next Monument worth one',()=>{
+ const {game}=fixture();game.state.maxDistricts=6;
  game.room.playerDistricts[0]=[district('monument'),district('monument'),district('catacombs')];
  hand(game,[district('monument'),district('catacombs')]);
  game.state.gameRules.duplicateLimit=5;
  game.slotEventHandlers.build(0,0);
- assert.equal(game.room.playerDistricts[0].length,4); // size6, Monument not last
+ assert.equal(game.room.playerScoreDetails[0].citySize,5);
  game.slotEventHandlers.build(0,0);
- assert.equal(game.room.playerDistricts[0].length,5); // Catacombs size remains6
+ assert.equal(game.room.playerScoreDetails[0].citySize,5);
  assert.equal(game.room.ender,null);
  hand(game,[district('manor')]);game.slotEventHandlers.build(0,0);assert.equal(game.room.ender,0);
 });
@@ -143,13 +143,40 @@ test('specific Framework and Arsenal sources are consumed, preserving another co
  game.slotEventHandlers['arsenal-destroy'](0,1,0,1);assert.equal(game.room.playerDistricts[0][0],a0);assert.equal(game.room.playerDistricts[0].length,1);
 });
 
-test('Mirror rejects own city, Theater, excess duplicates and last Monument; ordinary mode stays Mirror',()=>{
+test('Mirror rejects own city, Theater and excess duplicates; ordinary mode stays Mirror',()=>{
  const {game}=fixture();game.room.playerDistricts[0]=[district('manor')];game.room.playerDistricts[1]=[district('theater'),district('manor'),district('monument')];hand(game,[district('mirror_hall')]);
  for(const [slot,index] of [[0,0],[1,0],[1,1]])game.slotEventHandlers['build-mirror'](0,0,slot,index);
  assert.equal(game.room.playerHand[0],1);assert.equal(game.room.playerGold[0],20);
- game.state.maxDistricts=3;game.slotEventHandlers['build-mirror'](0,0,1,2);assert.equal(game.room.playerHand[0],1);
  game.slotEventHandlers['build-mirror'](0,0);assert.equal(game.room.playerDistricts[0][1].type,'mirror_hall');
  assert.equal(game.room.playerGold[0],14);
+});
+test('a Monument built fifth can finish the city for five gold', () => {
+    const {game, messages} = fixture();
+    game.state.maxDistricts = 5;
+    game.room.playerDistricts[0] = ['market', 'tavern', 'temple', 'prison'].map(district);
+    hand(game, [district('monument')]);
+    game.room.playerGold[0] = 4;
+    game.userEvent('host', 'build', [0]);
+    assert.equal(game.room.playerHand[0], 1);
+    game.room.playerGold[0] = 5;
+    game.userEvent('host', 'build', [0]);
+    assert.equal(game.room.playerGold[0], 0);
+    assert.equal(game.room.playerScoreDetails[0].citySize, 5);
+    assert.equal(game.room.ender, 0);
+    assert.ok(messages.some(message => message.event === 'state' && message.data.sound === 'city-complete'));
+});
+test('a Mirror uses the copied Monument’s position in its new city', () => {
+    const {game} = fixture();
+    game.state.maxDistricts = 5;
+    game.room.playerDistricts[1] = ['market', 'tavern', 'temple', 'prison', 'monument'].map(district);
+    game.room.playerDistricts[0] = ['church', 'manor', 'fortress'].map(district);
+    hand(game, [district('mirror_hall')]);
+    game.userEvent('host', 'build-mirror', [0, 1, 4]);
+    assert.equal(game.room.playerDistricts[0][3].type, 'monument');
+    assert.notEqual(game.room.playerDistricts[0][3], game.room.playerDistricts[1][4]);
+    assert.equal(game.room.playerGold[0], 14);
+    assert.equal(game.room.playerScoreDetails[0].citySize, 5);
+    assert.equal(game.room.ender, 0);
 });
 test('exact copy keeps mature wine and used Chamber, ordinary reconstruction resets them',()=>{
  const {game}=fixture();game.room.playerDistricts[1]=[{...district('winery'),wineAge:5},{...district('judicial_chamber'),judicialUsed:true}];
@@ -190,15 +217,102 @@ test('alternative payments build the selected hand instance with its own discoun
  assert.equal(game.room.playerDistricts[0][0].buildDiscount,3);assert.equal(game.state.players[0].hand[0].buildDiscount,undefined);
 });
 
-test('pending Chamber attribution survives destruction and snapshot restoration',()=>{
- const {game}=fixture();game.room.playerDistricts[0]=[district('judicial_chamber'),district('arsenal')];game.room.playerDistricts[1]=[district('manor')];
- game.slotEventHandlers['judicial-chamber-action'](0,0);
- assert.deepEqual(game.room.buildingBanSources,[{ownerSlot:0,sourceSlot:0,sourceIndex:0,round:3}]);
- game.slotEventHandlers['arsenal-destroy'](0,0,0,1);
- assert.deepEqual(game.room.buildingBanSources,[{ownerSlot:0,sourceSlot:null,sourceIndex:null,round:3}]);
- const restored=fixture().game;restored.setSnapshot(JSON.parse(JSON.stringify(game.getSnapshot())));
- assert.deepEqual(restored.room.buildingBanSources,[{ownerSlot:0,sourceSlot:null,sourceIndex:null,round:3}]);
- assert.equal(restored.room.nextRoundBuildingBan,true);
+test('destroying the last pending Chamber with the Arsenal allows construction next round, including after restore', () => {
+    const {game} = fixture();
+    game.room.playerDistricts[0] = [district('judicial_chamber'), district('arsenal')];
+    game.slotEventHandlers['judicial-chamber-action'](0, 0);
+    game.slotEventHandlers['arsenal-destroy'](0, 0, 0, 1);
+    assert.deepEqual(game.room.buildingBanSources, []);
+    const restored = fixture().game;
+    restored.setSnapshot(JSON.parse(JSON.stringify(game.getSnapshot())));
+    assert.equal(restored.room.nextRoundBuildingBan, false);
+    restored.room.tookResource = true;
+    restored.slotEventHandlers['end-turn'](0);
+    assert.equal(restored.room.roundNumber, 3);
+    assert.equal(restored.room.buildingBan, false);
+    while (restored.room.phase === 1)
+        restored.slotEventHandlers['take-character'](restored.room.currentPlayer, 0);
+    const builder = restored.room.currentPlayer;
+    restored.state.players[builder].hand = [district('temple')];
+    restored.room.playerHand[builder] = 1;
+    restored.slotEventHandlers.build(builder, 0);
+    assert.equal(restored.room.playerDistricts[builder][0].type, 'temple');
+});
+
+test('a Warlord who acts later in the same round can cancel a different character’s scheduled ban', () => {
+    const {game} = fixture();
+    game.room.currentCharacter = '7_1';
+    game.state.currentIndCharacter = 7;
+    game.state.characterRoles['8_1'] = 1;
+    game.state.players[1].character = ['8_1'];
+    game.room.playerDistricts[0] = [district('judicial_chamber')];
+    game.slotEventHandlers['judicial-chamber-action'](0, 0);
+    game.slotEventHandlers['take-resources'](0, 'coins');
+    game.slotEventHandlers['end-turn'](0);
+    assert.equal(game.room.currentCharacter, '8_1');
+    assert.equal(game.room.turnId, 2);
+    game.slotEventHandlers.destroy(1, 0, 0);
+    assert.equal(game.room.nextRoundBuildingBan, false);
+    game.slotEventHandlers['take-resources'](1, 'coins');
+    game.slotEventHandlers['end-turn'](1);
+    assert.equal(game.room.roundNumber, 3);
+    assert.equal(game.room.buildingBan, false);
+});
+
+test('sacrificing one of two pending Chambers keeps the other ban; destroying its source next round leaves it in force', () => {
+    const {game} = fixture();
+    game.room.playerDistricts[0] = [district('judicial_chamber'), district('judicial_chamber')];
+    game.slotEventHandlers['judicial-chamber-action'](0, 0);
+    game.slotEventHandlers['judicial-chamber-action'](0, 1);
+    hand(game, [district('necropolis')]);
+    game.slotEventHandlers['build-necropolis'](0, 0, 0);
+    assert.deepEqual(game.room.buildingBanSources, [{ownerSlot: 0, sourceSlot: 0, sourceIndex: 0, round: 3}]);
+    assert.equal(game.room.nextRoundBuildingBan, true);
+    game.room.tookResource = true;
+    game.slotEventHandlers['end-turn'](0);
+    assert.equal(game.room.roundNumber, 3);
+    game.room.phase = 2;
+    game.room.currentPlayer = 1;
+    game.state.players[1].action = 'warlord-action';
+    game.slotEventHandlers.destroy(1, 0, 0);
+    assert.equal(game.room.playerDistricts[0][0].type, 'necropolis');
+    assert.equal(game.room.buildingBan, true);
+    assert.equal(game.room.nextRoundBuildingBan, false);
+    const restored = fixture().game;
+    restored.setSnapshot(JSON.parse(JSON.stringify(game.getSnapshot())));
+    assert.equal(restored.room.buildingBan, true);
+    assert.deepEqual(restored.room.buildingBanSources, [{ownerSlot: 0, sourceSlot: null, sourceIndex: null, round: 3}]);
+});
+
+test('restoring an old pending ban with a known destroyed source cancels it before it starts', () => {
+    const {game} = fixture();
+    game.room.playerDistricts[0] = [district('judicial_chamber')];
+    game.slotEventHandlers['judicial-chamber-action'](0, 0);
+    const snapshot = JSON.parse(JSON.stringify(game.getSnapshot()));
+    snapshot.state.districtDiscard.push(snapshot.room.playerDistricts[0].pop());
+    const restored = fixture().game;
+    restored.setSnapshot(snapshot);
+    assert.equal(restored.room.nextRoundBuildingBan, false);
+    assert.deepEqual(restored.room.buildingBanSources, []);
+    const rebuilt = snapshot.state.districtDiscard.pop();
+    rebuilt.judicialUsed = false;
+    snapshot.room.playerDistricts[1] = [rebuilt];
+    restored.setSnapshot(snapshot);
+    assert.equal(restored.room.nextRoundBuildingBan, false);
+});
+
+test('a legacy unattributed ban stays scheduled when a newer Chamber is activated and destroyed', () => {
+    const {game} = fixture();
+    const snapshot = JSON.parse(JSON.stringify(game.getSnapshot()));
+    delete snapshot.state.pendingBuildingBans;
+    snapshot.state.buildingBanRound = 3;
+    snapshot.room.nextRoundBuildingBan = true;
+    game.setSnapshot(snapshot);
+    game.room.playerDistricts[0] = [district('judicial_chamber'), district('arsenal')];
+    game.slotEventHandlers['judicial-chamber-action'](0, 0);
+    game.slotEventHandlers['arsenal-destroy'](0, 0, 0, 1);
+    assert.equal(game.room.nextRoundBuildingBan, true);
+    assert.deepEqual(game.room.buildingBanSources, []);
 });
 test('killed Emperor cannot activate districts during the out-of-turn crown response',()=>{
  const {game}=fixture();game.room.currentCharacter='0';game.state.players[0].action='emperor-nores-action';
@@ -367,4 +481,74 @@ test('Den payment clears discounts only on cards actually discarded after a succ
  game.slotEventHandlers['take-card'](0,game.state.players[0].choose.indexOf(paid));
  const beforeGold=game.room.playerGold[0];game.slotEventHandlers.build(0,1);
  assert.equal(beforeGold-game.room.playerGold[0],3);
+});
+
+test('Old Chest pays its owner once for a successful Warlord destruction and updates Imperial Treasury', () => {
+    const {game} = fixture();
+    const chest = district('old_chest');
+    const treasury = district('imperial_treasury');
+    game.room.playerDistricts[1] = [chest, treasury];
+    game.state.players[0].action = 'warlord-action';
+    game.state.characterRoles['5_1'] = 1;
+    game.userEvent('host', 'destroy', [1, 0]);
+    assert.equal(game.room.playerGold[1], 20);
+    assert.equal(game.room.playerDistricts[1][0], chest);
+
+    delete game.state.characterRoles['5_1'];
+    game.userEvent('host', 'destroy', [1, 0]);
+    game.userEvent('host', 'destroy', [1, 0]);
+    assert.equal(game.room.playerGold[1], 23);
+    assert.equal(game.room.playerGold[0], 20);
+    assert.deepEqual(game.room.playerDistricts[1], [treasury]);
+    assert.deepEqual(game.state.districtDiscard, [chest]);
+    assert.equal(game.room.playerScore[1], treasury.cost + 23);
+});
+
+test('Old Chest pays its new owner when an Arsenal destroys it after a Marshal seizure', () => {
+    const {game} = fixture();
+    const chest = district('old_chest');
+    const arsenal = district('arsenal');
+    game.room.playerDistricts[1] = [chest, arsenal];
+    game.state.players[0].action = 'marshal-action';
+    game.userEvent('host', 'seize-district', [1, 0]);
+    assert.equal(game.room.playerDistricts[0][0], chest);
+    assert.equal(game.room.playerGold[0], 19);
+    assert.equal(game.room.playerGold[1], 21);
+
+    game.room.currentPlayer = 1;
+    game.userEvent('player-1', 'arsenal-destroy', [0, 0, 0]);
+    assert.equal(game.room.playerGold[0], 22);
+    assert.equal(game.room.playerGold[1], 21);
+    assert.deepEqual(game.state.districtDiscard, [chest, arsenal]);
+});
+
+test('Old Chest costs one to build and pays three when sacrificed for Necropolis', () => {
+    const {game} = fixture();
+    const chest = district('old_chest');
+    const necropolis = district('necropolis');
+    hand(game, [chest, necropolis]);
+    game.userEvent('host', 'build', [0]);
+    assert.equal(game.room.playerGold[0], 19);
+    assert.equal(game.room.playerScore[0], 1);
+    game.userEvent('host', 'build-necropolis', [0, 0]);
+    assert.equal(game.room.playerGold[0], 22);
+    assert.deepEqual(game.room.playerDistricts[0], [necropolis]);
+    assert.deepEqual(game.state.districtDiscard, [chest]);
+});
+
+test('Old Chest in hand or in a destroyed Museum gives no destruction reward', () => {
+    const {game} = fixture();
+    const chest = district('old_chest');
+    game.room.playerDistricts[0] = [district('flea_market'), district('museum')];
+    hand(game, [chest]);
+    game.state.districtDeck = [];
+    game.userEvent('host', 'flea-market-action', [0, 0]);
+    assert.equal(game.room.playerGold[0], 20);
+    assert.equal(game.state.players[0].hand[0], chest);
+    game.userEvent('host', 'museum-action', [0, 1]);
+    assert.deepEqual(game.room.playerDistricts[0][1].exposition, [chest]);
+    game.state.players[0].action = 'warlord-action';
+    game.userEvent('host', 'destroy', [0, 1]);
+    assert.equal(game.room.playerGold[0], 17);
+    assert.equal(game.state.districtDiscard[0], chest);
 });

@@ -49,6 +49,27 @@ function previewClient() {
     return {game, node, event, window, document, timers, hold() {for (const callback of [...timers]) callback();}};
 }
 
+test("leaving a seat clears its private hand before either spectator update can render", () => {
+    for (const publicFirst of [true, false]) {
+        const {game, handlers} = gameClient({
+            userAction: "museum", districtSource: 0,
+            player: {action: null, hand: [{type: "quarry", kind: 9, cost: 5}], character: ["4_1"]}
+        }, true);
+        const leave = () => handlers.state({phase: 2, currentPlayer: 0, playerSlots: [null, "other"]});
+        const clear = () => handlers["player-state"]({});
+        (publicFirst ? leave : clear)();
+        assert.equal(game.state.player, null);
+        assert.equal(game.state.userAction, null);
+        (publicFirst ? clear : leave)();
+        assert.equal(game.state.userSlot, -1);
+        handlers["player-state"]({hand: [{type: "temple"}]});
+        assert.equal(game.state.player, null);
+        handlers.state({phase: 2, currentPlayer: 0, playerSlots: ["other", "host"]});
+        handlers["player-state"]({hand: [{type: "church"}]});
+        assert.equal(game.state.player.hand[0].type, "church");
+    }
+});
+
 test("loupe preview lasts only while pressed and release never selects the card", () => {
     const {game, node, event, window} = previewClient();
     let selected = 0;
@@ -97,6 +118,18 @@ test("Judicial Chamber explains a blocked hand click without blocking Museum sel
     assert.equal(alerts.length, 1);
 });
 
+test("Warlord destroys an available Chamber in one click during an active ban", () => {
+    const chamber = {type: "judicial_chamber", cost: 3, instanceId: "district-12"};
+    const {game, emitted, alerts} = gameClient({buildingBan: true, player: {action: "warlord-action"},
+        playerGold: {0: 1}, playerDistricts: {0: [], 1: [chamber]}});
+    game.handleClickBuilding(1, 0);
+    assert.deepEqual(emitted, []);
+    game.state.playerGold[0] = 2;
+    game.handleClickBuilding(1, 0);
+    assert.deepEqual(emitted, [["destroy", 1, 0]]);
+    assert.deepEqual(alerts, []);
+});
+
 test("Mirror targets explain each prohibition and reject the same targets on click", () => {
     const {game, emitted} = gameClient({citySize: 7, currentCharacter: "4_1", playerGold: {0: 6},
         player: {action: null, hand: [{type: "mirror_hall", cost: 6, kind: 9}]},
@@ -111,8 +144,8 @@ test("Mirror targets explain each prohibition and reject the same targets on cli
         game.handleClickBuilding(slot, index);
         assert.deepEqual(emitted, []);
     }
-    game.state.playerDistricts[0] = Array.from({length: 5}, () => ({type: "tavern"}));
-    assert.equal(game.getMirrorTargetStatus(1, 2).reason, "Монумент нельзя построить как последний квартал");
+    game.state.playerDistricts[0] = Array.from({length: 6}, () => ({type: "tavern"}));
+    assert.equal(game.getMirrorTargetStatus(1, 2).available, true);
     game.state.playerDistricts[0] = [];
     game.state.buildingBan = true;
     assert.equal(game.getMirrorTargetStatus(1, 1).reason, "Строительство запрещено Судейской палатой");
@@ -181,11 +214,9 @@ test("hand hints distinguish response waits, role bans and card-specific constru
     game.state.buildDistricts = 1;
     game.state.player.hand[0] = {type: "secret_vault", cost: 0, kind: 9};
     assert.equal(game.getHandBuildHint(0), "Тайное убежище нельзя построить");
-    game.state.player.hand[0] = {type: "monument", cost: 4, kind: 9};
-    game.state.playerDistricts[0] = Array.from({length: 5}, () => ({type: "tavern"}));
-    assert.equal(game.getHandBuildHint(0), "Монумент нельзя построить как последний квартал");
-    game.state.playerDistricts[0][0] = {type: "catacombs"};
-    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 4");
+    game.state.player.hand[0] = {type: "monument", cost: 5, kind: 9};
+    game.state.playerDistricts[0] = Array.from({length: 6}, () => ({type: "tavern"}));
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 5");
 });
 
 test("hand hints consider free replacements and quote the explicitly selected replacement", () => {
@@ -195,10 +226,10 @@ test("hand hints consider free replacements and quote the explicitly selected re
     game.setUserAction("necropolis", {buildTarget: 0});
     assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 0");
     game.handleStopUserAction();
-    game.state.player.hand[0] = {type: "monument", cost: 4, kind: 9};
+    game.state.player.hand[0] = {type: "monument", cost: 5, kind: 9};
     game.state.playerDistricts[0] = [{type: "framework", kind: 9}, ...Array.from({length: 4}, () => ({type: "tavern"}))];
-    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 4");
-    assert.equal(game.getHandBuildStatus(0, {goldOnly: true}).reason, "Монумент нельзя построить как последний квартал");
+    assert.equal(game.getHandBuildHint(0), "Стоимость постройки: 5");
+    assert.equal(game.getHandBuildStatus(0, {goldOnly: true}).reason, "Недостаточно золота");
     assert.equal(game.getHandBuildStatus(0, {frameworkIndex: 0}).cost, 0);
     assert.equal(game.getHandBuildStatus(0, {frameworkIndex: 0}).reason, null);
     game.setUserAction("framework", {districtSource: 0});
@@ -480,6 +511,8 @@ test("final city display supports multiple Vaults and does not duplicate older d
     game.state.phase = 0;
     game.state.winnerPlayer = null;
     assert.equal(game.getDisplayedDistricts(0).length, 1);
+    game.state.gameEndReason = "aborted";
+    assert.deepEqual(Array.from(game.getDisplayedDistricts(0), card => card.type), ["temple", "secret_vault", "secret_vault"]);
 });
 
 test("legacy final city display uses the public scored Vault bonus without reading private hand identities", () => {

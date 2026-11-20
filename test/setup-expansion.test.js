@@ -5,17 +5,17 @@ const setup = require("../public/setup");
 const utils = require("../utils");
 const card = type => ({type, kind: setup.districts[type].type, cost: setup.districts[type].cost});
 
-test("expansion catalog supplies fifteen opt-in districts while the standard deck stays unchanged", () => {
+test("expansion catalog supplies opt-in districts while the standard deck stays unchanged", () => {
     const expected = {
         stone_bridge: [0, 3, 0], catacombs: [9, 2, 1], architects_workshop: [9, 5, 1],
         winery: [9, 3, 1], mirror_hall: [9, 6, 1], conspirators_house: [9, 6, 1],
         divination_tower: [9, 4, 1], artisans_court: [9, 4, 1], judicial_chamber: [9, 3, 1],
         seminary: [5, 4, 0], sloboda: [4, 6, 0], exchange: [6, 6, 0],
-        papal_residence: [5, 6, 0], citadel: [8, 6, 0], flea_market: [9, 2, 1]
+        papal_residence: [5, 6, 0], citadel: [8, 6, 0], flea_market: [9, 2, 1], old_chest: [9, 1, 1]
     };
-    assert.equal(Object.keys(setup.districts).length, 62);
+    assert.equal(Object.keys(setup.districts).length, 63);
     assert.equal(setup.basicIds.length, 23);
-    assert.equal(setup.uniqueIds.length, 39);
+    assert.equal(setup.uniqueIds.length, 40);
     for (const [id, values] of Object.entries(expected)) {
         const district = setup.districts[id];
         assert.deepEqual([district.type, district.cost, district.quantity], values, id);
@@ -48,12 +48,21 @@ test("building payment combines the card's lasting discount and every existing F
     assert.equal(discounted.buildDiscount, 1);
     assert.equal(setup.countDistricts(city, "factory"), 2);
 });
-test("city size counts each Monument twice and never counts Catacombs", () => {
-    const city = ["monument", "monument", "catacombs", "catacombs", "stone_bridge", "sloboda"].map(card);
-    assert.equal(setup.getCityDistrictCount(city), 6);
+test("a Monument gains its extra position with three districts to the left even after Catacombs", () => {
+    const city = ["catacombs", "temple", "manor", "market", "monument"].map(card);
+    assert.equal(setup.getCityDistrictCount(city), 5);
+    city.shift();
+    assert.equal(setup.getCityDistrictCount(city), 5);
     assert.equal(setup.getCityDistrictCount([]), 0);
     assert.equal(setup.getCityDistrictCount([card("catacombs")]), 0);
-    assert.equal(city.length, 6);
+    assert.equal(setup.districts.monument.description, "Считается за 2 квартала, если слева построено меньше 4-х кварталов");
+    assert.equal(card("monument").cost, 5);
+});
+test("an earlier Monument contributes both places to a later Monument's threshold", () => {
+    const city = ["monument", "temple", "market", "monument"].map(card);
+    assert.equal(setup.getCityDistrictCount(city), 5);
+    city.splice(1, 1);
+    assert.equal(setup.getCityDistrictCount(city), 5);
 });
 test("color income counts independent bonus sources without multiplying city size or ordinary districts", () => {
     const city = ["sloboda", "sloboda", "exchange", "papal_residence", "citadel", "seminary",
@@ -154,13 +163,13 @@ test("Catacombs and Secret Vault cannot fill a missing city position during star
     value.districts.unique.push("library");
     assert.deepEqual(setup.getStartErrors(value, 2), []);
 });
-test("Monument supplies two city positions only when an ordinary final district remains possible", () => {
+test("Monument can supply two city positions even when that completes the city", () => {
     const value = setup.getDefaultSetup(2);
     value.districts = {basic: {tavern: 20}, unique: ["monument"]};
     value.rules.citySize = 3;
     assert.deepEqual(setup.getStartErrors(value, 2), []);
     value.rules.citySize = 2;
-    assert.ok(setup.getStartErrors(value, 2).some(error => /вместимость/.test(error)));
+    assert.deepEqual(setup.getStartErrors(value, 2), []);
     value.rules.citySize = 4;
     value.districts.unique.push("catacombs");
     assert.ok(setup.getStartErrors(value, 2).some(error => /вместимость/.test(error)));

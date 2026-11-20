@@ -35,7 +35,7 @@ test("legacy public state explains every visible bonus without requiring a priva
     data.playerScore[0] = expected.total;
     assert.deepEqual(setup.getPlayerScoreDetails(data, 0), expected);
     assert.equal(setup.getPlayerScoreDetails(data, "0").citySize, 6);
-    assert.equal(setup.getPlayerScoreDetails(data, 0).nominal, 22);
+    assert.equal(setup.getPlayerScoreDetails(data, 0).nominal, 23);
 });
 
 test("server score explanations take precedence without reading legacy fields", () => {

@@ -65,14 +65,14 @@ test("reject malformed maps and unknown or special IDs in basic counts", () => {
         assert.throws(() => setup.normalizeBasicCounts(value), /неизвестное поле/);
     assert.equal({}.polluted, undefined);
 });
-test("all 39 selected unique districts reach the deck, without a 14-card cap", () => {
+test("all selected unique districts reach the deck, without a 14-card cap", () => {
     const deck = utils.createDeck(4, setup.uniqueIds);
-    assert.equal(deck.length, 93);
+    assert.equal(deck.length, 54 + setup.uniqueIds.length);
     for (const id of setup.uniqueIds)
         assert.equal(deck.filter(card => card.type === id).length, 1, id);
 });
-test("selected unique counts of 0, 10, 14, 30 and 39 all match the final deck", () => {
-    for (const count of [0, 10, 14, 30, 39]) {
+test("selected unique counts match the final deck", () => {
+    for (const count of [0, 10, 14, 30, setup.uniqueIds.length]) {
         const selected = setup.uniqueIds.slice(0, count);
         assert.equal(utils.createDeck(4, selected).length, 54 + count);
         assert.equal(setup.getDeckSummary(undefined, selected).total, 54 + count);

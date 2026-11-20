@@ -76,14 +76,15 @@ test("the configured all-colors bonus requires the five game colors and excludes
     assert.equal(calculateDistrictScore(allColors, {allColorsBonus: 0}), 14);
 });
 
-test("each Wishing Well counts itself and every other special district, excluding Stone Bridges", () => {
-    const city = [
-        {type: "well_of_wishes", cost: 5, kind: 9},
-        {type: "well_of_wishes", cost: 5, kind: 9},
-        {type: "stone_bridge", cost: 3, kind: 0},
-        {type: "catacombs", cost: 2, kind: 9}
-    ];
-    assert.equal(calculateDistrictScore(city), 25);
+test("each Wishing Well scores only for other special districts, including other Wells", () => {
+    const well = {type: "well_of_wishes", cost: 5, kind: 9};
+    const bridge = {type: "stone_bridge", cost: 3, kind: 0};
+    const keep = {type: "keep", cost: 3, kind: 9};
+    assert.deepEqual(calculateDistrictScoreDetails([well]), {citySize: 1, nominal: 5, bonuses: [], total: 5});
+    const city = [well, {...well}, keep, bridge];
+    const details = calculateDistrictScoreDetails(city);
+    assert.deepEqual(details.bonuses.map(b => [b.id, b.points]), [["stone_bridge", 2], ["well_of_wishes", 4]]);
+    assert.equal(calculateDistrictScore(city), 22);
 });
 
 test("an Ivory Tower scores only while it is the sole special district, including another Tower", () => {
@@ -125,11 +126,11 @@ test("Haunted Quarters choose independent colors to maximize the total bonus at 
         {type: "haunted_quarter", cost: 3, kind: 9},
         {type: "haunted_quarter", cost: 3, kind: 9}
     ];
-    assert.equal(calculateDistrictScore(city), 19);
-    assert.equal(calculateDistrictScore(city, {allColorsBonus: 0}), 18);
+    assert.equal(calculateDistrictScore(city), 18);
+    assert.equal(calculateDistrictScore(city, {allColorsBonus: 0}), 17);
     const twoWells = city.concat({type: "well_of_wishes", cost: 5, kind: 9});
-    assert.equal(calculateDistrictScore(twoWells), 28);
-    assert.equal(calculateDistrictScore(twoWells, {allColorsBonus: 7}), 31);
+    assert.equal(calculateDistrictScore(twoWells), 26);
+    assert.equal(calculateDistrictScore(twoWells, {allColorsBonus: 7}), 29);
 });
 
 test("Haunted Quarters can preserve the Ivory Tower bonus while completing all colors without changing cards", () => {
@@ -184,27 +185,27 @@ test("a large group of Haunted Quarters preserves every special-district point w
         {type: "capitol", cost: 5, kind: 9},
         ...Array.from({length: 30}, () => ({type: "haunted_quarter", cost: 3, kind: 9}))
     ];
-    assert.equal(calculateDistrictScore(city), 174);
-    assert.equal(calculateDistrictScore(city, {allColorsBonus: 50}), 216);
+    assert.equal(calculateDistrictScore(city), 172);
+    assert.equal(calculateDistrictScore(city, {allColorsBonus: 50}), 214);
 });
 
 test("score explanations keep nominal cost separate and aggregate only earned bonuses", () => {
     const city = [
-        {type: "monument", cost: 4, kind: 9},
-        {type: "monument", cost: 4, kind: 9},
+        {type: "monument", cost: 5, kind: 9},
+        {type: "monument", cost: 5, kind: 9},
         {type: "catacombs", cost: 2, kind: 9, decoration: true},
         {type: "stone_bridge", cost: 3, kind: 0, decoration: 2, buildDiscount: 3},
         {type: "stone_bridge", cost: 3, kind: 0},
         {type: "memorial", cost: 3, kind: 9}
     ];
     const details = calculateDistrictScoreDetails(city, {crowned: true});
-    assert.equal(details.nominal, 19);
+    assert.equal(details.nominal, 21);
     assert.equal(details.citySize, 7);
     assert.deepEqual(Object.fromEntries(details.bonuses.map(b => [b.id, b.points])), {
         decorations: 4, catacombs: 2, stone_bridge: 4, memorial: 5
     });
     assert.ok(details.bonuses.every(b => b.label.length > 0 && b.points > 0));
-    assert.equal(details.total, 34);
+    assert.equal(details.total, 36);
     assert.equal(details.total, calculateDistrictScore(city, {crowned: true}));
     assert.deepEqual(calculateDistrictScoreDetails([]), {citySize: 0, nominal: 0, bonuses: [], total: 0});
 });

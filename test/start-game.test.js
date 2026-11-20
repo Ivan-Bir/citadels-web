@@ -75,12 +75,12 @@ test("server includes every chosen district, persists setup and deals four cards
     game.userEventHandlers["start-game"]("host", chars, setup.uniqueIds, null, timer, counts);
     const all = game.state.districtDeck.concat(...Object.values(game.state.players).map(player => player.hand));
     assert.equal(game.room.phase, 1);
-    assert.equal(all.length, 97);
+    assert.equal(all.length, 58 + setup.uniqueIds.length);
     assert.equal(all.filter(card => card.type === "manor").length, 9);
     for (const id of setup.uniqueIds)
         assert.equal(all.filter(card => card.type === id).length, 1);
     assert.equal(game.room.gameSetup.districts.basic.manor, 9);
-    assert.equal(game.getSnapshot().room.gameSetup.districts.unique.length, 39);
+    assert.deepEqual(game.getSnapshot().room.gameSetup.districts.unique, setup.uniqueIds);
     Object.values(game.state.players).forEach(player => assert.equal(player.hand.length, 4));
     game.clearTurnTimer();
 });
@@ -154,7 +154,7 @@ test('new starting conditions apply to every hand, gold, city size and public pi
         assert.equal(game.room.playerGold[slot], 9);
     });
     assert.equal(game.state.maxDistricts, 10);
-    assert.equal(game.room.districtDeckCount, 93 - 24);
+    assert.equal(game.room.districtDeckCount, 54 + setup.uniqueIds.length - 24);
     assert.equal(game.room.districtDiscardCount, 0);
     assert.deepEqual(game.room.gameSetup.starting, setup.normalizeStarting({handSize: 6, minUnique: 2, gold: 9}));
     assert.ok(!('districtDeck' in game.room));
@@ -469,7 +469,7 @@ test("custom all-colors bonus participates in Haunted Quarter's best color choic
         });
         game.room.ender = 1;
         finishTestRound(game);
-        assert.equal(game.room.playerScore[0], costs + Math.max(2, allColors + 1));
+        assert.equal(game.room.playerScore[0], costs + Math.max(1, allColors));
         game.clearTurnTimer();
     }
 });

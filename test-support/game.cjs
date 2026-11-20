@@ -7,6 +7,7 @@ const setup = require("../public/setup");
 function createRoom(players = 4) {
     let GameState;
     const messages = [];
+    const achievements = [];
     class RoomState extends EventEmitter {
         constructor() { super(); this.room = {}; this.eventHandlers = {}; }
     }
@@ -17,12 +18,14 @@ function createRoom(players = 4) {
     init({app: {use() {}, get() {}}, users: registry, static() {}}, "/test");
     const game = new GameState("host", {}, {
         send(target, event, data) { messages.push({target, event, data}); }
-    }, {games: {citadels: {id: "test"}}, authUsers: {processAchievement() {}},
+    }, {games: {citadels: {id: "test"}}, authUsers: {
+        processAchievement({user}, id) { achievements.push({user, id}); }
+    },
         achievements: {win100Citadels: {id: "win"}, winGames: {id: "games"}}});
     game.room.playerSlots = Array.from({length: 8}, (_, i) => i < players ? (i === 0 ? "host" : "player-" + i) : null);
     // Seated players are in the room: the game sends only to those online
     game.room.playerSlots.forEach(user => user && game.room.onlinePlayers.add(user));
-    return {game, messages};
+    return {game, messages, achievements};
 }
 const chars = Array.from({length: 8}, (_, i) => (i + 1) + "_1");
 const timer = setup.normalizeTimerSettings({enabled: false});
